@@ -109,11 +109,11 @@
                     </form>
                 </fieldset>
 
-                <!-- <?php if(boolval($rows))
+                <?php if(boolval($rows))
                     { 
                         print_r($rows);
                         
-                    } ?> -->
+                    } ?>
             </div>
         </div>
     </div>

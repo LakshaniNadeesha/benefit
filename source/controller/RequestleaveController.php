@@ -4,6 +4,10 @@ class RequestleaveController extends Controller{
     function index(){
         // $user = new RequestleaveModel();
 
+        $user1 = new LeavedetailsModel();
+
+        $data = $user1->where('employee_ID',Auth::user());
+
         if(count($_POST)>0)
         {
             $user = new RequestleaveModel();
@@ -23,9 +27,9 @@ class RequestleaveController extends Controller{
                 }
                 $user->insert($arr);
             }
-            $this->view('requestleave');
+            $this->view('requestleave',['rows'=>$data]);
         }else{
-            $this->view('requestleave');
+            $this->view('requestleave',['rows'=>$data]);
         }      
     }
     
