@@ -60,6 +60,10 @@ hr {
     padding: 0 20px 0 40px;
 }
 
+.benefit_card_column a {
+    text-decoration: none;
+}
+
 .benefit_card .card {
     padding: 10px;
     height: auto;
@@ -335,7 +339,7 @@ tr:nth-child(even) {
     background-color: var(--h2);
 }
 
-@media screen and (max-width: 825px){
+@media screen and (max-width: 825px) {
     .benefit_card {
         flex-direction: column;
         justify-content: center;
@@ -363,7 +367,7 @@ tr:nth-child(even) {
     }
 }
 
-@media screen and (max-width: 368px){
+@media screen and (max-width: 368px) {
     .benefit_head {
         width: 100%;
         padding: 0 !important;
@@ -391,12 +395,12 @@ tr:nth-child(even) {
 
     }
 
-    .profile{
+    .profile {
         display: none;
     }
 
-    .main_title{
-        max-width:90%;
+    .main_title {
+        max-width: 90%;
     }
 }
 

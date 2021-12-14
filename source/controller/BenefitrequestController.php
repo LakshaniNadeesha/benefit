@@ -6,7 +6,7 @@
 class BenefitrequestController extends Controller
 {
 
-    function index()
+    function index($type=null)
     {
         if (!Auth::logged_in()) {
             $this->redirect('login');
@@ -15,7 +15,17 @@ class BenefitrequestController extends Controller
         if (Auth::access('Employee') || Auth::access('Supervisor') || Auth::access('HR Officer') || Auth::access('HR Manager')) {
             $errors = array();
             $user = new BenefitrequestModel();
+            $benefit = new BenefitdetailsModel();
+            $info = new BenefitapplicationModel();
             $ar = Auth::user();
+
+            $benefit_row = $benefit->where('benefit_type', $type);
+            //print_r($benefit_row);
+            $benefit_id = $benefit_row[0]->benefit_ID;
+            //print_r($benefit_id);
+            $remain = $info->where_condition('employee_ID','benefit_ID', $ar, $benefit_id)[0]->remaining_amount;
+            //print_r($remain);
+
             $row = array();
             $row = $user->where('employee_ID', $ar);
             $file_error = array();
@@ -67,7 +77,7 @@ class BenefitrequestController extends Controller
                     $errors = $user->errors;
                 }
             }
-            $this->view('benefitrequest', ['file_error' => $file_error]);
+            $this->view('benefitrequest', ['file_error' => $file_error, 'type' => $type, 'remain' => $remain]);
         } else {
             $this->view('404');
         }
@@ -130,6 +140,8 @@ class BenefitrequestController extends Controller
             $this->view('benefit.change', ['arr' => $arr]);
         }
     }
+
+
 
 }
 

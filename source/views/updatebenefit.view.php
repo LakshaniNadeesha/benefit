@@ -172,7 +172,7 @@
                                 <label for="benefit_type">Benefit Type</label>
                             </div>
                             <div class="column_2">
-                                <input type="text" id="benefit_type" name="benefit_type" required>
+                                <input type="text" id="benefit_type" name="benefit_type" required pattern="[A-Za-z]{1,}">
                             </div>
                         </div>
 
@@ -181,7 +181,7 @@
                                 <label for="benefit_code">Benefit Code</label>
                             </div>
                             <div class="column_2">
-                                <input type="text" id="benefit_code" name="benefit_code" required>
+                                <input type="text" id="benefit_code" name="benefit_code" placeholder="Enter an unique code" required>
                             </div>
                         </div>
 
@@ -199,7 +199,7 @@
                                 <label for="valid_months">Valid Months</label>
                             </div>
                             <div class="column_2">
-                                <input type="text" id="valid_months" name="valid_months" required>
+                                <input type="number" id="valid_months" name="valid_months" required pattern="[0-9]{2}" min="0" max="11">
                             </div>
                         </div>
                         <div class="row">
@@ -207,7 +207,7 @@
                                 <label for="valid_years">Valid Years</label>
                             </div>
                             <div class="column_2">
-                                <input type="text" id="valid_years" name="valid_years" required>
+                                <input type="number" id="valid_years" name="valid_years" required pattern="[0-9]{2}" min="0">
                             </div>
                         </div>
                         <div class="confirm__buttons">

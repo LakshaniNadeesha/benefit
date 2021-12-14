@@ -13,6 +13,7 @@ class Benefit extends Controller
         }
         $user = new BenefitrequestModel();
         $benefits = new BenefitdetailsModel();
+        $info = new BenefitapplicationModel();
 
         $pending = array();
         $ar = auth::user();
@@ -26,9 +27,11 @@ class Benefit extends Controller
             }
         }
 
+        $remaining = $info->where('employee_ID', $ar);
+
         $all_details = $benefits->findAll();
 
-        $this->view('benefit', ['pending' => $pending, 'all_details' => $all_details, 'handled' => $handled]);
+        $this->view('benefit', ['pending' => $pending, 'all_details' => $all_details, 'handled' => $handled, 'remaining' => $remaining]);
 
     }
 
@@ -83,29 +86,6 @@ class Benefit extends Controller
         }
     }
 
-//    function add($id=null){
-//        if (!Auth::logged_in()) {
-//            $this->redirect('login');
-//        }
-//
-//        if(Auth::access('HR Manager') || Auth::access('HR Officer')){
-//            $benefits = new BenefitdetailsModel();
-//            if (count($_POST) > 0) {
-//                if (isset($_POST['submit'])) {
-//                    $arr['benefit_type'] = $_POST['benefit_type'];
-//                    $arr['max_amount'] = $_POST['max_amount'];
-//                    $arr['valid_months'] = $_POST['valid_months'];
-//                    $arr['valid_years'] = $_POST['valid_years'];
-//                    //print_r($arr);
-//                    $benefits->insert($arr);
-//                    $this->redirect('Benefit/update');
-//                }
-//            }
-//        }
-//        else{
-//            $this->view('404');
-//        }
-//    }
 
     function delete($id = null)
     {
@@ -121,85 +101,24 @@ class Benefit extends Controller
 
     }
 
-//    function change($id = null){
-//        if (!Auth::logged_in()) {
-//            $this->redirect('login');
-//        } else if(Auth::access('HR Manager') || Auth::access('HR Officer')) {
-//            $change_benefits = new BenefitdetailsModel();
-//            if (count($_POST) > 0) {
-//                if (isset($_POST['submit'])) {
-//                    //$changed_arr['benefit_type'] = $_POST['benefit_type'];
-//                    $changed_arr['max_amount'] = $_POST['max_amount'];
-//                    $changed_arr['valid_months'] = $_POST['valid_months'];
-//                    $changed_arr['valid_years'] = $_POST['valid_years'];
-//                    $set = $change_benefits->update_status($id, 'benefit_ID',$changed_arr);
-//
-//                    if(isset($set)){
-//                        $this->redirect('Benefit/update');
-//                    }
-//                    //print_r($changed_arr);
-//                }
-//            }
-//        }
-//    }
+    function cancel($id=null)
+    {
+        //echo "$id";
 
-//    function change($id = null)
-//    {
-//        if (!Auth::logged_in()) {
-//            $this->redirect('login');
-//        } else {
-//            $employee_id = Auth::user();
-//            $user = new BenefitrequestModel();
-//            $arr = $user->where_condition('employee_ID', 'report_hashing', $employee_id, $id);
-//            if (boolval($arr)) {
-//                //$this->view('benefit.change', ['arr' => $arr]);
-//                $row = $user->where('employee_ID',$employee_id);
-//                if(count($_POST)>0){
-//                    if(isset($_POST['submit'])){
-//                        $array['benefit_type'] = $_POST['benefit_type'];
-//                        $array['claim_amount'] = $_POST['claiming_amount'];
-//                        $array['benefit_status'] = "pending";
-//                        $array['benefit_description'] = $_POST['subject'];
-//
-//                        $file = $_FILES['report_submission']['name'];
-//                        $target_dir = "public/benefit-documents/";
-//                        $path = pathinfo($file);
-//                        $filename = $path['filename'];
-//                        $ext = $path['extension'];
-//                        $temp_name = $_FILES['report_submission']['tmp_name'];
-//                        $path_filename_ext = $target_dir . $filename . "." . $ext;
-//
-//                        move_uploaded_file($temp_name, $path_filename_ext);
-//
-//
-//                        $array['report_location'] = $path_filename_ext;
-//                        $array['report_hashing'] = hash_file('md5', $path_filename_ext);
-//
-//                        $hash_values = array();
-//                        $all_rows = $user->findAll();
-//                        $flag = true;
-//                        for ($i = 0; $i < sizeof($all_rows); $i++) {
-//                            $hash_values[$i] = $all_rows[$i]->report_hashing;
-//                            if ($array['report_hashing'] == $hash_values[$i]) {
-//                                $flag = false;
-//                                break;
-//                            }
-//                        }
-//
-//                        if ($flag) {
-//                            print_r($array);
-//                            //print_r($id);
-//                            $user->update($id,$array);
-//                            //$this->redirect('benefit');
-//                        } else {
-//                            $arr['error'] = "Sorry, file is already exists!";
-//                        }
-//                    }
-//                }
-//            }
-//            $this->view('benefit.change', ['arr' => $arr]);
-//        }
-//    }
+        if(!Auth::logged_in())
+        {
+            $this->redirect('login');
+        }
+        $user=new BenefitrequestModel();
+        //print_r($id);
+        if(count($_POST)>0)
+        {
+            $user->deleteper('report_hashing',$id);
+            $this->redirect('Benefit');
+        }
+        $this->view('benefit.delete');
+    }
+
 }
 
 

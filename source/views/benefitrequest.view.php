@@ -11,13 +11,21 @@
 <script type="text/javascript">
     function number_validation() {
         var n = document.forms["myform"]["claiming_amount"].value;
+        var remain = <?php print_r($remain); ?>;
+
         var decimal = /^[+]?[0-9]+\.[0-9]{2}$/;
         if (!n.match(decimal)) {
             document.getElementById("numberText").innerHTML = "<div style='font-family: Arial,serif; font-size: smaller; color: red'><i class='fas fa-exclamation' style='color: red;'></i> Please enter Numeric value</div>";
             var r1 = false;
             reason_validation();
             return false;
-        } else {
+        }
+        else if(n > remain){
+            document.getElementById("numberText").innerHTML = "<div style='font-family: Arial,serif; font-size: smaller; color: red'><i class='fas fa-exclamation' style='color: red;'></i>Sorry! You can't claim more than the remaining</div>";
+            reason_validation();
+            return false;
+        }
+        else {
             if (r1) {
                 document.getElementById("numberText").innerHTML = "<span>&#10003;</span>";
             } else {
@@ -42,6 +50,7 @@
             return false;
         }
     }
+
 </script>
 <body>
 
@@ -67,7 +76,7 @@
         <div class="benefit_container">
             <div class="benefit_head">
                 <div class="back_btn">
-                    <a href="Benefit"><i class="large material-icons">arrow_back</i></a>
+                    <a href="<?= PATH ?>Benefit"><i class="large material-icons">arrow_back</i></a>
                 </div>
                 <fieldset>
                     <legend>CLAIM BENEFIT</legend>
@@ -77,19 +86,21 @@
 
                     <div class="benefit_form">
 
-                        <form name="myform" action="BenefitrequestController" method="post"
-                              onsubmit=" return number_validation()" enctype="multipart/form-data">
+                        <form name="myform" action="" method="post"
+                              onsubmit=" return number_validation(); " enctype="multipart/form-data">
 
                             <div class="row">
                                 <div class="column_1">
                                     <label for="benefit_type">Benefit Type</label>
                                 </div>
                                 <div class="column_2">
-                                    <select id="benefit_type" name="benefit_type" required>
-                                        <option></option>
-                                        <option>Medical Insurance</option>
-                                        <option>Educational Expenditure</option>
-                                    </select>
+<!--                                    <select id="benefit_type" name="benefit_type" required>-->
+<!--                                        <option></option>-->
+<!--                                        <option>Medical Insurance</option>-->
+<!--                                        <option>Educational Expenditure</option>-->
+<!--                                    </select>-->
+                                    <input type="text" id="benefit_type" value="<?php print_r($type); ?>"
+                                           name="benefit_type" readonly>
                                 </div>
                             </div>
 
@@ -109,11 +120,11 @@
                                 </div>
                                 <div class="column_2">
                                     <input type="text" id="claiming_amount" name="claiming_amount"
-                                           placeholder="20000.00" required pattern="[0-9._%+-]+\.[0-9]{2}$">
+                                           placeholder="20000.00" required pattern="[0-9._%+-]+\.[0-9]{2}$" >
                                     <span id="numberText"></span>
                                 </div>
+                                <p id="demo"></p>
                             </div>
-
 
                             <div class="row">
                                 <div class="column_1">
@@ -134,7 +145,7 @@
                                     <div class="report_submission">
                                         <input class="file-upload__input" type="file" id="report_submission"
                                                name="report_submission"
-                                               accept=".pdf, .png" multiple required hidden="hidden">
+                                               accept=".pdf, .png" multiple  hidden="hidden">
                                         <button class="file-upload__button" type="button">Choose File(s)</button>
                                         <!--                                    <span id="custom-text"><div class="file_text">No file chosen, yet....</div></span>-->
                                         <!--                                    <span id="upload"><div class="upload"><a href="#">Upload Here</a></div></span>-->
