@@ -6,7 +6,6 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
     padding: 10px;
-
     opacity: 0;
     animation-name: confirm---open;
     animation-duration: 0.2s;
@@ -23,13 +22,15 @@
 }
 
 .confirm__window{
-    /* height: 50px; */
+    max-height: 95vh;
+    min-height: 375px;
     width: 100%;
     max-width: 600px;
     font-size: 14px;
     font-family: sans-serif;
     background: white; 
     border-radius: 5px;
+    position: fixed;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
@@ -49,6 +50,7 @@
 .confirm__titlebar {
     background:#0f9eb8;
     color: #ffff;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -78,11 +80,17 @@
 
 .confirm__content {
     line-height: 1.8em;
+    height: fit-content;
+    max-height: 60vh;
+    overflow: scroll;
 }
 
 .confirm__buttons {
     background: #eeeeee;
     display: flex;
+    position: relative;
+    bottom: 0;
+
     justify-content: flex-end;
 }
 
@@ -90,8 +98,8 @@
     padding: 0.4em 0.8em;
     border:2px solid #0f9eb8;
     border-radius: 5px;
-    background: #ffffff;
-    color: #0f9eb8;
+    background-color: #0f9eb8;
+    color: #ffffff;
     font-weight: bold;
     font-size: 1.1em;
     font-family: sans-serif;
@@ -126,3 +134,5 @@
         transform: scale(1);
     }
 }
+
+

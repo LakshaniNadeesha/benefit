@@ -21,3 +21,24 @@
     --change_button: #a4dff5;
 }
 
+::-webkit-scrollbar {
+    height: 3px;
+    width: 10px;
+    border-radius: 2px;
+  }
+  
+  /* Track */
+::-webkit-scrollbar-track {
+background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+background: #0f9eb8; 
+border-radius: 10px;
+}
+
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: #0f9eb8; 
+}
+

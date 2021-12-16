@@ -14,11 +14,17 @@ class Home extends Controller
 			$this->redirect('login');
 		}
 
-		$this->view('home');
+		
 
 		$select = new AddemployeeModel();
-		
-		
+		$oper = $select->where('department_ID',1);
+		$hr = $select->where('department_ID',2);
+		$sells = $select->where('department_ID',3);
+		$acc = $select->where('department_ID',4);
+		$arr1 = array($oper,$hr,$sells,$acc);
+
+		$this->view('Home',['rows'=>$arr1]);
+
 
 	}
 }

@@ -88,19 +88,59 @@
 <div class="confirm init" >
         <div class="confirm__window ">
             <div class="confirm__titlebar">
-                <span class="confirm__title">New Title</span>
+                <span class="confirm__title">Emplohyee Details</span>
                 <button class="confirm__close">&times;</button>
             </div>
             <div class="confirm__content">
-                Lorem ipsum, dolor sit amet consectetur adipisicing 
-                elit. Natus, inventore! Explicabo quibusdam doloribus 
-                vel vitae magnam! Minima reiciendis, asperiores temporibus, 
-                dolor nisi quibusdam in est voluptatum consequuntur obcaecati, 
-                ex saepe.
+               <h2>Department Name</h2>
+               <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
+                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
+                    obcaecati, ad ipsum molestias nemo dolore!</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
+                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
+                    obcaecati, ad ipsum molestias nemo dolore!</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
+                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
+                    obcaecati, ad ipsum molestias nemo dolore!</p>
+                <div class="data">
+
+                    <?php
+                    if (boolval($rows)) {
+                        if (count($rows) > 0) {
+                            foreach ($rows[1] as $entry) { ?>
+                                
+                                    
+                                <div class="cards">
+                                    <input type="text" name="id" id="id"
+                                        value="<?php echo $entry->employee_ID ?>">
+                                    <div class="img">
+                                        <img src="<?php echo $entry->profile_image ?>" alt="">
+                                    </div>
+                                    <div class="name">
+                                        <p><?php echo $entry->first_name." " .$entry->last_name ?> </p>
+                                    </div>
+
+                                    <div class="role">
+                                        <p><?php echo $entry->user_role?> </p>
+                                    </div>
+
+                                    <div class="email">
+                                        <p><?php echo $entry->email ?></p>
+                                    </div>
+                                    
+                                </div>
+                                   
+                                
+
+
+                            <?php } 
+                        }
+                    } ?> 
+                </div>
             </div>
             <div class="confirm__buttons">
-                <button class="confirm__button confirm__button--ok confirm__button--fill">OK</button>
-                <button class="confirm__button confirm__button--cancel ">Cancel</button>
+                <!-- <button class="confirm__button confirm__button--ok confirm__button--fill">OK</button> -->
+                <button class="confirm__button confirm__button--cancel ">OK</button>
 
             </div>
         </div>
