@@ -13,7 +13,7 @@ class Benefit extends Controller
         }
         $user = new BenefitrequestModel();
         $benefits = new BenefitdetailsModel();
-        $info = new BenefitapplicationModel();
+         $info = new BenefitapplicationModel();
 
         $pending = array();
         $ar = auth::user();

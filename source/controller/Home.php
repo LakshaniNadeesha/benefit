@@ -15,6 +15,9 @@ class Home extends Controller
 		}
 
 		$this->view('home');
+
+		$select = new AddemployeeModel();
+		
 		
 
 	}
