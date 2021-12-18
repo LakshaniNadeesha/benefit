@@ -45,93 +45,89 @@
         <div class="emp_list">
             <p class="title">Employee List</p>
             <form name="" action="" method="post">
-            <?php
-            if (boolval($details)) {
-                for ($i = 0; $i < sizeof($details); $i++) {
-                    ?>
-                    <div class="box">
-                        <img src="<?php print_r($details[$i]->profile_image) ?>" alt="on-leave-people"
-                             class="on-leave-people">
-                        <p class="content"><?php print_r($details[$i]->first_name);
-                            echo " ";
-                            print_r($details[$i]->last_name) ?></p>
-                        <p class="content"><?php print_r($details[$i]->department_ID) ?></p>
-                        <p class="content"><?php print_r($details[$i]->designation_code) ?></p>
-                        <?php
-                        $select = 'select';
-                        $select .= $i;
+                <?php
+                if (boolval($details)) {
+                    for ($i = 0; $i < sizeof($details); $i++) {
                         ?>
-                        <input type="checkbox" id="<?php echo $select?>" name="">
-                    </div>
-                    <script>
-                        const hideBox = document.querySelector('<?php echo "#".$select;?>');
-                        hideBox.addEventListener('change',function (e){
-                            if(hideBox.checked){
-                                list.style.display = "initial";
-                            }
-                            else {
-                                list.style.display = "none";
-                            }
-                        });
-                    </script>
-                    <?php
-                }
-            } ?>
+                        <div class="box">
+                            <img src="<?php print_r($details[$i]->profile_image) ?>" alt="on-leave-people"
+                                 class="on-leave-people">
+                            <p class="content"><?php print_r($details[$i]->first_name);
+                                echo " ";
+                                print_r($details[$i]->last_name) ?></p>
+                            <p class="content"><?php print_r($details[$i]->department_ID) ?></p>
+                            <p class="content"><?php print_r($details[$i]->designation_code) ?></p>
+                            <?php
+                            $select = 'select';
+                            $select .= $i;
+                            ?>
+                            <input type="checkbox" id="<?php echo $select ?>" name="">
+                        </div>
+                        <script>
+                            const hideBox = document.querySelector('<?php echo "#" . $select;?>');
+                            hideBox.addEventListener('change', function (e) {
+                                if (hideBox.checked) {
+                                    list.style.display = "initial";
+                                } else {
+                                    list.style.display = "none";
+                                }
+                            });
+                        </script>
+                        <?php
+                    }
+                } ?>
         </div>
         <div class="attendance_form">
             <div class="form-title">Fill This</div>
-                <div class="form-content">
-                    <div class="date">
-                        <label for="date">Date : </label>
-                        <input type="date" name="date" id="name" value="<?php echo date('Y-m-d'); ?>" readonly>
-                    </div>
-<!--                    <div class="selected-names">-->
-<!--                        --><?php
-//                        if (boolval($details)) {
-//                            for ($i = 0; $i < sizeof($details); $i++) {
-//                                $list = 'list';
-//                                $list .= $i;
-//                                ?>
-<!--                                <div class="box" id="--><?php //echo $list?><!--">-->
-<!--                                    <img src="--><?php //print_r($details[$i]->profile_image) ?><!--" alt="on-leave-people"-->
-<!--                                         class="on-leave-people">-->
-<!--                                    <p class="content">--><?php //print_r($details[$i]->first_name); ?><!--</p>-->
-<!--                                </div>-->
-<!--                                <script>-->
-<!--                                    const list = document.querySelector('--><?php //echo "#".$list;?>//');
-//                                </script>
-//                                <?php
-//                            }
-//                        } ?>
-<!--                    </div>-->
-                    <div class="row">
-                        <label for="name">Name</label>
-                        <input type="text" name="name" id="name" required>
-                    </div>
-                    <div class="row">
-                        <label for="employee_ID">ID</label>
-                        <input type="text" name="employee_ID" id="employee_ID" required>
-                    </div>
-                    <div class="row">
-                        <label for="arrival">Arrival</label>
-                        <input type="time" name="arrival" id="arrival" required>
-                    </div>
-                    <div class="row">
-                        <label for="departure">Departure</label>
-                        <input type="time" name="departure" id="departure" required>
-                    </div>
-                    <div class="row">
-                        <label for="ot-hours">OT Hours</label>
-                        <input type="number" name="ot-hours" id="ot-hours">
-                    </div>
-                    <div class="buttons">
-                        <button type="reset" class="cancel">Cancel</button>
-                        <a href="http://localhost/benefit/Markattendance/marking">
-<!--                            <button type="submit" class="mark" value="submit" name="submit">Mark</button>-->
-                            <input type="submit" class="mark" value="submit" name="submit">
-                        </a>
-                    </div>
+            <div class="form-content">
+                <div class="date">
+                    <label for="date">Date : </label>
+                    <input type="date" name="date" id="name" value="<?php echo date('Y-m-d'); ?>" readonly>
                 </div>
+                <div class="selected-names">
+                    <?php
+                    if (boolval($details)) {
+                        for ($i = 0; $i < sizeof($details); $i++) {
+                            $list = 'list';
+                            $list .= $i;
+                            ?>
+                            <div class="box" id="<?php echo $list ?>">
+                                <img src="<?php print_r($details[$i]->profile_image) ?>" alt="on-leave-people"
+                                     class="on-leave-people">
+                                <p class="content"><?php print_r($details[$i]->first_name); ?></p>
+                            </div>
+                            <script>
+                                const list = document.querySelector('<?php echo "#" . $list;?>');
+                            </script>
+                            <?php
+                        }
+                    } ?>
+                </div>
+                <div class="row">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" required>
+                </div>
+                <div class="row">
+                    <label for="employee_ID">ID</label>
+                    <input type="text" name="employee_ID" id="employee_ID" required>
+                </div>
+                <div class="row">
+                    <label for="arrival">Arrival</label>
+                    <input type="time" name="arrival" id="arrival" required>
+                </div>
+                <div class="row">
+                    <label for="departure">Departure</label>
+                    <input type="time" name="departure" id="departure" required>
+                </div>
+                <div class="row">
+                    <label for="ot-hours">OT Hours</label>
+                    <input type="number" name="ot-hours" id="ot-hours">
+                </div>
+                <div class="buttons">
+                    <button type="reset" class="cancel">Cancel</button>
+                    <input type="submit" class="mark" value="submit" name="submit">
+                </div>
+            </div>
             </form>
         </div>
     </div>

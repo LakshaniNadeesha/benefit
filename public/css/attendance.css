@@ -194,7 +194,7 @@ body {
     justify-content: flex-end;
 }
 
-.buttons button {
+.buttons button, .buttons input {
     margin-left: 10px;
 }
 
@@ -202,6 +202,9 @@ body {
     background-color: var(--h1);
     color: var(--w);
     font-weight: bold;
+    border-radius: 5px;
+    width: 80px;
+    height: 30px;
 }
 
 .buttons .cancel {
@@ -209,4 +212,6 @@ body {
     font-weight: bold;
     border: none;
     background-color: transparent;
+    width: 80px;
+    height: 30px;
 }
