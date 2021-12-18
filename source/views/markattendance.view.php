@@ -21,97 +21,107 @@
 
 <div class="page_content">
     <?php
-//    $this->view('includes/supervisornav');
     $this->view('includes/parentemployeenavbar');
     ?>
 
     <div class="main_container">
-        <div class="approve-container">
-        <div class="header-approve" id="btn">
-                    <center>
-                        <img src="<?= IMG_PATH ?>\profile\download.png" class="profile__image">
-                    </center>
-                    <p class="name">Dilukshan</p>
-                    <p class="name">Bimasara</p>
-                    <div>
-                        <center>
-                            <i class="fas fa-band-aid"></i>
-                        </center>
-                        <p class="date">06th Oct</p>
-                    </div>
-                    <center>
-                        <button type="button" name="show" value="show">Show</button>
-                    </center>
-                </div>
-
-            <div class="details">
-            <fieldset>
-                <legend>MARK ATTENDANCE</legend>
-                <form action="#">
-                    <div class="row">
-                        <div class="column_1">
-                            <label for="emp_id">Employee ID</label>
-                        </div>
-                        <div class="column_2">
-                            <input type="text" id="emp_id" name="emp_id" placeholder="19000125" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="column_1">
-                            <label for="date">Date</label>
-                        </div>
-                        <div class="column_2">
-                            <input type="date" id="date" name="date" placeholder="mm/dd/yyyy">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="column_1">
-                            <label for="attend_time">Attend Time</label>
-                        </div>
-                        <div class="column_2">
-                            <input type="text" id="attend_time" name="attend_time" placeholder="8.00 am" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="column_1">
-                            <label for="leaved_time">Leaved Time</label>
-                        </div>
-                        <div class="column_2">
-                            <input type="text" id="leaved_time" name="leaved_time" placeholder="4.00 am" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="column_1">
-                            <label for="hours">OT Hours</label>
-                        </div>
-                        <div class="column_2">
-                            <input type="text" id="hours" name="hours" placeholder="8 hours" required>
-                        </div>
-                    </div>
-                    <!-- <div class="row">
-                        <div class="column_3">
-                            <label for="history">Attendance History</label>
-                        </div>
-                        <table id="attendance_history_table">
-                            <tr>
-                                <th>Date</th>
-                                <th>Worked Hours</th>
-                                <th>OT Hours</th>
-                            </tr>
-                            <tr>
-                                <th>2021/05/08</th>
-                                <th>8 h</th>
-                                <th>0 h</th>
-                            </tr>
-                        </table>
-                    </div> -->
-                    <div class="buttons">
-                        <input class="reject_button" type="submit" value="Cancel" name="reject">
-                        <input class="approve_button" type="submit" value="Mark" name="approve">
-                    </div>
-                </form>
-            </fieldset>
+        <div class="on_leave">
+            <div class="section1">
+                <p class="title"><u>On Leave</u></p>
+                <p>Today</p>
+                <img src="<?= Auth::getprofile_image() ?>" alt="on-leave-people" class="on-leave-people">
+                <img src="<?= Auth::getprofile_image() ?>" alt="on-leave-people" class="on-leave-people">
+                <img src="<?= Auth::getprofile_image() ?>" alt="on-leave-people" class="on-leave-people">
+                <p>Tomorrow</p>
+                <img src="<?= Auth::getprofile_image() ?>" alt="on-leave-people" class="on-leave-people">
+                <img src="<?= Auth::getprofile_image() ?>" alt="on-leave-people" class="on-leave-people">
+                <img src="<?= Auth::getprofile_image() ?>" alt="on-leave-people" class="on-leave-people">
             </div>
+            <div class="section2">
+                <p class="title"><u>Calender</u></p>
+                <?php $this->view('includes/calendar') ?>
+            </div>
+        </div>
+        <div class="emp_list">
+            <p class="title">Employee List</p>
+            <?php
+            if (boolval($details)) {
+                for ($i = 0; $i < sizeof($details); $i++) {
+                    ?>
+                    <div class="box">
+                        <img src="<?php print_r($details[$i]->profile_image) ?>" alt="on-leave-people"
+                             class="on-leave-people">
+                        <p class="content"><?php print_r($details[$i]->first_name);
+                            echo " ";
+                            print_r($details[$i]->last_name) ?></p>
+                        <p class="content"><?php print_r($details[$i]->department_ID) ?></p>
+                        <p class="content"><?php print_r($details[$i]->designation_code) ?></p>
+                        <?php
+                        $select = 'select';
+                        $select .= $i;
+                        ?>
+                        <input type="checkbox" id="<?php echo $select?>">
+                    </div>
+                    <script>
+                        const hideBox = document.querySelector('<?php echo "#".$select;?>');
+                        hideBox.addEventListener('change',function (e){
+                            if(hideBox.checked){
+                                list.style.display = "initial";
+                            }
+                            else {
+                                list.style.display = "none";
+                            }
+                        });
+                    </script>
+                    <?php
+                }
+            } ?>
+        </div>
+        <div class="attendance_form">
+            <div class="form-title">Fill This</div>
+            <form name="" action="" method="post">
+                <div class="form-content">
+                    <div class="date">
+                        <label for="date">Date : </label>
+                        <input type="date" name="date" id="name" value="<?php echo date('Y-m-d'); ?>" readonly>
+                    </div>
+                    <div class="selected-names">
+                        <?php
+                        if (boolval($details)) {
+                            for ($i = 0; $i < sizeof($details); $i++) {
+                                $list = 'list';
+                                $list .= $i;
+                                ?>
+                                <div class="box" id="<?php echo $list?>">
+                                    <img src="<?php print_r($details[$i]->profile_image) ?>" alt="on-leave-people"
+                                         class="on-leave-people">
+                                    <p class="content"><?php print_r($details[$i]->first_name); ?></p>
+                                </div>
+                                <script>
+                                    const list = document.querySelector('<?php echo "#".$list;?>');
+                                </script>
+                                <?php
+                            }
+                        } ?>
+                    </div>
+                    <div class="row">
+                        <label for="arrival">Arrival</label>
+                        <input type="time" name="arrival" id="arrival" required>
+                    </div>
+                    <div class="row">
+                        <label for="departure">Departure</label>
+                        <input type="time" name="departure" id="departure" required>
+                    </div>
+                    <div class="row">
+                        <label for="ot-hours">OT Hours</label>
+                        <input type="number" name="ot-hours" id="ot-hours">
+                    </div>
+                    <div class="buttons">
+                        <button type="reset" class="cancel">Cancel</button>
+                        <button type="submit" class="mark" value="Mark" name="mark">Mark</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </body>
