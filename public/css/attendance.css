@@ -126,11 +126,9 @@ body {
 /*History table*/
 .emp_list table {
     width: 100%;
-    padding: 20px 0;
     margin-left: 0;
     margin-right: auto;
-    padding-top: 10px;
-    padding-left: 0;
+    padding: 10px 0 20px;
     font-family: arial, sans-serif;
     border-collapse: collapse;
 }
@@ -154,6 +152,14 @@ table th {
 
 table td {
     height: 52px;
+}
+
+tr #options {
+    cursor: pointer;
+}
+
+tr #options:hover {
+    transform: scale(1.1);
 }
 
 tr:nth-child(even) {
@@ -376,7 +382,7 @@ tr:nth-child(even) {
 
 .confirm__button--fill {
     background-color: var(--h1);
-    color: var(--w);
+    color: var(--w);.attendance-update_form .first_row
 }
 
 .confirm__button:focus {
@@ -398,4 +404,53 @@ tr:nth-child(even) {
         opacity: 1;
         transform: scale(1);
     }
+}
+
+/*Attendance changing form*/
+.attendance-update_form {
+    width: 100%;
+    height: max-content;
+}
+
+.attendance-update_form .first_row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding-bottom: 10px;
+}
+
+.attendance-update_form .first_row div {
+    display: flex;
+    flex-direction: row;
+}
+
+.attendance-update_form .first_row .column_1 {
+    float: left;
+    width: max-content;
+    padding-top: 2px;
+}
+
+.attendance-update_form .first_row .column_2 input {
+    border: none;
+}
+
+.attendance-update_form .row {
+    display: flex;
+    flex-direction: row;
+    /*width: 60%;*/
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.attendance-update_form .column_1 {
+    width: 20%;
+}
+
+.attendance-update_form input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 30px;
+    width: 150px;
 }

@@ -106,6 +106,19 @@ class Markattendance extends Controller
                     }
                     $this->redirect('markattendance');
                 }
+                elseif (isset($_POST['change'])){
+                    $change_attendance = new AttendanceModel();
+                    $date = $_POST['date'];
+                    $id = $_POST['emp_name'];
+                    $changed_ar['arrival_time'] = $_POST['arrival'];
+                    $changed_ar['departure_time'] = $_POST['departure'];
+                    $changed_ar['ot_hours'] = $_POST['ot_hours'];
+                    print_r($changed_ar);
+                    $set = $change_attendance->update_condition($id,'employee_ID',$date,'date',$changed_ar);
+                    if(isset($set)){
+                        $this->redirect('markattendance');
+                    }
+                }
             }
 
             //Show attendance history
@@ -117,5 +130,6 @@ class Markattendance extends Controller
         }
 
     }
+
 
 }

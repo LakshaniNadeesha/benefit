@@ -63,7 +63,7 @@
                 <p>To Be Add</p>
                 <hr>
                 <form name="attendance-form" action="" method="post" onsubmit="return date_validation();"
-                      enctype="multipart/form-data">
+                      enctype="multipart/form-data" autocomplete="off">
                     <?php
                     if (boolval($not_marked)) {
                         for ($i = 0; $i < sizeof($not_marked); $i++) {
@@ -133,12 +133,12 @@
                                 document.querySelector('<?php echo "#".$btnChange;?>').addEventListener('click', () => {
                                     Change.open({
                                         title: 'Changing..',
-                                        code: '<?php print_r($history[$i]->employee_ID) ?>',
-                                        type: '<?php print_r($history[$i]->arrival_time) ?>',
-                                        amount: '<?php print_r($history[$i]->departure_time) ?>',
-                                        months: '<?php print_r($history[$i]->date) ?>',
+                                        name: '<?php print_r($history[$i]->employee_ID) ?>',
+                                        date: '<?php print_r($history[$i]->date) ?>',
+                                        arrival: '<?php print_r($history[$i]->arrival_time) ?>',
+                                        departure: '<?php print_r($history[$i]->departure_time) ?>',
                                         ot : '<?php print_r($history[$i]->ot_hours) ?>',
-                                        years: '<?php print_r($history[$i]->status) ?>',
+                                        status: '<?php print_r($history[$i]->status) ?>',
                                         href: '<?php echo"change/"; print_r($history[$i]->employee_ID); ?>',
                                         onchange: () => {
                                             window.location.href = "<?php print_r($history[$i]->employee_ID); ?>"
@@ -212,12 +212,12 @@
             options = Object.assign({},{
                 title: '',
                 message: '',
-                type: '',
-                code: '',
-                amount: '',
-                months: '',
+                name: '',
+                date: '',
+                arrival: '',
+                departure: '',
                 ot: '',
-                years: '',
+                status: '',
                 href: '',
                 cancelText: 'Cancel',
                 onchange: function () {},
@@ -232,25 +232,22 @@
             <button class="confirm__close">&times;</button>
         </div>
         <div class="confirm__content">${options.message}
-            <div class="benefit_head" id="myForm">
-
-                <div class="benefit_form">
+            <div class="attendance-update_form" id="myForm">
 
                     <form action="" method="post" autocomplete="off">
-                        <div class="row">
-                            <div class="column_1">
-                                <label for="emp_name">Name</label>
+                        <div class="first_row">
+                            <div>
+                                <div class="column_1">
+                                    <label for="emp_name">Name :</label>
+                                </div>
+                                <div class="column_2">
+                                    <input type="text" id="emp_name" name="emp_name" value="${options.name}" readonly>
+                                </div>
                             </div>
-                            <div class="column_2">
-                                <input type="text" id="emp_name" name="emp_name" value="${options.code}" readonly>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="column_1">
-                                <label for="status">Date</label>
-                            </div>
-                            <div class="column_2">
-                                <input type="date" id="date" name="date" value="${options.months}" readonly>
+                            <div>
+                                <div class="column_2">
+                                    <input type="date" id="date" name="date" value="${options.date}" readonly>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -258,7 +255,7 @@
                                 <label for="arrival">Arrival</label>
                             </div>
                             <div class="column_2">
-                                <input type="time" id="arrival" name="arrival" value="${options.type}" required >
+                                <input type="time" id="arrival" name="arrival" value="${options.arrival}" required >
                             </div>
                         </div>
 
@@ -267,7 +264,7 @@
                                 <label for="departure">Departure</label>
                             </div>
                             <div class="column_2">
-                                <input type="time" id="departure" name="departure" value="${options.amount}" required>
+                                <input type="time" id="departure" name="departure" value="${options.departure}" required>
                             </div>
                         </div>
                         <div class="row">
@@ -283,17 +280,14 @@
                                 <label for="status">Status</label>
                             </div>
                             <div class="column_2">
-                                <input type="text" id="status" name="status" value="${options.years}" required>
+                                <input type="text" id="status" name="status" value="${options.status}" readonly>
                             </div>
                         </div>
-
                         <div class="confirm__buttons">
                             <button class="confirm__button confirm__button--cancel" type="reset">${options.cancelText}</button>
-                            <button class="confirm__button confirm__button--ok confirm__button--fill" type="submit" value="Change" name="submit">Change</button>
+                            <button class="confirm__button confirm__button--ok confirm__button--fill" type="submit" value="Change" name="change">Change</button>
                         </div>
                     </form>
-
-        </div>
         </div>
 
     </div>
