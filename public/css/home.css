@@ -1,4 +1,4 @@
-@import "color.css";
+/* @import "color.css"; */
 
 body {
     height: auto;
@@ -184,7 +184,7 @@ footer {
 
 input {
     width: 30px;
-    padding: 3px;
+    /* padding: 3px; */
     border:none;
     font-size:large;
     margin-right:10px;
@@ -202,7 +202,7 @@ input {
 
 .cards {
     width: 100%;
-    height: 50px;
+    height: auto;
     margin-top: 10px;
     background-color: white;
     display: flex;
@@ -227,8 +227,9 @@ input {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    margin-top: 2.5px;
+    margin-top: 5.5px;
     margin-left: 5px;
+    margin-right:5px;
     border-radius: 50%;
 }
 
@@ -242,13 +243,29 @@ img {
 .role,
 .email {
     width: 30%;
-    /* overflow: scroll; */
-    overflow-y: hidden;
-   
+    overflow: scroll;
+    /* overflow: hidden; */
+    max-height: 100%;
+    text-overflow:ellipsis;
+    white-space:nowrap;
     text-align: center;
     color: rgba(0, 0, 0, 0.603);
     font-weight: bold;
     font-size: medium;
+    background-color: white;
+
+    
+}
+
+::-webkit-scrollbar {
+    height: 3px;
+    /* width: 10px; */
+    border-radius: 2px;
+  }
+  
+  /* Track */
+::-webkit-scrollbar-track {
+background: #f1f1f1; 
 }
 
 @media screen and (max-width: 640px) {

@@ -11,6 +11,11 @@ console.log(btnClose);
 
 console.log(btnCancel);
 
+console.log("This is hr "+hr);
+console.log("this is financial "+financial);
+console.log("this is seles "+ seles);
+console.log("this is operational "+operational);
+
 confirmEl.addEventListener('click',e => {
     if (e.target === confirmEl) {
         // options.oncancel();
@@ -43,11 +48,48 @@ confirmEl.addEventListener('click',e => {
 //     pop(confirmEl);
 // });
 
-[hr, financial, seles, operational].forEach(el => {
-    el.addEventListener('click', () => {
-        // options.oncancel();
-        pop(confirmEl);
-    });
+// [hr, financial, seles, operational].forEach(el => {
+//     el.addEventListener('click', () => {
+//         // options.oncancel();
+//         pop(confirmEl);
+//         console.log("This is hr "+hr);
+//         // console.log("this is financial "+financial);
+//         // console.log("this is seles "+ seles);
+//         // console.log("this is operational "+operational);
+//     });
+// });
+
+hr.addEventListener('click', () => {
+   
+    pop(confirmEl);
+    console.log("This is hr "+hr);
+    document.getElementById('hide').value = 2;
+    console.log(document.getElementById('hide').value);
+   
+});
+
+financial.addEventListener('click', () => {
+    
+    pop(confirmEl);
+    document.getElementById('hide').value = 4;
+    console.log("This is financial "+financial);
+    console.log(document.getElementById('hide').value);
+});
+
+operational.addEventListener('click', () => {
+    // options.oncancel();
+    pop(confirmEl);
+    document.getElementById('hide').value = 1;
+    console.log("This is operation "+operational);
+    console.log(document.getElementById('hide').value);
+});
+
+seles.addEventListener('click', () => {
+    // options.oncancel();
+    pop(confirmEl);
+    document.getElementById('hide').value = 3;
+    console.log("This is selse "+seles);
+    console.log(document.getElementById('hide').value);
 });
 
 function close (confirmEl) {
