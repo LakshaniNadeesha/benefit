@@ -63,33 +63,48 @@ hr.addEventListener('click', () => {
    
     pop(confirmEl);
     console.log("This is hr "+hr);
-    document.getElementById('hide').value = 2;
-    console.log(document.getElementById('hide').value);
+    document.getElementById("dhr").style.display = "block";
+    document.getElementById("dfinancial").style.display = "none";
+    document.getElementById("doperation").style.display = "none";
+    document.getElementById("dselse").style.display = "none";
    
 });
 
 financial.addEventListener('click', () => {
     
     pop(confirmEl);
-    document.getElementById('hide').value = 4;
-    console.log("This is financial "+financial);
-    console.log(document.getElementById('hide').value);
+   
+    document.getElementById("dfinancial").style.display = "block";
+    document.getElementById("doperation").style.display = "none";
+    document.getElementById("dselse").style.display = "none";
+    document.getElementById("dhr").style.display = "none";
+    
 });
 
 operational.addEventListener('click', () => {
     // options.oncancel();
     pop(confirmEl);
-    document.getElementById('hide').value = 1;
-    console.log("This is operation "+operational);
-    console.log(document.getElementById('hide').value);
+    // document.getElementById('hide').value = 1;
+    document.getElementById("doperation").style.display = "block";
+    document.getElementById("dselse").style.display = "none";
+    document.getElementById("dhr").style.display = "none";
+    document.getElementById("dfinancial").style.display = "none";
+
+    // console.log("This is operation "+operational);
+    // console.log(document.getElementById('hide').value);
 });
 
 seles.addEventListener('click', () => {
     // options.oncancel();
     pop(confirmEl);
-    document.getElementById('hide').value = 3;
-    console.log("This is selse "+seles);
-    console.log(document.getElementById('hide').value);
+    // document.getElementById('selse').style.display="block";
+    document.getElementById("dselse").style.display = "block";
+    document.getElementById("dhr").style.display = "none";
+    document.getElementById("dfinancial").style.display = "none";
+    document.getElementById("doperation").style.display = "none";
+
+    // console.log("This is selse "+seles);
+    // console.log(document.getElementById('hide').value);
 });
 
 function close (confirmEl) {

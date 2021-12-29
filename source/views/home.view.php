@@ -37,7 +37,7 @@
                 <p><i class="fas fa-user-alt"></i>  Manger: Mr.Silva</p>
                 <p class="users"><i class="fas fa-users"></i>  07</p>
                 <button class="show-more" id="hr" >Show More <i class="fas fa-arrow-right"></i></button>
-                <form action="" method="post"><input type="hidden" name="hide" id="hide" value=""></form>
+                <!-- <form action="" method="post"><input type="hidden" name="hide" id="hide" value=""></form> -->
             </div>
         </div>
 
@@ -47,7 +47,7 @@
                 <p><i class="fas fa-user-alt"></i>  Manger: Mr.Chathura</p>
                 <p class="users"><i class="fas fa-users"></i> 38</p>
                 <button class="show-more" id="operational" >Show More <i class="fas fa-arrow-right"></i></button>
-                <form action="" method="post"><input type="hidden" name="hide" id="hide" value=""></form>
+                <!-- <form action="" method="post"><input type="hidden" name="hide" id="hide" value=""></form> -->
             </div>
         </div>
 
@@ -57,7 +57,7 @@
                 <p><i class="fas fa-user-alt"></i>  Manger: Mr.Bimsara</p>
                 <p class="users"><i class="fas fa-users"></i> 25</p>
                 <button class="show-more" id="seles" type="submit" >Show More <i class="fas fa-arrow-right"></i></button>
-                <form  method="get"><input type="hidden" name="hide" id="hide" value="<?php $i ?>" ></form>
+                <!-- <form  method="get"><input type="hidden" name="hide" id="hide" value="<?php $i ?>" ></form> -->
                 <!-- <input type="button" value="Click" onclick="dosomething('Hello')"> -->
             </div> 
         <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,256L30,229.3C60,203,120,149,180,106.7C240,64,300,32,360,26.7C420,21,480,43,540,58.7C600,75,660,85,720,80C780,75,840,53,900,37.3C960,21,1020,11,1080,53.3C1140,96,1200,192,1260,234.7C1320,277,1380,267,1410,261.3L1440,256L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"></path></svg> -->
@@ -66,7 +66,7 @@
         
     </div>
 
-    <div class="right">
+    <div class="right" >
         <div class="cal">
             <?php $this->view('includes/calendar')?>
         </div>  
@@ -95,27 +95,9 @@
                 <span class="confirm__title">Emplohyee Details</span>
                 <button class="confirm__close">&times;</button>
             </div>
-            <div class="confirm__content">
-                <?php 
-                
-                    if(1){
-                        $i = $_POST["hide"];
-                        echo $i;
-                        // $department = "department";
-                        if($i = 1){
-                            $department = "Operational Department";
-                        }elseif($i = 2){
-                            $department = "HR Department";
-                        }elseif($i = 3){
-                            $department = "Seles Department";
-                        }else{
-                            $department = "Financial Department";
-                        }
-                    }
-                
-                    
-                 ?>
-               <h2><?php echo $department ?></h2>
+            <div class="confirm__content" id="doperation" style="display: none;">
+               
+               <h2 >Operational Department</h2>
                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
                     earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
                     obcaecati, ad ipsum molestias nemo dolore!</p>
@@ -134,7 +116,7 @@
                             foreach ($rows[0] as $entry) { ?>
                                 
                                     
-                                <div class="cards">
+                                <div class="cards" id = "d1" >
                                     <input type="text" name="id" id="id"
                                         value="<?php echo $entry->employee_ID ?>">
                                     <div class="img">
@@ -154,10 +136,151 @@
                                     
                                 </div>
                                    
+                            <?php }
+                           
+                        }
+                    } ?> 
+                </div>
+            </div>
+            <div class="confirm__content" id="dhr" style="display: none;">
+                
+               <h2 >HR Department</h2>
+               <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
+                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
+                    obcaecati, ad ipsum molestias nemo dolore!</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
+                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
+                    obcaecati, ad ipsum molestias nemo dolore!</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
+                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
+                    obcaecati, ad ipsum molestias nemo dolore!</p>
+                <div class="data">
+
+                    <?php
+                    
+                    if (boolval($rows)) {
+                        if (count($rows) > 0) {
+                            foreach ($rows[1] as $entry) { ?>
                                 
+                                    
+                                <div class="cards" >
+                                    <input type="text" name="id" id="id"
+                                        value="<?php echo $entry->employee_ID ?>">
+                                    <div class="img">
+                                        <img src="<?php echo $entry->profile_image ?>" alt="">
+                                    </div>
+                                    <div class="name">
+                                        <p><?php echo $entry->first_name." " .$entry->last_name ?> </p>
+                                    </div>
 
+                                    <div class="role">
+                                        <p><?php echo $entry->user_role?> </p>
+                                    </div>
 
-                            <?php } 
+                                    <div class="email">
+                                        <p><?php echo $entry->email ?></p>
+                                    </div>
+                                    
+                                </div>
+                                   
+                            <?php }
+                           
+                        }
+                    } ?> 
+                </div>
+            </div>
+
+            <div class="confirm__content" id="dselse" style="display: none;">
+                
+               <h2 >Seles Department</h2>
+               <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
+                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
+                    obcaecati, ad ipsum molestias nemo dolore!</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
+                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
+                    obcaecati, ad ipsum molestias nemo dolore!</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
+                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
+                    obcaecati, ad ipsum molestias nemo dolore!</p>
+                <div class="data">
+
+                    <?php
+                    
+                    if (boolval($rows)) {
+                        if (count($rows) > 0) {
+                            foreach ($rows[2] as $entry) { ?>
+                                
+                                    
+                                <div class="cards"  >
+                                    <input type="text" name="id" id="id"
+                                        value="<?php echo $entry->employee_ID ?>">
+                                    <div class="img">
+                                        <img src="<?php echo $entry->profile_image ?>" alt="">
+                                    </div>
+                                    <div class="name">
+                                        <p><?php echo $entry->first_name." " .$entry->last_name ?> </p>
+                                    </div>
+
+                                    <div class="role">
+                                        <p><?php echo $entry->user_role?> </p>
+                                    </div>
+
+                                    <div class="email">
+                                        <p><?php echo $entry->email ?></p>
+                                    </div>
+                                    
+                                </div>
+                                   
+                            <?php }
+                           
+                        }
+                    } ?> 
+                </div>
+            </div>
+
+            <div class="confirm__content" id="dfinancial" style="display: none;">
+               
+               <h2 >Financial Department</h2>
+               <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
+                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
+                    obcaecati, ad ipsum molestias nemo dolore!</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
+                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
+                    obcaecati, ad ipsum molestias nemo dolore!</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
+                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
+                    obcaecati, ad ipsum molestias nemo dolore!</p>
+                <div class="data">
+
+                    <?php
+                    
+                    if (boolval($rows)) {
+                        if (count($rows) > 0) {
+                            foreach ($rows[3] as $entry) { ?>
+                                
+                                    
+                                <div class="cards"  >
+                                    <input type="text" name="id" id="id"
+                                        value="<?php echo $entry->employee_ID ?>">
+                                    <div class="img">
+                                        <img src="<?php echo $entry->profile_image ?>" alt="">
+                                    </div>
+                                    <div class="name">
+                                        <p><?php echo $entry->first_name." " .$entry->last_name ?> </p>
+                                    </div>
+
+                                    <div class="role">
+                                        <p><?php echo $entry->user_role?> </p>
+                                    </div>
+
+                                    <div class="email">
+                                        <p><?php echo $entry->email ?></p>
+                                    </div>
+                                    
+                                </div>
+                                   
+                            <?php }
+                           
                         }
                     } ?> 
                 </div>
