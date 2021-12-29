@@ -22,6 +22,7 @@
     });
 </script>
 <body>
+
 <div>
     <?php
     $this->view('includes/header1');
@@ -44,40 +45,38 @@
             </div>
             <hr>
             <div class="data">
-                <?php
-                if (boolval($row)) {
-                if (count($row) > 0) {
-                foreach ($row as $entry) { ?>
+              <?php
+
+                if(boolval($emp)){
+                for ($i = 0;$i < sizeof($emp);$i++) {
+                    if ($emp >= 1) { ?>
                 <!-- <form method="post">-->
                 <div class="cards">
                     <center>
-<!--                        --><?php //echo ($entry->profile_image);?>
-                        <!-- <img src='<? //echo $entry->profile_image ?>' alt="" class="img"> -->
-<!--                        <img src="--><?//= IMG_PATH ?><!--profile/download.png" class="profile__image">-->
-                        <img src="<?php echo ($entry->profile_image);?>" alt='Profile Image' class="profile__image">
-
+                        <img src="<?php echo $emp[$i]['profile_image'];?>" alt='Profile Image' class="profile__image">
                     </center>
                     <div class="name">
-                        <p><?php echo $entry->first_name ?></p>
-                        <p><?php echo $entry->last_name ?> </p>
+                        <p><?php print_r($emp[$i]['first_name']);?></p>
+                        <p><?php print_r($emp[$i]['last_name']);?></p>
                     </div>
-                    <div class="email">
+                    <!-- <div class="email">
                         <p><?php echo $entry->user_role ?></p>
-                    </div>
-                    <div class="options">
-                        <a href="<?= PATH ?>Supervisor/Insert_Performance/<?= $entry->employee_ID ?>">
+                    </div> -->
+
+                   <div class="options">
+                   <a href="<?= PATH ?>Supervisor/Insert_Performance/<?=$emp[$i]['employee_ID'] ?>">
                             <i class="fas fa-plus"></i>
                         </a>
 
-                        <a href="<?= PATH ?>Supervisor/Update_Performance/<?= $entry->employee_ID ?>">
+                        <a href="<?= PATH ?>Supervisor/Update_Performance/<?=$emp[$i]['employee_ID'] ?> ">
                             <i class="fas fa-edit"></i>
                         </a>
 
-                        <a href="<?= PATH ?>Supervisor/Delete_Performance/<?= $entry->employee_ID ?>">
-                            <i class="fas fa-trash-alt"></i>
+<!--                         <a href="<?= PATH ?>Supervisor/Delete_Performance/<?=$emp[$i]['employee_ID']?>">
+                            <i class="fas fa-trash-alt"></i> -->
                         </a>
                     </div>
-                </div>
+                </div> 
                     <?php
                 }
                 }
@@ -95,20 +94,28 @@
                     <th><label>
                             <input name="select_all" value="1" type="checkbox">
                         </label></th>
-                    <th>Name</th>
-                    <th>Designation</th>
-                    <th>Last Update</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
                     <th>Options</th>
                 </tr>
+                 <?php
+                        for($i=0;$i<sizeof($handled);$i++){
+                        
+                               
+                            ?>
+
                 <tr>
                     <td><input type="checkbox" name="name1" /></td>
-                    <td>Jack Howei</td>
-                    <td>Seller</td>
-                    <th>10th Oct</th>
-                    <td><a href=""><i class="fas fa-edit"></i></a>
-                        <a href=""><i class="fas fa-trash-alt"></i></a>
+                    <td><?php print_r($handled[$i]['first_name']); ?></td>
+                    <td><?php print_r($handled[$i]['last_name']);?> </td>
+                    <td> 
+                        <a href="<?= PATH ?>Supervisor/Update_Performance/<?=$handled[$i]['employee_ID']?>"><i class="fas fa-edit"></i></a>
+                       <!--  <a href="<?= PATH ?>Supervisor/Delete_Performance/<?=$handled[$i]['employee_ID']?>"><i class="fas fa-trash-alt"></i></a> -->
                     </td>
                 </tr>
+                <?php
+                        
+                    }?>
             </table>
         </div>
     </div>
@@ -119,3 +126,4 @@
 <!--</div>-->
 </body>
 </html>
+
