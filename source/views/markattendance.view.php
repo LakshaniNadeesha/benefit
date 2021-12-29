@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
@@ -71,17 +71,19 @@
                             <div class="box">
                                 <img src="<?php print_r($not_marked[$i]->profile_image) ?>" alt="on-leave-people"
                                      class="on-leave-people">
-                                <p class="content"><?php print_r($not_marked[$i]->first_name);
+                                <p class="content1"><?php print_r($not_marked[$i]->first_name);
                                     echo " ";
                                     print_r($not_marked[$i]->last_name) ?></p>
-                                <p class="content"><?php print_r($not_marked[$i]->department_ID) ?></p>
-                                <p class="content"><?php print_r($not_marked[$i]->designation_code) ?></p>
+                                <p class="content2"><?php print_r($not_marked[$i]->department_ID) ?></p>
+                                <p class="content3"><?php print_r($not_marked[$i]->designation_code) ?></p>
                                 <?php
                                 $select = 'select';
                                 $select .= $i;
                                 ?>
                                 <input type="checkbox" id="<?php echo $select ?>" name="person[]"
                                        value="<?php print_r($not_marked[$i]->employee_ID); ?>">
+                                <a href="http://localhost/benefit/markattendance/absent/<?php print_r($not_marked[$i]->employee_ID); ?>/<?php echo date('Y-m-d'); ?>">
+                                    <i class="fa fa-times-circle" aria-hidden="true"></i></a>
                             </div>
                             <script>
                                 const hideBox = document.querySelector('<?php echo "#" . $select;?>');
@@ -95,68 +97,79 @@
                             </script>
                             <?php
                         }
+                    } else {
+                        echo "No employees yet!";
+                        echo "<br><br>";
                     } ?>
             </div>
             <div>
                 <p>Attendance History</p>
                 <hr>
-                <?php if (boolval($history)){ ?>
-                <table>
+                <?php if (boolval($history)) { ?>
+                    <table>
                     <thead>
-                        <th>Name</th>
-                        <th>Arrival</th>
-                        <th>Departure</th>
-                        <th>Date</th>
-                        <th>OT Hours</th>
-                        <th>Status</th>
-                        <th>Option</th>
+                    <th>Name</th>
+                    <th>Arrival</th>
+                    <th>Departure</th>
+                    <th>Date</th>
+                    <th>OT Hours</th>
+                    <th>Status</th>
+                    <th>Option</th>
                     </thead>
                     <tbody>
                     <?php
-                    for($i=0;$i<sizeof($history);$i++){ ?>
-                    <tr>
-                        <td><?php print_r($history[$i]->employee_ID); ?></td>
-                        <td><?php print_r($history[$i]->arrival_time); ?></td>
-                        <td><?php print_r($history[$i]->departure_time); ?></td>
-                        <td><?php print_r($history[$i]->date); ?></td>
-                        <td><?php print_r($history[$i]->ot_hours); ?></td>
-                        <td><?php print_r($history[$i]->status); ?></td>
+                    for ($i = 0; $i < sizeof($history); $i++) {
+                        if (boolval($history[$i])) {
+                            for ($j = 0; $j < sizeof($history[$i]); $j++) {
+                                ?>
+                                <tr>
+                                    <td><?php print_r($history[$i][$j]->employee_ID); ?></td>
+                                    <td><?php print_r($history[$i][$j]->arrival_time); ?></td>
+                                    <td><?php print_r($history[$i][$j]->departure_time); ?></td>
+                                    <td><?php print_r($history[$i][$j]->date); ?></td>
+                                    <td><?php print_r($history[$i][$j]->ot_hours); ?></td>
+                                    <td><?php print_r($history[$i][$j]->status); ?></td>
+                                    <?php
+                                    $btnChange = 'btnChange';
+                                    $btnChange .= $i;
+                                    $btnChange .= $j;
+                                    $btnDelete = 'btnDelete';
+                                    $btnDelete .= $i;
+                                    $btnDelete .= $j;
+                                    //echo $btnChange;
+                                    ?>
+                                    <td id="options">
+                                        <div id="<?php echo $btnChange ?>" onclick="reply_click(this.id)"><i
+                                                    class="fas fa-pencil-alt"></i></div>
+                                        <script type="text/javascript">
+                                            document.querySelector('<?php echo "#" . $btnChange;?>').addEventListener('click', () => {
+                                                Change.open({
+                                                    title: 'Changing..',
+                                                    name: '<?php print_r($history[$i][$j]->employee_ID) ?>',
+                                                    date: '<?php print_r($history[$i][$j]->date) ?>',
+                                                    arrival: '<?php print_r($history[$i][$j]->arrival_time) ?>',
+                                                    departure: '<?php print_r($history[$i][$j]->departure_time) ?>',
+                                                    ot: '<?php print_r($history[$i][$j]->ot_hours) ?>',
+                                                    status: '<?php print_r($history[$i][$j]->status) ?>',
+                                                    href: '<?php echo "change/"; print_r($history[$i][$j]->employee_ID); ?>',
+                                                    onchange: () => {
+                                                        window.location.href = "<?php print_r($history[$i][$j]->employee_ID); ?>"
+                                                    },
+                                                })
+                                            });
+                                        </script>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+                        }
+                    }?>
+                        </tbody>
+                        </table>
                         <?php
-                        $btnChange = 'btnChange';
-                        $btnChange .= $i;
-                        $btnDelete = 'btnDelete';
-                        $btnDelete .= $i;
-                        //echo $btnChange;
-                        ?>
-                        <td id="options"><div id="<?php echo $btnChange ?>" onclick="reply_click(this.id)"><i class="fas fa-pencil-alt"></i></div>
-                            <script type="text/javascript">
-                                document.querySelector('<?php echo "#".$btnChange;?>').addEventListener('click', () => {
-                                    Change.open({
-                                        title: 'Changing..',
-                                        name: '<?php print_r($history[$i]->employee_ID) ?>',
-                                        date: '<?php print_r($history[$i]->date) ?>',
-                                        arrival: '<?php print_r($history[$i]->arrival_time) ?>',
-                                        departure: '<?php print_r($history[$i]->departure_time) ?>',
-                                        ot : '<?php print_r($history[$i]->ot_hours) ?>',
-                                        status: '<?php print_r($history[$i]->status) ?>',
-                                        href: '<?php echo"change/"; print_r($history[$i]->employee_ID); ?>',
-                                        onchange: () => {
-                                            window.location.href = "<?php print_r($history[$i]->employee_ID); ?>"
-                                        },
-                                    })
-                                });
-                            </script>
-                        </td>
-                    </tr>
-                    <?php
-                    } ?>
-                    </tbody>
-                </table>
-                <?php
-                }
-                else {
+                } else {
                     echo "No history yet";
-                }?>
+                } ?>
             </div>
         </div>
         <div class="attendance_form">
@@ -164,7 +177,7 @@
             <div class="form-content">
                 <div class="date">
                     <label for="date">Date : </label>
-                    <input type="date" name="date" id="name" value="<?php echo date('Y-m-d'); ?>" required >
+                    <input type="date" name="date" id="name" value="<?php echo date('Y-m-d'); ?>" required>
                 </div>
                 <div class="selected-names">
                     <?php
@@ -207,9 +220,9 @@
     </div>
 </div>
 <script>
-    const  Change = {
-        open(options){
-            options = Object.assign({},{
+    const Change = {
+        open(options) {
+            options = Object.assign({}, {
                 title: '',
                 message: '',
                 name: '',
@@ -220,8 +233,10 @@
                 status: '',
                 href: '',
                 cancelText: 'Cancel',
-                onchange: function () {},
-                oncancel: function () {}
+                onchange: function () {
+                },
+                oncancel: function () {
+                }
             }, options);
 
 
@@ -302,7 +317,7 @@
             const btnCancel = template_3.content.querySelector('.confirm__button--cancel');
 
             confirmEl.addEventListener('click', e => {
-                if(e.target === confirmEl){
+                if (e.target === confirmEl) {
                     options.oncancel();
                     this._close(confirmEl);
                 }
@@ -318,7 +333,7 @@
             document.body.appendChild(template_3.content);
         },
 
-        _close (confirmEl){
+        _close(confirmEl) {
             confirmEl.classList.add('confirm--close');
             confirmEl.addEventListener('animationend', () => {
                 document.body.removeChild(confirmEl);

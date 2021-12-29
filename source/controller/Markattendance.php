@@ -27,47 +27,41 @@ class Markattendance extends Controller
             $j=0; $k=0;
             $marked = array();
             $not_marked = array();
-            for($i=0;$i<sizeof($all_emp);$i++){
-                if($all_emp[$i]->designation_code == 1){
-                    $all_emp[$i]->designation_code = 'CEO';
-                }
-                elseif ($all_emp[$i]->designation_code == 2){
-                    $all_emp[$i]->designation_code = 'Director';
-                }
-                elseif ($all_emp[$i]->designation_code == 3){
-                    $all_emp[$i]->designation_code = 'Manager';
-                }
-                elseif ($all_emp[$i]->designation_code == 4){
-                    $all_emp[$i]->designation_code = 'HR Officer';
-                }
-                elseif ($all_emp[$i]->designation_code == 5){
-                    $all_emp[$i]->designation_code = 'Employer';
-                }
+            if (boolval($all_emp)) {
+                for ($i = 0; $i < sizeof($all_emp); $i++) {
+                    if ($all_emp[$i]->designation_code == 1) {
+                        $all_emp[$i]->designation_code = 'CEO';
+                    } elseif ($all_emp[$i]->designation_code == 2) {
+                        $all_emp[$i]->designation_code = 'Director';
+                    } elseif ($all_emp[$i]->designation_code == 3) {
+                        $all_emp[$i]->designation_code = 'Manager';
+                    } elseif ($all_emp[$i]->designation_code == 4) {
+                        $all_emp[$i]->designation_code = 'HR Officer';
+                    } elseif ($all_emp[$i]->designation_code == 5) {
+                        $all_emp[$i]->designation_code = 'Employer';
+                    }
 
-                if($all_emp[$i]->department_ID == 1){
-                    $all_emp[$i]->department_ID = 'Operational Department';
-                }
-                elseif ($all_emp[$i]->department_ID == 2){
-                    $all_emp[$i]->department_ID = 'HR Department';
-                }
-                elseif ($all_emp[$i]->department_ID == 3){
-                    $all_emp[$i]->department_ID = 'Sells Department';
-                }
-                elseif ($all_emp[$i]->department_ID == 4){
-                    $all_emp[$i]->department_ID = 'Account Department';
-                }
+                    if ($all_emp[$i]->department_ID == 1) {
+                        $all_emp[$i]->department_ID = 'Operational Department';
+                    } elseif ($all_emp[$i]->department_ID == 2) {
+                        $all_emp[$i]->department_ID = 'HR Department';
+                    } elseif ($all_emp[$i]->department_ID == 3) {
+                        $all_emp[$i]->department_ID = 'Sells Department';
+                    } elseif ($all_emp[$i]->department_ID == 4) {
+                        $all_emp[$i]->department_ID = 'Account Department';
+                    }
 
-                //Filter today's not marked employees
-                $array1 = $attendance->where_condition('employee_ID','date',$all_emp[$i]->employee_ID,$today);
+                    //Filter today's not marked employees
+                    $array1 = $attendance->where_condition('employee_ID', 'date', $all_emp[$i]->employee_ID, $today);
 
-                if(boolval($array1)){
-                    //$marked[$j] = $all_emp[$i];
-                    //$j++;
-                    continue;
-                }
-                else {
-                    $not_marked[$k] = $all_emp[$i];
-                    $k++;
+                    if (boolval($array1)) {
+                        //$marked[$j] = $all_emp[$i];
+                        //$j++;
+                        continue;
+                    } else {
+                        $not_marked[$k] = $all_emp[$i];
+                        $k++;
+                    }
                 }
             }
 
@@ -106,6 +100,16 @@ class Markattendance extends Controller
                     }
                     $this->redirect('markattendance');
                 }
+//                elseif (isset($_POST['absent'])){
+//                    $arr2['employee_ID'] = $_POST['absentId'];
+//                    $arr2['date'] = $_POST['date'];
+//                    $arr2['arrival_time'] = '00:00:00';
+//                    $arr2['departure_time'] = '00:00:00';
+//                    $arr2['ot_hours'] = '0';
+//                    $arr2['status'] = 'No';
+//                    print_r($arr2['employee_ID']);
+//                    //$attendance->insert($arr2);
+//                }
                 elseif (isset($_POST['change'])){
                     $change_attendance = new AttendanceModel();
                     $date = $_POST['date'];
@@ -122,13 +126,42 @@ class Markattendance extends Controller
             }
 
             //Show attendance history
-            $history = $attendance->findAll();
+            $history = array();
+            if(boolval($all_emp)) {
+                for ($i = 0; $i < sizeof($all_emp); $i++) {
+                    $history[$i] = $attendance->where('employee_ID',$all_emp[$i]->employee_ID);
+                }
+            }
 
             $this->view('markattendance', ['not_marked'=>$not_marked, 'history'=>$history]);
         } else {
             $this->view('404');
         }
 
+    }
+
+    function absent($id=null,$date=null){
+        if (!Auth::logged_in()) {
+            $this->redirect('login');
+        }
+
+        if (Auth::access('Supervisor')) {
+            $attendance = new AttendanceModel();
+            print_r($id);
+            print_r($date);
+            $arr2['employee_ID'] = $id;
+            $arr2['date'] = $date;
+            $arr2['arrival_time'] = '00:00:00';
+            $arr2['departure_time'] = '00:00:00';
+            $arr2['ot_hours'] = '0';
+            $arr2['status'] = 'No';
+            $attendance->insert($arr2);
+            $this->redirect('markattendance');
+        }
+        else{
+            $this->view('404');
+        }
+        $this->view('markattendance');
     }
 
 
