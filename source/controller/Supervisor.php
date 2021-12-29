@@ -32,10 +32,71 @@ class Supervisor extends Controller
 		}
 		if(Auth::access('Supervisor'))
 		{
-		$user=new Employeedetails();
+		$user=new EmployeelistModel();
+		$user_x = new PerformanceModel();
 		$id=Auth::user();
 		$row=$user->where('supervisor_ID',$id);
-		$this->view('supervisorviewperformance',['row'=>$row]);
+		$emp=array();
+$k=0;
+		if(boolval($row)){
+                for($i = 0;$i<sizeof($row);$i++){
+                    $employee_details = $user->where('employee_ID',$row[$i]->employee_ID);
+                    $performance_details = $user_x->where_condition('employee_ID', 'date', $row[$i]->employee_ID, 0);
+                    if(boolval($performance_details)){
+                  
+                        for($j = 0;$j<sizeof($performance_details);$j++){
+                        	$emp[$k]['employee_ID'] = $employee_details[0]->employee_ID;
+                            $emp[$k]['first_name'] = $employee_details[0]->first_name;
+                            $emp[$k]['last_name'] = $employee_details[0]->last_name;
+                            $emp[$k]['profile_image'] = $employee_details[0]->profile_image;
+                            $emp[$k]['details'] = $performance_details[$j];
+                        }
+               
+                        $i = $i+sizeof($performance_details)-1;
+                        $k++;
+                    }
+                }
+            }
+
+
+            
+            $handle = array();
+            $handled = array();
+            $all = $user_x->findAll();
+            $j = 0;
+            
+            for($i=0;$i<sizeof($all);$i++){
+                if( $all[$i]->date<date("U") &&$all[$i]->date>0  ){
+                    $handle = $user->where('employee_ID',$all[$i]->employee_ID);
+                    $emp[$k]['employee_ID']=$handle[0]->employee_ID;
+                   
+                    $emp[$k]['first_name'] = $handle[0]->first_name;
+                    $emp[$k]['last_name'] = $handle[0]->last_name;
+                    $emp[$k]['profile_image'] =$handle[0]->profile_image;
+                    $emp[$k]['details'] = $all[$i];
+                    //$handle[$k]['details'] = $all[$i];
+                    $k++;
+                }
+                
+            }
+
+            $q=0;
+            $handle1=array();
+             for($i=0;$i<sizeof($all);$i++){
+             	 if($all[$i]->date>date("U") ){
+            	$handle1= $user->where('employee_ID',$all[$i]->employee_ID);
+            		$handled[$q]['employee_ID']=$handle1[0]->employee_ID;
+                    $handled[$q]['first_name'] = $handle1[0]->first_name;
+                    $handled[$q]['last_name'] = $handle1[0]->last_name;
+                    
+                    $handled[$q]['details'] = $all[$i];
+                    $q++;
+
+             }
+         }
+
+		$this->view('supervisorviewperformance',['emp'=>$emp,
+							'handled'=>$handled]);
 		}
 		else{
 			$this->view('404');
@@ -85,6 +146,7 @@ class Supervisor extends Controller
 				else{
 					$data['multitasking_ability']=$_POST['multitasking_ability'];
 				}
+				$data['date']=date("U")+131400;
 				$row=$user->update($id,$data);
 				//$this->redirect('Supervisor');
 				}
@@ -152,6 +214,7 @@ class Supervisor extends Controller
 				else{
 					$data['multitasking_ability']=$_POST['multitasking_ability'];
 				}
+				$data['date']=date("U")+131400;
 				$row=$user->insert($data);
 				//$this->redirect('Supervisor');
 				}
@@ -166,70 +229,7 @@ class Supervisor extends Controller
 			$this->view('404');
 		}
 	}
-	/*function Update_Performance($id=null)
-	{
 
-		if(!Auth::logged_in())
-		{
-			$this->redirect('login');
-		}
-		if(Auth::access('Supervisor'))
-		{
-				$user= new PerformanceModel();
-				if(count($_POST)>0){
-				$data['communication']=$_POST['communication'];
-				$data['quality_of_work']=$_POST['quality_of_work'];
-				$data['organization']=$_POST['organization'];
-				$data['team_skills']=$_POST['team_skills'];
-				$data['multitasking_ability']=$_POST['multitasking_ability'];
-				$row=$user->update($id,$data);
-				//$this->redirect('Supervisor');
-				}
-		$this->view('addperformance');
-		}
-		else{
-			$this->view('404');
-		}
-	}
-
-	function Insert_Performance($id=null)
-	{
-		$errors=array();
-
-		if(!Auth::logged_in())
-		{
-			$this->redirect('login');
-		}
-		if(Auth::access('Supervisor'))
-		{
-			
-				$user= new PerformanceModel();
-				
-				//$row =$user->where('$employee_ID',$id);
-				if($row =$user->where('employee_ID',$id)){
-				$errors['errors']="This employee alredy has a recode you can only update";
-				$this->view('addperformance',['errors'=>$errors]);
-				
-				exit();
-				//$this->redirect('Supervisor/Performance');
-				}
-				
-				if(count($_POST)>0){
-				$data['employee_ID']=$id;
-				$data['communication']=$_POST['communication'];
-				$data['quality_of_work']=$_POST['quality_of_work'];
-				$data['organization']=$_POST['organization'];
-				$data['team_skills']=$_POST['team_skills'];
-				$data['multitasking_ability']=$_POST['multitasking_ability'];
-				$row=$user->insert($data);
-				//$this->redirect('Supervisor');
-				}
-		$this->view('addperformance');
-		}
-		else{
-			$this->view('404');
-		}
-	}*/
 	
 	function Delete_Performance($id=null)
 	{
@@ -246,8 +246,12 @@ class Supervisor extends Controller
 				$user= new PerformanceModel();
 				$row=$user->where('employee_ID',$id);
 				if(!empty($row)){
-
-				$row=$user->delete($id);
+					$data['employee_ID']=$id;
+					$data['quality_of_work']=null;
+					$data['quality_of_work']=null;
+					$data['organization']=null;
+					$data['team_skills']=null;
+					$data['multitasking_ability']=null;
 				$this->redirect('Supervisor');
 				}
 				else{
@@ -264,3 +268,4 @@ class Supervisor extends Controller
 	
 
 }
+
