@@ -25,6 +25,7 @@
             document.getElementById("arrival").innerHTML = "<div style='font-family: Arial,serif; font-size: smaller; color: red'><i class='fas fa-exclamation' style='color: red;'></i></div>";
         }
     }
+
 </script>
 
 <body>
@@ -339,6 +340,34 @@
                 document.body.removeChild(confirmEl);
             });
         }
+    }
+
+
+    //calender
+    let nav = 0;
+    let clicked = null;
+    let events = localStorage.getItem('events')? JSON.parse(localStorage.getItem('events')): [];
+
+    const calendar = document.getElementById('calendar');
+    const newEventModal = document.getElementById('newEventModal');
+    const deleteEventModal = document.getElementById('deleteEventModal');
+    const backDrop = document.getElementById('modalBackDrop');
+    const eventTitleInput = document.getElementById('eventTitleInput');
+    const weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+    function openModal(date) {
+        clicked = date;
+
+        const eventForDay = events.find(e => e.date === clicked);
+
+        if (eventForDay) {
+            document.getElementById('eventText').innerText = eventForDay.title;
+            deleteEventModal.style.display = 'none';
+        } else {
+            newEventModal.style.display = 'none';
+        }
+
+        backDrop.style.display = 'none';
     }
 </script>
 </body>

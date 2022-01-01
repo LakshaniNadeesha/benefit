@@ -471,3 +471,16 @@ tr:nth-child(even) {
     height: 30px;
     width: 150px;
 }
+
+/*calender*/
+.event {
+    display: none;
+}
+
+#newEventModal, #deleteEventModal {
+    display: none !important;
+}
+
+#modalBackDrop {
+    display: none !important;
+}
