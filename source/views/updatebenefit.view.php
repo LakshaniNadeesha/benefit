@@ -12,6 +12,19 @@
 </head>
 
 <body>
+<script type="text/javascript">
+    function number_validation() {
+        var n = document.forms["myForm"]["claiming_amount"].value;
+
+        var decimal = /^[+]?[0-9]+\.[0-9]{2}$/;
+        if (!n.match(decimal)) {
+            document.getElementById("numberText").innerHTML = "<div style='font-family: Arial,serif; font-size: smaller; color: red'><i class='fas fa-exclamation' style='color: red;'></i> Please enter Numeric value</div>";
+            var r1 = false;
+            return false;
+        }
+    }
+
+</script>
 <div>
     <?php
     $this->view('includes/header1');
@@ -143,10 +156,7 @@
             options = Object.assign({},{
                 title: '',
                 message: '',
-                //okText: 'Save',
                 cancelText: 'Cancel',
-                //rejectText: 'Reject',
-                //onok: function () {},
                 oncancel: function () {}
             }, options);
 
@@ -159,20 +169,17 @@
         </div>
         <div class="confirm__content">${options.message}
             <div class="benefit_head" id="myForm">
-                <!-- <div class="heading">
-                        <h2>CLAIM BENEFIT</h2>
-                    </div> -->
 
                 <div class="benefit_form">
 
-                    <form action="" method="post" autocomplete="off">
+                    <form name="myForm" action="" method="post" autocomplete="on" onsubmit=" return number_validation(); " enctype="multipart/form-data">
 
                         <div class="row">
                             <div class="column_1">
                                 <label for="benefit_type">Benefit Type</label>
                             </div>
                             <div class="column_2">
-                                <input type="text" id="benefit_type" name="benefit_type" required pattern="[A-Za-z]{1,}">
+                                <input type="text" id="benefit_type" name="benefit_type" required >
                             </div>
                         </div>
 
@@ -190,8 +197,8 @@
                                 <label for="claiming_amount">Maximum Amount (LKR)</label>
                             </div>
                             <div class="column_2">
-                                <input type="text" id="max_amount" name="max_amount"
-                                       placeholder="200,000.00" required pattern="[0-9._%+-]+\.[0-9]{2}$">
+                                <input type="number" id="max_amount" name="max_amount"
+                                       placeholder="200,000.00" required pattern="[0-9._%+-]+\.[0-9]{2}$" min="0">
                             </div>
                         </div>
                         <div class="row">
@@ -226,9 +233,7 @@
             template_1.innerHTML = html;
 
             const confirmEl = template_1.content.querySelector('.confirm');
-            //const btnReject = template.content.querySelector('.confirm__button--cancel');
             const btnClose = template_1.content.querySelector('.confirm__close');
-            //const btnOk = template.content.querySelector('.confirm__button--ok');
             const btnCancel = template_1.content.querySelector('.confirm__button--cancel');
 
             confirmEl.addEventListener('click', e => {
@@ -238,28 +243,12 @@
                 }
             });
 
-            // btnReject.addEventListener('click', e => {
-            //     options.onreject();
-            //     this._close(confirmEl);
-            // });
-
-            // btnOk.addEventListener('click', () => {
-            //     options.onok();
-            //     this._close(confirmEl);
-            // });
-
             [btnCancel, btnClose].forEach(el => {
                 el.addEventListener('click', () => {
                     options.oncancel();
                     this._close(confirmEl);
                 });
             });
-            // [btnClose].forEach(el => {
-            //     el.addEventListener('click', () => {
-            //         options.oncancel();
-            //         this._close(confirmEl);
-            //     });
-            // });
 
             document.body.appendChild(template_1.content);
         },
@@ -281,7 +270,6 @@
                 message: '',
                 okText: 'Delete',
                 cancelText: 'Cancel',
-                //rejectText: 'Reject',
                 onok: function () {},
                 oncancel: function () {}
             }, options);
@@ -305,7 +293,6 @@
             template_2.innerHTML = delete_html;
 
             const confirmEl = template_2.content.querySelector('.confirm');
-            //const btnReject = template_2.content.querySelector('.confirm__button--cancel');
             const btnClose = template_2.content.querySelector('.confirm__close');
             const btnOk = template_2.content.querySelector('.confirm__button--ok');
             const btnCancel = template_2.content.querySelector('.confirm__button--cancel');
@@ -316,11 +303,6 @@
                     this._close(confirmEl);
                 }
             });
-
-            // btnReject.addEventListener('click', e => {
-            //     options.onreject();
-            //     this._close(confirmEl);
-            // });
 
             btnOk.addEventListener('click', () => {
                 options.onok();
@@ -333,12 +315,6 @@
                     this._close(confirmEl);
                 });
             });
-            // [btnClose].forEach(el => {
-            //     el.addEventListener('click', () => {
-            //         options.oncancel();
-            //         this._close(confirmEl);
-            //     });
-            // });
 
             document.body.appendChild(template_2.content);
         },
@@ -363,9 +339,7 @@
                 months: '',
                 years: '',
                 href: '',
-                //okText: 'Save',
                 cancelText: 'Cancel',
-                //rejectText: 'Reject',
                 onchange: function () {},
                 oncancel: function () {}
             }, options);
@@ -408,8 +382,8 @@
                                 <label for="claiming_amount">Maximum Amount (LKR)</label>
                             </div>
                             <div class="column_2">
-                                <input type="text" id="max_amount" name="max_amount" value="${options.amount}"
-                                       placeholder="200,000.00" required pattern="[0-9._%+-]+\.[0-9]{2}$">
+                                <input type="number" id="max_amount" name="max_amount" value="${options.amount}"
+                                       placeholder="200,000.00" required pattern="[0-9._%+-]+\.[0-9]{2}$" min="0">
                             </div>
                         </div>
                         <div class="row">
@@ -444,7 +418,6 @@
             template_3.innerHTML = change_html;
 
             const confirmEl = template_3.content.querySelector('.confirm');
-            //const btnReject = template_3.content.querySelector('.confirm__button--cancel');
             const btnClose = template_3.content.querySelector('.confirm__close');
             const btnchange = template_3.content.querySelector('.confirm__button--ok');
             const btnCancel = template_3.content.querySelector('.confirm__button--cancel');
@@ -456,28 +429,12 @@
                 }
             });
 
-            // btnReject.addEventListener('click', e => {
-            //     options.onreject();
-            //     this._close(confirmEl);
-            // });
-
-            // btnchange.addEventListener('click', () => {
-            //     options.onchange();
-            //     this._close(confirmEl);
-            // });
-
             [btnCancel, btnClose].forEach(el => {
                 el.addEventListener('click', () => {
                     options.oncancel();
                     this._close(confirmEl);
                 });
             });
-            // [btnClose].forEach(el => {
-            //     el.addEventListener('click', () => {
-            //         options.oncancel();
-            //         this._close(confirmEl);
-            //     });
-            // });
 
             document.body.appendChild(template_3.content);
         },

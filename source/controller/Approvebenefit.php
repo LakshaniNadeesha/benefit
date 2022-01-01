@@ -42,14 +42,16 @@ class Approvebenefit extends Controller
             $handled = array();
             $all = $user_x->findAll();
             $j = 0;
-            for($i=0;$i<sizeof($all);$i++){
-                if($all[$i]->benefit_status != 'pending'){
-                    //print_r($all[$i]->employee_ID);
-                    //print_r($all[$i]); echo '<br>';
-                    $handled[$j]['emp_details'] = $user->where('employee_ID',$all[$i]->employee_ID);
-                    $handled[$j]['benefit_details'] = $all[$i];
-                    //print_r($handled[$j]); echo '<br>';
-                    $j++;
+            if(boolval($all)) {
+                for ($i = 0; $i < sizeof($all); $i++) {
+                    if ($all[$i]->benefit_status != 'pending') {
+                        //print_r($all[$i]->employee_ID);
+                        //print_r($all[$i]); echo '<br>';
+                        $handled[$j]['emp_details'] = $user->where('employee_ID', $all[$i]->employee_ID);
+                        $handled[$j]['benefit_details'] = $all[$i];
+                        //print_r($handled[$j]); echo '<br>';
+                        $j++;
+                    }
                 }
             }
 
@@ -71,7 +73,7 @@ class Approvebenefit extends Controller
             $user = new BenefitrequestModel();
             $get_row = $user->where('report_hashing',$id);
             $hashVal = $get_row[0]->report_hashing;
-            $ar['benefit_status'] = "accepted";
+            $ar['benefit_status'] = "Accepted";
             $user->update_status($hashVal, 'report_hashing', $ar);
 
             $this->redirect('Approvebenefit');
@@ -87,7 +89,7 @@ class Approvebenefit extends Controller
             $user = new BenefitrequestModel();
             $get_row = $user->where('report_hashing',$id);
             $hashVal = $get_row[0]->report_hashing;
-            $ar['benefit_status'] = "rejected";
+            $ar['benefit_status'] = "Rejected";
             $user->update_status($hashVal, 'report_hashing', $ar);
 
             $this->redirect('Approvebenefit');

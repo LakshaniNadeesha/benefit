@@ -9,13 +9,9 @@ body {
 }
 
 .main_container {
-    /*border-top-right-radius: 10px;*/
-    /*border-bottom-right-radius: 10px;*/
     background-color: white;
     padding: 10px;
     height: 100vh;
-    /*transition: 0.5s;*/
-    /*margin: 0 5px 0 255px;*/
 }
 
 .handling_title {
@@ -32,7 +28,6 @@ body {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    /*justify-content: center;*/
 }
 
 .card-container {
@@ -108,21 +103,7 @@ body {
     cursor: pointer;
 }
 
-
-/*.header-approve:hover {*/
-
-
-/*    background-color: var(--h1);*/
-
-
-/*    color: var(--w);*/
-
-
-/*}*/
-
 .header-approve:hover {
-    /*background-color: var(--h1);*/
-    /*color: var(--w);*/
     transform: scale(1.1);
 }
 
@@ -169,7 +150,6 @@ body {
 }
 
 .details .row .column_2 p {
-    /*padding: 12px 20px;*/
     margin: 8px 0;
     display: inline-block;
     box-sizing: border-box;
@@ -247,12 +227,10 @@ tr:nth-child(even) {
     background: rgba(0, 0, 0, 0.6) ;
     padding: 10px;
     box-sizing: border-box;
-
     opacity: 0;
     animation-name: confirm---open;
     animation-duration: 0.2s;
     animation-fill-mode: forwards;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -263,9 +241,7 @@ tr:nth-child(even) {
 }
 
 .confirm__window {
-    /*height: 250px;*/
     height: min-content;
-
     width: 100%;
     max-width: 600px;
     background-color: white;
@@ -274,7 +250,6 @@ tr:nth-child(even) {
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-
     opacity: 0;
     transform: scale(0.75);
     animation-name: confir__window---open;
@@ -293,12 +268,32 @@ tr:nth-child(even) {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
 }
 
 .confirm__title {
     font-weight: bold;
     font-size: 1.1em;
+}
+
+.confirm__content {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.row .column_1 {
+    float: left;
+    width: 30%;
+}
+
+.column_1 p, .column_2 p {
+    margin: auto;
+    margin-bottom: 6px;
 }
 
 .confirm__close {

@@ -70,16 +70,20 @@
                                 <button class="show_btn" type="button" name="show" value="show" id="<?php echo $btnChange ?>" onclick="reply_click(this.id)">Show</button>
                             </center>
                             <script type="text/javascript">
+                                <?php
+                                    $string = $requested[$i]['details']->report_location;
+                                    $newString = substr($string,25);
+                                ?>
 
                                 document.querySelector('<?php echo "#".$btnChange;?>').addEventListener('click', () => {
-                                    //document.getElementById("this.id").addEventListener('click', () => {
                                     Confirm.open({
                                         title: 'Request From <?php print_r($requested[$i]['first_name']); echo " "; print_r($requested[$i]['last_name']); ?>',
-                                        message: 'Benefit Type : <?php print_r($requested[$i]['details']->benefit_type); echo "<br>";?> ' +
-                                            'Claimed Date : <?php print_r($requested[$i]['details']->claim_date); echo "<br>";?>' +
-                                            'Claimed Amount : <?php print_r($requested[$i]['details']->claim_amount); echo "<br>";?>' +
-                                            'Description : <?php print_r($requested[$i]['details']->benefit_description); echo "<br>";?>' +
-                                            'Report : <?php print_r($requested[$i]['details']->report_location); echo "<br>";?>',
+                                        benefitType: '<?php print_r($requested[$i]['details']->benefit_type); echo "<br>";?> ',
+                                        claimedDate: '<?php print_r($requested[$i]['details']->claim_date); echo "<br>";?>',
+                                        claimedAmount: '<?php print_r($requested[$i]['details']->claim_amount); echo "<br>";?>' ,
+                                        description: '<?php print_r($requested[$i]['details']->benefit_description); echo "<br>";?>' ,
+                                        document: '<?php print_r($newString); echo "<br>";?>',
+                                        link: '<?php print_r($requested[$i]['details']->report_location) ?>',
                                         onok: () => {
                                             //document.body.style.backgroundColor = 'blue';
                                             window.location.href = "Approvebenefit/accept/<?php print_r($requested[$i]['details']->report_hashing); ?>"
@@ -96,7 +100,12 @@
                         <?php
                     }
                 }
-                } ?>
+                }
+                else {
+                    echo "<div style='padding-left: 10px'>No requests yet</div>";
+                }?>
+
+                </div>
 
             </div>
             <div class="approve-container">
@@ -130,6 +139,9 @@
                         }?>
                     </table>
                     <?php
+                    }
+                    else {
+                        echo "<div style='padding-left: 10px'>No history yet</div>";
                     }?>
                 </div>
             </div>
@@ -148,72 +160,19 @@
     document.getElementById("btn").addEventListener("click", addBox);
 
 </script>
-<!--
-<div class="confirm">
-    <div class="confirm__window">
-        <div class="confirm__titlebar">
-            <span class="confirm__title">Benefit Request By ASDFG</span>
-            <button class="confirm__close">&times;</button>
-        </div>
-        <div class="confirm__content">
-            <div class="row">
-                <div class="column_1">
-                    <label for="claim_date">Claimed Date :</label>
-                </div>
-                <div class="column_2">
-                    <p class="values">
-                        <?php
-                        print_r($requested[0]['details']->benefit_type); ?> </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column_1">
-                    <label for="claim_date">Claimed Date :</label>
-                </div>
-                <div class="column_2">
-                    <p class="values">
-                        <?php
-                        print_r($requested[0]['details']->claim_date); ?> </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column_1">
-                    <label for="claim_date">Claimed Date :</label>
-                </div>
-                <div class="column_2">
-                    <p class="values">
-                        <?php
-                        print_r($requested[0]['details']->claim_amount); ?> </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column_1">
-                    <label for="claim_date">Claimed Date :</label>
-                </div>
-                <div class="column_2">
-                    <p class="values">
-                        <?php
-                        print_r($requested[0]['details']->benefit_description); ?> </p>
-                </div>
-            </div>
-        </div>
-        <div class="confirm__buttons">
-            <button class="confirm__button confirm__button--ok confirm__button--fill">OK</button>
-            <button class="confirm__button confirm__button--cancel">Cancel</button>
-        </div>
-    </div>
-</div>
--->
 
-<!--<script src="http://localhost/benefit/public/js/approve.js">-->
 <script>
     const  Confirm = {
         open(options){
             options = Object.assign({},{
                 title: '',
-                message: '',
+                benefitType: '',
+                claimedDate: '',
+                claimedAmount: '',
+                description: '',
+                document: '',
+                link: '',
                 okText: 'Accept',
-                //cancelText: 'Reject',
                 rejectText: 'Reject',
                 onok: function () {},
                 oncancel: function () {},
@@ -227,7 +186,49 @@
             <span class="confirm__title">${options.title}</span>
             <button class="confirm__close">&times;</button>
         </div>
-        <div class="confirm__content">${options.message}
+        <div class="confirm__content">
+            <div class="row">
+                <div class="column_1">
+                    <p>Benefit Type</p>
+                </div>
+                <div class="column_2">
+                    <p>${options.benefitType}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column_1">
+                    <p>Claimed Date</p>
+                </div>
+                <div class="column_2">
+                    <p>${options.claimedDate}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column_1">
+                    <p>Claimed Amount</p>
+                </div>
+                <div class="column_2">
+                    <p>${options.claimedAmount}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column_1">
+                    <p>Reason</p>
+                </div>
+                <div class="column_2">
+                    <p>${options.description}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column_1">
+                    <p>Report Submission</p>
+                </div>
+                <div class="column_2">
+                    <p>${options.document}</p>
+                    <button class="btn" onclick="document.getElementById('link-1').click()"><i class="fa fa-download"></i>      Download</button>
+                    <a id="link-1" href="${options.link}" download hidden></a>
+                </div>
+            </div>
         </div>
         <div class="confirm__buttons">
             <button class="confirm__button confirm__button--ok confirm__button--fill">${options.okText}</button>
@@ -263,12 +264,6 @@
                 this._close(confirmEl);
             });
 
-            // [btnCancel, btnClose].forEach(el => {
-            //     el.addEventListener('click', () => {
-            //         options.oncancel();
-            //         this._close(confirmEl);
-            //     });
-            // });
             [btnClose].forEach(el => {
                 el.addEventListener('click', () => {
                     options.oncancel();

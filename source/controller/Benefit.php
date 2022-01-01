@@ -13,7 +13,7 @@ class Benefit extends Controller
         }
         $user = new BenefitrequestModel();
         $benefits = new BenefitdetailsModel();
-         $info = new BenefitapplicationModel();
+        $info = new BenefitapplicationModel();
 
         $pending = array();
         $ar = auth::user();
@@ -21,9 +21,12 @@ class Benefit extends Controller
         $all_requests = $user->where('employee_ID', $ar);
         $j=0;
         $handled = array();
-        for($i=0;$i<sizeof($all_requests);$i++){
-            if($all_requests[$i]->benefit_status != 'pending'){
-                $handled[$j] = $all_requests[$i];
+        if (boolval($all_requests)) {
+            for ($i = 0; $i < sizeof($all_requests); $i++) {
+                if ($all_requests[$i]->benefit_status != 'pending') {
+                    $handled[$j] = $all_requests[$i];
+                    $j++;
+                }
             }
         }
 
@@ -72,7 +75,7 @@ class Benefit extends Controller
                         $arr['valid_months'] = $_POST['valid_months'];
                         $arr['valid_years'] = $_POST['valid_years'];
                         //print_r($arr);
-                        echo "hereeeeeeeeeeeee";
+                        //echo "hereeeeeeeeeeeee";
                         $benefits->insert($arr);
                         $this->redirect('Benefit/update');
                     }
