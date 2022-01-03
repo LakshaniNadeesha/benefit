@@ -37,7 +37,7 @@ class Supervisor extends Controller
 		$id=Auth::user();
 		$row=$user->where('supervisor_ID',$id);
 		$emp=array();
-$k=0;
+		$k=0;
 		if(boolval($row)){
                 for($i = 0;$i<sizeof($row);$i++){
                     $employee_details = $user->where('employee_ID',$row[$i]->employee_ID);
@@ -88,15 +88,16 @@ $k=0;
             		$handled[$q]['employee_ID']=$handle1[0]->employee_ID;
                     $handled[$q]['first_name'] = $handle1[0]->first_name;
                     $handled[$q]['last_name'] = $handle1[0]->last_name;
-                    
+               
                     $handled[$q]['details'] = $all[$i];
+                   // print_r($handled[$q]['details']);
                     $q++;
 
              }
          }
 
 		$this->view('supervisorviewperformance',['emp'=>$emp,
-							'handled'=>$handled]);
+													'handled'=>$handled]);
 		}
 		else{
 			$this->view('404');
@@ -146,6 +147,8 @@ $k=0;
 				else{
 					$data['multitasking_ability']=$_POST['multitasking_ability'];
 				}
+				date_default_timezone_set('Asia/Colombo');
+				$data['last_modifydate'] = date('Y/d/m');
 				$data['date']=date("U")+131400;
 				$row=$user->update($id,$data);
 				//$this->redirect('Supervisor');
@@ -214,6 +217,8 @@ $k=0;
 				else{
 					$data['multitasking_ability']=$_POST['multitasking_ability'];
 				}
+				date_default_timezone_set('Asia/Colombo');
+				$data['last_modifydate'] = date('Y/d/m');
 				$data['date']=date("U")+131400;
 				$row=$user->insert($data);
 				//$this->redirect('Supervisor');
@@ -268,4 +273,3 @@ $k=0;
 	
 
 }
-
