@@ -322,6 +322,13 @@
                                 </td>
                                
                             </tr>
+                            
+                             <tr>
+                            
+                                <td id="c2" colspan="2"><label for="hired_date">Hired Date</label></td>
+                                 <td id="c4" colspan="6"><input type="date" id="hired" name="hired_date" required ></td>
+            
+                            </tr>
 
                             <tr>
                                 <!-- <td id="c1"></td> -->
