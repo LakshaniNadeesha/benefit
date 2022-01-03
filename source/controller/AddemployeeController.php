@@ -59,6 +59,7 @@ class AddemployeeController extends Controller
 				$pass = $_POST['pwd'];
 				$arr['password'] = password_hash($pass,PASSWORD_DEFAULT);
 				$confirm = $_POST['confirm'];
+				$arr['hired']=$_POST['hired'];
 				$arr['user_role'] = filter_input(INPUT_POST, 'user_role', FILTER_SANITIZE_STRING);
 				$arr['supervisor_ID'] = $_POST['supervisor'];
 
