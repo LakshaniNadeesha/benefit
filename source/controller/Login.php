@@ -17,11 +17,22 @@ class Login extends Controller
  			if($row = $user->where('email',$_POST['email']))
  			{
  				$row = $row[0];
- 				if(password_verify($_POST['password'], $row->password))
+ 				if(password_verify($_POST['password'], $row->password) )
  				{
+
+ 					if($row->banned_employees!=1)
+ 					{
+
+
  					$this->check_if_banned(true,true);
  					Auth::authenticate($row);
  					$this->redirect('/home');
+ 					}
+ 					else
+ 					{
+ 					require ("./source/views/404.view.php");
+					die;
+ 					}
  				}
  				else{
  					$this->check_if_banned(true,false);
