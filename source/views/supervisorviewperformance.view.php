@@ -96,7 +96,9 @@
                         </label></th>
                     <th>First Name</th>
                     <th>Last Name</th>
+                    <th>Last Modify</th>
                     <th>Options</th>
+                    
                 </tr>
                  <?php
                         for($i=0;$i<sizeof($handled);$i++){
@@ -108,10 +110,12 @@
                     <td><input type="checkbox" name="name1" /></td>
                     <td><?php print_r($handled[$i]['first_name']); ?></td>
                     <td><?php print_r($handled[$i]['last_name']);?> </td>
+                    <td><?php print_r($handled[$i]['details']->last_modifydate);?> </td>
                     <td> 
                         <a href="<?= PATH ?>Supervisor/Update_Performance/<?=$handled[$i]['employee_ID']?>"><i class="fas fa-edit"></i></a>
                        <!--  <a href="<?= PATH ?>Supervisor/Delete_Performance/<?=$handled[$i]['employee_ID']?>"><i class="fas fa-trash-alt"></i></a> -->
                     </td>
+                    
                 </tr>
                 <?php
                         
@@ -120,10 +124,5 @@
         </div>
     </div>
 </div>
-
-<!--<div>-->
-<!--    --><?php //$this->view('includes/footer') ?>
-<!--</div>-->
 </body>
 </html>
-
