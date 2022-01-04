@@ -48,7 +48,6 @@
         0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z"></path></svg>
             
             <!-- <label for="department">Select Department<i class='fas fa-edit'></i></label> -->
-            <form method="post" id="myform">
                 <div class="head">
                     <select id="department" name="department" onchange="myFunction()">
                         
@@ -62,7 +61,6 @@
                     </div>
                     <!-- <button type="submit" ></button> -->
                 </div>
-            </form>
                 
                 
             <!-- <p id="demo">krkerk</p>   -->
