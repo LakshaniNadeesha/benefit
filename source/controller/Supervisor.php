@@ -40,7 +40,8 @@ class Supervisor extends Controller
 		$k=0;
 		if(boolval($row)){
                 for($i = 0;$i<sizeof($row);$i++){
-                    $employee_details = $user->where('employee_ID',$row[$i]->employee_ID);
+                    $employee_details = $user->where_condition('employee_ID','banned_employees',$row[$i]->employee_ID,0);
+                    if(boolval($employee_details)){
                     $performance_details = $user_x->where_condition('employee_ID', 'date', $row[$i]->employee_ID, 0);
                     if(boolval($performance_details)){
                   
@@ -55,6 +56,7 @@ class Supervisor extends Controller
                         $i = $i+sizeof($performance_details)-1;
                         $k++;
                     }
+                }
                 }
             }
 
