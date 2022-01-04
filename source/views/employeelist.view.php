@@ -112,7 +112,7 @@
                     } ?> 
                 </div>
 
-                <div class="data" id="hr">
+                <div class="data" id="hr" style="display: none;">
 
                     <?php
                     if (boolval($rows[1])) {
@@ -154,7 +154,7 @@
                     } ?> 
                 </div>
 
-                <div class="data" id="seles">
+                <div class="data" id="seles" style="display: none;">
 
                     <?php
                     if (boolval($rows[2])) {
@@ -195,7 +195,7 @@
                         }
                     } ?> 
                 </div>
-                <div class="data" id="acc">
+                <div class="data" id="acc" style="display: none;">
 
                     <?php
                     if (boolval($rows[3])) {
