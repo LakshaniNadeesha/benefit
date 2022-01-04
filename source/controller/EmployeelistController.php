@@ -4,9 +4,9 @@ class EmployeelistController extends Controller{
 
     function index(){
 
-        $user = new EmployeelistModel();
+        // $user = new EmployeelistModel();
+        $user = new AddemployeeModel();
 
-        $data = $user->where('department_ID',2);
         //////////////////////////////////////// department_ID come from home view/////////////////////////////////////////////
 
         // if(count($_POST)>0){
@@ -35,8 +35,22 @@ class EmployeelistController extends Controller{
             }
 
         // }
-
         
-        $this->view('employeelist',['rows'=>$data]);
+        // if(isset($_POST)>0)
+        // {
+        //     if(isset($_POST['submit'])){
+        //         $dep = $_POST['department'];
+        //         $data = $user->where('department_ID', $dep);
+        //     }
+        // }else{
+        //     $data = $user->where('department_ID',2);
+        // }
+        $oper= $user->where('department_ID',1);
+        $hr = $user->where('department_ID',2);
+        $seles = $user->where('department_ID',3);
+        $acc = $user->where('department_ID',4);
+        $arr = array($oper,$hr,$seles,$acc);
+        
+        $this->view('employeelist',['rows'=>$arr]);
     }
 }

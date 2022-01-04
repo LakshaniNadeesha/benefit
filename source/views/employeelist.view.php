@@ -46,32 +46,38 @@
         128C853.3,96,907,96,960,112C1013.3,128,1067,160,1120,176C1173.3,192,1227,192,1280,170.7C1333.3,149,1387,107,1413,85.3L1440,
         64L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,
         0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z"></path></svg>
-            <div class="head">
+            
             <!-- <label for="department">Select Department<i class='fas fa-edit'></i></label> -->
-                <select id="department" name="department">
-                
-                    <option value="1">Operational Department</option>
-                    <option value="2">HR Department</option>
-                    <option value="3">Sells Department</option>
-                    <option value="4">Account Department</option>
-                </select>
-                <div class="search">
-                    <i class='fa fa-search'></i>
+            <form method="post" id="myform">
+                <div class="head">
+                    <select id="department" name="department" onchange="myFunction()">
+                        
+                        <option value="oper">Operational Department</option>
+                        <option value="hr">HR Department</option>
+                        <option value="seles">Seles Department</option>
+                        <option value="acc">Account Department</option>
+                    </select>
+                    <div class="search">
+                        <i class='fa fa-search'></i>
+                    </div>
+                    <!-- <button type="submit" ></button> -->
                 </div>
+            </form>
                 
                 
-            </div>
+            <!-- <p id="demo">krkerk</p>   -->
+            
 
             <div class="employee">
                 <div class="title">
                     <p>Employees</p>
                 </div>
-                <div class="data">
+                <div class="data" id= "oper">
 
                     <?php
-                    if (boolval($rows)) {
-                        if (count($rows) > 0) {
-                            foreach ($rows as $entry) { ?>
+                    if (boolval($rows[0])) {
+                        if (count($rows[0]) > 0) {
+                            foreach ($rows[0] as $entry) { ?>
                                 
                                     <form method="post">
                                         <div class="cards">
@@ -103,8 +109,131 @@
                                         </div>
                                     </form>
                                 
+                           <?php } 
+                        }
+                    } ?> 
+                </div>
 
+                <div class="data" id="hr">
 
+                    <?php
+                    if (boolval($rows[1])) {
+                        if (count($rows[1]) > 0) {
+                            foreach ($rows[1] as $entry) { ?>
+                                
+                                    <form method="post">
+                                        <div class="cards">
+                                            <input type="text" name="id" id="id"
+                                                   value="<?php echo $entry->employee_ID ?>">
+                                            <div class="img">
+                                                <img src="<?php echo $entry->profile_image ?>" alt="">
+                                            </div>
+                                            <div class="name">
+                                                <p><?php echo $entry->first_name." " .$entry->last_name ?> </p>
+                                            </div>
+
+                                            <div class="role">
+                                                <p><?php echo $entry->user_role?> </p>
+                                            </div>
+
+                                            <div class="email">
+                                                <p><?php echo $entry->email ?></p>
+                                            </div>
+                                            <div class="butons">
+                                                <?php if (Auth::access('HR Manager')): ?>                                              
+                                                    <button class="button-btn" type="submit" id="edit" name="edit"> <i class='fas fa-edit'></i> </button>       
+                                                <?php endif; ?>
+                                                <?php if (Auth::access('HR Officer') || Auth::access('HR Manager')): ?>                                              
+                                                    <button class="button-btn" type="submit" id="delete" name="delete"> <i class='fas fa-trash-alt'></i> </button>                                                
+                                                <?php endif; ?>
+                                                                                        
+                                            </div>
+                                        </div>
+                                    </form>
+                                
+                           <?php } 
+                        }
+                    } ?> 
+                </div>
+
+                <div class="data" id="seles">
+
+                    <?php
+                    if (boolval($rows[2])) {
+                        if (count($rows[2]) > 0) {
+                            foreach ($rows[2] as $entry) { ?>
+                                
+                                    <form method="post">
+                                        <div class="cards">
+                                            <input type="text" name="id" id="id"
+                                                   value="<?php echo $entry->employee_ID ?>">
+                                            <div class="img">
+                                                <img src="<?php echo $entry->profile_image ?>" alt="">
+                                            </div>
+                                            <div class="name">
+                                                <p><?php echo $entry->first_name." " .$entry->last_name ?> </p>
+                                            </div>
+
+                                            <div class="role">
+                                                <p><?php echo $entry->user_role?> </p>
+                                            </div>
+
+                                            <div class="email">
+                                                <p><?php echo $entry->email ?></p>
+                                            </div>
+                                            <div class="butons">
+                                                <?php if (Auth::access('HR Manager')): ?>                                              
+                                                    <button class="button-btn" type="submit" id="edit" name="edit"> <i class='fas fa-edit'></i> </button>       
+                                                <?php endif; ?>
+                                                <?php if (Auth::access('HR Officer') || Auth::access('HR Manager')): ?>                                              
+                                                    <button class="button-btn" type="submit" id="delete" name="delete"> <i class='fas fa-trash-alt'></i> </button>                                                
+                                                <?php endif; ?>
+                                                                                        
+                                            </div>
+                                        </div>
+                                    </form>
+                                
+                           <?php } 
+                        }
+                    } ?> 
+                </div>
+                <div class="data" id="acc">
+
+                    <?php
+                    if (boolval($rows[3])) {
+                        if (count($rows[3]) > 0) {
+                            foreach ($rows[3] as $entry) { ?>
+                                
+                                    <form method="post">
+                                        <div class="cards">
+                                            <input type="text" name="id" id="id"
+                                                   value="<?php echo $entry->employee_ID ?>">
+                                            <div class="img">
+                                                <img src="<?php echo $entry->profile_image ?>" alt="">
+                                            </div>
+                                            <div class="name">
+                                                <p><?php echo $entry->first_name." " .$entry->last_name ?> </p>
+                                            </div>
+
+                                            <div class="role">
+                                                <p><?php echo $entry->user_role?> </p>
+                                            </div>
+
+                                            <div class="email">
+                                                <p><?php echo $entry->email ?></p>
+                                            </div>
+                                            <div class="butons">
+                                                <?php if (Auth::access('HR Manager')): ?>                                              
+                                                    <button class="button-btn" type="submit" id="edit" name="edit"> <i class='fas fa-edit'></i> </button>       
+                                                <?php endif; ?>
+                                                <?php if (Auth::access('HR Officer') || Auth::access('HR Manager')): ?>                                              
+                                                    <button class="button-btn" type="submit" id="delete" name="delete"> <i class='fas fa-trash-alt'></i> </button>                                                
+                                                <?php endif; ?>
+                                                                                        
+                                            </div>
+                                        </div>
+                                    </form>
+                                
                            <?php } 
                         }
                     } ?> 
@@ -128,5 +257,24 @@
 <!--    --><?php //$this->view('includes/footer')?>
 <!--</div>-->
 <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("department").value;
+//   document.getElementById("demo").innerHTML = "You selected: " + x;
+  console.log("myfunction called");
+
+//   document.getElementById("oper").style.display = "none";
+  document.getElementById("oper").style.display = "none";
+  document.getElementById("hr").style.display = "none";
+  document.getElementById("seles").style.display = "none";
+  document.getElementById("acc").style.display = "none";
+  document.getElementById(x).style.display = "block";
+//   document.forms["myform"].submit();
+//   alert("Value is sumitted");
+  
+}
+</script>
+
 </body>
 </html>
