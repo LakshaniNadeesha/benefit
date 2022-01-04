@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= CSS_PATH ?>color.css">
     <link rel="stylesheet" href="<?= CSS_PATH ?>supervisorviewperformance.css">
-    <title>Employees</title>
+    <title>Performance</title>
 </head>
 <script>
     var dataTable = document.getElementById('claim_history_table');
