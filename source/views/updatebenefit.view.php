@@ -71,60 +71,55 @@
                     </script>
                 <?php endif; ?>
             </div>
-            <?php
-            if(boolval($details)){ ?>
-            <table id="benefitList">
-                <thead>
-                    <tr>
-                        <th>Code</th>
-                        <th>Benefit Type</th>
-                        <th>Max Amount (LKR)</th>
-                        <th>Valid Years</th>
-                        <th>Valid Months</th>
-                        <th>Visibility</th>
-                        <th>Options</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    for($i=0 ;$i<sizeof($details); $i++){ ?>
-                    <tr>
-                        <td><?php print_r($details[$i]->benefit_code); ?></td>
-                        <td><?php print_r($details[$i]->benefit_type); ?></td>
-                        <td><?php print_r($details[$i]->max_amount); ?></td>
-                        <td><?php print_r($details[$i]->valid_years); ?></td>
-                        <td><?php print_r($details[$i]->valid_months); ?></td>
-                        <td><?php if($details[$i]->visibility == "Yes"){
-                            echo "<i class='fa fa-eye' aria-hidden='true'></i>";
-                            } else{
-                            echo "<i class='fa fa-eye-slash' aria-hidden='true'></i>";
-                            }?></td>
-                        <?php
-                        $btnChange = 'btnChange';
-                        $btnChange .= $i;
-                        $btnDelete = 'btnDelete';
-                        $btnDelete .= $i;
-                        //echo $btnChange;
-                        ?>
-                        <td id="options"><div id="<?php echo $btnChange ?>" onclick="reply_click(this.id)"><i class="fas fa-edit" id="edit"></i></div>
-                                        <script type="text/javascript">
-                                            document.querySelector('<?php echo "#".$btnChange;?>').addEventListener('click', () => {
-                                                Change.open({
-                                                    title: 'Changing..',
-                                                    code: '<?php print_r($details[$i]->benefit_code) ?>',
-                                                    type: '<?php print_r($details[$i]->benefit_type) ?>',
-                                                    amount: '<?php print_r($details[$i]->max_amount) ?>',
-                                                    months: '<?php print_r($details[$i]->valid_months) ?>',
-                                                    years: '<?php print_r($details[$i]->valid_years) ?>',
-                                                    href: '<?php echo"change/"; print_r($details[$i]->benefit_ID); ?>',
-                                                    onchange: () => {
-                                                        window.location.href = "<?php print_r($details[$i]->benefit_ID); ?>"
-                                                    },
-                                                })
-                                            });
-                                        </script>
-                            <?php if(Auth::access('HR Manager')): ?>
-                            <div id="<?php echo $btnDelete ?>" onclick="reply_click(this.id)"><i class="fas fa-trash-alt" id="delete"></i></div>
+            <?php if(boolval($details)){ ?>
+                <ul class="responsive-table">
+                    <li class="table-header">
+                        <div class="col col-1">Code</div>
+                        <div class="col col-2">Benefit Type</div>
+                        <div class="col col-3">Amount</div>
+                        <div class="col col-4">Valid Years</div>
+                        <div class="col col-5">Valid Months</div>
+                        <div class="col col-6">Visibility</div>
+                        <div class="col col-7">Options</div>
+                    </li>
+                    <?php for($i=0;$i<sizeof($details);$i++){ ?>
+                        <li class="table-row">
+                            <div class="col col-1" data-label="Benefit Code"><?php print_r($details[$i]->benefit_code); ?></div>
+                            <div class="col col-2" data-label="Benefit Type"><?php print_r($details[$i]->benefit_type); ?></div>
+                            <div class="col col-3" data-label="Amount"><?php print_r($details[$i]->max_amount); ?></div>
+                            <div class="col col-4" data-label="Valid Years"><?php print_r($details[$i]->valid_years); ?></div>
+                            <div class="col col-5" data-label="Valid Months"><?php print_r($details[$i]->valid_months); ?></div>
+                            <div class="col col-6" data-label="PVisibility"><?php if($details[$i]->visibility == "Yes"){
+                                    echo "<i class='fa fa-eye' aria-hidden='true'></i>";
+                                } else{
+                                    echo "<i class='fa fa-eye-slash' aria-hidden='true'></i>";
+                                }?></div>
+                            <div class="col col-7" data-label="Options" id="options">
+                                <?php
+                                $btnChange = 'btnChange';
+                                $btnChange .= $i;
+                                $btnDelete = 'btnDelete';
+                                $btnDelete .= $i;
+                                //echo $btnChange;
+                                ?>
+                                <div class="edit" id="<?php echo $btnChange ?>" onclick="reply_click(this.id)"><i class="fas fa-edit" id="edit"></i></div>
+                                <script type="text/javascript">
+                                    document.querySelector('<?php echo "#".$btnChange;?>').addEventListener('click', () => {
+                                        Change.open({
+                                            title: 'Changing..',
+                                            code: '<?php print_r($details[$i]->benefit_code) ?>',
+                                            type: '<?php print_r($details[$i]->benefit_type) ?>',
+                                            amount: '<?php print_r($details[$i]->max_amount) ?>',
+                                            months: '<?php print_r($details[$i]->valid_months) ?>',
+                                            years: '<?php print_r($details[$i]->valid_years) ?>',
+                                            href: '<?php echo"change/"; print_r($details[$i]->benefit_ID); ?>',
+                                            onchange: () => {
+                                                window.location.href = "<?php print_r($details[$i]->benefit_ID); ?>"
+                                            },
+                                        })
+                                    });
+                                </script>
+                                <div class="delete" id="<?php echo $btnDelete ?>" onclick="reply_click(this.id)"><i class="fas fa-trash-alt" id="delete"></i></div>
                                 <script type="text/javascript">
                                     document.querySelector('<?php echo "#".$btnDelete;?>').addEventListener('click', () => {
                                         Deletion.open({
@@ -135,19 +130,11 @@
                                         })
                                     });
                                 </script>
-                            <?php endif; ?>
-                        </td>
-                    </tr>
-
-                    <?php
-                    } ?>
-                </tbody>
-            </table>
-            <?php
-            }
-            else { ?>
-                    <div class="no_benefits">No Benefits Yet!</div>
-            <?php }?>
+                            </div>
+                        </li>
+                    <?php } ?>
+                </ul>
+            <?php } ?>
         </div>
 
     </div>

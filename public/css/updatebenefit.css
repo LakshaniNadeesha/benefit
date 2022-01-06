@@ -121,8 +121,12 @@ td button i {
     /*padding-left: 10px;*/
 }
 
-.benefit_list table tr td i:hover {
+#options i:hover {
     transform: scale(1.2);
+}
+
+.edit, .delete {
+    padding-right: 20px;
 }
 
 .main_container .benefit_head {
@@ -133,22 +137,6 @@ td button i {
     margin-right: 5px;
     display: flex;
     flex-direction: row;
-}
-
-legend {
-    padding: 8px;
-    font-family: Roboto, Arial, sans-serif;
-    font-size: 18px;
-    color: #fff;
-    background-color: #0C6170;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-fieldset {
-    width: 100%;
-    justify-content: center;
-    /*margin-left: 20%;*/
 }
 
 .benefit_form {
@@ -170,13 +158,9 @@ fieldset {
 .benefit_form .row .column_1 {
     padding-left: 20px;
     font-size: medium;
-    /*width: 31%;*/
     color: #1C1D1D;
     text-align: left;
     margin-left: 0;
-    /*padding-left: 0;*/
-    /*margin-right: 20%;*/
-    /*justify-content: flex-start;*/
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -188,12 +172,9 @@ fieldset {
 }
 
 .benefit_form .row .column_2 {
-    /*width: 51%;*/
-    /*justify-content: flex-start;*/
     width: 100%;
     display: flex;
     padding-left: 20px;
-    /*justify-content: center;*/
 }
 
 .row .row_1 {
@@ -205,70 +186,17 @@ fieldset {
 .column_2 select,
 .column_2 input {
     width: 90%;
-    /*padding: 12px 20px;*/
     padding-top: 10px;
-    /*height: 20px;*/
-    margin: 8px 0;
-    margin-top: 0;
+    margin: 0 0 8px;
     display: inline-block;
     border: 1px none #ccc;
     border-bottom-style: solid;
     box-sizing: border-box;
-    /*float: left;*/
 }
 
 .column_2 select:focus,
 .column_2 input:focus {
     outline: none;
-}
-
-.cancle_button {
-    background-color: #fcfaf9;
-    border-radius: 100px;
-    color: var(--red);
-    cursor: pointer;
-    display: inline-block;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    padding: 7px 20px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    letter-spacing: 2px;
-    border: 1.5px solid black;
-    margin-left: 20px;
-    margin-right: 25px;
-}
-
-.cancle_button:hover {
-    box-shadow: 0 2px 5px var(--red);
-    transform: scale(1.05);
-    border-style: none;
-}
-
-.update_button {
-    background-color: #6fccee;
-    border-radius: 100px;
-    color: var(--header);
-    cursor: pointer;
-    display: inline-block;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    padding: 7px 20px;
-    text-align: center;
-    text-decoration: none;
-    transition: all 250ms;
-    font-size: 16px;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    letter-spacing: 2px;
-    margin-left: 1%;
-    margin-right: 7%;
-    border: 1.5px solid var(--header);
 }
 
 .update_button:hover {
@@ -288,12 +216,10 @@ fieldset {
     background: rgba(0, 0, 0, 0.6) ;
     padding: 10px;
     box-sizing: border-box;
-
     opacity: 0;
     animation-name: confirm---open;
     animation-duration: 0.2s;
     animation-fill-mode: forwards;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -304,9 +230,7 @@ fieldset {
 }
 
 .confirm__window {
-    /*height: 250px;*/
     height: min-content;
-
     width: 100%;
     max-width: 500px;
     background-color: white;
@@ -315,7 +239,6 @@ fieldset {
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-
     opacity: 0;
     transform: scale(0.75);
     animation-name: confir__window---open;
@@ -335,7 +258,6 @@ fieldset {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-
 }
 
 .confirm__title {
@@ -409,4 +331,70 @@ fieldset {
         opacity: 1;
         transform: scale(1);
     }
+}
+
+/*Table*/
+ul {
+    margin-block-start: 0;
+    padding-inline-start: 0;
+}
+
+.responsive-table li {
+    border-radius: 3px;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    margin-left: 0;
+}
+.table-header {
+    /*border: 2px solid #289cc7;*/
+    background-color: rgba(187, 189, 189, 0.4);
+    /*background-color: rgba(40, 156, 199, 0.77);*/
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-weight: bold;
+}
+.table-row {
+    background-color: #ffffff;
+    box-shadow: 0 0 9px 0 rgba(0,0,0,0.1);
+}
+.table-row:hover{
+    background-color: rgba(187, 189, 189, 0.11);
+}
+.col-1 {
+    display: flex;
+    justify-content: center;
+    flex-basis: 10%;
+}
+.col-2 {
+    display: flex;
+    justify-content: center;
+    flex-basis: 20%;
+}
+.col-3 {
+    display: flex;
+    justify-content: center;
+    flex-basis: 14%;
+}
+.col-4 {
+    display: flex;
+    justify-content: center;
+    flex-basis: 14%;
+}
+.col-5 {
+    display: flex;
+    justify-content: center;
+    flex-basis: 14%;
+}
+.col-6 {
+    display: flex;
+    justify-content: center;
+    flex-basis: 14%;
+}
+.col-7 {
+    display: flex;
+    justify-content: center;
+    flex-basis: 14%;
 }
