@@ -159,29 +159,32 @@ fieldset {
 }
 
 .benefit_form .row {
+    width: 100%;
     padding-top: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .benefit_form .row .column_1 {
+    padding-left: 20px;
     font-size: medium;
     /*width: 31%;*/
     color: #1C1D1D;
     text-align: left;
     margin-left: 0;
-    padding-left: 0;
+    /*padding-left: 0;*/
     /*margin-right: 20%;*/
     /*justify-content: flex-start;*/
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
 .benefit_form .row .column_1 label {
-    width: 70%;
+    width: 90%;
 }
 
 .benefit_form .row .column_2 {
@@ -189,27 +192,34 @@ fieldset {
     /*justify-content: flex-start;*/
     width: 100%;
     display: flex;
-    justify-content: center;
+    padding-left: 20px;
+    /*justify-content: center;*/
+}
+
+.row .row_1 {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
 }
 
 .column_2 select,
-.column_2 input,
-.column_2 textarea {
-    width: 70%;
-    padding: 12px 20px;
+.column_2 input {
+    width: 90%;
+    /*padding: 12px 20px;*/
+    padding-top: 10px;
+    /*height: 20px;*/
     margin: 8px 0;
+    margin-top: 0;
     display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px none #ccc;
+    border-bottom-style: solid;
     box-sizing: border-box;
     /*float: left;*/
 }
 
-.claim_button {
-    padding-top: 50px;
-    padding-bottom: 30px;
-    display: flex;
-    justify-content: center;
+.column_2 select:focus,
+.column_2 input:focus {
+    outline: none;
 }
 
 .cancle_button {
@@ -267,33 +277,6 @@ fieldset {
     border-style: none;
 }
 
-/*input[type=submit] {*/
-/*    background-color: #6fccee;*/
-/*    border-radius: 100px;*/
-/*    color: var(--header);*/
-/*    cursor: pointer;*/
-/*    display: inline-block;*/
-/*    font-family: Arial, Helvetica, sans-serif;*/
-/*    font-weight: bold;*/
-/*    padding: 7px 20px;*/
-/*    text-align: center;*/
-/*    text-decoration: none;*/
-/*    transition: all 250ms;*/
-/*    font-size: 16px;*/
-/*    user-select: none;*/
-/*    -webkit-user-select: none;*/
-/*    touch-action: manipulation;*/
-/*    letter-spacing: 2px;*/
-/*    margin-left: 1%;*/
-/*    margin-right: 7%;*/
-/*    border: 1.5px solid var(--header);*/
-/*}*/
-
-/*input[type=submit]:hover {*/
-/*    box-shadow: 0 2px 5px var(--header);*/
-/*    transform: scale(1.05);*/
-/*    border-style: none;*/
-/*}*/
 
 /*Pop up form*/
 .confirm {
@@ -377,6 +360,9 @@ fieldset {
 
 .confirm__content {
     line-height: 1.8em;
+    display: flex;
+    justify-content: center;
+    margin: 0;
 }
 
 .confirm__buttons {

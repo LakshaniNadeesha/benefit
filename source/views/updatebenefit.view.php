@@ -81,6 +81,7 @@
                         <th>Max Amount (LKR)</th>
                         <th>Valid Years</th>
                         <th>Valid Months</th>
+                        <th>Visibility</th>
                         <th>Options</th>
                     </tr>
                 </thead>
@@ -93,6 +94,11 @@
                         <td><?php print_r($details[$i]->max_amount); ?></td>
                         <td><?php print_r($details[$i]->valid_years); ?></td>
                         <td><?php print_r($details[$i]->valid_months); ?></td>
+                        <td><?php if($details[$i]->visibility == "Yes"){
+                            echo "<i class='fa fa-eye' aria-hidden='true'></i>";
+                            } else{
+                            echo "<i class='fa fa-eye-slash' aria-hidden='true'></i>";
+                            }?></td>
                         <?php
                         $btnChange = 'btnChange';
                         $btnChange .= $i;
@@ -172,51 +178,69 @@
 
                 <div class="benefit_form">
 
-                    <form name="myForm" action="" method="post" autocomplete="on" onsubmit=" return number_validation(); " enctype="multipart/form-data">
+                    <form name="myForm" action="" method="post" autocomplete="off" onsubmit=" return number_validation(); " enctype="multipart/form-data">
 
                         <div class="row">
-                            <div class="column_1">
-                                <label for="benefit_type">Benefit Type</label>
+                            <div class="row_1">
+                                <div class="column_1">
+                                    <label for="benefit_type">Benefit Type</label>
+                                </div>
+                                <div class="column_2">
+                                    <input type="text" id="benefit_type" name="benefit_type" required >
+                                </div>
                             </div>
-                            <div class="column_2">
-                                <input type="text" id="benefit_type" name="benefit_type" required >
+                            <div class="row_1">
+                                <div class="column_1">
+                                    <label for="benefit_code">Benefit Code</label>
+                                </div>
+                                <div class="column_2">
+                                    <input type="text" id="benefit_code" name="benefit_code" placeholder="Enter an unique code" required>
+                                </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="column_1">
-                                <label for="benefit_code">Benefit Code</label>
+                            <div class="row_1">
+                                <div class="column_1">
+                                    <label for="claiming_amount">Amount (LKR)</label>
+                                </div>
+                                <div class="column_2">
+                                    <input type="number" id="max_amount" name="max_amount"
+                                           placeholder="20000.00" required pattern="[0-9._%+-]+\.[0-9]{2}$" min="0">
+                                </div>
                             </div>
-                            <div class="column_2">
-                                <input type="text" id="benefit_code" name="benefit_code" placeholder="Enter an unique code" required>
+                            <div class="row_1">
+                                <div class="column_1">
+                                    <label for="valid_months">Valid Months</label>
+                                </div>
+                                <div class="column_2">
+                                    <input type="number" id="valid_months" name="valid_months" required pattern="[0-9]{2}" min="0" max="11">
+                                </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="column_1">
-                                <label for="claiming_amount">Maximum Amount (LKR)</label>
+                            <div class="row_1">
+                                <div class="column_1">
+                                    <label for="valid_years">Valid Years</label>
+                                </div>
+                                <div class="column_2">
+                                    <input type="number" id="valid_years" name="valid_years" required pattern="[0-9]{2}" min="0">
+                                </div>
                             </div>
-                            <div class="column_2">
-                                <input type="number" id="max_amount" name="max_amount"
-                                       placeholder="200,000.00" required pattern="[0-9._%+-]+\.[0-9]{2}$" min="0">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="column_1">
-                                <label for="valid_months">Valid Months</label>
-                            </div>
-                            <div class="column_2">
-                                <input type="number" id="valid_months" name="valid_months" required pattern="[0-9]{2}" min="0" max="11">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="column_1">
-                                <label for="valid_years">Valid Years</label>
-                            </div>
-                            <div class="column_2">
-                                <input type="number" id="valid_years" name="valid_years" required pattern="[0-9]{2}" min="0">
+                            <div class="row_1">
+                                <div class="column_1">
+                                    <label for="visibility">Visibility</label>
+                                </div>
+                                <div class="column_2">
+                                    <select name="visibility">
+                                        <option>No</option>
+                                        <option>Yes</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
+
                         <div class="confirm__buttons">
                             <button class="confirm__button confirm__button--ok confirm__button--fill" type="submit" value="Add" name="submit">Add</button>
                             <button class="confirm__button confirm__button--cancel" type="reset">${options.cancelText}</button>
@@ -285,6 +309,7 @@
         <div class="confirm__buttons" style="margin-top: 0">
             <button class="confirm__button confirm__button--ok confirm__button--fill" type="submit" value="Delete" name="submit">${options.okText}</button>
             <button class="confirm__button confirm__button--cancel" type="reset">${options.cancelText}</button>
+
         </div>
     </div>
 </div>`;
@@ -400,6 +425,17 @@
                             </div>
                             <div class="column_2">
                                 <input type="text" id="valid_years" name="valid_years" value="${options.years}" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column_1">
+                                <label for="visibility">Visibility</label>
+                            </div>
+                            <div class="column_2">
+                                <select name="visibility">
+                                    <option>No</option>
+                                    <option>Yes</option>
+                                </select>
                             </div>
                         </div>
                         <div class="confirm__buttons">

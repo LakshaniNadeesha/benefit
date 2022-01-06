@@ -21,20 +21,28 @@ class Benefit extends Controller
         $all_requests = $user->where('employee_ID', $ar);
         $j=0;
         $handled = array();
-        if (boolval($all_requests)) {
-            for ($i = 0; $i < sizeof($all_requests); $i++) {
-                if ($all_requests[$i]->benefit_status != 'pending') {
-                    $handled[$j] = $all_requests[$i];
-                    $j++;
-                }
+        for($i=0;$i<sizeof($all_requests);$i++){
+            if($all_requests[$i]->benefit_status != 'pending'){
+                $handled[$j] = $all_requests[$i];
             }
         }
 
         $remaining = $info->where('employee_ID', $ar);
+        $show = array();
+        $k=0;
+        for($i=0;$i<sizeof($remaining);$i++){
+            $check = $benefits->where('benefit_ID', $remaining[$i]->benefit_ID);
+            //print_r($check[0]->visibility);
+            if($check[0]->visibility == 'Yes'){
+                $show[$k] = $remaining[$i];
+                //print_r($show[$k]);
+                $k++;
+            }
+        }
 
-        $all_details = $benefits->findAll();
+        $all_details = $benefits->where('visibility', 'Yes');
 
-        $this->view('benefit', ['pending' => $pending, 'all_details' => $all_details, 'handled' => $handled, 'remaining' => $remaining]);
+        $this->view('benefit', ['pending' => $pending, 'all_details' => $all_details, 'handled' => $handled, 'show' => $show]);
 
     }
 
@@ -59,13 +67,11 @@ class Benefit extends Controller
                         $changed_arr['max_amount'] = $_POST['max_amount'];
                         $changed_arr['valid_months'] = $_POST['valid_months'];
                         $changed_arr['valid_years'] = $_POST['valid_years'];
+                        $changed_arr['visibility'] = $_POST['visibility'];
                         $set = $change_benefits->update_status($code, 'benefit_code',$changed_arr);
                         print_r($check);
                         if(isset($set)){
                             $this->redirect('Benefit/update');
-                        }
-                        else {
-                            //echo "error";
                         }
                     }
                     else{
@@ -74,8 +80,7 @@ class Benefit extends Controller
                         $arr['max_amount'] = $_POST['max_amount'];
                         $arr['valid_months'] = $_POST['valid_months'];
                         $arr['valid_years'] = $_POST['valid_years'];
-                        //print_r($arr);
-                        //echo "hereeeeeeeeeeeee";
+                        $arr['visibility'] = $_POST['visibility'];
                         $benefits->insert($arr);
                         $this->redirect('Benefit/update');
                     }
@@ -92,8 +97,6 @@ class Benefit extends Controller
 
     function delete($id = null)
     {
-        //echo "$id";
-
         if (!Auth::logged_in()) {
             $this->redirect('login');
         } else if(Auth::access('HR Manager')) {
@@ -101,7 +104,6 @@ class Benefit extends Controller
             $user->deleteper('benefit_ID', $id);
             $this->redirect('Benefit/update');
         }
-
     }
 
     function cancel($id=null)
@@ -123,7 +125,3 @@ class Benefit extends Controller
     }
 
 }
-
-
-
-

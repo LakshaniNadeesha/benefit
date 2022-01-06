@@ -40,35 +40,41 @@
 
                     <form action="BenefitrequestController">
                             <div class="benefit_card">
-                            <?php
-                            if(boolval($all_details)){
-                                if(boolval($remaining)){
-                                    for($i=0;$i<sizeof($all_details);$i++){?>
-                                    <div class="benefit_card_column">
-                                        <a href="<?= PATH ?>BenefitrequestController/<?php print_r($all_details[$i]->benefit_type) ?>">
-                                        <div class="card">
-                                            <p class="title"><?php print_r($all_details[$i]->benefit_type); ?></p>
-                                            <div class="text">Remaining Amount</div>
-                                            <div class="remain_amount"><?php print_r($remaining[$i]->remaining_amount); ?> LKR</div>
-                                            <div class="text">Max Amount</div>
-                                            <div class="max_amount"><?php print_r($all_details[$i]->max_amount); ?> LKR</div>
-                                            <div class="text">Renew Date</div>
-                                            <div class="text"><?php print_r($remaining[$i]->renew_date); ?></div>
-                                            <div>
-                                                <button type="button" value="claim" onclick="selection();">Claim</button>
-                                            </div>
-                                            <script type="text/javascript">
-                                                function selection(){
+                                <?php
 
-                                                }
-                                            </script>
+                                if (boolval($show)) {
+                                    for ($i = 0; $i < sizeof($show); $i++) {
+                                        ?>
+                                        <div class="benefit_card_column">
+                                            <a href="<?= PATH ?>BenefitrequestController/<?php print_r($show[$i]->benefit_type) ?>">
+                                                <div class="card">
+                                                    <p class="title"><?php print_r($show[$i]->benefit_type); ?></p>
+                                                    <div class="text">Remaining Amount</div>
+                                                    <div class="remain_amount"><?php print_r($show[$i]->remaining_amount); ?>
+                                                        LKR
+                                                    </div>
+                                                    <div class="text">Max Amount</div>
+                                                    <div class="max_amount"><?php print_r($show[$i]->max_amount); ?>
+                                                        LKR
+                                                    </div>
+                                                    <div class="text">Renew Date</div>
+                                                    <div class="text"><?php print_r($show[$i]->renew_date); ?></div>
+                                                    <div>
+                                                        <button type="button" value="claim" onclick="selection();">
+                                                            Claim
+                                                        </button>
+                                                    </div>
+                                                    <script type="text/javascript">
+                                                        function selection() {
+
+                                                        }
+                                                    </script>
+                                                </div>
+                                            </a>
                                         </div>
-                                        </a>
-                                    </div>
-                                    <?php
+                                        <?php
                                     }
-                                }
-                            }?>
+                                } ?>
                             </div>
                     </form>
                 </div>
