@@ -72,10 +72,13 @@
                             <div class="box">
                                 <img src="<?php print_r($not_marked[$i]->profile_image) ?>" alt="on-leave-people"
                                      class="on-leave-people">
+<!--                                <input type="text" class="content1" value="--><?php //print_r($not_marked[$i]->first_name);
+//                                    echo " ";
+//                                    print_r($not_marked[$i]->last_name) ?><!--" name="name[]" readonly >-->
                                 <p class="content1"><?php print_r($not_marked[$i]->first_name);
                                     echo " ";
                                     print_r($not_marked[$i]->last_name) ?></p>
-                                <p class="content2"><?php print_r($not_marked[$i]->department_ID) ?></p>
+                                <p class="content2"><?php print_r($not_marked[$i]->department_ID) ?>
                                 <p class="content3"><?php print_r($not_marked[$i]->designation_code) ?></p>
                                 <?php
                                 $select = 'select';
@@ -124,7 +127,7 @@
                             for ($j = 0; $j < sizeof($history[$i]); $j++) {
                                 ?>
                                 <tr>
-                                    <td><?php print_r($history[$i][$j]->employee_ID); ?></td>
+                                    <td><?php print_r($history[$i][$j]->name); ?></td>
                                     <td><?php print_r($history[$i][$j]->arrival_time); ?></td>
                                     <td><?php print_r($history[$i][$j]->departure_time); ?></td>
                                     <td><?php print_r($history[$i][$j]->date); ?></td>
@@ -146,15 +149,16 @@
                                             document.querySelector('<?php echo "#" . $btnChange;?>').addEventListener('click', () => {
                                                 Change.open({
                                                     title: 'Changing..',
-                                                    name: '<?php print_r($history[$i][$j]->employee_ID) ?>',
+                                                    message: '',
+                                                    name: '<?php print_r($history[$i][$j]->name) ?>',
                                                     date: '<?php print_r($history[$i][$j]->date) ?>',
                                                     arrival: '<?php print_r($history[$i][$j]->arrival_time) ?>',
                                                     departure: '<?php print_r($history[$i][$j]->departure_time) ?>',
                                                     ot: '<?php print_r($history[$i][$j]->ot_hours) ?>',
                                                     status: '<?php print_r($history[$i][$j]->status) ?>',
-                                                    href: '<?php echo "change/"; print_r($history[$i][$j]->employee_ID); ?>',
+                                                    //href: '<?php //echo "change/"; print_r($history[$i][$j]->employee_ID); ?>//',
                                                     onchange: () => {
-                                                        window.location.href = "<?php print_r($history[$i][$j]->employee_ID); ?>"
+                                                        //window.location.href = "<?php //print_r($history[$i][$j]->employee_ID); ?>//"
                                                     },
                                                 })
                                             });
@@ -212,8 +216,8 @@
                     <input type="number" name="ot-hours" id="ot-hours" value="0" min="0">
                 </div>
                 <div class="buttons">
-                    <button type="reset" class="cancel">Cancel</button>
-                    <input type="submit" class="mark" value="Mark" name="submit">
+                    <button type="reset" class="m-cancel">Cancel</button>
+                    <input type="submit" class="m-mark" value="Mark" name="submit">
                 </div>
             </div>
             </form>
@@ -232,7 +236,7 @@
                 departure: '',
                 ot: '',
                 status: '',
-                href: '',
+
                 cancelText: 'Cancel',
                 onchange: function () {
                 },
@@ -245,7 +249,7 @@
     <div class="confirm__window">
         <div class="confirm__titlebar">
             <span class="confirm__title">${options.title}</span>
-            <button class="confirm__close">&times;</button>
+            <button class="confirm__close">&times</button>
         </div>
         <div class="confirm__content">${options.message}
             <div class="attendance-update_form" id="myForm">
@@ -314,7 +318,7 @@
 
             const confirmEl = template_3.content.querySelector('.confirm');
             const btnClose = template_3.content.querySelector('.confirm__close');
-            const btnchange = template_3.content.querySelector('.confirm__button--ok');
+            // const btnchange = template_3.content.querySelector('.confirm__button--ok');
             const btnCancel = template_3.content.querySelector('.confirm__button--cancel');
 
             confirmEl.addEventListener('click', e => {
@@ -342,33 +346,6 @@
         }
     }
 
-
-    //calender
-    let nav = 0;
-    let clicked = null;
-    let events = localStorage.getItem('events')? JSON.parse(localStorage.getItem('events')): [];
-
-    const calendar = document.getElementById('calendar');
-    const newEventModal = document.getElementById('newEventModal');
-    const deleteEventModal = document.getElementById('deleteEventModal');
-    const backDrop = document.getElementById('modalBackDrop');
-    const eventTitleInput = document.getElementById('eventTitleInput');
-    const weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-
-    function openModal(date) {
-        clicked = date;
-
-        const eventForDay = events.find(e => e.date === clicked);
-
-        if (eventForDay) {
-            document.getElementById('eventText').innerText = eventForDay.title;
-            deleteEventModal.style.display = 'none';
-        } else {
-            newEventModal.style.display = 'none';
-        }
-
-        backDrop.style.display = 'none';
-    }
 </script>
 </body>
 </html>

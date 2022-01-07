@@ -17,7 +17,7 @@ class Approvereimbursement extends Controller
 		{
 			$user_x = new ReimbursementrequestModel();
 
-			$user = new EmployeelistModel();
+			$user = new Employeedetails();
 	
 			$ar = Auth::user();
 	

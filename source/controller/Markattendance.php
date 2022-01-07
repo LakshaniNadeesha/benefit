@@ -14,7 +14,7 @@ class Markattendance extends Controller
 
         if (Auth::access('Supervisor')) {
             $id = auth::user();
-            $user = new EmployeelistModel();
+            $user = new Employeedetails();
             $designations = new DesignationModel();
             $attendance = new AttendanceModel();
 
@@ -81,6 +81,10 @@ class Markattendance extends Controller
 
                     foreach ($checkbox as $chk) {
                         $arr['employee_ID'] = $chk;
+                        $name = $user->where('employee_ID',$chk);
+                        $arr['name'] = $name[0]->first_name;
+                        $arr['name'] .= " ";
+                        $arr['name'] .= $name[0]->last_name;
                         $arr['date'] = $date;
                         $arr['arrival_time'] = $arrival_time;
                         $arr['departure_time'] = $departure_time;
@@ -100,24 +104,32 @@ class Markattendance extends Controller
                     }
                     $this->redirect('markattendance');
                 }
-//                elseif (isset($_POST['absent'])){
-//                    $arr2['employee_ID'] = $_POST['absentId'];
-//                    $arr2['date'] = $_POST['date'];
-//                    $arr2['arrival_time'] = '00:00:00';
-//                    $arr2['departure_time'] = '00:00:00';
-//                    $arr2['ot_hours'] = '0';
-//                    $arr2['status'] = 'No';
-//                    print_r($arr2['employee_ID']);
-//                    //$attendance->insert($arr2);
-//                }
                 elseif (isset($_POST['change'])){
+                    $checkbox = $_POST['person'];
+                    $date = $_POST['date'];
+                    $arrival_time = $_POST['arrival'];
+                    $departure_time = $_POST['departure'];
+                    $ot_hour = $_POST['ot-hours'];
+                    $t1 = strtotime($arrival_time);
+                    $t2 = strtotime($departure_time);
+                    $hours = ($t2 - $t1)/3600;
+
                     $change_attendance = new AttendanceModel();
                     $date = $_POST['date'];
                     $id = $_POST['emp_name'];
                     $changed_ar['arrival_time'] = $_POST['arrival'];
                     $changed_ar['departure_time'] = $_POST['departure'];
                     $changed_ar['ot_hours'] = $_POST['ot_hours'];
-                    print_r($changed_ar);
+
+                    if($hours >= '8:30'){
+                        $changed_ar['status'] = 'Yes';
+                    }
+                    elseif($hours == '4:00'){
+                        $changed_ar['status'] = 'Half-Day';
+                    }
+                    else {
+                        $changed_ar['status'] = 'No';
+                    }
                     $set = $change_attendance->update_condition($id,'employee_ID',$date,'date',$changed_ar);
                     if(isset($set)){
                         $this->redirect('markattendance');
@@ -147,9 +159,14 @@ class Markattendance extends Controller
 
         if (Auth::access('Supervisor')) {
             $attendance = new AttendanceModel();
+            $user = new Employeedetails();
             print_r($id);
             print_r($date);
             $arr2['employee_ID'] = $id;
+            $name = $user->where('employee_ID',$id);
+            $arr2['name'] = $name[0]->first_name;
+            $arr2['name'] .= " ";
+            $arr2['name'] .= $name[0]->last_name;
             $arr2['date'] = $date;
             $arr2['arrival_time'] = '00:00:00';
             $arr2['departure_time'] = '00:00:00';

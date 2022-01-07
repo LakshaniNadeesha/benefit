@@ -115,6 +115,8 @@ body {
 .box .content1 {
     width: 30%;
     margin: auto;
+    border: none;
+    font-size: 17px;
 }
 
 .box .content2 {
@@ -127,7 +129,7 @@ body {
     margin: auto;
 }
 
-.box input {
+.box input[type=checkbox] {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -274,7 +276,7 @@ tr:nth-child(even) {
     margin-left: 10px;
 }
 
-.buttons .mark {
+.buttons .m-mark {
     background-color: var(--h1);
     color: var(--w);
     font-weight: bold;
@@ -283,7 +285,7 @@ tr:nth-child(even) {
     height: 30px;
 }
 
-.buttons .cancel {
+.buttons .m-cancel {
     color: coral;
     font-weight: bold;
     border: none;
@@ -435,6 +437,11 @@ tr:nth-child(even) {
     justify-content: space-between;
     flex-direction: row;
     padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.first_row input {
+    font-weight: bold;
 }
 
 .attendance-update_form .first_row div {
