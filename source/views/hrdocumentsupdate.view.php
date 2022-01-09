@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?= CSS_PATH ?>updatedocuments.css">
     <link rel="stylesheet" href="<?= CSS_PATH ?>benefits.css">
-    <title></title>
+    <title>HRDoc Update</title>
 </head>
 
 <body>
