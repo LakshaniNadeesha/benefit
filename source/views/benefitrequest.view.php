@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= CSS_PATH ?>benefitrequest.css">
-    <title></title>
+    <title>Request Benefit</title>
 </head>
 <script type="text/javascript">
     function number_validation() {
