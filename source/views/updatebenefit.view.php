@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= CSS_PATH ?>updatebenefit.css">
     <link rel="stylesheet" href="<?= CSS_PATH ?>benefits.css">
-    <title></title>
+    <title>Update Benefit</title>
 </head>
 
 <body>
