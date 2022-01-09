@@ -8,7 +8,7 @@
     <!-- <link rel="stylesheet" href="<?= CSS_PATH ?>header2.css"> -->
     <link rel="stylesheet" href="<?= CSS_PATH ?>performance.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <title></title>
+    <title>Performance</title>
 </head>
 <body>
 <div>
