@@ -41,7 +41,7 @@
                 <fieldset>
                     <legend>LEAVE REQUEST</legend>
 
-                    <form action="#" method="post" enctype="multipart/form-data">
+                    <form method="post" enctype="multipart/form-data">
                         <!-- <div class="heading">
                             <h2>REQUEST LEAVES</h2>
                         </div> -->
@@ -83,11 +83,11 @@
                                     <div class="item">
                                         <div class="item-1">
                                             <label for="half_time">Morning </label>
-                                            <input type="radio" id="half_time" name="half_time" value="morning" >
+                                            <input type="radio" id="morning" name="half_time" value="morning" >
                                         </div>
                                         <div class="item-1">
                                             <label for="half_time">Evening</label>
-                                            <input type="radio" name="half_time" value="evening" id="half_time">
+                                            <input type="radio" name="half_time" value="evening" id="evening">
                                         </div>
                                     </div>
 
