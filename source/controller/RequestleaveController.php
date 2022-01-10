@@ -16,23 +16,33 @@ class RequestleaveController extends Controller{
             {
 
                 if ( $_POST['half_date']==null) {                
-                $arr['employee_ID'] = Auth::user();
-                $arr['leave_type'] = $_POST['leave_type'];
-                $arr['starting_date'] = $_POST['start_date'];
-                $arr['ending_date'] = $_POST['end_date'];
-                $arr['leave_status'] = "Pending";
-                
-                }
-                else{
                     $arr['employee_ID'] = Auth::user();
-                $arr['leave_type'] = $_POST['leave_type'];
-                $arr['starting_date'] = $_POST['start_date'];
-                $arr['ending_date'] = $_POST['end_date'];
-                $arr['leave_status'] = "Pending";
-                $arr['half_date'] = $_POST['half_date'];
-                $arr['half_time'] = $_POST['half_time'];
+                    $arr['leave_type'] = $_POST['leave_type'];
+                    $arr['starting_date'] = $_POST['start_date'];
+                    $arr['ending_date'] = $_POST['end_date'];
+                    $arr['leave_status'] = "Pending";
+                
+                }
+                if($_POST['half_date']!= null && !boolval($_POST['start_date'])){
+                    $arr['employee_ID'] = Auth::user();
+                    $arr['leave_type'] = $_POST['leave_type'];
+                    $arr['starting_date'] = $_POST['half_date'];
+                    $arr['ending_date'] = $_POST['half_date'];
+                    $arr['leave_status'] = "Pending";
+                    $arr['half_date'] = $_POST['half_date'];
+                    $arr['half_time'] = $_POST['half_time'];
+                }
+                else {
+                    $arr['employee_ID'] = Auth::user();
+                    $arr['leave_type'] = $_POST['leave_type'];
+                    $arr['starting_date'] = $_POST['start_date'];
+                    $arr['ending_date'] = $_POST['end_date'];
+                    $arr['leave_status'] = "Pending";
+                    $arr['half_date'] = $_POST['half_date'];
+                    $arr['half_time'] = $_POST['half_time'];
                 }
                 
+                print_r($_POST);
 
                 $user->insert($arr);
             }
