@@ -41,7 +41,7 @@
                 <fieldset>
                     <legend>LEAVE REQUEST</legend>
 
-                    <form method="post" enctype="multipart/form-data">
+                    <form action="#" method="post" enctype="multipart/form-data">
                         <!-- <div class="heading">
                             <h2>REQUEST LEAVES</h2>
                         </div> -->
@@ -50,9 +50,9 @@
                                 <label for="leave_type">Leave Type</label>
                                 <select name="leave_type" id="leave_type">
                                     <option value="" id="hide"></option>
-                                    <option value="sick">Sick Leave</option>
-                                    <option value="casual">Casual Leave</option>
-                                    <option value="annual">Annual Leave</option>
+                                    <option value="Sick Leave">Sick Leave</option>
+                                    <option value="Casual Leave">Casual Leave</option>
+                                    <option value="Annual Leave">Annual Leave</option>
                                 </select>
                             </div>
 
@@ -83,11 +83,11 @@
                                     <div class="item">
                                         <div class="item-1">
                                             <label for="half_time">Morning </label>
-                                            <input type="radio" id="morning" name="half_time" value="morning" >
+                                            <input type="radio" id="half_time" name="half_time" value="morning" >
                                         </div>
                                         <div class="item-1">
                                             <label for="half_time">Evening</label>
-                                            <input type="radio" name="half_time" value="evening" id="evening">
+                                            <input type="radio" name="half_time" value="evening" id="half_time">
                                         </div>
                                     </div>
 
@@ -109,12 +109,13 @@
                     </form>
                 </fieldset>
 
-                <?php if(boolval($rows))
+                <!-- <?php if(boolval($rows))
                     { 
                         print_r($rows);
                         
-                    } ?>
+                    } ?> -->
             </div>
+           
         </div>
     </div>
 </div>
