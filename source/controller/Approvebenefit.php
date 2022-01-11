@@ -15,7 +15,7 @@ class Approvebenefit extends Controller
 
         if(Auth::access('HR Manager')){
             $user_x = new BenefitrequestModel();
-            $user = new EmployeelistModel();
+            $user = new Employeedetails();
             $ar = Auth::user();
 
             //show pending requests
