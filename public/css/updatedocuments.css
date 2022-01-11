@@ -152,9 +152,49 @@ fieldset {
 
 .d_button {
     padding-top: 50px;
-    padding-bottom: 30px;
+    padding-bottom: 15px;
     display: flex;
     justify-content: center;
+}
+
+.invoice_submission {
+    width: 50%;
+    height: 120px;
+    justify-content: center;
+    text-align: center;
+    border-radius: 10px;
+    border-style: dotted;
+    font-family: Roboto, sans-serif;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.invoice_submission i {
+    font-size: 50px;
+    color: #0C6170;
+    margin-right: 8px;
+    margin-top: 10px;
+}
+
+.invoice_submission p {
+    margin-top: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+    color: #717171;
+    margin-bottom: 1px;
+}
+
+.row #error_show {
+    width: 40%;
+    padding: 12px 20px;
+    margin: 8px 0;
+}
+
+#error-mzg {
+    color: red;
+    font-size: 15px;
+    text-align: center;
+    margin-top: 5px;
 }
 
 .cancle_button {
@@ -165,7 +205,7 @@ fieldset {
     display: inline-block;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
-    padding: 7px 20px;
+    padding: 7px 25px;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
@@ -174,7 +214,7 @@ fieldset {
     touch-action: manipulation;
     letter-spacing: 2px;
     border: 1.5px solid black;
-    margin-left: 15px;
+    margin-left: 55px;
 }
 
 .cancle_button:hover {
