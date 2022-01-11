@@ -42,7 +42,9 @@
                 <p class="handling_title">Documents</p>
                 <?php if(Auth::access('HR Manager')): ?>
                 <div class="add_documents">
-                    <p><i class="fas fa-plus-circle"></i> Add New Document</p>
+                    <p> <a style="text-decoration:none" href="<?= PATH ?>Hrdocuments/add/"><i class="fas fa-plus-circle"></i>New Document</a></p>
+                    <!-- <a href="<?= PATH ?>Hrdocuments/add/"><i class="fas fa-edit" id="edit"></i></a> -->
+
                 </div>
                 <?php endif; ?>
             </div>
@@ -53,93 +55,120 @@
                     <th>Last Update</th>
                     <th>Option</th>
                 </tr>
-                <tr>
-                    <td>Payroll Application</td>
-                    <td>Documents/payroll.docx</td>
-                    <td>24th Jun</td>
-                    <td><a href=""><i class="fas fa-edit" id="edit"></i></a>
-                        <?php if(Auth::access('HR Manager')): ?>
-                            <a href=""><i class="fas fa-trash-alt" id="delete"></i></a>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Job Vacancy Application</td>
-                    <td>Documents/vacancy.docx</td>
-                    <td>12th Aug</td>
-                    <td><a href=""><i class="fas fa-edit" id="edit"></i></a>
-                        <?php if(Auth::access('HR Manager')): ?>
-                            <a href=""><i class="fas fa-trash-alt" id="delete"></i></a>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Employee Emergency Contact Form</td>
-                    <td>Documents/contact.docx</td>
-                    <td>12th Aug</td>
-                    <td><a href=""><i class="fas fa-edit" id="edit"></i></a>
-                        <?php if(Auth::access('HR Manager')): ?>
-                            <a href=""><i class="fas fa-trash-alt" id="delete"></i></a>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Disciplinary Action Form</td>
-                    <td>Documents/action.docx</td>
-                    <td>12th Aug</td>
-                    <td><a href=""><i class="fas fa-edit" id="edit"></i></a>
-                        <?php if(Auth::access('HR Manager')): ?>
-                            <a href=""><i class="fas fa-trash-alt" id="delete"></i></a>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Travel Request Form</td>
-                    <td>Documents/ravel-request.docx</td>
-                    <td>12th Aug</td>
-                    <td><a href=""><i class="fas fa-edit" id="edit"></i></a>
-                        <?php if(Auth::access('HR Manager')): ?>
-                            <a href=""><i class="fas fa-trash-alt" id="delete"></i></a>
-                        <?php endif; ?>
-                    </td>
-                </tr>
+
+                <?php
+                    $i = 0;
+
+                    if (boolval($row)) {
+
+                        for ($i = 0; $i < sizeof($row); $i++) {
+
+                            $vai = $row[$i]; 
+                            ?>
+                                <tr>
+                                    <td><?php print_r($vai->document_name); ?></td>
+                                    <td><?php print_r($vai->document_path); ?></td>
+                                    <td><?php print_r($vai->updated_date); ?></td>
+                                    <?php
+                                      $btnDelete = 'btnDelete';
+                                      $btnDelete .= $i;
+                                    ?>
+                                    <td><a href="<?= PATH ?>Hrdocuments/editdocuments/<?= $vai->document_name?>"><i class="fas fa-edit" id="edit"></i></a>
+                                    <?php if(Auth::access('HR Manager')): ?>
+                                    <a href="<?= PATH ?>Hrdocuments/delete/<?= $vai->document_hashing ?>">
+                                    <i class="fas fa-trash-alt" id="delete"></i></a>
+                                    <?php endif; ?>
+                                    </td>
+                                </tr>
+
+                            <?php 
+                        }
+                    } ?>
             </table>
         </div>
-    <div class="benefit_head">
-    <fieldset>
-                <legend>UPDATE DOCUMENTS</legend>
-               
-                <form name="myform" action="#" method="POST">
-                <div class="row">
-                        <div class="column_1">
-                            <label for="d_name">Document Name</label>
-                        </div>
-                        <div class="column_2">
-                            <input type="text" id="d_name" name="d_name" required>
-                        </div>
-                </div>
-
-                <div class="row">
-                        <div class="column_1">
-                            <label for="d_submission">Upload Document</label>
-                        </div>
-                        <div class="d_submission">
-                            <input type="file" id="d_submission" name="d_submission" accept=".doc" required>
-                        </div>
-                    </div>
-                    <div class="d_button">
-                        <input type="submit" value="Update" name="submit">
-                        <a href="<?= PATH ?>Hrdocuments/updatedecuments">
-                            <input class="cancle_button" type="button" value="Cancel"></a>
-
-                    </div>
-
-                </form>
-
-    </fieldset>
-    </div> 
+   
 </div>
 </div>
+
+<script>
+//Delete Button
+const  Deletion = {
+        open(options){
+            options = Object.assign({},{
+                title: '',
+                message: '',
+                okText: 'Delete',
+                cancelText: 'Cancel',
+                //rejectText: 'Reject',
+                onok: function () {},
+                oncancel: function () {}
+            }, options);
+
+
+            const delete_html = `<div class="confirm">
+    <div class="confirm__window">
+        <div class="confirm__titlebar">
+            <span class="confirm__title">${options.title}</span>
+            <button class="confirm__close">&times;</button>
+        </div>
+
+        <div class="confirm__buttons" style="margin-top: 0">
+            <button class="confirm__button confirm__button--ok confirm__button--fill" type="submit" value="Delete" name="submit">${options.okText}</button>
+            <button class="confirm__button confirm__button--cancel" type="reset">${options.cancelText}</button>
+        </div>
+    </div>
+</div>`;
+
+            const template_2 = document.createElement('template');
+            template_2.innerHTML = delete_html;
+
+            const confirmEl = template_2.content.querySelector('.confirm');
+            //const btnReject = template_2.content.querySelector('.confirm__button--cancel');
+            const btnClose = template_2.content.querySelector('.confirm__close');
+            const btnOk = template_2.content.querySelector('.confirm__button--ok');
+            const btnCancel = template_2.content.querySelector('.confirm__button--cancel');
+
+            confirmEl.addEventListener('click', e => {
+                if(e.target === confirmEl){
+                    options.oncancel();
+                    this._close(confirmEl);
+                }
+            });
+
+            // btnReject.addEventListener('click', e => {
+            //     options.onreject();
+            //     this._close(confirmEl);
+            // });
+
+            btnOk.addEventListener('click', () => {
+                options.onok();
+                this._close(confirmEl);
+            });
+
+            [btnCancel, btnClose].forEach(el => {
+                el.addEventListener('click', () => {
+                    options.oncancel();
+                    this._close(confirmEl);
+                });
+            });
+            // [btnClose].forEach(el => {
+            //     el.addEventListener('click', () => {
+            //         options.oncancel();
+            //         this._close(confirmEl);
+            //     });
+            // });
+
+            document.body.appendChild(template_2.content);
+        },
+
+        _close (confirmEl){
+            confirmEl.classList.add('confirm--close');
+            confirmEl.addEventListener('animationend', () => {
+                document.body.removeChild(confirmEl);
+            });
+        }
+    }
+</script>
 
 
 </body>

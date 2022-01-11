@@ -29,10 +29,11 @@ class Approvereimbursement extends Controller
 			$m = 0;
 			$index = 0;
 			$index_approve = 0;
-
+				if(boolval($employee_details)){
 				for($k=0;$k<sizeof($employee_details);$k++){
 					// print_r($employee_details[$k]);
 		
+			
 				$reimbursement_details = $user_x->where('employee_ID',$employee_details[$k]->employee_ID);
 
 				//print_r($reimbursement_details);
@@ -64,6 +65,7 @@ class Approvereimbursement extends Controller
 
 
 			}
+		}
 				// print_r(sizeof($requested));
 				$this->view('approvereimbursement', ['requested'=>$request_pending,'requested_approve'=>$request_approve]);
 		}

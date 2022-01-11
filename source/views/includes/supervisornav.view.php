@@ -25,7 +25,7 @@
         <img scr="<?= IMG_PATH ?>profile/Chathura.jpeg" class="profile_image" atl="">
         <h4><?= Auth::getfirst_name() ?></h4>
     </center>
-    <a href="<?= PATH ?>Supervisor"><i class="fas fa-coins"></i><span>Handle Reimbursements</span></a>
+    <a href="<?= PATH ?>Approvereimbursement"><i class="fas fa-coins"></i><span>Handle Reimbursements</span></a>
     <a href="<?= PATH ?>LeaveapproveController"><i class="fas fa-calendar-week"></i></i>
         <span>Handle Time Offs</span></a>
     <a href="<?= PATH ?>Supervisor/Performance"><i class="fas fa-edit"></i><span>Handle Performance</span></a>

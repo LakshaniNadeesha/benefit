@@ -18,7 +18,7 @@
 
     <ul>
         <?php if (Auth::access('Supervisor')): ?>
-            <li><a href="<?= PATH ?>Supervisor"><i class="fas fa-coins"></i><span>Handle Reimbursements</span></a></li>
+            <li><a href="<?= PATH ?>Approvereimbursement"><i class="fas fa-coins"></i><span>Handle Reimbursements</span></a></li>
             <li><a href="<?= PATH ?>LeaveapproveController"><i class="fas fa-calendar-week"></i><span>Handle Time Off</span></a></li>
             <li><a href="<?= PATH ?>Supervisor/Performance"><i class="fas fa-edit"></i><span>Handle Performance</span></a></li>
             <li><a href="<?= PATH ?>Markattendance"><i class="fas fa-user-check"></i><span>Attendance</span></a></li>

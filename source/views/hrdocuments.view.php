@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?= CSS_PATH ?>hrdocuments.css">
+    <link rel="stylesheet" href="<?= CSS_PATH ?>updatedocuments.css">
+    <link rel="stylesheet" href="<?= CSS_PATH ?>benefits.css">
 
     <title>HR Documents</title>
 </head>
@@ -17,7 +19,40 @@
    <?php $this->view('includes/header1')?>
 </div>
         <h1 class="h1">HR Documents</h1>
-        <div class="row">
+
+        <div class="main_container">
+        <div class="document_list">
+            <table>
+                <tr>
+                    <th>Document Name</th>
+                    <th>Option</th>
+
+                </tr>
+
+                <?php
+                    $i = 0;
+
+                    if (boolval($row)) {
+
+                        for ($i = 0; $i < sizeof($row); $i++) {
+
+                            $vai = $row[$i]; 
+                            ?>
+                                <tr>
+                                    <td><?php print_r($vai->document_name); ?></td>
+                                    <td>  <button class="btn" onclick="document.getElementById('link-1').click()"><i class="fa fa-download"></i>      Download</button>
+                                     <a id="link-1" href="<?= DOC_PATH ?>employment-application-form.docx" download hidden></a></td>
+                                </tr>
+
+                            <?php 
+                        }
+                    } ?>
+            </table>
+        </div>
+   
+</div>
+
+        <!-- <div class="row">
             <div class="column">
                 <div class="card">
                     <h4>Employee Application Form</h4>
@@ -42,9 +77,9 @@
                     <a id="link-3" href="<?= DOC_PATH ?>disciplinary-action-form.docx" download hidden></a>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="column">
                 <div class="card">
                     <h4>HR Service Request Form</h4>
@@ -69,13 +104,10 @@
                     <a id="link-6" href="<?= DOC_PATH ?>travel-request-form.docx" download hidden></a>
                 </div>
             </div>
-        </div>
+        </div> -->
+   
     </div>
-    <!-- <div>
-    <?php
-    // $this->view('includes/footer');
-    ?>
-</div> -->
+    
 </body>
 
 </html>
