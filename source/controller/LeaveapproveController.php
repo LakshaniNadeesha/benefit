@@ -11,7 +11,7 @@ class LeaveapproveController extends Controller
             $this->redirect('login');
         }
         if (Auth::access('Supervisor') || Auth::access('HR Manager')) {
-            $user=new EmployeelistModel();
+            $user=new Employeedetails();
             $user_x = new RequestleaveModel();
             $id=Auth::user();
             $row=$user->where('supervisor_ID',$id);
@@ -19,7 +19,9 @@ class LeaveapproveController extends Controller
             $k=0;
                 if(boolval($row)){
                 for($i = 0;$i<sizeof($row);$i++){
-                    $employee_details = $user->where_condition('employee_ID','banned_employees',$row[$i]->employee_ID,0);
+                    // $employee_details = $user->where_condition('employee_ID','banned_employees',$row[$i]->employee_ID,0);
+
+                    $employee_details = $user->where('employee_ID', $row[$i]->employee_ID );
                     if(boolval($employee_details)){
                     $leave_details = $user_x->where_condition('employee_ID', 'leave_status', $row[$i]->employee_ID, 'Pending');
                     if(boolval($leave_details)){
@@ -39,7 +41,9 @@ class LeaveapproveController extends Controller
                 }
                 $l=0;
                   for($i= 0;$i<sizeof($row);$i++){
-                    $employee_detailss = $user->where_condition('employee_ID','banned_employees',$row[$i]->employee_ID,0);
+                    // $employee_detailss = $user->where_condition('employee_ID','banned_employees',$row[$i]->employee_ID,0);
+                    $employee_detailss = $user->where('employee_ID', $row[$i]->employee_ID );
+
                     if(boolval($employee_detailss)){
                     $leave_detailss = $user_x->where_condition('employee_ID', 'leave_status', $row[$i]->employee_ID, 'Success');
                     if(boolval($leave_detailss)){

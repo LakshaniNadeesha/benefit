@@ -104,7 +104,7 @@ body {
 }
 
 .header-approve:hover {
-    transform: scale(1.1);
+    transform: scale(1.02);
 }
 
 .header-approve button:hover {

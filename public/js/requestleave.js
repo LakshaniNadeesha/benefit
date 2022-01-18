@@ -48,7 +48,7 @@ leave_type.addEventListener('input',()=>{
     
         start_date.min = newdate;
         start_date.max = max_date;
-        // console.log(`${start_date.max} = start date max in sick leave`);
+        console.log(`${start_date.max} = start date max in sick leave`);
 
         start_date.addEventListener('input',()=>{
 
@@ -57,8 +57,8 @@ leave_type.addEventListener('input',()=>{
             // console.log(start_date);
             end_date.max = max_date;
             
-            // console.log(`${end_date.min} end date min`);
-            // console.log(`${end_date.max} end date max`);
+            console.log(`${end_date.min} end date min`);
+            console.log(`${end_date.max} end date max`);
             // today accident and full week in hospital senario have to discuss
         })
         
@@ -84,8 +84,8 @@ leave_type.addEventListener('input',()=>{
            
             end_date.min = start_date.value;
             end_date.max = max_date;
-            // console.log(`${end_date.min} end date min`);
-            // console.log(`${end_date.max} end date max`);
+            console.log(`${end_date.min} end date min`);
+            console.log(`${end_date.max} end date max`);
             // today accident and full week in hospital senario have to discuss
         })
         
@@ -130,7 +130,7 @@ function setDecimal(val){
     }
     return val;
 }
-var myDate = new Date('2013-02-11');
+// var myDate = new Date('2013-02-11');
     
 
 

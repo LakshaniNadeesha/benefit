@@ -80,10 +80,9 @@ class Model extends Database
         'id'=>$id
         ]);
     }
+
     public function insert($data)
     {
-
-
         $keys = array_keys($data);
         $columns = implode(',', $keys);
         $values = implode(',:', $keys);
@@ -92,6 +91,7 @@ class Model extends Database
 
         return $this->query($query, $data);
     }
+
 
     public function update($id, $data)
     {
@@ -181,6 +181,12 @@ class Model extends Database
         return $this->query($query, $data);
 
     }
+
+    public function getcol($col)
+	{
+		$query = "select $col from $this->table";
+		return $this->query($query);
+	}
 
 }
 
