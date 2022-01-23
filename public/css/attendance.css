@@ -62,15 +62,22 @@ body {
     background-color: #e8f8f8;
 }
 
+.right-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 .emp_list {
-    width: 55%;
+    width: 100%;
     height: min-content;
     display: flex;
     flex-direction: column;
     margin: 10px;
 }
 
-.emp_list div {
+.emp_list .to-be-add {
+    width: 80%;
     margin-bottom: 15px;
 }
 
@@ -79,17 +86,24 @@ body {
     font-size: 20px;
     font-weight: bold;
     margin-top: auto;
-}
-
-.emp_list p {
-    text-align: left;
-    font-size: 17px;
+    text-align: center;
     margin-top: auto;
     margin-bottom: auto;
 }
 
+.emp_list p {
+
+}
+
 .emp_list hr {
     margin-bottom: 20px;
+}
+
+.top-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .emp_list .box{
@@ -143,7 +157,7 @@ body {
 }
 
 /*History table*/
-.emp_list table {
+table {
     width: 100%;
     margin-left: 0;
     margin-right: auto;

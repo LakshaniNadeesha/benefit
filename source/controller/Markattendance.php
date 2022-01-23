@@ -69,7 +69,7 @@ class Markattendance extends Controller
             //Getting form data and send it to database
 
             if(count($_POST) > 0){
-                if(isset($_POST['submit'])){
+                if(isset($_POST['mark'])){
                     $checkbox = $_POST['person'];
                     $date = $_POST['date'];
                     $arrival_time = $_POST['arrival'];
@@ -104,19 +104,16 @@ class Markattendance extends Controller
                     }
                     $this->redirect('markattendance');
                 }
-                elseif (isset($_POST['change'])){
-                    $checkbox = $_POST['person'];
-                    $date = $_POST['date'];
+                elseif (isset($_POST['submit'])){
+                    $id = $_POST['id'];
                     $arrival_time = $_POST['arrival'];
                     $departure_time = $_POST['departure'];
-                    $ot_hour = $_POST['ot-hours'];
                     $t1 = strtotime($arrival_time);
                     $t2 = strtotime($departure_time);
                     $hours = ($t2 - $t1)/3600;
 
                     $change_attendance = new AttendanceModel();
                     $date = $_POST['date'];
-                    $id = $_POST['emp_name'];
                     $changed_ar['arrival_time'] = $_POST['arrival'];
                     $changed_ar['departure_time'] = $_POST['departure'];
                     $changed_ar['ot_hours'] = $_POST['ot_hours'];
