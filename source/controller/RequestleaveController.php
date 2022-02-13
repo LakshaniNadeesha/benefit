@@ -53,23 +53,49 @@ class RequestleaveController extends Controller{
                     $date_list = date_calc($from_date, $to_date);
 
                     for($i = 0; $i<sizeof($date_list); $i++){
+                        echo("size of date list ". sizeof($date_list));
+                        echo "<br>";
                         echo $i;
-                        $arr['employee_ID'] = Auth::user();
-                        $arr['leave_type'] = $_POST['leave_type'];
-                        $arr['date'] = $date_list[$i];
-                        $row = "date";
-                        $date_exist = $this->validate($arr['date'],$user,$row);
+                        $week_day = date_create($date_list[$i]);
+                        echo "<br>";
+                        echo "Week day ";
+                        echo date_format($week_day,"l");
 
-                        if($date_exist){
-                            break;
-                            echo "Date already leave";
+
+                        if(date_format($week_day,"l") == "Sunday"){
+                            echo "<br>";
+                            echo "inside if condition";
+                            echo "<br>";
+                            echo date_format($week_day,"l");
+                            echo "<br>";
+                            // continue;
+                            echo($i);
+                            
+                            
+                            echo "<br>";
+
+                        }else{
+
+                            echo "else part  ";
+                            $arr['employee_ID'] = Auth::user();
+                            $arr['leave_type'] = $_POST['leave_type'];
+                            $arr['date'] = $date_list[$i];
+                            $row = "date";
+                            $date_exist = $this->validate($arr['date'],$user,$row);
+
+                            if($date_exist){
+                                break;
+                                echo "Date already leave";
+                            }
+                            $arr['leave_status'] = "Pending";
+
+                            $user->insert($arr);
+                            print_r($arr);
+                            echo "<br>";
+                            echo "<br>";
                         }
-                        $arr['leave_status'] = "Pending";
 
-                        $user->insert($arr);
-                        print_r($arr);
-                        echo "<br>";
-                        echo "<br>";
+                        
 
                     }
 
@@ -85,14 +111,32 @@ class RequestleaveController extends Controller{
                     $arr['leave_status'] = "Pending";
                     $arr['half_time'] = $_POST['half_time'];
                     $row = "date";
-                    $date_exist = $this->validate($arr['date'],$user,$row);
+                    $week_day = date_create($arr['date']);
 
-                    if($date_exist){
-                        // break;
-                        echo "Date already leave";
+                    if(date_format($week_day,"l") == "Sunday"){
+                        echo "<br>";
+                        echo "inside if condition";
+                        echo "<br>";
+                        echo date_format($week_day,"l");
+                        echo "<br>";
+                        // continue;
+                        echo($i);
+                        /////////////////// Message eka print wenna ooni.. sunday leave daanna ooni nee kiyala
+                        
+                        echo "<br>";
+
                     }else{
-                        $user->insert($arr);
+                        $date_exist = $this->validate($arr['date'],$user,$row);
+
+                        if($date_exist){
+                            // break;
+                            echo "Date already leave";
+                        }else{
+                            $user->insert($arr);
+                        }
                     }
+                    
+                    
                    
 
                     /////// simply insert one day to data base
@@ -133,15 +177,33 @@ class RequestleaveController extends Controller{
                         $row = "date";
                         $arr['half_time'] = null;
                         $arr['leave_status'] = "Pending";
-                        $date_exist = $this->validate($arr['date'],$user,$row);
 
-                        if($date_exist){
-                            echo "Date already leave";
-                            break;  
+                        $week_day = date_create($date_list[$i]);
+                        if(date_format($week_day,"l") == "Sunday"){
+                            echo "<br>";
+                            echo "inside if condition";
+                            echo "<br>";
+                            echo date_format($week_day,"l");
+                            echo "<br>";
+                            // continue;
+                            echo($i);
+                            
+                            
+                            echo "<br>";
+
+                        }else{
+                            $date_exist = $this->validate($arr['date'],$user,$row);
+
+                            if($date_exist){
+                                echo "Date already leave";
+                                break;  
+                            }
+                            else{
+                                $user->insert($arr);
+                            }
                         }
-                        else{
-                            $user->insert($arr);
-                        }
+                       
+                       
                         
                         print_r($arr);
                         echo "<br>";
