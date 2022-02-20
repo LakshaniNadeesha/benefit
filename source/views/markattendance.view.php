@@ -66,47 +66,78 @@
                     <p class="title">Employee List</p>
                     <div class="top-section">
                         <div class="to-be-add">
-                            <p>To Be Add</p>
-                            <hr>
-                            <?php
-                            if (boolval($not_marked)) {
-                                for ($i = 0; $i < sizeof($not_marked); $i++) {
-                                    ?>
-                                    <div class="box">
-                                        <img src="<?php print_r($not_marked[$i]->profile_image) ?>"
-                                             alt="on-leave-people"
-                                             class="on-leave-people">
-                                        <p class="content1"><?php print_r($not_marked[$i]->first_name);
-                                            echo " ";
-                                            print_r($not_marked[$i]->last_name) ?></p>
-                                        <p class="content2"><?php print_r($not_marked[$i]->department_ID) ?>
-                                        <p class="content3"><?php print_r($not_marked[$i]->designation_code) ?></p>
-                                        <?php
-                                        $select = 'select';
-                                        $select .= $i;
-                                        ?>
-                                        <input type="checkbox" id="<?php echo $select ?>" name="person[]"
-                                               value="<?php print_r($not_marked[$i]->employee_ID); ?>">
-                                        <a href="http://localhost/benefit/markattendance/absent/<?php print_r($not_marked[$i]->employee_ID); ?>/<?php echo date('Y-m-d'); ?>">
-                                            <i class="fa fa-times-circle" aria-hidden="true"></i></a>
-                                    </div>
-                                    <script>
-                                        const hideBox = document.querySelector('<?php echo "#" . $select;?>');
-                                        hideBox.addEventListener('change', function (e) {
-                                            if (hideBox.checked) {
-                                                list.style.display = "initial";
-                                            } else {
-                                                list.style.display = "none";
-                                            }
-                                        });
-                                    </script>
+                            <div class="slideshow-container">
+                                <div class="next-prev">
+                                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                                </div>
+                                <div class="mySlides fade">
+                                    <div class="numbertext">1 / 2</div>
+                                    <!--                                    <div class="mySlides fade">-->
+                                    <p>To Be Add</p>
+                                    <hr>
                                     <?php
-                                }
-                            } else {
-                                echo "No employees yet!";
-                                echo "<br><br>";
-                            } ?>
+                                    if (boolval($not_marked)) {
+                                        for ($i = 0; $i < sizeof($not_marked); $i++) {
+                                            ?>
+                                            <div class="box">
+                                                <img src="<?php print_r($not_marked[$i]->profile_image) ?>"
+                                                     alt="on-leave-people"
+                                                     class="on-leave-people">
+                                                <p class="content1"><?php print_r($not_marked[$i]->first_name);
+                                                    echo " ";
+                                                    print_r($not_marked[$i]->last_name) ?></p>
+                                                <p class="content2"><?php print_r($not_marked[$i]->department_ID) ?>
+                                                <p class="content3"><?php print_r($not_marked[$i]->designation_code) ?></p>
+                                                <?php
+                                                $select = 'select';
+                                                $select .= $i;
+                                                ?>
+                                                <input type="checkbox" id="<?php echo $select ?>" name="person[]"
+                                                       value="<?php print_r($not_marked[$i]->employee_ID); ?>">
+                                                <a href="http://localhost/benefit/markattendance/absent/<?php print_r($not_marked[$i]->employee_ID); ?>/<?php echo date('Y-m-d'); ?>">
+                                                    <i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                                            </div>
+                                            <script>
+                                                const hideBox = document.querySelector('<?php echo "#" . $select;?>');
+                                                hideBox.addEventListener('change', function (e) {
+                                                    if (hideBox.checked) {
+                                                        list.style.display = "initial";
+                                                    } else {
+                                                        list.style.display = "none";
+                                                    }
+                                                });
+                                            </script>
+                                            <?php
+                                        }
+                                    } else {
+                                        echo "No employees yet!";
+                                        echo "<br><br>";
+                                    } ?>
+                                </div>
+                                <div class="mySlides fade">
+                                    <div class="numbertext">2 / 2</div>
+                                    <!--                                    <div class="mySlide fade">-->
+                                    hello
+                                    <?php if (boolval($previous)) {
+                                        for ($i = 0; $i < sizeof($previous); $i++) {
+                                            print_r($previous[$i]);
+                                            echo "<br>";
+                                        }
+                                    }
+                                    ?>
+                                </div>
+
+                            </div>
+                            <br>
+
+                            <div style="text-align:center; float: bottom; top: 80%">
+                                <span class="dot" onclick="currentSlide(1)"></span>
+                                <span class="dot" onclick="currentSlide(2)"></span>
+                            </div>
+
                         </div>
+
                         <div class="attendance_form">
                             <div class="form-title">Fill This</div>
                             <div class="form-content">
@@ -229,8 +260,40 @@
         } ?>
     </div>
 </div>
-</div>
-</div>
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    // Next/previous controls
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    // Thumbnail image controls
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+    }
+</script>
 <script>
     const Change = {
         open(options) {

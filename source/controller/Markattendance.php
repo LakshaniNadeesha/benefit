@@ -17,6 +17,7 @@ class Markattendance extends Controller
             $user = new Employeedetails();
             $designations = new DesignationModel();
             $attendance = new AttendanceModel();
+            $previous = new AttendDate();
 
             $all_emp = $user->where('supervisor_ID', $id);
             //print_r($all_emp);
@@ -27,6 +28,7 @@ class Markattendance extends Controller
             $j=0; $k=0;
             $marked = array();
             $not_marked = array();
+            $array2 = array();
             if (boolval($all_emp)) {
                 for ($i = 0; $i < sizeof($all_emp); $i++) {
                     if ($all_emp[$i]->designation_code == 1) {
@@ -52,16 +54,15 @@ class Markattendance extends Controller
                     }
 
                     //Filter today's not marked employees
-                    $array1 = $attendance->where_condition('employee_ID', 'date', $all_emp[$i]->employee_ID, $today);
+                    $array1 = $previous->where_condition('employee_ID', 'date', $all_emp[$i]->employee_ID, $today);
 
                     if (boolval($array1)) {
-                        //$marked[$j] = $all_emp[$i];
-                        //$j++;
-                        continue;
-                    } else {
                         $not_marked[$k] = $all_emp[$i];
                         $k++;
                     }
+
+                    $array2 = $previous->where('employee_ID',$all_emp[$i]->employee_ID);
+                    //print_r($array2);
                 }
             }
 
@@ -142,7 +143,7 @@ class Markattendance extends Controller
                 }
             }
 
-            $this->view('markattendance', ['not_marked'=>$not_marked, 'history'=>$history]);
+            $this->view('markattendance', ['not_marked'=>$not_marked, 'history'=>$history, 'previous'=>$array2]);
         } else {
             $this->view('404');
         }
