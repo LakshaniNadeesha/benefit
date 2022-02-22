@@ -13,7 +13,9 @@
 </head>
 <body>
 <div class="topnav" id="myTopnav">
+    <img class="logo" src="public/img/logo.png" alt="OFS" >
     <div class="list">
+
         <a href="<?= PATH ?>Home" class="active">Home</a>
         <a href="<?= PATH ?>leavedetailscontroller">My Info</a>
         <a href="<?= PATH ?>hrdocuments">Documents</a>

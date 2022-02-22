@@ -5,6 +5,14 @@ body {
     padding: 0;
 }
 
+.logo {
+    width: 200px;
+    height: 80px;
+    border-radius: unset;
+    margin: 5px;
+    background-color: transparent;
+}
+
 .topnav {
     overflow: hidden;
     background-color: var(--h1);
@@ -234,7 +242,14 @@ body {
     display: flex;
 }
 
+@media screen and (max-width: 1160px){
+    .logo {
+        display: none;
+    }
+}
+
 @media screen and (max-width: 930px) {
+
     .topnav.responsive {
         min-width: 100%;
     }
