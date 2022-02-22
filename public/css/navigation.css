@@ -6,17 +6,23 @@ body {
 .header {
     height: 70px;
     display: flex;
-    /*justify-content: space-between;*/
-    /* background-color: #5B7CFE; */
+
     align-items: center;
     text-align: center;
     background-color: var(--h2);
     max-width: 100%;
-    /*border-radius: 10px;*/
-    /*margin-bottom: 5px;*/
-    /*margin-left: 5px;*/
-    /*margin-right: 5px;*/
-    /*justify-content: space-evenly;*/
+
+}
+
+.stroke2 {
+
+    height: 70px;
+    display: none;
+
+    align-items: center;
+    text-align: center;
+    background-color: var(--h2);
+    max-width: 100%;
 }
 
 
@@ -52,7 +58,7 @@ body {
 
 /*}*/
 
-.header ul {
+.header ul, .stroke2 ul {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -62,13 +68,13 @@ body {
     padding: 0;
 }
 
-.header ul li {
+.header ul li, .stroke2 ul li {
     padding-top: 15px;
     padding-bottom: 15px;
     display: inline-block;
 }
 
-.header ul li a {
+.header ul li a, .stroke2 ul li a {
     font-size: large;
     font-weight: bolder;
     text-decoration: none;
@@ -79,25 +85,27 @@ body {
     padding: 15px;
 }
 
-.header i {
+.header i, .stroke i {
     padding-right: 5px;
 }
 
 .header ul li a,
 .header ul li a:after,
-.header1 ul li a:before {
+.header ul li a:before, .stroke2 ul li a,
+.stroke2 ul li a:after,
+.stroke2 ul li a:before {
     transition: all .5s;
 }
 
-.header ul li a:hover {
+.header ul li a:hover, .stroke2 ul li a:hover {
     color: black;
 }
 
-.header ul li a {
+.header ul li a, .stroke2 ul li a {
     position: relative;
 }
 
-.header ul li a:after {
+.header ul li a:after, .stroke2 ul li a:after {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -110,6 +118,20 @@ body {
     height: 2px;
 }
 
-.header ul li a:hover:after {
+.header ul li a:hover:after, .stroke2 ul li a:hover:after {
     width: 100%;
+}
+
+@media screen and (max-width: 830px) {
+    .header {
+        display: none;
+    }
+
+    .stroke2 {
+        display: flex;
+    }
+
+    .stroke2 a {
+        font-size: xx-large;
+    }
 }
