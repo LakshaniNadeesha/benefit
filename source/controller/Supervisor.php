@@ -254,11 +254,15 @@ class Supervisor extends Controller
 				$row=$user->where('employee_ID',$id);
 				if(!empty($row)){
 					$data['employee_ID']=$id;
-					$data['quality_of_work']=null;
+					$data['communication']=null;
 					$data['quality_of_work']=null;
 					$data['organization']=null;
 					$data['team_skills']=null;
 					$data['multitasking_ability']=null;
+					$data['date']=date("U")+7890000;
+					date_default_timezone_set('Asia/Colombo');
+				$data['last_modifydate'] = date('Y/d/m');
+				$row=$user->update($id,$data);
 				$this->redirect('Supervisor');
 				}
 				else{
