@@ -20,15 +20,11 @@
         <i class="material-icons" style="padding-right: 6px">email</i><?= Auth::getemail() ?>
     </div>
     <div class="hire">Hired Date</div>
-     <div class="date"><?=  date('Y-d-m', strtotime(Auth::gethired())); ?></div>
-<!--     <div class="date">27th Aug 2019</div> -->
+    <div class="date"><?=  date('Y-d-m', strtotime(Auth::gethired())); ?></div>
     <div class="address"><?= Auth::getstreet() ?>, <?= Auth::getcity() ?> <br> <?= Auth::getprovince() ?> province</div>
     <div class="supervisor">
-        <i class="material-icons" style="padding-right: 6px">supervisor_account</i>Mr.Dilukshan
+        <i class="material-icons" style="padding-right: 6px">supervisor_account</i>Mr/Mis <?= Auth::sup() ?>
     </div>
-</div>
+</div> 
 </body>
 </html>
-
-
-
