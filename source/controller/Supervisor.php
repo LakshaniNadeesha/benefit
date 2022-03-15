@@ -98,8 +98,7 @@ class Supervisor extends Controller
              }
          }
 
-		$this->view('supervisorviewperformance',['emp'=>$emp,
-													'handled'=>$handled]);
+		$this->view('supervisorviewperformance',['emp'=>$emp,'handled'=>$handled]);
 		}
 		else{
 			$this->view('404');
@@ -118,42 +117,51 @@ class Supervisor extends Controller
 		{
 				$user= new PerformanceModel();
 				if(count($_POST)>0 && $user->validate($_POST)){
-				if($_POST['communication']==1)
-				{
-					$data['communication']=$_POST['communication']=0;
-				}
-				else{
 					$data['communication']=$_POST['communication'];
-				}
-				if ($_POST['quality_of_work']==1) {
-					$data['quality_of_work']=$_POST['quality_of_work']=0;
-				}
-				else{
 					$data['quality_of_work']=$_POST['quality_of_work'];
-				}
-				if ($_POST['organization']==1) {
-					$data['organization']=$_POST['organization']=0;
-				}
-				else{
 					$data['organization']=$_POST['organization'];
-				}
-				if ($_POST['team_skills']==1) {
-					$data['team_skills']=$_POST['team_skills']=0;
-				}
-				else{
 					$data['team_skills']=$_POST['team_skills'];
-				}
-				if ($_POST['multitasking_ability']==1) {
-					$data['multitasking_ability']=$_POST['multitasking_ability']=0;
-				}
-				else{
 					$data['multitasking_ability']=$_POST['multitasking_ability'];
-				}
-				date_default_timezone_set('Asia/Colombo');
-				$data['last_modifydate'] = date('Y/d/m');
-				$data['date']=date("U")+131400;
+
+
+				// if($_POST['communication']==1)
+				// {
+				// 	$data['communication']=$_POST['communication']=0;
+				// }
+				// else{
+				// 	$data['communication']=$_POST['communication'];
+				// }
+				// if ($_POST['quality_of_work']==1) {
+				// 	$data['quality_of_work']=$_POST['quality_of_work']=0;
+				// }
+				// else{
+				// 	$data['quality_of_work']=$_POST['quality_of_work'];
+				// }
+				// if ($_POST['organization']==1) {
+				// 	$data['organization']=$_POST['organization']=0;
+				// }
+				// else{
+				// 	$data['organization']=$_POST['organization'];
+				// }
+				// if ($_POST['team_skills']==1) {
+				// 	$data['team_skills']=$_POST['team_skills']=0;
+				// }
+				// else{
+				// 	$data['team_skills']=$_POST['team_skills'];
+				// }
+				// if ($_POST['multitasking_ability']==1) {
+				// 	$data['multitasking_ability']=$_POST['multitasking_ability']=0;
+				// }
+				// else{
+				// 	$data['multitasking_ability']=$_POST['multitasking_ability'];
+				// }
+
+				 date_default_timezone_set('Asia/Colombo');
+				 $data['last_modifydate'] = date("Y/m/d");
+				//$data['last_modifydate']= date("Y/m/d") ;
+				$data['date']=date("U")+7890000;
 				$row=$user->update($id,$data);
-				//$this->redirect('Supervisor');
+				$this->redirect('Supervisor');
 				}
 				else{
 					$errors = $user->errors;
