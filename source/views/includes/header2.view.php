@@ -22,10 +22,10 @@
 
     <nav class="stroke2">
         <ul>
-            <li><a href="<?= PATH ?>LeavedetailsController"><i class="fas fa-user-clock"></i></a></li>
-            <li><a href="<?= PATH ?>Benefit"><i class="fas fa-clinic-medical"></i></a></li>
-            <li><a href="<?= PATH ?>Reimbursement"><i class="fas fa-file-invoice-dollar"></i></a></li>
-            <li><a href="<?= PATH ?>Performance"><i class="fas fa-chart-line"></i></a></li>
+            <li title="Time off"><a href="<?= PATH ?>LeavedetailsController"><i class="fas fa-user-clock"></i></a></li>
+            <li title="Benefit"><a href="<?= PATH ?>Benefit"><i class="fas fa-clinic-medical"></i></a></li>
+            <li title="Reimbursement"><a href="<?= PATH ?>Reimbursement"><i class="fas fa-file-invoice-dollar"></i></a></li>
+            <li title="Performance"><a href="<?= PATH ?>Performance"><i class="fas fa-chart-line"></i></a></li>
         </ul>
     </nav>
 
