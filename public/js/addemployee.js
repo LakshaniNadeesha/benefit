@@ -164,11 +164,7 @@ nic.addEventListener('input', () => {
     var space = nic.value.split(" ");
     console.log(space.length);
     if(space.length > 1){
-        
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
         nicval.innerHTML = "Cannot Include Spaces";
         document.getElementById("nichide").value = "notvalied";
         nicval.style.display = "block";
@@ -194,10 +190,6 @@ nic.addEventListener('input', () => {
             }
             else{
                 document.getElementById("nichide").value = "valied";
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
                 nicval.style.display = "block";
                 nicval.style.color = "green";
 
@@ -293,10 +285,7 @@ nic.addEventListener('input', () => {
 
 
 function mynicfunction(nic) {
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
     // const nyear = [31,59,90,120,151,181,212,243,273,304,334,365];
     const nyear = [31,60,91,121,152,182,213,244,274,305,335,366];
     const bday = {month:"",date:"",year:"",gender:"",valid:""};
@@ -304,10 +293,7 @@ function mynicfunction(nic) {
 
     var len = nic.length;
     // console.log(len);
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 
     if(len == 12){
         const year = nic[0]*1000 + nic[1]*100 + nic[2]*10 + nic[3]*1;
@@ -322,10 +308,7 @@ function mynicfunction(nic) {
         if (day > 500) {
             bday.gender = "Female";
             day = day - 500;
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
             // console.log("Day in length 12 inside day > 500 : ",day);
         }else{
             // console.log("Day in length 12 inside day < 500 : ",day);
@@ -382,10 +365,7 @@ function mynicfunction(nic) {
         } else {
             bday.gender = "Male";
         }
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
         ///////////////////////////// CALCULATE FOR LEAP YEAR /////////////////////////////
 
         // if(year % 100 != 0 && year%4 == 0){
