@@ -14,7 +14,7 @@ body {
 }
 
 .topnav {
-    overflow: hidden;
+    /*overflow: hidden;*/
     background-color: var(--h1);
     display: flex;
     flex-direction: row;
@@ -39,16 +39,6 @@ body {
     text-transform: uppercase;
     font-weight: bold;
 }
-
-/*.topnav a:hover {*/
-/*    background-color: #ddd;*/
-/*    color: black;*/
-/*}*/
-
-/*.topnav a.active {*/
-/*    background-color: #04AA6D;*/
-/*    color: white;*/
-/*}*/
 
 .topnav .icon {
     display: none;
@@ -113,6 +103,11 @@ body {
 
 
 /* bell notification*/
+.profile__image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
 
 .icon-button {
     position: relative;
@@ -242,6 +237,10 @@ body {
     display: flex;
 }
 
+.list .current{
+    background-color: red;
+}
+
 @media screen and (max-width: 1160px){
     .logo {
         display: none;
@@ -332,9 +331,191 @@ body {
     #show_hide {
         display: block !important;
     }
-
-    /*.topnav .list a:hover:after {*/
-    /*    width: 100%;*/
-    /*}*/
 }
 
+
+/* push notification */
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Trade+Winds&display=swap');
+
+a{
+    color: #7f8db0;
+}
+
+.wrapper{
+    width: 100%;
+    height: 100%;
+}
+
+.navbar{
+    /*background: #fff;*/
+    /*width: 100%;*/
+    /*height: 60px;*/
+    /*padding: 0 25px;*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /*box-shadow: 0 1px 2px rgba(0,0,0,0.1);*/
+    color: #d9e8ea;
+}
+
+.navbar .navbar_left .logo a{
+    font-family: 'Trade Winds';
+    font-size: 20px;
+}
+
+.navbar .navbar_right{
+    display: flex;
+}
+
+.navbar .navbar_right img{
+    width: 35px;
+}
+
+.navbar .navbar_right .icon_wrap{
+    cursor: pointer;
+}
+
+.navbar .navbar_right .notifications{
+    margin-right: 15px;
+}
+
+.navbar .navbar_right .notifications .icon_wrap{
+    font-size: 28px;
+}
+
+.navbar .navbar_right .profile,
+.navbar .navbar_right .notifications{
+    position: relative;
+}
+
+.navbar .profile .profile_dd,
+.notification_dd{
+    position: absolute;
+    top: 48px;
+    right: -15px;
+    user-select: none;
+    background: #fff;
+    border: 1px solid #c7d8e2;
+    width: 350px;
+    height: auto;
+    display: none;
+    justify-content: center;
+    border-radius: 3px;
+    box-shadow: 10px 10px 35px rgba(0,0,0,0.125),
+    -10px -10px 35px rgba(0,0,0,0.125);
+    z-index: 4;
+}
+
+.navbar .profile .profile_dd:before,
+.notification_dd:before{
+    content: "";
+    position: absolute;
+    top: -20px;
+    right: 15px;
+    border: 10px solid;
+    border-color: transparent transparent #fff transparent;
+}
+
+.notification_dd li {
+    border-bottom: 1px solid #f1f2f4;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.notification_ul {
+    padding-inline-start: 20px;
+    padding-inline-end: 20px
+}
+
+.notification_dd li .notify_status p{
+    font-size: 12px;
+}
+
+.notification_dd li.failed .notify_status p{
+    color: #fb0001;
+}
+
+.notification_dd li.show_all{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.notification_dd li.show_all p{
+    font-weight: 700;
+    color: #3b80f9;
+    cursor: pointer;
+}
+
+.notification_dd li.show_all p:hover{
+    text-decoration: underline;
+}
+
+.navbar .navbar_right .icon_wrap:hover,
+.navbar .navbar_right .notifications.active .icon_wrap{
+    color: #3b80f9;
+}
+
+.navbar .notifications.active .notification_dd{
+    display: block;
+}
+
+.popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.2s ease;
+    display: none;
+}
+
+.popup .shadow {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.5;
+}
+
+.popup .inner_popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    height: auto;
+}
+
+.popup .notification_dd{
+    display: block;
+    position: static;
+    margin: 0 auto;
+    height: 357px;
+    overflow: auto;
+}
+
+.popup .notification_dd:before{
+    display: none;
+}
+
+.popup .notification_dd li.title{
+    font-weight: 700;
+    color: #3b80f9;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.popup .notification_dd li.title .close{
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.popup .notification_dd li.title .close:hover{
+    opacity: 0.5;
+}

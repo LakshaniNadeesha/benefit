@@ -6,17 +6,41 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= CSS_PATH ?>header1.css">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     <title></title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".profile .icon_wrap").click(function () {
+                $(this).parent().toggleClass("active");
+                $(".notifications").removeClass("active");
+            });
+
+            $(".notifications .icon_wrap").click(function () {
+                $(this).parent().toggleClass("active");
+                $(".profile").removeClass("active");
+            });
+
+            $(".show_all .link").click(function () {
+                $(".notifications").removeClass("active");
+                $(".popup").show();
+            });
+
+            $(".close").click(function () {
+                $(".popup").hide();
+            });
+        });
+    </script>
 </head>
 <body>
 <div class="topnav" id="myTopnav">
-    <img class="logo" src="public/img/logo.png" alt="OFS" >
+    <img class="logo" src="public/img/logo.png" alt="OFS">
     <div class="list">
 
-        <a href="<?= PATH ?>Home" class="active">Home</a>
+        <a href="<?= PATH ?>Home">Home</a>
         <a href="<?= PATH ?>leavedetailscontroller">My Info</a>
         <a href="<?= PATH ?>hrdocuments">Documents</a>
         <a href="<?= PATH ?>Hierarchy">Hierarchy</a>
@@ -37,8 +61,82 @@
     </div>
 
     <div class="toggle_section">
-        <div class="notification">
-            <a><span class="material-icons">notifications</span></a>
+        <div class="wrapper">
+            <div class="navbar">
+                <div class="navbar_right">
+                    <div class="notifications">
+                        <div class="icon_wrap"><i class="far fa-bell" aria-hidden="true"></i></div>
+
+                        <div class="notification_dd">
+                            <ul class="notification_ul">
+                                <?php if (boolval($notifications)){
+                                for ($i = 0; $i < sizeof($notifications);$i++){ ?>
+                                <li class="">
+                                    <?php print_r($notifications[$i]); ?>
+                                </li>
+                                <?php }
+                                } ?>
+                                <li class="">
+
+                                </li>
+                                <li class="">
+
+                                </li>
+                                <li class="">
+
+                                </li>
+                                <li class="">
+
+                                </li>
+                                <li class="show_all">
+                                    <p class="link">Show All Activities</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="profile">
+
+
+                        <div class="profile_dd">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="popup">
+                <div class="shadow"></div>
+                <div class="inner_popup">
+                    <div class="notification_dd">
+                        <ul class="notification_ul">
+                            <li class="title">
+                                <p>All Notifications</p>
+                                <p class="close"><i class="fas fa-times" aria-hidden="true"></i></p>
+                            </li>
+                            <li class="">
+
+                            </li>
+                            <li class="">
+
+                            </li>
+                            <li class="">
+
+                            </li>
+                            <li class="">
+
+                            </li>
+                            <li class="">
+
+                            </li>
+                            <li class="">
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="logged_name">
             <span class=log_name><?= Auth::getfirst_name() ?></span>
@@ -79,20 +177,14 @@
 </div>
 <script>
 
-    // window.onscroll = function () {
-    //     myFunction();
-    // }
-    //
-    // var header = document.getElementById("myHeader");
-    // var sticky = header.offsetTop;
-    //
-    // function myFunction() {
-    //     if (window.pageYOffset > sticky) {
-    //         header.classList.add("sticky");
-    //     } else {
-    //         header.classList.remove("sticky");
-    //     }
-    // }
+    let current_btn = document.querySelectorAll('a');
+
+    current_btn.forEach(a => {
+        a.addEventListener("click", function () {
+            current_btn.forEach(btn => btn.classList.remove('current'));
+            this.classList.add('current');
+        })
+    })
 
     var dd_main = document.querySelector(".dd_main");
 
