@@ -27,13 +27,14 @@ class RequestleaveController extends Controller{
     function index(){
         // $user = new RequestleaveModel();
 
-        $user1 = new LeavedetailsModel();
+        $user1 = new AddemployeeModel();
 
         $data = $user1->where('employee_ID',Auth::user());
 
         if(count($_POST)>0)
         {
             $user = new RequestleaveModel();
+            $user2 = new LeavedetailsModel();
 
             if(isset($_POST['submit']))
             {

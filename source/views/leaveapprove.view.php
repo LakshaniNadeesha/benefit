@@ -40,14 +40,18 @@
     <!-- <h1>This is Leave Approve Page</h1> -->
     <?php 
     if(boolval($emp)){
-        for ($i=0; $i <sizeof($emp) ; $i++) { 
-            if ($emp >= 1) { ?>
+        print_r($emp) 
+        // for ($i=0; $i <sizeof($emp) ; $i++) { 
+        //     if ($emp >= 1) { ?>
     <div class="main_container">
         <div class="approve-container">
             <div>
                 <p class="handling_title">Handle Time Off</p>
             </div>
             <hr>
+            <?php
+            for ($i=0; $i <sizeof($emp) ; $i++) { 
+            if ($emp >= 1) { ?> 
             <div class="card-container">
                 <div class="header-approve" style="height: 280px;" id="btn">
                     <center>
@@ -59,8 +63,8 @@
                         <center>
                             <i class="fas fa-band-aid"></i>
                         </center>
-                        <p class="date"><?php print_r($emp[$i]['details']->starting_date );?> To</p>
-                        <p class="date"><?php print_r($emp[$i]['details']->ending_date);?></p>
+                        <p class="date"><?php print_r($emp[$i]['details']->date );?> </p>
+                        <!-- <p class="date"><?php print_r($emp[$i]['details']->ending_date);?></p> -->
                         <p class="date" ><?php print_r($emp[$i]['details']->leave_type );?></p>
 
                     </div>
