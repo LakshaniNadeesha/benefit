@@ -27,11 +27,11 @@ class LeaveapproveController extends Controller
                     if(boolval($leave_details)){
                   
                         for($j = 0;$j<sizeof($leave_details);$j++){
-                            $emp[$k]['employee_ID'] = $employee_details[0]->employee_ID;
-                            $emp[$k]['first_name'] = $employee_details[0]->first_name;
-                            $emp[$k]['last_name'] = $employee_details[0]->last_name;
-                            $emp[$k]['profile_image'] = $employee_details[0]->profile_image;
-                            $emp[$k]['details'] = $leave_details[$j];
+                            $emp[$j]['employee_ID'] = $employee_details[0]->employee_ID;
+                            $emp[$j]['first_name'] = $employee_details[0]->first_name;
+                            $emp[$j]['last_name'] = $employee_details[0]->last_name;
+                            $emp[$j]['profile_image'] = $employee_details[0]->profile_image;
+                            $emp[$j]['details'] = $leave_details[$j];
                         }
                
                         $i = $i+sizeof($leave_details)-1;
