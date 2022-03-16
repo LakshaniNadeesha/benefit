@@ -21,9 +21,11 @@ class Benefit extends Controller
         $all_requests = $user->where('employee_ID', $ar);
         $j=0;
         $handled = array();
-        for($i=0;$i<sizeof($all_requests);$i++){
-            if($all_requests[$i]->benefit_status != 'pending'){
-                $handled[$j] = $all_requests[$i];
+        if(boolval($all_requests)) {
+            for ($i = 0; $i < sizeof($all_requests); $i++) {
+                if ($all_requests[$i]->benefit_status != 'pending') {
+                    $handled[$j] = $all_requests[$i];
+                }
             }
         }
 

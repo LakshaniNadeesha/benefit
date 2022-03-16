@@ -83,10 +83,6 @@ hr {
     clear: both;
 }
 
-/*.benefit_card .card p {*/
-/*    font-size: small;*/
-/*}*/
-
 .benefit_card .card .title {
     margin-top: 0;
     padding-top: 5px;
@@ -98,9 +94,8 @@ hr {
 }
 
 .benefit_card .card .text {
-    color: #344955;
+    color: #64899e;
     margin-bottom: 5px;
-    opacity: 90%;
 }
 
 .benefit_card .card .remain_amount {
@@ -193,14 +188,7 @@ AAAAAAAAAAAAAAAAAAAAAAAA */
 .benefit_history {
     background-color: white;
     max-width: 100%;
-    /*padding: 10px;*/
-    /*border-radius: 10px;*/
-    /*margin-bottom: 5px;*/
-    /*margin-left: 0;*/
-    /*margin-right: 5px;*/
-
     padding: 10px 10px 10px 16px;
-    /*box-shadow: 3px 5px 15px rgba(0, 0, 0, .15);*/
 }
 
 .history_header {
@@ -257,10 +245,6 @@ AAAAAAAAAAAAAAAAAAAAAAAA */
     color: #344955;
 }
 
-/*.benefit_container .benefit_history #benefit_history_result {*/
-/*    margin: 10px;*/
-/*}*/
-
 .benefit_type {
     margin: 20px;
 }
@@ -293,7 +277,6 @@ AAAAAAAAAAAAAAAAAAAAAAAA */
     margin: auto;
     padding-right: 10px;
 }
-
 
 #benefit_history_result {
     width: 95%;
@@ -362,7 +345,6 @@ tr:nth-child(even) {
         height: 25px;
         color: var(--h1);
         font-size: 20px;
-        /*font-size: 1.6vw;*/
         font-weight: bold;
     }
 }

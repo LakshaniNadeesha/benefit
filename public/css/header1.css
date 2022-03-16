@@ -252,13 +252,6 @@ body {
     .topnav.responsive {
         min-width: 100%;
     }
-    /*.topnav .list{*/
-    /*    display: block;*/
-    /*    justify-content: left;*/
-    /*    flex-direction:row;*/
-    /*    align-items: center;*/
-    /*    max-height:50px;*/
-    /*}*/
     .topnav a:not(:first-child) {
         display: none;
     }
@@ -281,7 +274,6 @@ body {
         display: block;
         text-align: left;
         border-bottom: 1px solid var(--h2);
-        /*width: 100%;*/
     }
 
     .topnav.responsive .icon{
@@ -301,11 +293,6 @@ body {
     .topnav .list a {
         position: relative;
     }
-
-    /*.topnav .list a:hover{*/
-    /*    background-color: #ccc;*/
-    /*}*/
-
     .topnav .list a:after {
         position: absolute;
         bottom: 0;
@@ -322,11 +309,6 @@ body {
     .toggle_section {
         display: none;
     }
-
-    /*.hidden_section {*/
-    /*    visibility: visible;*/
-    /*    top: 20px;*/
-    /*}*/
 
     #show_hide {
         display: block !important;
@@ -348,28 +330,14 @@ a{
 }
 
 .navbar{
-    /*background: #fff;*/
-    /*width: 100%;*/
-    /*height: 60px;*/
-    /*padding: 0 25px;*/
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /*box-shadow: 0 1px 2px rgba(0,0,0,0.1);*/
     color: #d9e8ea;
-}
-
-.navbar .navbar_left .logo a{
-    font-family: 'Trade Winds';
-    font-size: 20px;
 }
 
 .navbar .navbar_right{
     display: flex;
-}
-
-.navbar .navbar_right img{
-    width: 35px;
 }
 
 .navbar .navbar_right .icon_wrap{
@@ -422,19 +390,23 @@ a{
     padding: 10px 20px;
     display: flex;
     align-items: center;
+    flex-direction: row;
+}
+
+.left_content {
+    width: 60%;
+    color: #7f7c7c;
+}
+
+.right_content {
+    width: 35%;
+    float: right;
+    color: #7f7c7c;
 }
 
 .notification_ul {
     padding-inline-start: 20px;
     padding-inline-end: 20px
-}
-
-.notification_dd li .notify_status p{
-    font-size: 12px;
-}
-
-.notification_dd li.failed .notify_status p{
-    color: #fb0001;
 }
 
 .notification_dd li.show_all{

@@ -69,37 +69,93 @@
 
                         <div class="notification_dd">
                             <ul class="notification_ul">
-                                <?php if (boolval($notifications)){
-                                for ($i = 0; $i < sizeof($notifications);$i++){ ?>
-                                <li class="">
-                                    <?php print_r($notifications[$i]); ?>
-                                </li>
-                                <?php }
+                                <?php $notifications = Auth::notification();
+                                if (boolval($notifications)) {
+                                    if (sizeof($notifications) <= 5) {
+                                        for ($j = 0; $j < sizeof($notifications); $j++) {
+                                            ?>
+                                            <li class="">
+                                                <div class="left_content">
+                                                    <?php print_r($notifications[$j]->description); ?>
+                                                </div>
+                                                <div class="right_content">
+                                                    <?php
+                                                    date_default_timezone_set("Asia/Colombo");
+                                                    $day1=date("y-m-d");
+                                                    $day2=$notifications[$j]->date;
+                                                    $date1 = date_create($day1);
+                                                    $date2=date_create($day2);
+                                                    $diff=date_diff($date2,$date1);
+                                                    $days = $diff->format("%R%a days");
+                                                    if($days >= 1){
+                                                        echo $days;
+                                                    } else {
+                                                       $t1 = $notifications[$j]->time;
+                                                       $t2 = date("H:m:s");
+                                                       $time1 = date_create($t1);
+                                                       $time2 = date_create($t2);
+                                                       $time_diff = date_diff($time2,$time1);
+                                                       if($time_diff->h < 1){
+                                                           $minutes = $time_diff->days * 24 * 60;
+                                                           $minutes += $time_diff->h * 60;
+                                                           $minutes += $time_diff->i;
+                                                           echo $minutes.' minutes ago';
+                                                       }
+                                                       else {
+                                                           echo $time_diff->h . "h ago";
+                                                       }
+                                                    }
+                                                    ?>
+                                                </div>
+                                            </li>
+
+                                        <?php }
+                                    } else {
+                                        for ($j = 0; $j < 5; $j++) {
+                                            ?>
+                                            <li class="">
+                                                <div class="left_content">
+                                                    <?php print_r($notifications[$j]->description); ?>
+                                                </div>
+                                                <div class="right_content">
+                                                    <?php
+
+                                                    date_default_timezone_set("Asia/Colombo");
+                                                    $day1 = date("y-m-d");
+                                                    $day2 = $notifications[$j]->date;
+                                                    $date1 = date_create($day1);
+                                                    $date2 = date_create($day2);
+                                                    $diff = date_diff($date2, $date1);
+                                                    $days = $diff->format("%R%a days");
+                                                    if ($days >= 1) {
+                                                        echo $days;
+                                                    } else {
+                                                        $t1 = $notifications[$j]->time;
+                                                        $t2 = date("H:m:s");
+                                                        $time1 = date_create($t1);
+                                                        $time2 = date_create($t2);
+                                                        $time_diff = date_diff($time2, $time1);
+                                                        if ($time_diff->h < 1) {
+                                                            $minutes = $time_diff->days * 24 * 60;
+                                                            $minutes += $time_diff->h * 60;
+                                                            $minutes += $time_diff->i;
+                                                            echo $minutes . ' minutes ago';
+                                                        } else {
+                                                            echo $time_diff->h . "h ago";
+                                                        }
+                                                    }
+
+                                                    ?>
+                                                </div>
+                                            </li>
+                                        <?php }
+                                    }
                                 } ?>
-                                <li class="">
 
-                                </li>
-                                <li class="">
-
-                                </li>
-                                <li class="">
-
-                                </li>
-                                <li class="">
-
-                                </li>
                                 <li class="show_all">
                                     <p class="link">Show All Activities</p>
                                 </li>
                             </ul>
-                        </div>
-
-                    </div>
-                    <div class="profile">
-
-
-                        <div class="profile_dd">
-
                         </div>
                     </div>
                 </div>
@@ -114,29 +170,51 @@
                                 <p>All Notifications</p>
                                 <p class="close"><i class="fas fa-times" aria-hidden="true"></i></p>
                             </li>
-                            <li class="">
+                            <?php
+                            if (boolval($notifications)) {
+                                foreach ($notifications as $i) {
+                                    ?>
+                                    <li>
+                                        <div class="left_content">
+                                            <?php print_r($i->description); ?>
+                                        </div>
+                                        <div class="right_content">
+                                            <?php
 
-                            </li>
-                            <li class="">
+                                            date_default_timezone_set("Asia/Colombo");
+                                            $day1 = date("y-m-d");
+                                            $day2 = $i->date;
+                                            $date1 = date_create($day1);
+                                            $date2 = date_create($day2);
+                                            $diff = date_diff($date2, $date1);
+                                            $days = $diff->format("%R%a days");
+                                            if ($days >= 1) {
+                                                echo $days;
+                                            } else {
+                                                $t1 = $i->time;
+                                                $t2 = date("H:m:s");
+                                                $time1 = date_create($t1);
+                                                $time2 = date_create($t2);
+                                                $time_diff = date_diff($time2, $time1);
+                                                if ($time_diff->h < 1) {
+                                                    $minutes = $time_diff->days * 24 * 60;
+                                                    $minutes += $time_diff->h * 60;
+                                                    $minutes += $time_diff->i;
+                                                    echo $minutes . ' minutes ago';
+                                                } else {
+                                                    echo $time_diff->h . "h ago";
+                                                }
+                                            }
 
-                            </li>
-                            <li class="">
-
-                            </li>
-                            <li class="">
-
-                            </li>
-                            <li class="">
-
-                            </li>
-                            <li class="">
-
-                            </li>
+                                            ?>
+                                        </div>
+                                    </li>
+                                <?php }
+                            } ?>
                         </ul>
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="logged_name">
             <span class=log_name><?= Auth::getfirst_name() ?></span>

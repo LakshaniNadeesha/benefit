@@ -62,6 +62,15 @@ class Auth
 		return false;
 
 	}
+
+	public static function notification(){
+	    if(isset($_SESSION['USER'])){
+	        $id = $_SESSION['USER']->employee_ID;
+	        $notification = new NotificationModel();
+	        $rows = $notification->findAll();
+	        return $rows;
+        }
+    }
 	
 
 	public static function __callStatic($method,$params)

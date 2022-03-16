@@ -7,7 +7,8 @@ class Notification extends Controller {
         }
         $user = new NotificationModel();
         $notifications = $user->findAll();
+        $notifications = $notifications[0];
         print_r($notifications);
-        $this->view('/includes/header1',['notifications'=>$notifications]);
+        $this->view('',['notifications'=>$notifications]);
     }
 }
