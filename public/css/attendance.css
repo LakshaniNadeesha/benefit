@@ -77,7 +77,7 @@ body {
     margin: 10px;
 }
 
-form {
+.fill_form {
     display: flex;
     flex-direction: row;
 }
@@ -98,8 +98,10 @@ form {
     margin-bottom: auto;
 }
 
-.emp_list p {
-
+.to-do{
+    color: #14a314;
+    font-weight: bold;
+    font-size: large;
 }
 
 .emp_list hr {
@@ -164,6 +166,12 @@ form {
 }
 
 /*History table*/
+#h-table {
+    overflow-y: auto;
+    max-height: 350px;
+    padding-bottom: 10px;
+}
+
 table {
     width: 100%;
     margin-left: 0;
@@ -178,6 +186,7 @@ table tr {
     border-left: 2px solid var(--h2);
     border-top: 2px solid var(--h2);
     border-bottom: 2px solid var(--h2);
+    overflow-y: scroll;
 }
 
 table th, table td {
@@ -187,7 +196,12 @@ table th, table td {
 }
 
 table th {
+    background-color: var(--h2);
     height: 56px;
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 0;
+    top: -2px;
 }
 
 table td {

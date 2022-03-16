@@ -53,7 +53,6 @@ class Markattendance extends Controller
                     } elseif ($all_emp[$i]->department_ID == 4) {
                         $all_emp[$i]->department_ID = 'Account Department';
                     }
-                    //print_r($all_emp[$i]);
 
                     //Filter today's not marked employees
                     $array1 = $previous->where_condition('employee_ID', 'date', $all_emp[$i]->employee_ID, $today);
@@ -68,11 +67,10 @@ class Markattendance extends Controller
                         for($n=0;$n<sizeof($array2);$n++){
                             $not_marked_prev[$j] = $array2[$n];
                             $not_marked_prev[$j]->profile_iamge = $all_emp[$i]->profile_image;
-                            print_r($not_marked_prev[$j]);
+                            $not_marked_prev[$j]->designation_code = $all_emp[$i]->designation_code;
                             $j++;
                         }
                     }
-                    //print_r($array2);
                 }
             }
 
