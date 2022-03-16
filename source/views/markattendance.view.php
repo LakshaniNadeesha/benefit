@@ -90,23 +90,27 @@
                                                 $select .= $i;
                                                 ?>
                                                 <input type="checkbox" id="<?php echo $select ?>" name="person[]"
-                                                       value="<?php print_r($not_marked[$i]->employee_ID); ?>">
+                                                       value="<?php print_r($not_marked[$i]->employee_ID); ?>" onclick="checkMe(this.id)">
+                                                <script>
+                                                    const hideBox = document.querySelector('<?php echo "#" . $select;?>');
+                                                    hideBox.addEventListener('change', function (e) {
+                                                        if (hideBox.checked) {
+                                                            list.style.display = "initial";
+                                                        } else {
+                                                            list.style.display = "none";
+                                                        }
+                                                    });
+                                                </script>
                                                 <a href="http://localhost/benefit/markattendance/absent/<?php print_r($not_marked[$i]->employee_ID); ?>/<?php echo date('Y-m-d'); ?>">
                                                     <i class="fa fa-times-circle" aria-hidden="true"></i></a>
                                             </div>
 
-                                            <script>
-                                                const hideBox = document.querySelector('--><?php echo "#" . $select;?>');
-                                                hideBox.addEventListener('change', function (e) {
-                                                    if (hideBox.checked) {
-                                                        list.style.display = "initial";
-                                                    } else {
-                                                        list.style.display = "none";
-                                                    }
-                                                });
-                                            </script>
+
                                             <?php
                                         }
+                                    } else {
+                                        echo "No employees yet!";
+                                        echo "<br><br>";
                                     } ?>
                                     <hr>
                                     <?php if (boolval($previous)) { ?>
@@ -119,55 +123,69 @@
                                                      class="on-leave-people">
                                                 <p class="content1"><?php print_r($previous[$j]->name); ?></p>
 
-                                                <p class="content2"><?php print_r($previous[$j]->date) ?>
+                                                <p class="content2" id="previousDate"><?php print_r($previous[$j]->date) ?>
                                                 <p class="content3"><?php print_r($previous[$j]->designation_code) ?></p>
                                                 <?php
-                                                $select = 'select';
-                                                $select .= $i;
+                                                $selected = 'selected';
+                                                $selected .= $j;
                                                 ?>
-                                                <input type="number"
-                                                       value="<?php print_r($not_marked[$i]->employee_ID); ?>" hidden>
-                                                <i class="fa fa-check-square" aria-hidden="true"></i>
-                                                <a href="http://localhost/benefit/markattendance/absent/<?php print_r($not_marked[$i]->employee_ID); ?>/<?php echo date('Y-m-d'); ?>">
+                                                <input type="checkbox" id="<?php echo $selected ?>" value="<?php print_r($previous[$j]->employee_ID); ?>" onclick="checkThis(this.id)" >
+<!--                                                <i class="fa fa-check-square" aria-hidden="true"></i>-->
+                                                <a href="http://localhost/benefit/markattendance/absent/<?php print_r($previous[$j]->employee_ID); ?>/<?php print_r($previous[$j]->date); ?>">
                                                     <i class="fa fa-times-circle" aria-hidden="true"></i></a>
                                             </div>
 
                                             <?php
-                                        }
-                                    } else {
-                                        echo "No employees yet!";
-                                        echo "<br><br>";
+                                        }?>
+                                        <hr>
+                                    <?php
                                     } ?>
-                                    <hr>
+
                                 </div>
                             </div>
                         </div>
 
-                        <div class="attendance_form">
+                        <div class="attendance_form" id="attendance_form">
                             <div class="form-title">Fill This</div>
                             <div class="form-content">
                                 <div class="date">
                                     <label for="date">Date : </label>
-                                    <input type="date" name="date" id="name" value="<?php echo date('Y-m-d'); ?>"
+                                    <input type="date" name="date" id="date" value="<?php echo date('Y-m-d'); ?>"
                                            required>
                                 </div>
                                 <div class="selected-names">
                                     <?php
                                     if (boolval($not_marked)) {
                                         for ($i = 0; $i < sizeof($not_marked); $i++) {
-                                            $list = 'list';
-                                            $list .= $i;
+                                            $ab_select = 'ab_select';
+                                            $ab_select .= $i;
                                             ?>
-                                            <div class="box" id="<?php echo $list ?>">
+                                            <div class="box" id="<?php echo $ab_select ?>">
                                                 <img src="<?php print_r($not_marked[$i]->profile_image) ?>"
                                                      alt="on-leave-people"
                                                      class="on-leave-people">
                                                 <p class="content"><?php print_r($not_marked[$i]->first_name); ?></p>
                                             </div>
                                             <script>
-                                                const list = document.querySelector('<?php echo "#" . $list;?>');
+                                                const list = document.querySelector('<?php echo "#" . $ab_select;?>');
                                             </script>
                                             <?php
+                                        }
+                                    } ?>
+                                    <?php
+                                    if (boolval($previous)) {
+                                    for ($i = 0; $i < sizeof($previous); $i++) {
+                                    $abs_selected = 'abs_selected';
+                                    $abs_selected .= $i;
+                                    ?>
+                                    <div class="box" id="<?php echo $abs_selected ?>">
+                                        <img src="<?php print_r($previous[$i]->profile_image) ?>"
+                                             alt="on-leave-people"
+                                             class="on-leave-people">
+                                        <p class="content"><?php print_r($previous[$i]->name); ?></p>
+                                    </div>
+
+                                    <?php
                                         }
                                     } ?>
                                 </div>
@@ -268,6 +286,43 @@
         </div>
     </div>
 </div>
+<script>
+    function checkMe(select){
+        var check = document.getElementById(select);
+        var border = document.getElementById('attendance_form');
+        let text1 = select;
+        let text2 = "ab_";
+        let t = text2.concat(text1);
+        var show = document.getElementById(t);
+        if(check.checked==true){
+            show.style.display = "block";
+            border.style.border = "3px solid orange";
+        } else {
+            show.style.display = "none";
+          border.style.border = "2px solid var(--h1)";
+        }
+    }
+
+    function checkThis(selected){
+        var check = document.getElementById(selected);
+        var border = document.getElementById('attendance_form');
+        var date = document.getElementById('date');
+        var previousDate = document.getElementById('previousDate');
+        let text1 = selected;
+        let text2 = "abs_";
+        let t = text2.concat(text1);
+        var show = document.getElementById(t);
+        if(check.checked==true){
+            show.style.display = "block";
+            border.style.border = "3px solid orange";
+            console.log(previousDate);
+            //date.value = previousDate;
+        } else {
+            show.style.display = "none";
+            border.style.border = "2px solid var(--h1)";
+        }
+    }
+</script>
 <script>
     var slideIndex = 1;
     showSlides(slideIndex);

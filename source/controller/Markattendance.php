@@ -66,7 +66,7 @@ class Markattendance extends Controller
                     if(boolval($array2)){
                         for($n=0;$n<sizeof($array2);$n++){
                             $not_marked_prev[$j] = $array2[$n];
-                            $not_marked_prev[$j]->profile_iamge = $all_emp[$i]->profile_image;
+                            $not_marked_prev[$j]->profile_image = $all_emp[$i]->profile_image;
                             $not_marked_prev[$j]->designation_code = $all_emp[$i]->designation_code;
                             $j++;
                         }
