@@ -14,11 +14,12 @@ body {
     height: 100vh;
     padding: 10px;
     display: flex;
+    flex-direction: row;
 }
 
 .on_leave {
     width: 20%;
-    height: min-content;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -56,7 +57,7 @@ body {
 
 .section2 {
     /*padding-top: 10px;*/
-    height: min-content;
+    height: 100%;
     margin: 0 10px 10px;
     border-radius: 5px;
     background-color: #e8f8f8;
@@ -76,9 +77,15 @@ body {
     margin: 10px;
 }
 
+form {
+    display: flex;
+    flex-direction: row;
+}
+
 .emp_list .to-be-add {
-    width: 80%;
+    width: 100%;
     margin-bottom: 15px;
+}
 }
 
 .emp_list .title {
@@ -508,14 +515,6 @@ tr:nth-child(even) {
 
 /*slide show*/
 
-
-/* Slideshow container */
-/*.slideshow-container {*/
-/*    max-width: 1000px;*/
-/*    position: relative;*/
-/*    margin: auto;*/
-/*}*/
-
 /* Hide the div by default */
 .mySlides {
     display: none;
@@ -530,10 +529,7 @@ tr:nth-child(even) {
 /* Next & previous buttons */
 .prev, .next {
     cursor: pointer;
-    /*position: absolute;*/
-    /*top: 50%;*/
     width: auto;
-    /*margin-top: -22px;*/
     padding: 16px;
     color: white;
     font-weight: bold;
@@ -567,7 +563,7 @@ tr:nth-child(even) {
     transition: background-color 0.6s ease;
 }
 
-.active, .dot:hover {
+.dot.active, .dot:hover {
     background-color: #717171;
 }
 
@@ -579,6 +575,16 @@ tr:nth-child(even) {
     animation-duration: 1.5s;
 }
 
+.missing{
+    color: #8e3948;
+    font-weight: bold;
+    font-size: large;
+}
+
+.fa .fa-check-square {
+    color: green;
+}
+
 @-webkit-keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
@@ -587,4 +593,10 @@ tr:nth-child(even) {
 @keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
+}
+
+@media screen and (max-width: 1120px) {
+    .main_container {
+        flex-direction: column;
+    }
 }

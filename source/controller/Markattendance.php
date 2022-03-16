@@ -22,13 +22,14 @@ class Markattendance extends Controller
             $all_emp = $user->where('supervisor_ID', $id);
             //print_r($all_emp);
 
+            date_default_timezone_set("Asia/Colombo");
             $today = date("Y-m-d");
             //$today = "2021-12-21";
 
             $j=0; $k=0;
             $marked = array();
             $not_marked = array();
-            $array2 = array();
+            $not_marked_prev = array();
             if (boolval($all_emp)) {
                 for ($i = 0; $i < sizeof($all_emp); $i++) {
                     if ($all_emp[$i]->designation_code == 1) {
@@ -52,6 +53,7 @@ class Markattendance extends Controller
                     } elseif ($all_emp[$i]->department_ID == 4) {
                         $all_emp[$i]->department_ID = 'Account Department';
                     }
+                    //print_r($all_emp[$i]);
 
                     //Filter today's not marked employees
                     $array1 = $previous->where_condition('employee_ID', 'date', $all_emp[$i]->employee_ID, $today);
@@ -61,7 +63,15 @@ class Markattendance extends Controller
                         $k++;
                     }
 
-                    $array2 = $previous->where('employee_ID',$all_emp[$i]->employee_ID);
+                    $array2 = $previous->where_not('employee_ID','date',$all_emp[$i]->employee_ID,$today);
+                    if(boolval($array2)){
+                        for($n=0;$n<sizeof($array2);$n++){
+                            $not_marked_prev[$j] = $array2[$n];
+                            $not_marked_prev[$j]->profile_iamge = $all_emp[$i]->profile_image;
+                            print_r($not_marked_prev[$j]);
+                            $j++;
+                        }
+                    }
                     //print_r($array2);
                 }
             }
@@ -143,7 +153,7 @@ class Markattendance extends Controller
                 }
             }
 
-            $this->view('markattendance', ['not_marked'=>$not_marked, 'history'=>$history, 'previous'=>$array2]);
+            $this->view('markattendance', ['not_marked'=>$not_marked, 'history'=>$history, 'previous'=>$not_marked_prev]);
         } else {
             $this->view('404');
         }
