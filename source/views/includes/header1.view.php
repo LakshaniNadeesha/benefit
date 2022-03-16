@@ -75,8 +75,8 @@
                                         for ($j = 0; $j < sizeof($notifications); $j++) {
                                             ?>
                                             <li class="">
-                                                <div class="left_content">
-                                                    <?php print_r($notifications[$j]->description); ?>
+                                                    <div class="left_content">
+                                                        <a href="<?= PATH ?>Approvebenefit" class="link"><?php print_r($notifications[$j]->description); ?></a>
                                                 </div>
                                                 <div class="right_content">
                                                     <?php

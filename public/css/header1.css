@@ -388,9 +388,16 @@ a{
 .notification_dd li {
     border-bottom: 1px solid #f1f2f4;
     padding: 10px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     flex-direction: row;
+    cursor: pointer;
+}
+
+.link {
+    font-size: medium;
 }
 
 .left_content {
