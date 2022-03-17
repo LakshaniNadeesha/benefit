@@ -129,7 +129,7 @@
                                                 $selected = 'selected';
                                                 $selected .= $j;
                                                 ?>
-                                                <input type="checkbox" id="<?php echo $selected ?>" value="<?php print_r($previous[$j]->employee_ID); ?>" onclick="checkThis(this.id)" >
+                                                <input type="checkbox" class="mark" id="<?php echo $selected ?>" value="<?php print_r($previous[$j]->employee_ID); ?>" onclick="checkThis(this.id)" name="person[]">
 <!--                                                <i class="fa fa-check-square" aria-hidden="true"></i>-->
                                                 <a href="http://localhost/benefit/markattendance/absent/<?php print_r($previous[$j]->employee_ID); ?>/<?php print_r($previous[$j]->date); ?>">
                                                     <i class="fa fa-times-circle" aria-hidden="true"></i></a>
@@ -138,6 +138,11 @@
                                             <?php
                                         }?>
                                         <hr>
+                                        <script type="text/javascript">
+                                            $('.mark').on('change', function() {
+                                                $('.mark').not(this).prop('checked', false);
+                                            });
+                                        </script>
                                     <?php
                                     } ?>
 
@@ -149,7 +154,7 @@
                             <div class="form-title">Fill This</div>
                             <div class="form-content">
                                 <div class="date">
-                                    <label for="date">Date : </label>
+                                    <div for="date">Date : </div>
                                     <input type="date" name="date" id="date" value="<?php echo date('Y-m-d'); ?>"
                                            required>
                                 </div>
@@ -299,7 +304,7 @@
             border.style.border = "3px solid orange";
         } else {
             show.style.display = "none";
-          border.style.border = "2px solid var(--h1)";
+            border.style.border = "2px solid var(--h1)";
         }
     }
 
@@ -315,8 +320,19 @@
         if(check.checked==true){
             show.style.display = "block";
             border.style.border = "3px solid orange";
+            date.value = previousDate;
+
+            //var today = new Date();
+            //previousDate = previousDate.value.split("-").reverse().join("-");
+            //var dd = String(previousDate.getDate()).padStart(2, '0');
+            //var mm = String(previousDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+            //var yyyy = previousDate.getFullYear();
+
+            //previousDate = mm + '/' + dd + '/' + yyyy;
             console.log(previousDate);
-            //date.value = previousDate;
+            console.log(typeof previousDate);
+
+            //console.log(date.value);
         } else {
             show.style.display = "none";
             border.style.border = "2px solid var(--h1)";
