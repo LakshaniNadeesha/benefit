@@ -15,7 +15,6 @@
 <body>
 
 <div class="header">
-
     <ul>
         <?php if (Auth::access('Supervisor')): ?>
             <li><a href="<?= PATH ?>Approvereimbursement"><i class="fas fa-coins"></i><span>Handle Reimbursements</span></a></li>
@@ -24,7 +23,16 @@
             <li><a href="<?= PATH ?>Markattendance"><i class="fas fa-user-check"></i><span>Attendance</span></a></li>
         <?php endif; ?>
     </ul>
-
+</div>
+<div class="stroke2">
+    <ul>
+        <?php if(Auth::access('Supervisor')): ?>
+            <li title="Handle Reimbursements"><a href="<?= PATH ?>Approvereimbursement"><i class="fas fa-coins"></i></a></li>
+            <li title="Handle Time Off"><a href="<?= PATH ?>LeaveapproveController"><i class="fas fa-calendar-week"></i></a></li>
+            <li title="Handle Performance"><a href="<?= PATH ?>Supervisor/Performance"><i class="fas fa-edit"></i></a></li>
+            <li title="Attendance"><a href="<?= PATH ?>Markattendance"><i class="fas fa-user-check"></i></a></li>
+        <?php endif; ?>
+    </ul>
 </div>
 </body>
 

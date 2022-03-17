@@ -248,6 +248,9 @@ body {
 }
 
 @media screen and (max-width: 930px) {
+    /*.toggle_section {*/
+    /*    flex-direction: row-reverse;*/
+    /*}*/
 
     .topnav.responsive {
         min-width: 100%;
@@ -262,7 +265,7 @@ body {
     }
 }
 
-@media screen and (max-width: 930px) {
+@media screen and (max-width: 940px) {
     .topnav.responsive {position: relative;}
     .topnav.responsive .icon {
         position: absolute;
@@ -306,12 +309,16 @@ body {
         height: 2px;
     }
 
-    .toggle_section {
-        display: none;
-    }
+    /*.toggle_section {*/
+    /*    display: none;*/
+    /*}*/
 
     #show_hide {
         display: block !important;
+    }
+
+    .toggle_section {
+        margin-top: 0;
     }
 }
 

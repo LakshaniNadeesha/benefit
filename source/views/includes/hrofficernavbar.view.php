@@ -15,17 +15,25 @@
 <body>
 
 <div class="header">
-
     <ul>
         <?php if (Auth::access('HR Officer')): ?>
             <li><a href="<?= PATH ?>AddemployeeController"><i class="far fa-address-book"></i><span>Registration</span></a></li>
-            <li><a href="<?= PATH ?>EmployeelistController"><i class="fas fa-calendar-week"></i></i>
+            <li><a href="<?= PATH ?>EmployeelistController"><i class="fas fa-calendar-week"></i>
                     <span>Remove Employees</span></a></li>
             <li><a href="<?= PATH ?>Hrdocuments/updatedocuments"><i class="fas fa-edit"></i><span>Update Documents</span></a></li>
             <li><a href="<?= PATH ?>Benefit/update"><i class="fas fa-edit"></i><span>Update Benefits</span></a></li>
         <?php endif; ?>
     </ul>
-
+</div>
+<div class="stroke2">
+    <ul>
+    <?php if(Auth::access('HR Officer')): ?>
+        <li title="Registration"><a href="<?= PATH ?>AddemployeeController"><i class="far fa-address-book"></i></a></li>
+        <li title="Remove Employees"><a href="<?= PATH ?>EmployeelistController"><i class="fas fa-calendar-week"></i></a></li>
+        <li title="Update Documents"><a href="<?= PATH ?>Hrdocuments/updatedocuments"><i class="fas fa-edit"></i></a></li>
+        <li title="Update Benefits"><a href="<?= PATH ?>Benefit/update"><i class="fas fa-edit"></i></a></li>
+    <?php endif; ?>
+    </ul>
 </div>
 </body>
 
