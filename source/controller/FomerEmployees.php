@@ -1,0 +1,7 @@
+<?php
+
+/**
+ * former employees controller
+ */
+
+}
