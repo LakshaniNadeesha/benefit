@@ -53,11 +53,11 @@ class Auth
 			$id= $_SESSION['USER']->supervisor_ID;
 			$ro=array();
 			$super=new Employeedetails();
-			$ro=$super->where('supervisor_ID',$id);
+			$ro=$super->where('employee_ID',$id,);
 			$ro=$ro[0];
 
-				$ro=$ro->first_name;
-				return $ro;
+				return $ro->first_name;
+				//return $ro;
 		}
 		return false;
 
