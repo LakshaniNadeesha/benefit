@@ -1,6 +1,6 @@
 <?php
 
-class Hierarchy extends Controller
+class Outcomes extends Controller
 {
 	
 	function index()
@@ -11,35 +11,29 @@ class Hierarchy extends Controller
 			$this->redirect('login');
 		}
 		
-//		$user = new Employeedetails();
-//		$arr = $user->findAll();
-//
-//		$root = $user->where('supervisor_ID','0');
-//		$select = array();
-//		$select[0] = $root;
-//		//print_r($select);
-//		//print_r($select[0][0]->employee_ID);
-//        //print_r(sizeof($arr));
-//
-//        $visited = array();
-//        for($v=0;$v<sizeof($arr);$v++){
-//            $visited[$v] = false;
-//        }
-//
-//        $visited[0] = true;
-//
-//		for($i=0; $i<sizeof($arr);$i++){
-//            for($j=0;$j<sizeof($arr);$j++){
-//                $k = $i;
-//                if($select[$i]->employee_ID == $arr[$j]->supervisor_ID){
-//                    $k=$k+1;
-//                    $select[$k] = $arr[$j];
-//                }
-//            }
-//            //print_r($arr[$i]->supervisor_ID);
-//        }
+		$user=new OutcomesModel();
+		$row=$user->findAll();
 
-		$this->view('hierarchy');
+		$this->view('outcomes',['row'=>$row]);
 		
+	}
+
+
+	function addpost(){
+
+		if(isset($_POST)){
+			
+			if(count($_POST)>0){
+
+				$arr['title']=$_POST['title'];
+				$arr['description']=$_POST['outcomes'];
+				$arr['date']=$_POST['date'];
+				$user=new OutcomesModel();
+				$row=$user->insert($arr);
+				$this->redirect('outcomes');
+			}
+		}
+
+		$this->view('outcomes.addpost');
 	}
 }
