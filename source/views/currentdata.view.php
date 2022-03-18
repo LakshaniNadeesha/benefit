@@ -34,7 +34,6 @@
             ?>
         </div>
     <?php endif; ?>
-    <div>Fill Current Details On Benefits & Time Offs</div>
     <form method="post">
         <div class="dates">
             <div class="top_row">
@@ -132,7 +131,6 @@
                     </div>
                 </div>
             </div>
-            <hr>
             <div class="leave_section">
                 <div class="left_section">
                     <div class="table_title">
@@ -216,6 +214,7 @@
                         </button>
                     </div>
                 </div>
+
             </div>
         </div>
         <div class="buttons">
@@ -223,6 +222,11 @@
             <input type="submit" name="submit">
         </div>
     </form>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 50 1440 200">
+        <path fill="#0f9eb8" fill-opacity="1" d="M0,160L48,144C96,128,192,96,288,80C384,
+            64,480,64,576,96C672,128,768,192,864,192C960,192,1056,128,1152,90.7C1248,53,1344,43,1392,37.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,
+            320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
 </div>
 <script>
     function getCount(){

@@ -99,6 +99,7 @@ body {
     width: 50%;
     height: 100%;
     margin: 10px;
+    /*box-shadow:  0 0 20px -5px rgb(0 0 0 / 50%);*/
 }
 
 .form_title {
@@ -170,7 +171,7 @@ input {
 .buttons {
     display: flex;
     justify-content: right;
-    margin-right: 15px;
+    margin-right: 25px;
     margin-bottom: 10px;
 }
 

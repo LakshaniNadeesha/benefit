@@ -172,6 +172,11 @@ img {
     background-color: white;
 }
 
+.cards a {
+    color: green;
+    margin: auto 10px;
+}
+
 input {
     width: 0;
     visibility: hidden;

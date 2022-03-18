@@ -136,11 +136,8 @@
                 </ul>
             <?php } ?>
         </div>
-
     </div>
-    <center>
-        <img src="<?= IMG_PATH ?>down.png"  alt="" class="img">
-    </center>
+
 </div>
 <script>
     //Add button
