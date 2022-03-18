@@ -403,7 +403,7 @@
                                 <td id="c4"></td>
                                 <td id="c5"></td>
                                 <td id="c6"></td>
-                                <td id="c7" class="button"><button type="submit" id="add" name="submit">Add</button></td>
+                                <td id="c7" class="button"><a href='' onclick="this.href='<?= PATH ?>/Currentdata/'+document.getElementById('hired').value"><button type="submit" id="add" name="submit">Add</button></a></td>
                                 <td id="c8"></td>
                             </tr>   
                         </table>

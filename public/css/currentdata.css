@@ -1,0 +1,189 @@
+@import "color.css";
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Robot, sans-serif;
+    background-color: var(--w);
+}
+
+.dates {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.dates .top_row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+
+}
+
+.dates .top_row label {
+    width: max-content;
+    margin-right: 5px;
+}
+
+.dates .top_row input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.dates #hired {
+    color: var(--header);
+}
+
+.dates .top_row input:focus {
+    outline: none;
+}
+
+.main_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: var(--f);
+}
+
+.benefit_section, .leave_section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.left_section {
+    width: 50%;
+    height: 100%;
+    margin: 10px;
+}
+
+.table_title, .form_title {
+    font-size: large;
+    font-weight: bold;
+    color: var(--header);
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.current_data {
+    width: 100%;
+    margin: 10px;
+    text-align: center;
+    border: 1px solid #0f9eb8;
+
+}
+
+.current_data tr th {
+    background-color: #0f9eb8;
+    color: var(--w);
+    height: 56px;
+    padding: 5px;
+}
+
+.current_data tr td {
+    height: 52px;
+    border-bottom: 1px solid var(--grey);
+
+}
+
+.right_section {
+    width: 50%;
+    height: 100%;
+    margin: 10px;
+}
+
+.form_title {
+
+}
+
+.benefit_form {
+    margin: 10px;
+    width: 90%;
+}
+
+.row_type {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+
+}
+
+.row p {
+    color: #0f9eb8;
+    font-weight: bold;
+}
+
+.row label, .row input {
+    width: 50%;
+}
+
+.row input {
+    height: max-content;
+    border: none;
+    border-bottom: 1px solid var(--f);
+}
+
+.row_type .code {
+    max-width: 50px;
+    border: none;
+}
+
+.row_type .type {
+    border: none;
+}
+
+.row_type input {
+    font-size: medium;
+    color: #0f9eb8;
+}
+
+.benefit_form hr {
+    margin-top: 20px;
+}
+
+input {
+    font-size: medium;
+}
+
+.calculation {
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: right;
+    margin-right: 15px;
+    margin-bottom: 10px;
+}
+
+.buttons input[type=reset]{
+    background-color: var(--w);
+    color: var(--f);
+    height: 30px;
+    width: 70px;
+    margin-right: 10px;
+}
+
+.buttons input[type=submit] {
+    background-color: var(--header);
+    color: var(--w);
+
+}

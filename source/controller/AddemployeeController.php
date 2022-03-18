@@ -196,7 +196,7 @@ class AddemployeeController extends Controller
 					// echo $jsvalidate;
 					// $arr1[9] = "ff";
 					if($jsvalidate){
-						$this->redirect('AddemployeeRedirectController');	
+						$this->redirect('Currentdata/'.$arr['employee_NIC'].'/'.$arr['hired'].'/'.$arr['first_name'].'/'.$arr['last_name']);
 					}
 				}
 				else{
