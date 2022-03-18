@@ -38,18 +38,26 @@
     <form method="post">
         <div class="dates">
             <div class="top_row">
-                <label>Employee NIC : </label><input type="text" name="employee_ID" value="<?php if(boolval($nic)){ echo $nic;}?>" >
+                <label>Employee NIC : </label><input type="text" name="employee_ID" value="<?php if (boolval($nic)) {
+                    echo $nic;
+                } ?>">
             </div>
             <div class="top_row">
-                <label>Name : </label><input type="text" name="name" value="<?php if (boolval($fname) && boolval($lname)){ echo $fname." ".$lname; } ?>" >
+                <label>Name : </label><input type="text" name="name"
+                                             value="<?php if (boolval($fname) && boolval($lname)) {
+                                                 echo $fname . " " . $lname;
+                                             } ?>">
             </div>
             <div class="top_row">
                 <?php $b_size = sizeof($benefit); ?>
-                <label id="hired">Hired date :</label><input type="date" id="hired" value="<?php if (boolval($hired)){ echo $hired; } ?>" >
-<!--                                                  onblur="getVal(--><?php //echo $b_size ?><!--)">-->
+                <label id="hired">Hired date :</label><input type="date" id="hired_date" value="<?php if (boolval($hired)) {
+                    echo $hired;
+                } ?>">
+                <!--                                                  onblur="getVal(-->
+                <?php //echo $b_size ?><!--)">-->
             </div>
             <div class="top_row">
-                <label>Today :</label><input type="date" value="<?php echo date('Y-m-d');?>" readonly>
+                <label>Today :</label><input type="date" value="<?php echo date('Y-m-d'); ?>" readonly>
             </div>
         </div>
         <div class="main_container">
@@ -89,8 +97,10 @@
                         <?php if (boolval($benefit)) {
                             for ($i = 0; $i < sizeof($benefit); $i++) { ?>
                                 <div class="row_type">
-                                    <input class="code" type="text" name="benefit_code[<?php echo $i; ?>]" value="<?php print_r($benefit[$i]->benefit_code);?>" readonly >
-                                    <input class="type" type="text" name="benefit_type[<?php echo $i;?>]" value="<?php print_r($benefit[$i]->benefit_type) ?>">
+                                    <input class="code" type="text" name="benefit_code[<?php echo $i; ?>]"
+                                           value="<?php print_r($benefit[$i]->benefit_code); ?>" readonly>
+                                    <input class="type" type="text" name="benefit_type[<?php echo $i; ?>]"
+                                           value="<?php print_r($benefit[$i]->benefit_type) ?>" readonly>
                                 </div>
                                 <div class="row">
                                     <label>Remaining Amount (LKR)</label>
@@ -100,20 +110,27 @@
                                     $max_amount = 'max_amount';
                                     $max_amount .= $i;
                                     ?>
-                                    <input type="text" name="remaining_amount[<?php echo $i; ?>]" id="<?php echo $remaining_amount ?>" required>
+                                    <input type="text" name="remaining_amount[<?php echo $i; ?>]"
+                                           id="<?php echo $remaining_amount ?>" required>
                                 </div>
                                 <div class="row">
-                                    <input type="text" name="max_amount[<?php echo $i; ?>]" id="<?php echo $max_amount ?>"
+                                    <input type="text" name="max_amount[<?php echo $i; ?>]"
+                                           id="<?php echo $max_amount ?>"
                                            value="<?php print_r($benefit[$i]->max_amount) ?>" hidden>
-                                    <input type="text" name="benefit_ID[<?php echo $i; ?>]" value="<?php print_r($benefit[$i]->benefit_ID) ?>" hidden>
+                                    <input type="text" name="benefit_ID[<?php echo $i; ?>]"
+                                           value="<?php print_r($benefit[$i]->benefit_ID) ?>" hidden>
                                 </div>
                             <?php }
                         } ?>
                     </div>
                     <div class="calculation">
-                    <button class="calculate_button" onclick="getVal(<?php if (boolval($b_size)) { echo $b_size; } ?>)"  type="button">Calculate</button>
+                        <button class="calculate_button" onclick="getVal(<?php if (boolval($b_size)) {
+                            echo $b_size;
+                        } ?>)" type="button">Calculate
+                        </button>
 
-                    </div></div>
+                    </div>
+                </div>
             </div>
             <hr>
             <div class="leave_section">
@@ -121,56 +138,82 @@
                     <div class="table_title">
                         Time Off Details
                     </div>
+                    <?php
+                    $year = date('Y') . '-12-31';
+                    $renew = date('Y-m-d', strtotime($year. ' + 1 days'));
+                    ?>
                     <table class="current_data">
                         <thead>
                         <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
+                            <th>Time Off Type</th>
+                            <th>Maximum Leave Count</th>
+                            <th>Renew Date</th>
                         </tr>
                         </thead>
-                        <?php if (boolval($leave)) {
-                            for ($i = 0; $i < sizeof($leave); $i++) { ?>
-                                <tr>
-                                    <td><?php ?></td>
-                                    <td><?php ?></td>
-                                    <td><?php ?></td>
-                                    <td><?php ?></td>
-                                    <td><?php ?></td>
-                                </tr>
-                            <?php }
-                        } ?>
+                        <tr>
+                            <td>Sick Leave</td>
+                            <td>07</td>
+                            <td><?php echo $renew ?></td>
+                        </tr>
+                        <tr>
+                            <td>Casual Leave</td>
+                            <td>07</td>
+                            <td><?php echo $renew ?></td>
+                        </tr>
+                        <tr>
+                            <td>Annual Leave</td>
+                            <td>14</td>
+                            <td><?php echo $renew ?></td>
+                        </tr>
+
                     </table>
                 </div>
                 <div class="right_section">
                     <div class="form_title">
                         Time Off Application
                     </div>
-                    <div class="benefit_form">
-                        <!--                    --><?php //if (boolval($leave)) {
-                        //                        for ($i = 0; $i < sizeof($leave); $i++) { ?>
-                        <div class="row">
-                            <p><?php
-                                echo " - ";
-                                ?> </p>
+                    <div class="leave_form">
+                        <div class="row_type">
+                            <input class="code" type="text" name="sick_ID" value="01" readonly>
+                            <input class="type" type="text" name="sick" value="Sick Leave" readonly>
                         </div>
                         <div class="row">
-                            <label>Maximum Amount</label>
-                            <input type="text">
+                            <label>Remaining Leave Count</label>
+                            <input type="text" name="sick_remaining" id="sick_remaining" required>
                         </div>
                         <div class="row">
-                            <label>Valid Years</label>
-                            <input type="number">
+                            <input type="text" name="sick_max" id="sick_max" value="7" hidden>
+                        </div>
+                    </div>
+                    <div class="leave_form">
+                        <div class="row_type">
+                            <input class="code" type="text" name="casual_ID" value="02" readonly>
+                            <input class="type" type="text" name="casual" value="Casual Leave" readonly>
                         </div>
                         <div class="row">
-                            <label>Valid Months</label>
-                            <input type="number">
+                            <label>Remaining Leave Count</label>
+                            <input type="text" name="casual_remaining" id="casual_remaining" required>
                         </div>
-                        <hr>
-                        <!--                        --><?php //}
-                        //                    } ?>
+                        <div class="row">
+                            <input type="text" name="casual_max" id="casual_max" value="7" hidden>
+                        </div>
+                    </div>
+                    <div class="leave_form">
+                        <div class="row_type">
+                            <input class="code" type="text" name="annual_ID" value="3" readonly>
+                            <input class="type" type="text" name="annual" value="Annual Leave" readonly>
+                        </div>
+                        <div class="row">
+                            <label>Remaining Leave Count</label>
+                            <input type="text" name="annual_remaining" id="annual_remaining" required>
+                        </div>
+                        <div class="row">
+                            <input type="text" name="annual_max" id="annual_max" value="14" hidden>
+                        </div>
+                    </div>
+                    <div class="calculation">
+                        <button class="calculate_button" onclick="getCount()" type="button">Calculate
+                        </button>
                     </div>
                 </div>
             </div>
@@ -182,8 +225,37 @@
     </form>
 </div>
 <script>
+    function getCount(){
+        const val = document.getElementById('hired_date').value;
+        const d = new Date(val);
+        let year = d.getFullYear();
+        const today = new Date();
+        let this_year = today.getFullYear();
+        console.log(val);
+        if(year == this_year){
+            let month = d.getMonth();
+            const sick_max = document.getElementById('sick_max').value;
+            var sick_remain = sick_max - ((month+1)/12)*sick_max;
+            document.getElementById('sick_remaining').value = Math.round(sick_remain);
+
+            const casual_max = document.getElementById('casual_max').value;
+            var casual_remain = casual_max - ((month+1)/12)*casual_max;
+            document.getElementById('casual_remaining').value = Math.round(casual_remain);
+
+            const annual_max = document.getElementById('annual_max').value;
+            var annual_remain = annual_max - ((month+1)/12)*annual_max;
+            document.getElementById('annual_remaining').value = Math.round(annual_remain);
+            console.log(annual_remain);
+        }
+        else {
+            document.getElementById('sick_remaining').value = document.getElementById('sick_max').value;
+            document.getElementById('casual_remaining').value = document.getElementById('casual_max').value;
+            document.getElementById('annual_remaining').value = document.getElementById('annual_max').value;
+        }
+    }
+
     function getVal(b_size) {
-        const val = document.querySelector('input').value;
+        const val = document.getElementById('hired_date').value;
         const d = new Date(val);
         let year = d.getFullYear();
         const today = new Date();
@@ -191,18 +263,17 @@
         var remaining_amount;
         var max_amount;
         //console.log(this_year);
-        console.log(d);
+        console.log(today);
         for (let j = 0; j < b_size; j++) {
             remaining_amount = 'remaining_amount' + j;
             max_amount = 'max_amount' + j;
             if (year == this_year) {
                 let month = d.getMonth();
                 const max = document.getElementById(max_amount).value;
-                var remain = max - ((month+1)/12)*max;
+                var remain = max - ((month + 1) / 12) * max;
                 document.getElementById(remaining_amount).value = remain.toFixed(2);
                 //console.log(month);
-            }
-            else {
+            } else {
                 document.getElementById(remaining_amount).value = document.getElementById(max_amount).value;
                 const m = document.getElementById(remaining_amount).value;
             }
