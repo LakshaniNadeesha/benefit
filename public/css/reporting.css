@@ -1,3 +1,4 @@
+@import "color.css";
 body {
     margin: 0;
     padding: 0;
@@ -16,11 +17,10 @@ body {
     /*transition: 0.5s;*/
 }
 
-
 .report_container {
     background-color: white;
     padding-bottom: 5px;
-    height: 250px;
+    height: 90%;
     border-radius: 10px;
     margin: 5px 5px 10px;
     display: flex;
@@ -66,7 +66,7 @@ body {
     background-color: #B2EBF2;
 }
 
-.download i{
+.download i {
     margin: 15px;
 }
 
@@ -78,7 +78,7 @@ body {
     opacity: 50%;
 }
 
-.chart{
+.chart {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -112,4 +112,83 @@ body {
 
 .select input {
     margin-bottom: 12px;
+}
+
+#claim_history_table {
+    width: 95%;
+    padding: 20px 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table {
+    padding-top: 10px;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+}
+
+table tr {
+    border-right: 2px solid var(--h2);
+    border-left: 2px solid var(--h2);
+    border-top: 2px solid var(--h2);
+    border-bottom: 2px solid var(--h2);
+}
+
+table th,
+table td {
+    height: 56px;
+    text-align: left;
+    padding-left: 8px;
+}
+
+table th {
+    height: 56px;
+}
+
+table td {
+    height: 52px;
+}
+
+tr:nth-child(even) {
+    background-color: var(--h2);
+}
+
+.btn {
+    background-color: #B2EBF2;
+    border-radius: 10px;
+    color: black;
+    padding: 12px 40px;
+    margin-left: 84%;
+    margin-top: 3%;
+    cursor: pointer;
+    font-size: 16px;
+    height: fit-content;
+    width: fit-content;
+}
+
+.view_btn {
+    background-color: #B2EBF2;
+    border-radius: 10px;
+    color: black;
+    padding: 12px 40px;
+    /* margin-left: 40%; */
+    margin-top: 1%;
+    margin-bottom: 2%;
+    cursor: pointer;
+    font-size: 16px;
+    height: fit-content;
+    width: fit-content;
+}
+
+.view_btn:hover {
+    background-color: blue;
+    color: white;
+}
+
+
+/* Darker background on mouse-over */
+
+.btn:hover {
+    background-color: blue;
+    color: white;
 }

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="<?= CSS_PATH ?>updatedocuments.css">
     <link rel="stylesheet" href="<?= CSS_PATH ?>benefits.css">
 
-    <title>HR Documents</title>
+    <title></title>
 </head>
 
 <body>
@@ -41,7 +41,8 @@
                                 <tr>
                                     <td><?php print_r($vai->document_name); ?></td>
                                     <td>  <button class="btn" onclick="document.getElementById('link-1').click()"><i class="fa fa-download"></i>      Download</button>
-                                     <a id="link-1" href="<?= DOC_PATH ?>employment-application-form.docx" download hidden></a></td>
+                                    <?php $doc = $vai->document_name; ?>
+                                    <a id="link-1" href="<?= DOC_PATH ?><?php $doc?>.docx" download hidden></a></td>
                                 </tr>
 
                             <?php 
@@ -76,7 +77,7 @@
                     <button class="btn" onclick="document.getElementById('link-3').click()"><i class="fa fa-download"></i>      Download</button>
                     <a id="link-3" href="<?= DOC_PATH ?>disciplinary-action-form.docx" download hidden></a>
                 </div>
-            </div>
+            </div>                                                                                                                         
         </div> -->
 
         <!-- <div class="row">

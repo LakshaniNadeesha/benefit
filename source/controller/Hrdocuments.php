@@ -94,6 +94,7 @@ function editdocuments($id = null){
 	
 					$arr['document_path'] = $path_filename_ext;
 					$arr['document_hashing'] = hash_file('md5',$path_filename_ext);
+					$doc = $_POST['document_hashing'];
 	
 					$hash_values = array();
 					$all_rows = $user->findAll();
@@ -107,7 +108,7 @@ function editdocuments($id = null){
 					}
 	
 					if($flag){
-						$user->update($name,$arr);
+						$user->updatenew($doc,$arr);
 						$this->redirect('HRdocuments/hrdocumentsupdate');
 
 					}

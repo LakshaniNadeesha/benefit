@@ -39,11 +39,26 @@
         function show_reimbursement() {
             if(z === false) {
                 document.getElementById("reimbursement_chart").style.display = "flex";
+                if(document.getElementById("reim_1").checked == true){
+                    document.write("Summer radio button is selected");  
+                }
                 z = true;
             }
             else {
                 document.getElementById("reimbursement_chart").style.display = "none";
                 z = false;
+            }
+        };
+
+        var a = false;
+        function view_reimbursment(){
+            if(a === false) {
+                document.getElementById("reimbursement_report").style.display = "flex";
+                a = true;
+            }
+            else {
+                document.getElementById("reimbursement_report").style.display = "none";
+                a = false;
             }
         };
 
@@ -142,9 +157,10 @@
                 </div>
                 <div class="options">
                     <button id="button" onclick="show_reimbursement()">View</button>
-                    <div class="download">
-                        <i class="fa fa-download" style="font-size:30px"></i>
-                    </div>
+                    <!-- <div class="download">
+                    <a id="link-1" href="<?= DOC_PATH ?>employment-application-form.docx" download hidden></a>
+                    <i class="fa fa-download" style="font-size:30px"></i>
+                    </div> -->
                 </div>
             </div>
 
@@ -154,16 +170,59 @@
                 <div class="report_title">
                     <p>Reimbursements</p>
                 </div>
-                <form method="post">
+                <form method="post" action="#">
                     <input type="text" value="Time-Offs" hidden>
                     <div class="select">
-                        <input type="radio" value="1 month" name="duration"> <label for="1 month">One month</label><br>
-                        <input type="radio" value="2 month" name="duration"> <label for="2 month">Two month</label><br>
-                        <input type="radio" value="3 month" name="duration"> <label for="2 month">Three
+                        <input type="radio" id="reim_1" value="1 month" name="duration"> <label for="1 month">One month</label><br>
+                        <input type="radio" id="reim_2" value="2 month" name="duration"> <label for="2 month">Two month</label><br>
+                        <input type="radio" id="reim_3" value="3 month" name="duration"> <label for="2 month">Three
                             month</label><br>
                         <input type="radio" value="1 year" name="duration"> <label for="1 year">One year</label><br>
+                       
+                        <button class="view_btn"><i class="fa fa-eye"></i>  View</button>
+
                     </div>
+
                 </form>
+
+                <div class="reimbursement_report" id="reimbursement_report">
+                <table id="claim_history_table">
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Claim Date</th>
+                        <th>Claim Amount</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+
+                    </tr>
+                    <?php
+                    $i = 0;
+
+                    if (boolval($row1)) {
+
+                        for ($i = 0; $i < sizeof($row1); $i++) {
+
+                            $vai = $row1[$i]; 
+                    ?>
+                               <tr>
+                                    <td><?php print_r($vai->employee_ID); ?></td>
+                                    <td><?php print_r($vai->claim_date); ?></td>
+                                    <td><?php print_r($vai->claim_amount); ?></td>
+                                    <td><?php print_r($vai->reimbursement_reason); ?></td>
+                                    <td><?php print_r($vai->reimbursement_status); ?></td>
+
+                                </tr>
+
+                            <?php 
+                        }
+                    } ?>
+
+
+                </table>
+                </div>
+                <a href="<?= PATH ?>Reporting/generatereport">
+                <button type="submit" class="btn" ><i class="fa fa-download"></i> Download</button>
+                
             </div>
         </div>
     </div>
