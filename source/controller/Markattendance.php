@@ -18,6 +18,7 @@ class Markattendance extends Controller
             $designations = new DesignationModel();
             $attendance = new AttendanceModel();
             $previous = new AttendDate();
+            $leave = new LeaveapplicationModel();
 
             $all_emp = $user->where('supervisor_ID', $id);
             //print_r($all_emp);
@@ -151,7 +152,29 @@ class Markattendance extends Controller
                 }
             }
 
-            $this->view('markattendance', ['not_marked'=>$not_marked, 'history'=>$history, 'previous'=>$not_marked_prev]);
+            //Find today and tomorrow leaving people
+            $tomorrow = date('Y-m-d', strtotime($today. ' + 1 days'));
+            $today_leave = $leave->where('date', $today);
+            $tomorrow_leave = $leave->where('date',$tomorrow);
+
+            $today_info = array();
+            if (boolval($today_leave)) {
+                for ($i = 0; $i < sizeof($today_leave); $i++) {
+                    $today_info[$i] = $user->where('employee_ID', $today_leave[$i]->employee_ID);
+                    //print_r($today_info[$i]->profile_image);
+                }
+            }
+
+            $tomorrow_info = array();
+            if (boolval($tomorrow_leave)) {
+                for ($i = 0; $i < sizeof($tomorrow_leave); $i++) {
+                    $tomorrow_info[$i] = $user->where('employee_ID', $tomorrow_leave[$i]->employee_ID);
+                    //print_r($tomorrow_info[$i]);
+                }
+            }
+
+
+            $this->view('markattendance', ['not_marked'=>$not_marked, 'history'=>$history, 'previous'=>$not_marked_prev, 'today'=>$today_info, 'tomorrow'=>$tomorrow_info]);
         } else {
             $this->view('404');
         }

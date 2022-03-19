@@ -45,13 +45,26 @@
             <div class="section1">
                 <p class="title"><u>On Leave</u></p>
                 <p>Today</p>
-                <img src="<?= Auth::getprofile_image() ?>" alt="on-leave-people" class="on-leave-people">
-                <img src="<?= Auth::getprofile_image() ?>" alt="on-leave-people" class="on-leave-people">
-                <img src="<?= Auth::getprofile_image() ?>" alt="on-leave-people" class="on-leave-people">
+                <?php
+                if (boolval($today)){
+                    for($i=0;$i<sizeof($today);$i++){ ?>
+                        <img src="<?php print_r($today[$i]->profile_image); ?>" alt="on-leave-people" class="on-leave-people">
+                    <?php }
+                } else { ?>
+                    <div style="margin-left: 7px; margin-top: 10px; font-size: smaller">No on is leaving today</div>
+                 <?php }
+                ?>
+
                 <p>Tomorrow</p>
-                <img src="<?= Auth::getprofile_image() ?>" alt="on-leave-people" class="on-leave-people">
-                <img src="<?= Auth::getprofile_image() ?>" alt="on-leave-people" class="on-leave-people">
-                <img src="<?= Auth::getprofile_image() ?>" alt="on-leave-people" class="on-leave-people">
+                <?php
+                if (boolval($tomorrow)){
+                    for($i=0;$i<sizeof($tomorrow);$i++){ ?>
+                        <img src="<?php print_r($tomorrow[$i]->profile_image); ?>" alt="on-leave-people" class="on-leave-people">
+                    <?php }
+                } else { ?>
+                    <div style="margin-left: 7px; margin-top: 10px; font-size: smaller">No on is leaving today</div>
+                <?php }
+                ?>
             </div>
             <div class="section2">
                 <p class="title"><u>Calender</u></p>
