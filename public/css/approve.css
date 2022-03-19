@@ -1,7 +1,5 @@
 @import "color.css";
-* {
-    box-sizing: border-box;
-}
+
 
 body {
     font-family: Roboto, sans-serif;
@@ -11,7 +9,6 @@ body {
 .main_container {
     background-color: white;
     padding: 10px;
-    height: 100vh;
 }
 
 .handling_title {
@@ -186,6 +183,12 @@ hr {
     background-color: rgba(213, 211, 211, 0.99);
 }
 
+.history_table {
+    overflow-y: auto;
+    max-height: 350px;
+    padding-bottom: 10px;
+}
+
 #claim_history_table {
     width: 95%;
     padding: 20px 0;
@@ -214,7 +217,12 @@ table td {
 }
 
 table th {
+    background-color: #0f9eb8;
     height: 56px;
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 0;
+    top: -2px;
 }
 
 table td {
@@ -225,7 +233,7 @@ table td .status {
     text-transform: capitalize;
 }
 
-tr:nth-child(even) {
+tr:nth-child(odd) {
     background-color: var(--h2);
 }
 

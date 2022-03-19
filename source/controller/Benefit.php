@@ -25,6 +25,7 @@ class Benefit extends Controller
             for ($i = 0; $i < sizeof($all_requests); $i++) {
                 if ($all_requests[$i]->benefit_status != 'pending') {
                     $handled[$j] = $all_requests[$i];
+                    $j++;
                 }
             }
         }

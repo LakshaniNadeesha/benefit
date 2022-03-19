@@ -1,8 +1,5 @@
 <?php
 
-/**
- * PerformanceModel Controller
- */
 class Approvebenefit extends Controller
 {
 
@@ -45,11 +42,8 @@ class Approvebenefit extends Controller
             if(boolval($all)) {
                 for ($i = 0; $i < sizeof($all); $i++) {
                     if ($all[$i]->benefit_status != 'pending') {
-                        //print_r($all[$i]->employee_ID);
-                        //print_r($all[$i]); echo '<br>';
                         $handled[$j]['emp_details'] = $user->where('employee_ID', $all[$i]->employee_ID);
                         $handled[$j]['benefit_details'] = $all[$i];
-                        //print_r($handled[$j]); echo '<br>';
                         $j++;
                     }
                 }
@@ -61,7 +55,6 @@ class Approvebenefit extends Controller
         else {
             $this->view('404');
         }
-
     }
 
     function accept ($id=null){
@@ -71,10 +64,29 @@ class Approvebenefit extends Controller
 
         if(Auth::access('HR Manager')){
             $user = new BenefitrequestModel();
+            $user_x = new BenefitapplicationModel();
+            $benefits = new BenefitdetailsModel();
+
             $get_row = $user->where('report_hashing',$id);
+            $relevant_benefits = $benefits->where('benefit_type',$get_row[0]->benefit_type);
+            $remain = $user_x->where_condition('benefit_ID','employee_ID',$relevant_benefits[0]->benefit_ID,$get_row[0]->employee_ID);
+            print_r($remain);
+
+
             $hashVal = $get_row[0]->report_hashing;
-            $ar['benefit_status'] = "Accepted";
-            $user->update_status($hashVal, 'report_hashing', $ar);
+            if($remain[0]->remaining_amount >= $get_row[0]->claim_amount){
+                $ar['benefit_status'] = "Accepted";
+                $user->update_status($hashVal, 'report_hashing', $ar);
+            }
+            else if($remain[0]->remaining_amount == 0){
+                $ar['benefit_status'] = "Rejected";
+                $ar['accepted_amount'] = 0;
+                $user->update_status($hashVal, 'report_hashing', $ar);
+            }else {
+                $ar['benefit_status'] = "Half-Accepted";
+                $ar['accepted_amount'] = $remain[0]->remaining_amount;
+                $user->update_status($hashVal, 'report_hashing', $ar);
+            }
 
             $this->redirect('Approvebenefit');
         }
