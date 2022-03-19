@@ -63,7 +63,38 @@ class LeaveapproveController extends Controller
                 }
 
             }
+
+            // echo "jfnbnenbnoeno";
         $this->view('leaveapprove',['emp'=>$emp,'emps'=>$emps]);
+        // if(count($_POST)> 0){
+            // echo "jfnbnenbnoeno";
+            // if(isset($_POST['button'])){
+
+            //     echo "jfnbnenbnoeno";
+            //     $date = $_POST['date'];
+            //     $id = $_POST['id'];
+            //     // $id1 = 'employee_ID';
+            //     // $id2 = 'date';
+            //     $val = 'reject';
+            //     $user_x->updateLeave($id,$date,$val);
+
+            //     echo "after user_x";
+            // }
+            echo "Check post ";
+            if(isset($_POST['submit'])){
+
+                echo "jfnbnenbnoeno";
+                $date = $_POST['date'];
+                $id = $_POST['id'];
+                // $id1 = 'employee_ID';
+                // $id2 = 'date';
+                $val = $_POST['val'];
+                $user_x->updateLeave($id,$date,$val);
+
+                echo "after user_x";
+            }
+        // }
+
         } else {
             $this->view('404');
         }
