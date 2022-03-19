@@ -17,10 +17,11 @@ body {
 
 .benefit_container .benefit_head {
     background-color: white;
-    max-width: 100%;
-    padding: 50px;
+    width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
 }
 
 .back_btn {
@@ -39,7 +40,6 @@ body {
 }
 
 legend {
-    margin-left: 60px;
     padding: 8px;
     font-family: Roboto, Arial, sans-serif;
     font-size: 19px;
@@ -52,8 +52,8 @@ fieldset {
     justify-content: center;
     padding-bottom: 20px;
     padding-top: 20px;
-    margin: 0;
-    /* display: inline-block; */
+    margin: auto;
+    margin-bottom: 15px;
 }
 
 .benefit_container .benefit_head .claim_benefit {
@@ -117,17 +117,6 @@ fieldset {
     padding: 12px 20px;
     margin: 8px 0;
 }
-
-/*.benefit_form .row .report_submission {*/
-/*    width: 100%;*/
-/*    height: 120px;*/
-/*    justify-content: center;*/
-/*    text-align: center;*/
-/*    border-radius: 10px;*/
-/*    border-style: dotted;*/
-/*    font-family: Roboto, sans-serif;*/
-/*    font-size: 15px;*/
-/*}*/
 
 .benefit_form .row .report_submission {
     display: flex;
@@ -258,4 +247,16 @@ input[type=submit]:hover {
     box-shadow: 0px 2px 5px var(--header);
     transform: scale(1.05);
     border-style: none;
+}
+
+@media screen and (max-width: 850px){
+    .benefit_form .row {
+        padding-top: 10px;
+        width: 100%;
+    }
+
+    .row .column_1, .row .column_2{
+        width: 50% !important;
+    }
+
 }

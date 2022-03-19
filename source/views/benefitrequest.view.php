@@ -19,13 +19,11 @@
             var r1 = false;
             reason_validation();
             return false;
-        }
-        else if(n > remain){
+        } else if (n > remain) {
             document.getElementById("numberText").innerHTML = "<div style='font-family: Arial,serif; font-size: smaller; color: red'><i class='fas fa-exclamation' style='color: red;'></i>Sorry! You can't claim more than the remaining</div>";
             reason_validation();
             return false;
-        }
-        else {
+        } else {
             if (r1) {
                 document.getElementById("numberText").innerHTML = "<span>&#10003;</span>";
             } else {
@@ -80,9 +78,6 @@
                 </div>
                 <fieldset>
                     <legend>CLAIM BENEFIT</legend>
-                    <!-- <div class="heading">
-                            <h2>CLAIM BENEFIT</h2>
-                        </div> -->
 
                     <div class="benefit_form">
 
@@ -94,11 +89,6 @@
                                     <label for="benefit_type">Benefit Type</label>
                                 </div>
                                 <div class="column_2">
-<!--                                    <select id="benefit_type" name="benefit_type" required>-->
-<!--                                        <option></option>-->
-<!--                                        <option>Medical Insurance</option>-->
-<!--                                        <option>Educational Expenditure</option>-->
-<!--                                    </select>-->
                                     <input type="text" id="benefit_type" value="<?php print_r($type); ?>"
                                            name="benefit_type" readonly>
                                 </div>
@@ -120,7 +110,7 @@
                                 </div>
                                 <div class="column_2">
                                     <input type="text" id="claiming_amount" name="claiming_amount"
-                                           placeholder="20000.00" required pattern="[0-9._%+-]+\.[0-9]{2}$" >
+                                           placeholder="20000.00" required pattern="[0-9._%+-]+\.[0-9]{2}$">
                                     <span id="numberText"></span>
                                 </div>
                                 <p id="demo"></p>
@@ -145,10 +135,8 @@
                                     <div class="report_submission">
                                         <input class="file-upload__input" type="file" id="report_submission"
                                                name="report_submission"
-                                               accept=".pdf, .png" multiple  hidden="hidden">
+                                               accept=".pdf, .png" multiple hidden="hidden">
                                         <button class="file-upload__button" type="button">Choose File(s)</button>
-                                        <!--                                    <span id="custom-text"><div class="file_text">No file chosen, yet....</div></span>-->
-                                        <!--                                    <span id="upload"><div class="upload"><a href="#">Upload Here</a></div></span>-->
                                         <span class="file-upload__label"></span>
                                     </div>
 
@@ -171,21 +159,6 @@
                             </div>
 
                             <script type="text/javascript">
-                                // const report_submission = document.getElementById('report_submission');
-                                // const custom_text = document.getElementById('custom_text');
-                                // const upload = document.getElementById('upload');
-                                //
-                                // upload.addEventListener("click", function () {
-                                //     report_submission.click();
-                                // });
-                                //
-                                // report_submission.addEventListener("click", function () {
-                                //     if (report_submission.value) {
-                                //         custom_text.innerHTML = report_submission.value;
-                                //     } else {
-                                //         custom_text.innerHTML = "No File chose, yet";
-                                //     }
-                                // });
 
                                 Array.prototype.forEach.call(document.querySelectorAll('.file-upload__button'), function (button) {
                                     const hiddenInput = button.parentElement.querySelector('.file-upload__input');
@@ -218,15 +191,6 @@
         </div>
     </div>
 </div>
-</div>
-
-<!--<div>-->
-<!--    --><?php
-//    $this->view('includes/footer')
-//    ?>
-<!---->
-<!--</div>-->
-<!--<script src="public\js\Benefitrequest.js"></script>-->
 </body>
 </html>
 

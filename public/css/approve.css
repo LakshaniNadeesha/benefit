@@ -1,6 +1,5 @@
 @import "color.css";
 
-
 body {
     font-family: Roboto, sans-serif;
     background-color: var(--background);
@@ -375,5 +374,29 @@ tr:nth-child(odd) {
     to{
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+@media screen and (max-width: 500px){
+    .card-container {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .header-approve {
+        width: 150px;
+        height: 230px;
+    }
+
+    .header-approve .date {
+        font-size: small;
+    }
+
+    .header-approve .name {
+        font-size: medium;
+    }
+
+    .header-approve div {
+        margin-bottom: 0;
     }
 }

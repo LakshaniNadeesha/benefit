@@ -91,8 +91,9 @@
 
                 <?php
                 if (boolval($pending)) {
-                    if (isset($pending)) {
-                        for ($i = 0; $i < sizeof($pending); $i++) {
+                    if (isset($pending)) { ?>
+                        <div class="pending_section">
+                        <?php for ($i = 0; $i < sizeof($pending); $i++) {
                             $row = $pending[$i]; ?>
                             <div class='pending_benefits'>
                                 <div><?php print_r($row->benefit_type); ?> </div>
@@ -104,8 +105,9 @@
                                     </button>
                                 </a>
                             </div>
-                        <?php }
-                    }
+                        <?php } ?>
+                        </div>
+                    <?php }
                 }
                 ?>
 
@@ -134,7 +136,8 @@
                         <th>Date</th>
                         <th>Type</th>
                         <th>Description</th>
-                        <th>Amount(LKR)</th>
+                        <th>Claimed Amount(LKR)</th>
+                        <th>Accepted Amount(LKR)</th>
                         <th>Status</th>
                     </tr>
                     <?php
@@ -145,6 +148,7 @@
                         <td><?php print_r($handled[$i]->benefit_type); ?> </td>
                         <td><?php print_r($handled[$i]->benefit_description); ?> </td>
                         <td><?php print_r($handled[$i]->claim_amount); ?> </td>
+                        <td><?php print_r($handled[$i]->accepted_amount); ?></td>
                         <td><?php print_r($handled[$i]->benefit_status); ?> </td>
                     </tr>
                 <?php
