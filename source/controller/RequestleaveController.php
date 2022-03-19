@@ -88,7 +88,7 @@ class RequestleaveController extends Controller{
                                 break;
                                 echo "Date already leave";
                             }
-                            $arr['leave_status'] = "Pending";
+                            $arr['leave_status'] = "pending";
 
                             $user->insert($arr);
                             print_r($arr);

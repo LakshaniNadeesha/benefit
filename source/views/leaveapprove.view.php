@@ -79,31 +79,70 @@
                                                 <?php
                                                     break;
                                                 case "sick":
-                                                    ?>
+                                                ?>
                                                     <i class="fas fa-band-aid"></i>
 
                                                 <?php
                                                     break;
                                                 case "annual":
-                                                    ?>
+                                                ?>
                                                     <i class="far fa-calendar-plus"></i>
 
                                                 <?php
                                                     break;
                                                 default:
                                                 ?><i class="far fa-calendar-plus"></i><?php
-                                                                                    }
-                                                                                            ?>
+                                                                                }
+                                                                                        ?>
 
                                         </center>
                                         <p class="date"><?php print_r($emp[$i]['details']->date); ?> </p>
                                         <!-- <p class="date"><?php print_r($emp[$i]['details']->ending_date); ?></p> -->
                                         <p class="date"><?php print_r($emp[$i]['details']->leave_type); ?></p>
+                                        <!-- <p ><?php print_r($emp[$i]['employee_ID']) ?></p> -->
+
 
                                     </div>
 
                                     <center>
-                                        <button type="button" name="show" value="show">Show</button>
+                                        <form method="post">
+                                            <button type="submit" name="submit" value="reject" id="reject" onclick="myFunction1()">Reject</button>
+                                            <input type="hidden" name="date" value=<?php print_r($emp[$i]['details']->date); ?>>
+                                            <input type="hidden" name="id" value=<?php print_r($emp[$i]['employee_ID']) ?>>
+                                            <input type="hidden" name="val" id="val" >
+                                            
+                                            <button type="submit" name="submit" value="approve" id="approve" onclick="myFunction2()">Approve</button>
+
+                                            <script>
+
+                                                document.getElementById("reject").onclick = function() {
+                                                    myFunction1()
+                                                };
+                                                document.getElementById("approve").onclick = function() {
+                                                    myFunction2()
+                                                };
+
+                                                
+                                                function myFunction1() {
+                                                    document.getElementById("val").value = "reject";
+                                                    // document.getElementById("reject").type = "submit";
+                                                    // document.getElementById("reject").name = "submit";
+
+                                                    console.log(document.getElementById("reject"));
+                                                    console.log("inside reject");
+                                                }
+
+                                                function myFunction2(){
+                                                    document.getElementById("val").value = "approve";
+                                                    // document.getElementById("approve").type = "submit";
+                                                    // document.getElementById("approve").name = "submit";
+                                                    console.log(document.getElementById("approve"));
+                                                    console.log("inside Approve");
+                                                }
+                                            </script>
+
+                                        </form>
+
                                     </center>
                                 </div>
                     <?php }

@@ -15,8 +15,11 @@
 
 <body>
 <div>
+    
    <?php $this->view('includes/header1')?>
+   
 </div>
+
 
 <div class="container">
     <div class="left">
@@ -292,6 +295,7 @@
             </div>
         </div>
 </div>
+
 <script src="public\js\popup.js"></script>
     <script>
         
