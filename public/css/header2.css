@@ -108,3 +108,13 @@ body {
         font-size: x-large;
     }
 }
+
+@media screen and (max-width: 1200px) {
+    .stroke {
+        width: 100%;
+    }
+
+    .content {
+        width: 100%;
+    }
+}

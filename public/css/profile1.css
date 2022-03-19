@@ -4,11 +4,17 @@
 body{
     font-family: Robot, sans-serif;
     height: auto;
+    background-color: var(--w);
 }
 
 .profile_container {
     display: flex;
     height: 100%;
+}
+
+#myProfile {
+    display: flex;
+    flex-direction: column;
 }
 
 .profile {
@@ -45,7 +51,7 @@ body{
 
 .contact {
     display: flex;
-    align-items: center;
+    /*align-items: center;*/
     justify-content: center;
     font-size: 1em;
     margin-bottom: 20px;
@@ -54,7 +60,7 @@ body{
 
 .email {
     display: flex;
-    align-items: center;
+    /*align-items: center;*/
     justify-content: center;
     font-size: 1em;
     margin-bottom: 20px;
@@ -82,11 +88,120 @@ body{
 
 .supervisor {
     display: flex;
-    align-items: center;
     justify-content: center;
     font-size: 0.9em;
     font-weight: bold;
     margin-bottom: 20px;
     color: white;
     text-transform: capitalize;
+}
+
+@media screen and (max-width: 1200px){
+    #myProfile {
+        flex-direction: row;
+    }
+
+    .profile_container {
+        flex-direction: column-reverse;
+        width: 100% !important;
+    }
+
+    .profile {
+        width: 100%;
+        box-shadow: none;
+        height: max-content;
+    }
+
+    .content {
+        width: 100vh;
+    }
+
+    .details {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        justify-content: space-around;
+    }
+
+    .main_details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 100%;
+        font-size: small;
+        margin: 0;
+    }
+
+    .co_details {
+        display: flex;
+        text-align: center;
+        flex-direction: row;
+        justify-content: space-around;
+        font-size: smaller;
+    }
+
+    .contact {
+        margin-bottom: 0;
+    }
+
+    .contact, .email, .hire, .date, .address, .supervisor {
+        width: max-content;
+        margin-bottom: 0;
+        margin-right: 5px;
+    }
+
+    .name, .job{
+        padding: 0;
+        margin: 0;
+    }
+
+    .profile__image {
+        width: 60px;
+        height: 60px;
+    }
+
+}
+
+@media screen and (max-width: 600px){
+    #myProfile {
+        font-size: smaller;
+    }
+
+    .main_details{
+        font-size: smaller;
+    }
+
+    .profile__image {
+        width: 60px;
+        height: 60px;
+        text-align: center;
+    }
+
+    .co_details {
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .co_details span, .co_details i{
+        font-size: medium;
+    }
+
+    .supervisor span{
+        font-size: smaller;
+    }
+
+    .contact, .email, .hire, .date, .address, .supervisor {
+        text-align: center;
+        width: 100%;
+    }
+
+    center {
+        margin: auto;
+    }
+    /*.profile__image {*/
+
+    /*    width: 30px;*/
+    /*    height: 30px;*/
+    /*}*/
 }

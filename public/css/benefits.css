@@ -322,6 +322,16 @@ tr:nth-child(even) {
     background-color: var(--h2);
 }
 
+@media screen and (max-width: 1200px){
+    .content {
+        width: 100%;
+    }
+
+    .benefit_container {
+        width: 100%;
+    }
+}
+
 @media screen and (max-width: 825px) {
     .benefit_card {
         flex-direction: column;
@@ -368,12 +378,11 @@ tr:nth-child(even) {
     }
 
     .content {
-        width: 100%;
-
+        min-width: 100%;
     }
 
     .benefit_container {
-        min-width: 100%;
+        width: 100%;
 
     }
 

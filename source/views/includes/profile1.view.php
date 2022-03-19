@@ -10,21 +10,29 @@
 </head>
 <body>
 <div id="myProfile">
-    <img src="<?= Auth::getprofile_image() ?>" alt="Profile Image" class="profile__image">
-    <div class="name"><?= Auth::getfirst_name() ?> <?= Auth::getlast_name() ?></div>
-    <div class="job"><?= Auth::getuser_role() ?></div>
-    <div class="contact">
-        <span class="material-icons" style="padding-right: 6px">call</span><?= Auth::getcontact_number() ?>
+    <center><img src="<?= Auth::getprofile_image() ?>" alt="Profile Image" class="profile__image"></center>
+    <div class="details">
+        <div class="main_details">
+            <div class="name"><?= Auth::getfirst_name() ?> <?= Auth::getlast_name() ?></div>
+            <div class="job"><?= Auth::getuser_role() ?></div>
+        </div>
+        <div class="co_details">
+            <div class="contact">
+                <span class="material-icons" style="padding-right: 6px">call</span><?= Auth::getcontact_number() ?>
+            </div>
+            <div class="email">
+                <i class="material-icons" style="padding-right: 6px">email</i><?= Auth::getemail() ?>
+            </div>
+            <div class="hire">Hired Date</div>
+            <div class="date"><?= date('Y-d-m', strtotime(Auth::gethired())); ?></div>
+            <div class="address"><?= Auth::getstreet() ?>, <?= Auth::getcity() ?> <br> <?= Auth::getprovince() ?>
+                province
+            </div>
+            <div class="supervisor">
+                <i class="material-icons" style="padding-right: 6px">supervisor_account</i><span>Mr/Mis <?= Auth::sup() ?></span>
+            </div>
+        </div>
     </div>
-    <div class="email">
-        <i class="material-icons" style="padding-right: 6px">email</i><?= Auth::getemail() ?>
-    </div>
-    <div class="hire">Hired Date</div>
-    <div class="date"><?=  date('Y-d-m', strtotime(Auth::gethired())); ?></div>
-    <div class="address"><?= Auth::getstreet() ?>, <?= Auth::getcity() ?> <br> <?= Auth::getprovince() ?> province</div>
-    <div class="supervisor">
-        <i class="material-icons" style="padding-right: 6px">supervisor_account</i>Mr/Mis <?= Auth::sup() ?>
-    </div>
-</div> 
+</div>
 </body>
 </html>
