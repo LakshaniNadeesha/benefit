@@ -92,7 +92,7 @@ body {
 .header-approve button {
     align-self: center;
     height: 30px;
-    width: 100px;
+    width: 80px;
     margin-bottom: 10px;
     border-radius: 30px;
     border: 3px solid var(--h1);
@@ -101,6 +101,11 @@ body {
     font-weight: bold;
     letter-spacing: 2px;
     cursor: pointer;
+}
+
+#reject {
+    color: rgb(226, 90, 90);
+    border: 3px solid rgb(226, 86, 86);
 }
 
 .header-approve:hover {
@@ -112,6 +117,12 @@ body {
     color: var(--h2);
 }
 
+
+#reject:hover {
+    background-color: var(--h1);
+    color: var(--h2);
+}
+git .status
 .detail-container {
     width: 100%;
 }
