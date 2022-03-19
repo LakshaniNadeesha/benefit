@@ -168,6 +168,13 @@ class Model extends Database
         return $this->query($query, $data);
     }
 
+    public function updateLeave($id,$date,$val)
+    {
+
+        $query = "update $this->table set leave_status = '$val' where employee_ID = '$id' and date = '$date'";
+        return $this->query($query);
+    }
+
     public function delete($id)
     {
         $query = "delete from $this->table where employee_ID= :id";
