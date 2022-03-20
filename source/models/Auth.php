@@ -72,6 +72,44 @@ class Auth
 	        return $rows;
         }
     }
+
+    public function calendar(){
+        $connect = new PDO('mysql:host=localhost;dbname=hrm', 'root', '');
+        if (isset($_POST["title"])) {
+            $query = "INSERT INTO events (title, start_event, end_event) VALUES (:title, :start_event, :end_event) ";
+            $statement = $connect->prepare($query);
+            $statement->execute(
+                array(
+                    ':title' => $_POST['title'],
+                    ':start_event' => $_POST['start'],
+                    ':end_event' => $_POST['end'],
+                    ':shows' => auth::user()
+                )
+            );
+        }
+
+        $user = new Employeedetails();
+        $all_users = $user->findAll();
+
+        $data = array();
+        $query = "SELECT * FROM events ORDER BY id";
+        $statement = $connect->prepare($query);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $id = $_SESSION['USER']->employee_ID;
+        foreach($result as $row)
+        {
+            if($row["shows"] == $id) {
+                $data[] = array(
+                    'id' => $row["id"],
+                    'title' => $row["title"],
+                    'start' => $row["start_event"],
+                    'end' => $row["end_event"]
+                );
+            }
+        }
+        return json_encode($data);
+    }
 	
 
 	public static function __callStatic($method,$params)

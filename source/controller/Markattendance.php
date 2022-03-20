@@ -160,16 +160,23 @@ class Markattendance extends Controller
             $today_info = array();
             if (boolval($today_leave)) {
                 for ($i = 0; $i < sizeof($today_leave); $i++) {
-                    $today_info[$i] = $user->where('employee_ID', $today_leave[$i]->employee_ID);
-                    //print_r($today_info[$i]->profile_image);
+                    $emp_info = $user->where('employee_ID', $today_leave[$i]->employee_ID);
+                    if($emp_info[0]->supervisor_ID == auth::user()){
+                        $today_info[$j] = $emp_info[0];
+                        $j++;
+                    }
                 }
             }
 
             $tomorrow_info = array();
+            $j=0;
             if (boolval($tomorrow_leave)) {
                 for ($i = 0; $i < sizeof($tomorrow_leave); $i++) {
-                    $tomorrow_info[$i] = $user->where('employee_ID', $tomorrow_leave[$i]->employee_ID);
-                    //print_r($tomorrow_info[$i]);
+                    $emp_info = $user->where('employee_ID', $tomorrow_leave[$i]->employee_ID);
+                    if($emp_info[0]->supervisor_ID == auth::user()){
+                        $tomorrow_info[$j] = $emp_info[0];
+                        $j++;
+                    }
                 }
             }
 

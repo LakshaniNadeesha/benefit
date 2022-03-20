@@ -46,29 +46,32 @@
                 <p class="title"><u>On Leave</u></p>
                 <p>Today</p>
                 <?php
-                if (boolval($today)){
-                    for($i=0;$i<sizeof($today);$i++){ ?>
-                        <img src="<?php print_r($today[$i]->profile_image); ?>" alt="on-leave-people" class="on-leave-people">
+                if (boolval($today)) {
+                    for ($i = 0; $i < sizeof($today); $i++) { ?>
+                        <img src="<?php print_r($today[$i]->profile_image); ?>" alt="on-leave-people"
+                             class="on-leave-people">
                     <?php }
                 } else { ?>
-                    <div style="margin-left: 7px; margin-top: 10px; font-size: smaller">No on is leaving today</div>
-                 <?php }
+                    <div style="margin-left: 7px; margin-top: 10px; font-size: smaller">No one</div>
+                <?php }
                 ?>
 
                 <p>Tomorrow</p>
                 <?php
-                if (boolval($tomorrow)){
-                    for($i=0;$i<sizeof($tomorrow);$i++){ ?>
-                        <img src="<?php print_r($tomorrow[$i]->profile_image); ?>" alt="on-leave-people" class="on-leave-people">
+                if (boolval($tomorrow)) {
+                    for ($i = 0; $i < sizeof($tomorrow); $i++) { ?>
+                        <img src="<?php print_r($tomorrow[$i]->profile_image); ?>" alt="on-leave-people"
+                             class="on-leave-people">
                     <?php }
                 } else { ?>
-                    <div style="margin-left: 7px; margin-top: 10px; font-size: smaller">No on is leaving today</div>
+                    <div style="margin-left: 7px; margin-top: 10px; font-size: smaller">No one</div>
                 <?php }
                 ?>
             </div>
             <div class="section2">
                 <p class="title"><u>Calender</u></p>
-                <?php $this->view('includes/calendar') ?>
+                <!--                --><?php //$this->view('includes/calendar') ?>
+                <?php $this->view('includes/supervisorcalendar'); ?>
             </div>
         </div>
         <div class="right-section">
@@ -82,51 +85,56 @@
                         <div class="to-be-add">
                             <div class="slideshow-container">
                                 <div class="mySlides fade">
-                                    <p class="to-do">To Be Add</p>
-                                    <hr>
-                                    <?php
-                                    if (boolval($not_marked)) {
-                                        for ($i = 0; $i < sizeof($not_marked); $i++) {
-                                            ?>
-                                            <div class="box">
-                                                <img src="<?php print_r($not_marked[$i]->profile_image) ?>"
-                                                     alt="on-leave-people"
-                                                     class="on-leave-people">
-                                                <p class="content1"><?php print_r($not_marked[$i]->first_name);
-                                                    echo " ";
-                                                    print_r($not_marked[$i]->last_name) ?></p>
+                                    <div class="now">
+                                        <p class="to-do">To Be Add</p>
+                                        <hr>
 
-                                                <p class="content2"><?php print_r($not_marked[$i]->department_ID) ?>
-                                                <p class="content3"><?php print_r($not_marked[$i]->designation_code) ?></p>
-                                                <?php
-                                                $select = 'select';
-                                                $select .= $i;
+                                        <?php
+                                        if (boolval($not_marked)) {
+                                            for ($i = 0; $i < sizeof($not_marked); $i++) {
                                                 ?>
-                                                <input type="checkbox" id="<?php echo $select ?>" name="person[]"
-                                                       value="<?php print_r($not_marked[$i]->employee_ID); ?>" onclick="checkMe(this.id)">
-                                                <script>
-                                                    const hideBox = document.querySelector('<?php echo "#" . $select;?>');
-                                                    hideBox.addEventListener('change', function (e) {
-                                                        if (hideBox.checked) {
-                                                            list.style.display = "initial";
-                                                        } else {
-                                                            list.style.display = "none";
-                                                        }
-                                                    });
-                                                </script>
-                                                <a href="http://localhost/benefit/markattendance/absent/<?php print_r($not_marked[$i]->employee_ID); ?>/<?php echo date('Y-m-d'); ?>">
-                                                    <i class="fa fa-times-circle" aria-hidden="true"></i></a>
-                                            </div>
+                                                <div class="box">
+                                                    <img src="<?php print_r($not_marked[$i]->profile_image) ?>"
+                                                         alt="on-leave-people"
+                                                         class="on-leave-people">
+                                                    <p class="content1"><?php print_r($not_marked[$i]->first_name);
+                                                        echo " ";
+                                                        print_r($not_marked[$i]->last_name) ?></p>
+
+                                                    <p class="content2"><?php print_r($not_marked[$i]->department_ID) ?>
+                                                    <p class="content3"><?php print_r($not_marked[$i]->designation_code) ?></p>
+                                                    <?php
+                                                    $select = 'select';
+                                                    $select .= $i;
+                                                    ?>
+                                                    <input type="checkbox" id="<?php echo $select ?>" name="person[]"
+                                                           value="<?php print_r($not_marked[$i]->employee_ID); ?>"
+                                                           onclick="checkMe(this.id)">
+                                                    <script>
+                                                        const hideBox = document.querySelector('<?php echo "#" . $select;?>');
+                                                        hideBox.addEventListener('change', function (e) {
+                                                            if (hideBox.checked) {
+                                                                list.style.display = "initial";
+                                                            } else {
+                                                                list.style.display = "none";
+                                                            }
+                                                        });
+                                                    </script>
+                                                    <a href="http://localhost/benefit/markattendance/absent/<?php print_r($not_marked[$i]->employee_ID); ?>/<?php echo date('Y-m-d'); ?>">
+                                                        <i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                                                </div>
 
 
-                                            <?php
-                                        }
-                                    } else {
-                                        echo "No employees yet!";
-                                        echo "<br><br>";
-                                    } ?>
+                                                <?php
+                                            }
+                                        } else {
+                                            echo "No employees yet!";
+                                            echo "<br><br>";
+                                        } ?>
+                                    </div>
                                     <hr>
                                     <?php if (boolval($previous)) { ?>
+                                    <div class="not-now">
                                         <p class="missing">Missing Attendance</p>
                                         <hr>
                                         <?php for ($j = 0; $j < sizeof($previous); $j++) { ?>
@@ -136,29 +144,32 @@
                                                      class="on-leave-people">
                                                 <p class="content1"><?php print_r($previous[$j]->name); ?></p>
 
-                                                <p class="content2" id="previousDate"><?php print_r($previous[$j]->date) ?>
+                                                <p class="content2"
+                                                   id="previousDate"><?php print_r($previous[$j]->date) ?>
                                                 <p class="content3"><?php print_r($previous[$j]->designation_code) ?></p>
                                                 <?php
                                                 $selected = 'selected';
                                                 $selected .= $j;
                                                 ?>
-                                                <input type="checkbox" class="mark" id="<?php echo $selected ?>" value="<?php print_r($previous[$j]->employee_ID); ?>" onclick="checkThis(this.id)" name="person[]">
-<!--                                                <i class="fa fa-check-square" aria-hidden="true"></i>-->
+                                                <input type="checkbox" class="mark" id="<?php echo $selected ?>"
+                                                       value="<?php print_r($previous[$j]->employee_ID); ?>"
+                                                       onclick="checkThis(this.id)" name="person[]">
+                                                <!--                                                <i class="fa fa-check-square" aria-hidden="true"></i>-->
                                                 <a href="http://localhost/benefit/markattendance/absent/<?php print_r($previous[$j]->employee_ID); ?>/<?php print_r($previous[$j]->date); ?>">
                                                     <i class="fa fa-times-circle" aria-hidden="true"></i></a>
                                             </div>
 
                                             <?php
-                                        }?>
+                                        } ?>
                                         <hr>
                                         <script type="text/javascript">
-                                            $('.mark').on('change', function() {
+                                            $('.mark').on('change', function () {
                                                 $('.mark').not(this).prop('checked', false);
                                             });
                                         </script>
-                                    <?php
-                                    } ?>
-
+                                        <?php
+                                        } ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -167,7 +178,7 @@
                             <div class="form-title">Fill This</div>
                             <div class="form-content">
                                 <div class="date">
-                                    <div for="date">Date : </div>
+                                    <div for="date">Date :</div>
                                     <input type="date" name="date" id="date" value="<?php echo date('Y-m-d'); ?>"
                                            required>
                                 </div>
@@ -192,18 +203,18 @@
                                     } ?>
                                     <?php
                                     if (boolval($previous)) {
-                                    for ($i = 0; $i < sizeof($previous); $i++) {
-                                    $abs_selected = 'abs_selected';
-                                    $abs_selected .= $i;
-                                    ?>
-                                    <div class="box" id="<?php echo $abs_selected ?>">
-                                        <img src="<?php print_r($previous[$i]->profile_image) ?>"
-                                             alt="on-leave-people"
-                                             class="on-leave-people">
-                                        <p class="content"><?php print_r($previous[$i]->name); ?></p>
-                                    </div>
+                                        for ($i = 0; $i < sizeof($previous); $i++) {
+                                            $abs_selected = 'abs_selected';
+                                            $abs_selected .= $i;
+                                            ?>
+                                            <div class="box" id="<?php echo $abs_selected ?>">
+                                                <img src="<?php print_r($previous[$i]->profile_image) ?>"
+                                                     alt="on-leave-people"
+                                                     class="on-leave-people">
+                                                <p class="content"><?php print_r($previous[$i]->name); ?></p>
+                                            </div>
 
-                                    <?php
+                                            <?php
                                         }
                                     } ?>
                                 </div>
@@ -305,24 +316,28 @@
     </div>
 </div>
 <script>
-    function checkMe(select){
+    function checkMe(select) {
         var check = document.getElementById(select);
         var border = document.getElementById('attendance_form');
         let text1 = select;
         let text2 = "ab_";
         let t = text2.concat(text1);
         var show = document.getElementById(t);
-        if(check.checked==true){
+        if (check.checked == true) {
             show.style.display = "block";
+            border.style.display = "block";
             border.style.border = "3px solid orange";
         } else {
             show.style.display = "none";
+            border.style.display = "none";
             border.style.border = "2px solid var(--h1)";
         }
     }
 
-    function checkThis(selected){
+    function checkThis(selected) {
         var check = document.getElementById(selected);
+        var now = document.getElementById('now');
+        var not_now = document.getElementById('not-now');
         var border = document.getElementById('attendance_form');
         var date = document.getElementById('date');
         var previousDate = document.getElementById('previousDate');
@@ -330,9 +345,11 @@
         let text2 = "abs_";
         let t = text2.concat(text1);
         var show = document.getElementById(t);
-        if(check.checked==true){
+        if (check.checked == true) {
             show.style.display = "block";
+            border.style.display = "block";
             border.style.border = "3px solid orange";
+            now.style.display = "none";
             date.value = previousDate;
 
             //var today = new Date();
@@ -348,6 +365,7 @@
             //console.log(date.value);
         } else {
             show.style.display = "none";
+            border.style.display = "none";
             border.style.border = "2px solid var(--h1)";
         }
     }
