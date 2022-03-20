@@ -29,6 +29,15 @@ class Model extends Database
         ]);
     }
 
+    public function where_between($column1, $value1, $value2){
+        $column1 = addslashes($column1);
+        $query = "select * from $this->table where $column1 between :value1 and :value2";
+        return $this->query($query, [
+            'value1' => $value1,
+            'value2' => $value2
+        ]);
+    }
+
     public function where($column, $value)
     {
 
@@ -70,6 +79,27 @@ class Model extends Database
 
         $query = "select * from $this->table ";
         return $this->query($query);
+    }
+
+    public function find_groupby($column1,$column2,$column3,$column4,$column5,$value1,$value2)
+    {
+        $column3 = addslashes($column3);
+        $query = "select $column1,$column2,sum($column3) as $column3,$column4,$column5 from $this->table where $column2 between :value1 and :value2 group by $column1";
+        return $this->query($query,['value1'=>$value1,'value2'=>$value2]);
+    }
+
+    public function find_timeoff_groupby($column1,$column2,$column3,$column4,$column5,$value1,$value2)
+    {
+        $column3 = addslashes($column3);
+        $query = "select $column1,$column2,$column3,sum($column4) as $column4,$column5 from $this->table where $column3 between :value1 and :value2 group by $column1";
+        return $this->query($query,['value1'=>$value1,'value2'=>$value2]);
+    }
+
+    public function find_benefit_groupby($column1,$column2,$column3,$column4,$column5,$column6,$value1,$value2)
+    {
+        $column3 = addslashes($column3);
+        $query = "select $column1,$column2,$column3,sum($column4) as $column4,$column5,$column6 from $this->table where $column2 between :value1 and :value2 group by $column1,$column3";
+        return $this->query($query,['value1'=>$value1,'value2'=>$value2]);
     }
     
     public function updatebannedfinal($ip,$banned,$login_count)

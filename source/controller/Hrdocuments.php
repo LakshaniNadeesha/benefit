@@ -108,8 +108,9 @@ function editdocuments($id = null){
 					}
 	
 					if($flag){
-						$user->updatenew($doc,$arr);
-						$this->redirect('HRdocuments/hrdocumentsupdate');
+						$user->updatenew($name,$arr);
+						$this->redirect('HRdocuments/updatedocuments');
+
 
 					}
 					else {
