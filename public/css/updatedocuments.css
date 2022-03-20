@@ -1,13 +1,16 @@
 @import "color.css";
 body {
     font-family: Roboto, sans-serif;
-    background-color: var(--background)
+    background-color: var(--background);
+    height: 100vh;
 }
 
 .main_container {
     background-color: white;
     padding: 10px;
     height: 100%;
+    /* border-radius: 10px;
+    box-shadow: 3px 3px 15px rgb(0 0 0 / 20%); */
 }
 
 .document_list .title_container {
@@ -37,6 +40,10 @@ body {
     cursor: pointer;
 }
 
+.add_documents a {
+    color: black;
+}
+
 .add_documents:hover {
     background-color: #289cc7;
 }
@@ -57,12 +64,14 @@ body {
 .document_list {
     width: auto;
     padding: 20px;
-    margin-bottom: 10px;
+    padding-bottom: 8%;
+    padding-left: 10%;
 }
 
 .document_list table {
-    width: 100%;
+    width: 90%;
     color: var(--f);
+    /* margin-bottom: 15%; */
 }
 
 .document_list table tr td i {

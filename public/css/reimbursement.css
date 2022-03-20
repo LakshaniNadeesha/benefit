@@ -407,6 +407,8 @@ tr:nth-child(even) {
     touch-action: manipulation;
     letter-spacing: 2px;
     border: 1.5px solid black;
+    margin-right: 0%;
+    margin-left: 10%;
 }
 
 .cancle-confirmation:hover {
@@ -415,7 +417,7 @@ tr:nth-child(even) {
     border-style: none;
 }
 
-.update-confirmation {
+#update-confirmation {
     background-color: #a4dff5;
     border-radius: 100px;
     color: var(--header);
@@ -423,7 +425,7 @@ tr:nth-child(even) {
     display: inline-block;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
-    padding: 7px 20px;
+    /* padding: 7px 20px; */
     text-align: center;
     text-decoration: none;
     transition: all 250ms;
@@ -433,13 +435,13 @@ tr:nth-child(even) {
     -webkit-user-select: none;
     touch-action: manipulation;
     letter-spacing: 2px;
-    margin-left: 33%;
-    margin-right: 10%;
+    margin-left: 30%;
+    margin-right: 0%;
     margin-top: 10%;
     border: 1.5px solid var(--header);
 }
 
-.update-confirmation:hover {
+#update-confirmation:hover {
     box-shadow: 0px 2px 5px var(--header);
     transform: scale(1.05);
     border-style: none;

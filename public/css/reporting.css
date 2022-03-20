@@ -7,24 +7,22 @@ body {
 }
 
 .main_container {
-    /*width: 100%;*/
-    /*margin-top: 0;*/
-    /*border-radius: 10px;*/
     background-color: white;
     padding: 10px;
-    /*margin-left: 255px;*/
     height: 100%;
-    /*transition: 0.5s;*/
+}
+
+.report_svg {
+    display: flex;
+    /* flex-direction: column; */
 }
 
 .report_container {
     background-color: white;
-    padding-bottom: 5px;
-    height: 90%;
+    padding-bottom: 15px;
     border-radius: 10px;
     margin: 5px 5px 10px;
     display: flex;
-    flex-direction: row;
 }
 
 .report_type {
@@ -114,39 +112,110 @@ body {
     margin-bottom: 12px;
 }
 
-#claim_history_table {
-    width: 95%;
-    padding: 20px 0;
-    margin-left: auto;
-    margin-right: auto;
+.reimbursement_report {
+    display: flex;
+}
+
+.leave_report3 {
+    display: flex;
+}
+
+#claim_history_table_month1 {
+    display: none;
+}
+
+#claim_history_table_month2 {
+    display: none;
+}
+
+#claim_history_table_month3 {
+    display: none;
+}
+
+#reim_button1 {
+    display: none;
+}
+
+#reim_button2 {
+    display: none;
+}
+
+#reim_button3 {
+    display: none;
+}
+
+#benefit_history_table_month1 {
+    display: none;
+}
+
+#benefit_history_table_month2 {
+    display: none;
+}
+
+#benefit_history_table_month3 {
+    display: none;
+}
+
+#bene_button1 {
+    display: none;
+}
+
+#bene_button2 {
+    display: none;
+}
+
+#bene_button3 {
+    display: none;
+}
+
+#leave_history_table_month1 {
+    display: none;
+}
+
+#leave_history_table_month2 {
+    display: none;
+}
+
+#leave_history_table_month3 {
+    display: none;
+}
+
+#leave_button1 {
+    display: none;
+}
+
+#leave_button2 {
+    display: none;
+}
+
+#leave_button3 {
+    display: none;
 }
 
 table {
-    padding-top: 10px;
+    margin-top: 2%;
     font-family: arial, sans-serif;
     border-collapse: collapse;
+    width: 65%;
 }
 
-table tr {
+tr {
     border-right: 2px solid var(--h2);
     border-left: 2px solid var(--h2);
     border-top: 2px solid var(--h2);
     border-bottom: 2px solid var(--h2);
 }
 
-table th,
-table td {
+th {
     height: 56px;
     text-align: left;
     padding-left: 8px;
 }
 
-table th {
-    height: 56px;
-}
-
-table td {
+td {
     height: 52px;
+    text-align: left;
+    padding-left: 8px;
 }
 
 tr:nth-child(even) {
@@ -158,12 +227,27 @@ tr:nth-child(even) {
     border-radius: 10px;
     color: black;
     padding: 12px 40px;
-    margin-left: 84%;
+    margin-left: 52%;
     margin-top: 3%;
     cursor: pointer;
     font-size: 16px;
     height: fit-content;
     width: fit-content;
+    text-decoration: none;
+}
+
+.btn1 {
+    background-color: #B2EBF2;
+    border-radius: 10px;
+    color: black;
+    padding: 12px 40px;
+    margin-left: 52%;
+    margin-top: 3%;
+    cursor: pointer;
+    font-size: 16px;
+    height: fit-content;
+    width: fit-content;
+    text-decoration: none;
 }
 
 .view_btn {
