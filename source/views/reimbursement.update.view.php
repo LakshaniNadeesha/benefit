@@ -98,18 +98,10 @@ function subDays(myDate, days) {
 	<form name="myform" action="#" method="post"  onsubmit=" return validation()" enctype="multipart/form-data">
 			<?php
                 if(boolval($arr)){
-                    print_r($arr);
+                    //print_r($arr);
                     // print_r($row['error']);
                 }?>		
-		<div class="row">
-			<div class="column_1">
-			<label for="c_date">Claim Date</label>
-			</div>
-		<div class="column_2">
-			<input type="date" id="claim_date" name="claim_date" value="<?php print_r($arr[0]->claim_date); ?>"  min="" max="" required>
-			
-		</div>
-		</div>
+		
 
 		<div class="row">
 			<div class="column_1">
@@ -167,7 +159,7 @@ function subDays(myDate, days) {
 		<!-- </form>	 -->
 		
 		<a href="<?=PATH?>Reimbursement/updating/<?= $arr->invoice_hashing?>">
-        <button  type="submit" value="submit" name="submit" class="update-confirmation">Update</button></a>
+        <input type="submit" value="Update" name="submit" id="update-confirmation"></a>
 
 		<a href="<?=PATH?>/Reimbursement">
 		<input class="cancle-confirmation" type="button" value="Cancel"></a>
@@ -241,34 +233,34 @@ function reason_validation() {
 }
 
 //get claim date
-function dating(){
+// function dating(){
 
-var today = new Date();
-var max_m = today.getUTCMonth() + 1;
-var max_d = today.getUTCDate();
-var max_y = today.getUTCFullYear();
+// var today = new Date();
+// var max_m = today.getUTCMonth() + 1;
+// var max_d = today.getUTCDate();
+// var max_y = today.getUTCFullYear();
 
-today_date = max_y + "-" + max_m + "-" + max_d;
+// today_date = max_y + "-" + max_m + "-" + max_d;
 
-document.getElementById("claim_date").setAttribute("max", today_date);
+// document.getElementById("claim_date").setAttribute("max", today_date);
 
-var dateObj = new Date();
+// var dateObj = new Date();
 
-var min_date = subDays(dateObj, 6);
+// var min_date = subDays(dateObj, 6);
 
-var min_m = min_date.getUTCMonth() + 1; //months from 1-12
-var min_d = min_date.getUTCDate();
-var min_y = min_date.getUTCFullYear();
+// var min_m = min_date.getUTCMonth() + 1; //months from 1-12
+// var min_d = min_date.getUTCDate();
+// var min_y = min_date.getUTCFullYear();
 
-newdate = min_y + "-" + min_m + "-" + min_d;
+// newdate = min_y + "-" + min_m + "-" + min_d;
 
-document.getElementById("claim_date").setAttribute("min", newdate);
+// document.getElementById("claim_date").setAttribute("min", newdate);
 
 
-function subDays(myDate, days) {
-    return new Date(myDate.getTime() - days * 24 * 60 * 60 * 1000);
-}
-}
+// function subDays(myDate, days) {
+//     return new Date(myDate.getTime() - days * 24 * 60 * 60 * 1000);
+// }
+// }
 
 </script>   		
 	<!-- <script src="public/js/reimbursement.js"></script> -->
