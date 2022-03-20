@@ -104,6 +104,21 @@
         height: 30px;
     }
 
+    .fc .fc-button-group > :first-child {
+        margin-left: 0;
+        display: none;
+    }
+
+    .fc .fc-button-group > * {
+        float: left;
+        margin: 0 0 0 -1px;
+        display: none;
+    }
+
+    .fc-toolbar.fc-header-toolbar {
+         margin-bottom: 0;
+    }
+
 </style>
 <body>
 <br />
