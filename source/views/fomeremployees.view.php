@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -118,7 +119,7 @@ body {
  -->
 <div class="topnavs">
   <div class="search-container">
-<input st type="text" id="myInput" onkeyup='tableSearch()' placeholder="Search By ID" class="fa fa-search">
+<input st type="text" id="myInput" onkeyup='tableSearch()' placeholder="Search By NIC" class="fa fa-search">
 </div>
 </div>
 
@@ -128,30 +129,48 @@ body {
                     <th><label>
                             <input name="select_all" value="1" type="checkbox">
                         </label></th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Name</th>
+                    <!-- <th>Last Name</th> -->
                     <th>Gender</th>
                     <th>NIC</th>
+                    <th>Communication overall</th>
+                    <th>Quality of work overall</th>
+                    <th>Organizationoverall</th>
+                    <th>Team skills overall</th>
+                    <th>Multitasking ability overall</th>
+                    <th>Last modifydate</th>
                     <th>Option</th>
                     
                 </tr>
                 <?php
-                      foreach ($row as $key ) { ?>
+                     // foreach ($row as $key ) 
+                if(boolval($row))
+                { 
+                   // print_r($row);
+                    for($i=0;$i<sizeof($row);$i++){
+
+                    ?>
 
 
                 <tr>
-                    <td><input type="checkbox" name="name1" /></td>
-                    <td><?php print_r($key->first_name); ?> </td>
-                    <td><?php print_r($key->last_name);?> </td>
-                    <td><?php print_r($key->gender);?> </td>
-                    <td><?php print_r($key->employee_NIC);?></td>
-                    <td> 
-                        <a href="<?= PATH ?>UpdateemployeeController/addfomeremp/<?=$key->employee_ID?>"><i class="fas fa-edit"></i></a>
+                    <td><input type="checkbox" name="name1" ></td>
+                    <td><?php print_r($row[$i]['first_name']);?>  <?php print_r($row[$i]['last_name']);?></td>
+                    <!-- <td><?php print_r($row[$i]['last_name']);?> </td> -->
+                    <td><?php print_r($row[$i]['gender']);?> </td>
+                    <td><?php print_r($row[$i]['employee_NIC']);?></td>
+                    <td><?php print_r($row[$i]['details']->communication_overall);echo"%";?></td>
+                    <td><?php print_r($row[$i]['details']->quality_of_work_overall);echo"%";?></td>
+                    <td><?php print_r($row[$i]['details']->organization_overall);echo"%";?></td>
+                    <td><?php print_r($row[$i]['details']->team_skills_overall);echo"%";?></td>
+                    <td><?php print_r($row[$i]['details']->multitasking_ability_overall);echo"%";?></td>
+                    <td><?php print_r($row[$i]['details']->last_modifydate);echo"%";?></td>
+                   <td> 
+                        <a href="<?= PATH ?>UpdateemployeeController/addfomeremp/<?=$row[$i]['employee_ID']?>"><i class="fas fa-edit"></i></a>
                     </td>
                     
                 </tr>
                 <?php
-                        
+                     }   
                     }?>
             </table>
 <script type="application/javascript">
