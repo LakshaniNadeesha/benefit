@@ -1,8 +1,4 @@
-* {
-    box-sizing: border-box;
-}
-
-/* Add a gray background color with some padding */
+@import "color.css";
 body {
     font-family: Arial;
     padding: 20px;
