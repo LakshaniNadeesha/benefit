@@ -46,12 +46,57 @@ function editdocuments($id = null){
 			$user=new HrdocumentModel();
         	$ar=Auth::user();
         	$arr = $user->where('document_name', $id);
-			// print_r($arr);
+			$doc_id = $arr[0]->document_ID;
+			//print_r($doc_id);
+			//print_r($arr);
+			if(boolval($doc_id)){
+				if(count($_POST)>0)
+				{
+					if(isset($_POST['submit']))
+					{
+						$new_arr['document_name']=$_POST['d_name'];
+						$new_arr['updated_date']=$_POST['updated_date'];
+						$file = $_FILES['document']['name'];
+						//print_r($file);
+		
+						$target_dir = "public/documents/";
+						$path = pathinfo($file);
+						$filename = $path['filename'];
+						$ext = $path['extension'];
+						$temp_name = $_FILES['document']['tmp_name'];
+						$path_filename_ext = $target_dir.$filename.".".$ext;
+		
+						move_uploaded_file($temp_name, $path_filename_ext);
+		
+		
+						$arr['document_path'] = $path_filename_ext;
+						$arr['document_hashing'] = hash_file('md5',$path_filename_ext);
+		
+						$hash_values = array();
+						$all_rows = $user->findAll();
+						$flag = true;
+						for($i=0; $i<sizeof($all_rows);$i++){
+							$hash_values[$i] = $all_rows[$i]->document_hashing;
+							if($arr['document_hashing'] == $hash_values[$i]){
+								$flag = false;
+								break;
+							}
+					}
+					if($flag){
+						$user->update_status($doc_id,'document_ID',$new_arr);
+						$this->redirect('HRdocuments/updatedocuments');
+					}
+					else{
+						$errors="This document is already used please check document again!";
+					}
+				}
+			}
 			$this->view('hrdocumentsedit',['arr'=>$arr, 'errors'=>$errors]);
 	
 				} else {
 					$this->view('404');
 				}	
+}
 }
 
 
@@ -222,8 +267,5 @@ function editdocuments($id = null){
 				}
 	
 	}
-
-
-
 
 }

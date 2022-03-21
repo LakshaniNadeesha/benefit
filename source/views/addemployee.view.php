@@ -135,7 +135,7 @@
                 </div>
                 <div class="acc_dp">
                     <div class="title">
-                        <p>Accounting Department</p>
+                        <p>Financial Department</p>
                     </div>
                     <div class="data">
                         <table>

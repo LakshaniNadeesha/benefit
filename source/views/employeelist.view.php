@@ -56,7 +56,7 @@ $this->view('includes/header1');
                     <option value="oper">Operational Department</option>
                     <option value="hr">HR Department</option>
                     <option value="seles">Seles Department</option>
-                    <option value="acc">Account Department</option>
+                    <option value="acc">Financial Department</option>
                 </select>
                 <div class="search">
                     <i class='fa fa-search'></i>

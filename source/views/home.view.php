@@ -95,21 +95,16 @@
 <div class="confirm init" >
         <div class="confirm__window ">
             <div class="confirm__titlebar">
-                <span class="confirm__title">Emplohyee Details</span>
+                <span class="confirm__title">Employee Details</span>
                 <button class="confirm__close">&times;</button>
             </div>
             <div class="confirm__content" id="doperation" style="display: none;">
                
                <h2 >Operational Department</h2>
-               <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
-                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
-                    obcaecati, ad ipsum molestias nemo dolore!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
-                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
-                    obcaecati, ad ipsum molestias nemo dolore!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
-                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
-                    obcaecati, ad ipsum molestias nemo dolore!</p>
+               <p>An operations department ensures that the production process is completed 
+                   from start to finish. These production processes need to line up with the goals and 
+                   functions of other departments within a company.</p>
+                  
                 <div class="data">
 
                     <?php
@@ -148,15 +143,21 @@
             <div class="confirm__content" id="dhr" style="display: none;">
                 
                <h2 >HR Department</h2>
-               <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
-                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
-                    obcaecati, ad ipsum molestias nemo dolore!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
-                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
-                    obcaecati, ad ipsum molestias nemo dolore!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
-                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
-                    obcaecati, ad ipsum molestias nemo dolore!</p>
+               <p>An HR department is tasked with maximizing employee productivity and protecting the company from any issues that may arise
+                   within the workforce. HR responsibilities include compensation and benefits, recruitment, firing, and keeping 
+                   up to date with any laws that may affect the company and its employees.</p>
+                <p>Functions in HR Department</p>
+                <ul>
+                    <li>Human resource planning</li>
+                    <li>Recruitment and selection</li>
+                    <li>Performance management</li>
+                    <li>Job Analysis</li>
+                    <li>Staffing</li>
+                    <li>Training and Development</li>
+
+                </ul>  
+
+                   
                 <div class="data">
 
                     <?php
@@ -196,15 +197,10 @@
             <div class="confirm__content" id="dselse" style="display: none;">
                 
                <h2 >Seles Department</h2>
-               <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
-                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
-                    obcaecati, ad ipsum molestias nemo dolore!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
-                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
-                    obcaecati, ad ipsum molestias nemo dolore!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
-                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
-                    obcaecati, ad ipsum molestias nemo dolore!</p>
+               <p>The sales department consists of a set of business activities and processes that help a sales organization run 
+                   effectively, efficiently and in support of business strategies and objectives. The sales department 
+                   generally includes sales, sales support or business operations.</p>
+                  
                 <div class="data">
 
                     <?php
@@ -244,15 +240,11 @@
             <div class="confirm__content" id="dfinancial" style="display: none;">
                
                <h2 >Financial Department</h2>
-               <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
-                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
-                    obcaecati, ad ipsum molestias nemo dolore!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
-                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
-                    obcaecati, ad ipsum molestias nemo dolore!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente quod, tempora quaerat
-                    earum iste veniam recusandae ex deserunt quos distinctio aut necessitatibus nihil, autem 
-                    obcaecati, ad ipsum molestias nemo dolore!</p>
+               <p>A finance department is the unit of a business responsible for obtaining and handling any monies on behalf of the organization. 
+                   The department controls the income and expenditure in addition to ensuring effective business running with minimum disruptions.</p> 
+                <p>Besides the roles of handling the payroll, income and expenses, finance department responsibilities also include 
+                   economic analysis to improve key business strategies.</p>
+             
                 <div class="data">
 
                     <?php
