@@ -45,10 +45,10 @@ class EmployeelistController extends Controller{
         // }else{
         //     $data = $user->where('department_ID',2);
         // }
-        $oper= $user->where('department_ID',1);
-        $hr = $user->where('department_ID',2);
-        $seles = $user->where('department_ID',3);
-        $acc = $user->where('department_ID',4);
+        $oper= $user->where_condition('department_ID','banned_employees',1,0);
+        $hr = $user->where_condition('department_ID','banned_employees',2,0);
+        $seles = $user->where_condition('department_ID','banned_employees',3,0);
+        $acc = $user->where_condition('department_ID','banned_employees',4,0);
         $arr = array($oper,$hr,$seles,$acc);
         
         $this->view('employeelist',['rows'=>$arr]);
