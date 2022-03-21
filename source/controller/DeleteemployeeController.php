@@ -18,8 +18,11 @@ class DeleteemployeeController extends Controller
         $data1 = $user->findAll();
         $id = $_SESSION['id'];
 		
-        if(isset($_POST['delete'])){
-            $set = $user->delete($id);
+   if(isset($_POST['delete'])){
+            //$user=new Employeedetails();
+            $arr['banned_employees']=1;
+            $row=$user->update($id,$arr);
+            //$set = $user->delete($id);
             $this->redirect('EmployeelistController');
         }
 
