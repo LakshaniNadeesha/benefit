@@ -40,6 +40,7 @@ class BenefitrequestController extends Controller
                     $arr['benefit_status'] = "pending";
                     $arr['benefit_description'] = $_POST['subject'];
                     $arr['accepted_amount'] = 0;
+                    $arr['handled_date'] = '';
 //                $arr['report_location'] = $_POST['report_submission'];
 
                     $file = $_FILES['report_submission']['name'];

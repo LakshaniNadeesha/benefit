@@ -76,15 +76,18 @@ class Approvebenefit extends Controller
             $hashVal = $get_row[0]->report_hashing;
             if($remain[0]->remaining_amount >= $get_row[0]->claim_amount){
                 $ar['benefit_status'] = "Accepted";
+                $ar['handled_date'] = date("Y/m/d");
                 $user->update_status($hashVal, 'report_hashing', $ar);
             }
             else if($remain[0]->remaining_amount == 0){
                 $ar['benefit_status'] = "Rejected";
                 $ar['accepted_amount'] = 0;
+                $ar['handled_date'] = date("Y/m/d");
                 $user->update_status($hashVal, 'report_hashing', $ar);
             }else {
                 $ar['benefit_status'] = "Half-Accepted";
                 $ar['accepted_amount'] = $remain[0]->remaining_amount;
+                $ar['handled_date'] = date("Y/m/d");
                 $user->update_status($hashVal, 'report_hashing', $ar);
             }
 
