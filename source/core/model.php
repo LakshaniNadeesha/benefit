@@ -19,6 +19,18 @@ class Model extends Database
         ]);
     }
 
+    public  function three_where_condition($column1,$column2,$column3,$value1,$value2,$value3){
+        $column1 = addslashes($column1);
+        $column2 = addslashes($column2);
+        $column3 = addslashes($column3);
+        $query = "select * from $this->table where $column1 = :value1 && $column2 = :value2 && $column3 = :value3";
+        return $this->query($query, [
+            'value1' => $value1,
+            'value2' => $value2,
+            'value3' => $value3
+        ]);
+    }
+
     public function where_not($column1, $column2, $value1, $value2){
         $column1 = addslashes($column1);
         $column2 = addslashes($column2);
