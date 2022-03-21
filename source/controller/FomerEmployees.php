@@ -3,6 +3,8 @@
 /**
  * former employees controller
  */
+class FomerEmployees extends Controller {
+
 function index(){
         if(!Auth::logged_in())
         {

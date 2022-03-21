@@ -154,7 +154,7 @@ body {
 
                 <tr>
                     <td><input type="checkbox" name="name1" ></td>
-                    <td><?php print_r($row[$i]['first_name']);?>  <?php print_r($row[$i]['last_name']);?></td>
+<!--                    <td>--><?php //print_r($row[$i]['first_name']);?><!--  --><?php //print_r($row[$i]['last_name']);?><!--</td>-->
                     <!-- <td><?php print_r($row[$i]['last_name']);?> </td> -->
                     <td><?php print_r($row[$i]['gender']);?> </td>
                     <td><?php print_r($row[$i]['employee_NIC']);?></td>

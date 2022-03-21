@@ -1,0 +1,147 @@
+* {
+    box-sizing: border-box;
+}
+
+/* Add a gray background color with some padding */
+body {
+    font-family: Arial;
+    padding: 20px;
+    background: #f1f1f1;
+}
+
+.add_meeting {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.add_meeting button {
+    background-color: #0f9eb8;
+    height: 30px;
+    width: 100px;
+    margin-right: 10px;
+    border-radius: 5px;
+    color: var(--f);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Header/Blog Title */
+.header {
+    padding: 30px;
+    font-size: 40px;
+    text-align: center;
+    background: white;
+}
+
+.title {
+    width: 100%;
+    font-size: larger;
+    font-weight: bold;
+    margin: 16px auto auto;
+    display: flex;
+    justify-content: center;
+    color: var(--h1);
+}
+
+.card h2 {
+    font-size: large;
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.card h5 {
+    width: 50%;
+    justify-content: flex-start;
+    display: flex;
+    margin: 0 0 10px;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+    float: left;
+    width: 100%;
+}
+
+/* Right column */
+.rightcolumn {
+    float: left;
+    width: 25%;
+    padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+    background-color: #aaa;
+    width: 100%;
+    padding: 20px;
+}
+
+.outcome {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Add a card effect for articles */
+.card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #0f9eb8;
+}
+
+.outcome_content {
+    width: 100%;
+}
+
+.edit_icon {
+    width: 20%;
+    text-align: center;
+    font-size: x-large;
+    color: #0f9eb8;
+    /*margin: auto;*/
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 0;
+}
+
+.sub_title {
+    margin: 0;
+}
+
+.meeting_name {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Footer */
+.footer {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+    .leftcolumn, .rightcolumn {
+        width: 100%;
+        padding: 0;
+    }
+}
