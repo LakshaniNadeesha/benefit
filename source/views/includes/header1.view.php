@@ -45,7 +45,7 @@
         <a href="<?= PATH ?>hrdocuments">Documents</a>
         <a href="<?= PATH ?>Outcomes">Outcomes</a>
         <?php if (Auth::access('Supervisor')): ?>
-            <a href="<?= PATH ?>Approvereimbursement">USER MANAGEMENT</a>
+            <a href="<?= PATH ?>Approvereimbursement">Supervisor</a>
         <?php endif; ?>
         <?php if (Auth::access('HR Manager')): ?>
             <a href="<?= PATH ?>EmployeelistController">USER MANAGEMENT</a>
@@ -53,9 +53,8 @@
         <?php if (Auth::access('HR Officer')): ?>
             <a href="<?= PATH ?>AddemployeeController">USER MANAGEMENT</a>
         <?php endif; ?>
-<!--        <a href="javascript:void(0);" class="icon" onclick="myFunction()">-->
-<!--            <i class="fa fa-bars"></i>-->
-<!--        </a>-->
+
+
         <a href="<?= PATH ?>Logout" id="#show_hide" style="display: none">Log Out </a>
         <a href="" id="#show_hide" style="display: none">Notifications </a>
     </div>
@@ -258,20 +257,20 @@
 </div>
 <script>
 
-    // let current_btn = document.querySelectorAll('a');
-    //
-    // current_btn.forEach(a => {
-    //     a.addEventListener("click", function () {
-    //         current_btn.forEach(btn => btn.classList.remove('current'));
-    //         this.classList.add('current');
-    //     })
-    // })
-    //
-    // var dd_main = document.querySelector(".dd_main");
-    //
-    // dd_main.addEventListener("click", function () {
-    //     this.classList.toggle("active");
-    // })
+    let current_btn = document.querySelectorAll('a');
+
+    current_btn.forEach(a => {
+        a.addEventListener("click", function () {
+            current_btn.forEach(btn => btn.classList.remove('current'));
+            this.classList.add('current');
+        })
+    })
+
+    var dd_main = document.querySelector(".dd_main");
+
+    dd_main.addEventListener("click", function () {
+        this.classList.toggle("active");
+    })
 </script>
 </body>
 </html>

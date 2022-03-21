@@ -29,7 +29,7 @@
                 province
             </div>
             <div class="supervisor">
-                <i class="material-icons" style="padding-right: 6px">supervisor_account</i><span>Mr/Mis <?= Auth::sup() ?></span>
+                <i class="material-icons" style="padding-right: 6px">supervisor_account</i><span><?= Auth::sup(); ?></span>
             </div>
         </div>
     </div>

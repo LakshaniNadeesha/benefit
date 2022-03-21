@@ -100,11 +100,6 @@ $this->view('includes/header1');
                                                 <button class="button-btn" type="submit" id="delete" name="delete"><i
                                                             class='fas fa-trash-alt'></i></button>
                                             <?php endif; ?>
-                                            <?php if (Auth::access('HR Officer') || Auth::access('HR Manager')): ?>
-                                                <a class="current"
-                                                   href="<?= PATH ?>Currentdata/<?php echo $entry->employee_NIC . "/" . $entry->hired . "/" . $entry->first_name . "/" . $entry->last_name; ?>"><i
-                                                            class="fab fa-gratipay"></i></a>
-                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </form>
@@ -145,11 +140,6 @@ $this->view('includes/header1');
                                             <?php if (Auth::access('HR Officer') || Auth::access('HR Manager')): ?>
                                                 <button class="button-btn" type="submit" id="delete" name="delete"><i
                                                             class='fas fa-trash-alt'></i></button>
-                                            <?php endif; ?>
-                                            <?php if (Auth::access('HR Officer') || Auth::access('HR Manager')): ?>
-                                                <a class="current"
-                                                   href="<?= PATH ?>Currentdata/<?php echo $entry->employee_NIC . "/" . $entry->hired . "/" . $entry->first_name . "/" . $entry->last_name; ?>"><i
-                                                            class="fab fa-gratipay"></i></a>
                                             <?php endif; ?>
                                         </div>
                                     </div>
@@ -192,11 +182,6 @@ $this->view('includes/header1');
                                                 <button class="button-btn" type="submit" id="delete" name="delete"><i
                                                             class='fas fa-trash-alt'></i></button>
                                             <?php endif; ?>
-                                            <?php if (Auth::access('HR Officer') || Auth::access('HR Manager')): ?>
-                                                <a class="current"
-                                                   href="<?= PATH ?>Currentdata/<?php echo $entry->employee_NIC . "/" . $entry->hired . "/" . $entry->first_name . "/" . $entry->last_name; ?>"><i
-                                                            class="fab fa-gratipay"></i></a>
-                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </form>
@@ -235,11 +220,6 @@ $this->view('includes/header1');
                                             <?php if (Auth::access('HR Officer') || Auth::access('HR Manager')): ?>
                                                 <button class="button-btn" type="submit" id="delete" name="delete"><i
                                                             class='fas fa-trash-alt'></i></button>
-                                            <?php endif; ?>
-                                            <?php if (Auth::access('HR Officer') || Auth::access('HR Manager')): ?>
-                                                <a class="current"
-                                                   href="<?= PATH ?>Currentdata/<?php echo $entry->employee_NIC . "/" . $entry->hired . "/" . $entry->first_name . "/" . $entry->last_name; ?>"><i
-                                                            class="fab fa-gratipay"></i></a>
                                             <?php endif; ?>
                                         </div>
                                     </div>

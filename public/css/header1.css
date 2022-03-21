@@ -407,6 +407,12 @@ a{
     font-size: medium;
 }
 
+a.link {
+    font-size: medium;
+    color: var(--f);
+    font-weight: normal;
+}
+
 .left_content {
     width: 60%;
     color: #7f7c7c;

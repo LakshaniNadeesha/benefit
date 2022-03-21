@@ -24,6 +24,21 @@ body {
     flex-direction: column;
 }
 
+.pro-box {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    height: 100px;
+}
+
+.pro-box span {
+    margin: auto;
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: small;
+    color: var(--f);
+}
+
 .section1 {
     /*height: min-content;*/
     /*margin: 10px;*/
@@ -165,7 +180,7 @@ body {
 
 .box a {
     margin: auto;
-    font-size: 20px;
+    /*font-size: 20px;*/
     color: crimson;
 }
 
