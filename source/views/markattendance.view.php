@@ -48,8 +48,11 @@
                 <?php
                 if (boolval($today)) {
                     for ($i = 0; $i < sizeof($today); $i++) { ?>
-                        <img src="<?php print_r($today[$i]->profile_image); ?>" alt="on-leave-people"
-                             class="on-leave-people">
+                        <div class="pro-box">
+                            <img src="<?php print_r($today[$i]->profile_image); ?>" alt="on-leave-people"
+                                 class="on-leave-people">
+                            <span><?php print_r($today[$i]->first_name); ?></span>
+                        </div>
                     <?php }
                 } else { ?>
                     <div style="margin-left: 7px; margin-top: 10px; font-size: smaller">No one</div>
@@ -60,8 +63,11 @@
                 <?php
                 if (boolval($tomorrow)) {
                     for ($i = 0; $i < sizeof($tomorrow); $i++) { ?>
-                        <img src="<?php print_r($tomorrow[$i]->profile_image); ?>" alt="on-leave-people"
-                             class="on-leave-people">
+                        <div class="pro-box">
+                            <img src="<?php print_r($tomorrow[$i]->profile_image); ?>" alt="on-leave-people"
+                                 class="on-leave-people">
+                            <span><?php print_r($tomorrow[$i]->first_name); ?></span>
+                        </div>
                     <?php }
                 } else { ?>
                     <div style="margin-left: 7px; margin-top: 10px; font-size: smaller">No one</div>

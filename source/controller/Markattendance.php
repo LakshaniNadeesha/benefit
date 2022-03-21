@@ -20,7 +20,7 @@ class Markattendance extends Controller
             $previous = new AttendDate();
             $leave = new LeaveapplicationModel();
 
-            $all_emp = $user->where('supervisor_ID', $id);
+            $all_emp = $user->where_condition('supervisor_ID','banned_employees', $id,0);
             //print_r($all_emp);
 
             date_default_timezone_set("Asia/Colombo");
@@ -159,6 +159,7 @@ class Markattendance extends Controller
 
             $today_info = array();
             if (boolval($today_leave)) {
+                $j=0;
                 for ($i = 0; $i < sizeof($today_leave); $i++) {
                     $emp_info = $user->where('employee_ID', $today_leave[$i]->employee_ID);
                     if($emp_info[0]->supervisor_ID == auth::user()){

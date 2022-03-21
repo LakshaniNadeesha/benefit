@@ -54,9 +54,12 @@ class Auth
 			$ro=array();
 			$super=new Employeedetails();
 			$ro=$super->where('employee_ID',$id,);
-			$ro=$ro[0];
+			$ro['fname']=$ro[0]->first_name;
+			$ro['lname'] = $ro[0]->last_name;
 
-				return $ro->first_name;
+			echo $ro['fname']." ".$ro['lname'];
+
+				//return $ro;
 				//return $ro;
 		}
 		return false;
@@ -75,18 +78,18 @@ class Auth
 
     public function calendar(){
         $connect = new PDO('mysql:host=localhost;dbname=hrm', 'root', '');
-        if (isset($_POST["title"])) {
-            $query = "INSERT INTO events (title, start_event, end_event) VALUES (:title, :start_event, :end_event) ";
-            $statement = $connect->prepare($query);
-            $statement->execute(
-                array(
-                    ':title' => $_POST['title'],
-                    ':start_event' => $_POST['start'],
-                    ':end_event' => $_POST['end'],
-                    ':shows' => auth::user()
-                )
-            );
-        }
+//        if (isset($_POST["title"])) {
+//            $query = "INSERT INTO events (title, start_event, end_event) VALUES (:title, :start_event, :end_event) ";
+//            $statement = $connect->prepare($query);
+//            $statement->execute(
+//                array(
+//                    ':title' => $_POST['title'],
+//                    ':start_event' => $_POST['start'],
+//                    ':end_event' => $_POST['end'],
+//                    ':shows' => auth::user()
+//                )
+//            );
+//        }
 
         $user = new Employeedetails();
         $all_users = $user->findAll();
