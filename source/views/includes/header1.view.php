@@ -43,7 +43,7 @@
         <a href="<?= PATH ?>Home">Home</a>
         <a href="<?= PATH ?>leavedetailscontroller">My Info</a>
         <a href="<?= PATH ?>hrdocuments">Documents</a>
-        <a href="<?= PATH ?>Hierarchy">Hierarchy</a>
+        <a href="<?= PATH ?>Outcomes">Outcomes</a>
         <?php if (Auth::access('Supervisor')): ?>
             <a href="<?= PATH ?>Approvereimbursement">USER MANAGEMENT</a>
         <?php endif; ?>
