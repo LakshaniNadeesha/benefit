@@ -15,6 +15,7 @@ class DeleteemployeeController extends Controller
 
 		$user = new UpdateemployeeModel();
         $data = $user->where('employee_ID',$_SESSION['id'] );
+        $data1 = $user->findAll();
         $id = $_SESSION['id'];
 		
         if(isset($_POST['delete'])){
@@ -26,7 +27,7 @@ class DeleteemployeeController extends Controller
             $this->redirect('EmployeelistController');
         }
 
-		$this->view('deleteemployee',['rows'=>$data]);
+		$this->view('deleteemployee',['rows'=>$data, 'rows2'=>$data1]);
 
 	}
 }

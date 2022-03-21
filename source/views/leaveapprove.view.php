@@ -197,24 +197,25 @@
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Leave Type</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
+                                <th>Date</th>
 
                             </tr>
+                            
                             <?php
-                            if (boolval($emps)) {
-                                for ($i = 0; $i < sizeof($emps); $i++) {
+                            print_r($emp);
+                            if (boolval($emp)) {
+                                for ($i = 0; $i < sizeof($emp); $i++) {
 
 
                             ?>
 
                                     <tr>
                                         <!--  <td><input type="checkbox" name="name1" /></td> -->
-                                        <td><?php print_r($emps[$i]['first_name']); ?></td>
-                                        <td><?php print_r($emps[$i]['last_name']); ?> </td>
-                                        <td><?php print_r($emps[$i]['details']->leave_type); ?> </td>
-                                        <td><?php print_r($emps[$i]['details']->starting_date); ?> </td>
-                                        <td><?php print_r($emps[$i]['details']->ending_date); ?> </td>
+                                        <td><?php print_r($emp[$i]['first_name']); ?></td>
+                                        <td><?php print_r($emp[$i]['last_name']); ?> </td>
+                                        <td><?php print_r($emp[$i]['details']->leave_type); ?> </td>
+                                        <td><?php print_r($emp[$i]['details']->date); ?> </td>
+                                        <!-- <td><?php print_r($emp[$i]['details']->ending_date); ?> </td> -->
 
                                         <!-- <td> 
                         <a href="<?= PATH ?>Supervisor/Update_Performance/<?= $handled[$i]['employee_ID'] ?>"><i class="fas fa-edit"></i></a>

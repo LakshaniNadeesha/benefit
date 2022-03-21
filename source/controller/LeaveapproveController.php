@@ -23,6 +23,7 @@ class LeaveapproveController extends Controller
                     $employee_details = $user->where_condition('employee_ID','banned_employees',$row[$i]->employee_ID,0);
                     if(boolval($employee_details)){
                     $leave_details = $user_x->where_condition('employee_ID', 'leave_status', $row[$i]->employee_ID, 'Pending');
+                
                     if(boolval($leave_details)){
                             //print_r($leave_details);
                             $emp[$k]['employee_ID'] = $employee_details[0]->employee_ID;
