@@ -64,7 +64,8 @@
             <div class="navbar">
                 <div class="navbar_right">
                     <div class="notifications">
-                        <div class="icon_wrap"><i class="far fa-bell" aria-hidden="true"></i></div>
+                        <div class="icon_wrap"><i class="far fa-bell" aria-hidden="true"></i><?php $notifications = Auth::notification();
+                                if (boolval($notifications)) {?><span class="badge"></span><?php } ?></div>
 
                         <div class="notification_dd">
                             <ul class="notification_ul">

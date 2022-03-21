@@ -351,6 +351,16 @@ a{
     cursor: pointer;
 }
 
+.icon_wrap .badge {
+    position: absolute;
+    right: -6px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+    height: 15px;
+    width: 15px;
+}
+
 .navbar .navbar_right .notifications{
     margin-right: 15px;
 }
