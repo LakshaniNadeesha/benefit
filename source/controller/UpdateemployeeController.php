@@ -24,6 +24,8 @@ class UpdateemployeeController extends Controller{
 				$arr['province'] = filter_input(INPUT_POST, 'province', FILTER_SANITIZE_STRING);
                 $arr['marital_status'] = $_POST['marital'];
                 $arr['contact_number'] = $_POST['contact'];
+                $arr['supervisor_ID'] = $_POST['supervisor'];
+                $arr['department_ID'] = $_POST['department'];
                 $email =  filter_input(INPUT_POST, 'email_new', FILTER_SANITIZE_EMAIL);
 
                 $validate = $this->email_validate($email,$user);
