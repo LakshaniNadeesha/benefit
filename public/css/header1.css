@@ -24,8 +24,8 @@ body {
     /*width: 100%;*/
 }
 
-.topnav  .list{
-    width:100%;
+.topnav .list {
+    width: 100%;
 }
 
 .topnav a {
@@ -64,6 +64,7 @@ body {
     display: none;
 }
 
+
 /* stroke */
 
 .topnav .list a {
@@ -97,12 +98,13 @@ body {
     margin-right: 10px;
 }
 
-.notification a{
+.notification a {
     cursor: pointer;
 }
 
 
 /* bell notification*/
+
 .profile__image {
     width: 50px;
     height: 50px;
@@ -237,11 +239,11 @@ body {
     display: flex;
 }
 
-.list .current{
+.list .current {
     background-color: red;
 }
 
-@media screen and (max-width: 1160px){
+@media screen and (max-width: 1160px) {
     .logo {
         display: none;
     }
@@ -251,7 +253,6 @@ body {
     /*.toggle_section {*/
     /*    flex-direction: row-reverse;*/
     /*}*/
-
     .topnav.responsive {
         min-width: 100%;
     }
@@ -266,7 +267,9 @@ body {
 }
 
 @media screen and (max-width: 940px) {
-    .topnav.responsive {position: relative;}
+    .topnav.responsive {
+        position: relative;
+    }
     .topnav.responsive .icon {
         position: absolute;
         right: 0;
@@ -278,21 +281,16 @@ body {
         text-align: left;
         border-bottom: 1px solid var(--h2);
     }
-
-    .topnav.responsive .icon{
-        border-bottom:none;
+    .topnav.responsive .icon {
+        border-bottom: none;
         z-index: 1;
     }
-
-
     .topnav .list a,
     .topnav .list a:after,
     .topnav .list a:before {
         transition: none;
     }
-
     /* stroke */
-
     .topnav .list a {
         position: relative;
     }
@@ -308,15 +306,12 @@ body {
         background: var(--h1);
         height: 2px;
     }
-
     /*.toggle_section {*/
     /*    display: none;*/
     /*}*/
-
     #show_hide {
         display: block !important;
     }
-
     .toggle_section {
         margin-top: 0;
     }
@@ -326,28 +321,27 @@ body {
 /* push notification */
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Trade+Winds&display=swap');
-
-a{
+a {
     color: #7f8db0;
 }
 
-.wrapper{
+.wrapper {
     width: 100%;
     height: 100%;
 }
 
-.navbar{
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #d9e8ea;
 }
 
-.navbar .navbar_right{
+.navbar .navbar_right {
     display: flex;
 }
 
-.navbar .navbar_right .icon_wrap{
+.navbar .navbar_right .icon_wrap {
     cursor: pointer;
 }
 
@@ -361,21 +355,21 @@ a{
     width: 15px;
 }
 
-.navbar .navbar_right .notifications{
+.navbar .navbar_right .notifications {
     margin-right: 15px;
 }
 
-.navbar .navbar_right .notifications .icon_wrap{
+.navbar .navbar_right .notifications .icon_wrap {
     font-size: 28px;
 }
 
 .navbar .navbar_right .profile,
-.navbar .navbar_right .notifications{
+.navbar .navbar_right .notifications {
     position: relative;
 }
 
 .navbar .profile .profile_dd,
-.notification_dd{
+.notification_dd {
     position: absolute;
     top: 48px;
     right: -15px;
@@ -387,13 +381,12 @@ a{
     display: none;
     justify-content: center;
     border-radius: 3px;
-    box-shadow: 10px 10px 35px rgba(0,0,0,0.125),
-    -10px -10px 35px rgba(0,0,0,0.125);
+    box-shadow: 10px 10px 35px rgba(0, 0, 0, 0.125), -10px -10px 35px rgba(0, 0, 0, 0.125);
     z-index: 4;
 }
 
 .navbar .profile .profile_dd:before,
-.notification_dd:before{
+.notification_dd:before {
     content: "";
     position: absolute;
     top: -20px;
@@ -439,28 +432,28 @@ a.link {
     padding-inline-end: 20px
 }
 
-.notification_dd li.show_all{
+.notification_dd li.show_all {
     padding: 20px;
     display: flex;
     justify-content: center;
 }
 
-.notification_dd li.show_all p{
+.notification_dd li.show_all p {
     font-weight: 700;
     color: #3b80f9;
     cursor: pointer;
 }
 
-.notification_dd li.show_all p:hover{
+.notification_dd li.show_all p:hover {
     text-decoration: underline;
 }
 
 .navbar .navbar_right .icon_wrap:hover,
-.navbar .navbar_right .notifications.active .icon_wrap{
+.navbar .navbar_right .notifications.active .icon_wrap {
     color: #3b80f9;
 }
 
-.navbar .notifications.active .notification_dd{
+.navbar .notifications.active .notification_dd {
     display: block;
 }
 
@@ -485,12 +478,12 @@ a.link {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     width: 100%;
     height: auto;
 }
 
-.popup .notification_dd{
+.popup .notification_dd {
     display: block;
     position: static;
     margin: 0 auto;
@@ -498,11 +491,11 @@ a.link {
     overflow: auto;
 }
 
-.popup .notification_dd:before{
+.popup .notification_dd:before {
     display: none;
 }
 
-.popup .notification_dd li.title{
+.popup .notification_dd li.title {
     font-weight: 700;
     color: #3b80f9;
     display: flex;
@@ -510,7 +503,7 @@ a.link {
     position: relative;
 }
 
-.popup .notification_dd li.title .close{
+.popup .notification_dd li.title .close {
     position: absolute;
     top: 2px;
     right: 10px;
@@ -518,6 +511,6 @@ a.link {
     cursor: pointer;
 }
 
-.popup .notification_dd li.title .close:hover{
+.popup .notification_dd li.title .close:hover {
     opacity: 0.5;
 }

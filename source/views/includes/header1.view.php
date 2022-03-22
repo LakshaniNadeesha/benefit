@@ -32,8 +32,14 @@
             $(".close").click(function () {
                 $(".popup").hide();
             });
+            // $('topnav list a').click(function(){
+            //     $('list a').removeClass("active");
+            //     $(this).addClass("active");
+            // });
         });
+        
     </script>
+   
 </head>
 <body>
 <div class="topnav" id="myTopnav">
