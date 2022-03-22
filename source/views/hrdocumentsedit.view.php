@@ -39,7 +39,7 @@
     <div class="main_container">
     <div class="benefit_head">
     <fieldset>
-                <legend>UPDATE DOCUMENTS</legend>
+                <legend><div>UPDATE DOCUMENTS</div></legend>
                
                 <form name="myform" action="#" method="POST" onsubmit=" return validation()" enctype="multipart/form-data">
 

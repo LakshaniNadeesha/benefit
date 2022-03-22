@@ -92,17 +92,23 @@ body {
     padding: 50px;
     margin-right: 5px;
     margin-bottom: 5px;
-    /* display: flex;
-    flex-direction: row; */
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
 
 legend {
     margin-left: 60px;
-    padding: 8px;
     font-family: Roboto, Arial, sans-serif;
     font-size: 18px;
-    color: #fff;
+    color: white;
     background-color: #0C6170;
+    padding-left: 8px;
+}
+
+legend div {
+    color: white;
+    padding: 5px;
 }
 
 fieldset {
@@ -110,8 +116,6 @@ fieldset {
     justify-content: center;
     padding-bottom: 20px;
     padding-top: 20px;
-    margin-left: 20%;
-    /* display: inline-block; */
 }
 
 .row {
