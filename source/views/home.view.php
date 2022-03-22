@@ -28,7 +28,12 @@
             <div class="card">
                 <h2>Financial Department</h2>
 <!--                <p><i class="fas fa-user-alt"></i>  Manger: Mr.Aruna</p>-->
-                <p class="users"><i class="fas fa-users"></i><?php if (boolval($row[3])){ echo " "; print_r(sizeof($rows[3])); }?></p>
+                <p class="users"><i class="fas fa-users"></i>
+                    <?php if (boolval($rows[3])) {
+                        echo " ";
+                        print_r(sizeof($rows[3]));
+                    }?>
+                </p>
                 <button class="show-more" id="financial" >Show More <i class="fas fa-arrow-right"></i></button>
                 <form action="" method="post"><input type="hidden" name="hide" id="hide" value=""></form>
             </div>
@@ -38,7 +43,12 @@
             <div class="card">
                 <h2>Operational Department</h2>
                 <!--                <p><i class="fas fa-user-alt"></i>  Manger: Mr.Chathura</p>-->
-                <p class="users"><i class="fas fa-users"></i><?php if (boolval($row[3])){ echo " "; print_r(sizeof($rows[0])); }?></p>
+                <p class="users"><i class="fas fa-users"></i>
+                    <?php if (boolval($rows[0])) {
+                        echo " ";
+                        print_r(sizeof($rows[0]));
+                    }?>
+                </p>
                 <button class="show-more" id="operational" >Show More <i class="fas fa-arrow-right"></i></button>
                 <!-- <form action="" method="post"><input type="hidden" name="hide" id="hide" value=""></form> -->
             </div>
@@ -48,7 +58,12 @@
             <div class="card">
                 <h2>HR Department</b></h2>
 <!--                <p><i class="fas fa-user-alt"></i>  Manger: Mr.Silva</p>-->
-                <p class="users"><i class="fas fa-users"></i><?php if (boolval($row[3])){ echo " "; print_r(sizeof($rows[1])); }?></p>
+                <p class="users"><i class="fas fa-users"></i>
+                    <?php if (boolval($rows[1])) {
+                        echo " ";
+                        print_r(sizeof($rows[1]));
+                    }?>
+                </p>
                 <button class="show-more" id="hr" >Show More <i class="fas fa-arrow-right"></i></button>
                 <!-- <form action="" method="post"><input type="hidden" name="hide" id="hide" value=""></form> -->
             </div>
@@ -58,7 +73,12 @@
             <div class="card">
                 <h2>Sales Department</h2>
 <!--                <p><i class="fas fa-user-alt"></i>  Manger: Mr.Bimsara</p>-->
-                <p class="users"><i class="fas fa-users"></i><?php if (boolval($row[3])){ echo " "; print_r(sizeof($rows[2])); }?></p>
+                <p class="users"><i class="fas fa-users"></i>
+                    <?php if (boolval($rows[2])) {
+                        echo " ";
+                        print_r(sizeof($rows[2]));
+                    }?>
+                </p>
                 <button class="show-more" id="seles" type="submit" >Show More <i class="fas fa-arrow-right"></i></button>
                 <!-- <form  method="get"><input type="hidden" name="hide" id="hide" value="<?php $i ?>" ></form> -->
                 <!-- <input type="button" value="Click" onclick="dosomething('Hello')"> -->
