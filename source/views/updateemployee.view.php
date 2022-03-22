@@ -105,7 +105,7 @@
                             </div>
                             <div>
                                 <p id="left">Current Supervisor ID</p>
-
+                                <input type="hidden" name="c_supervisor" value="<?php echo $entry->supervisor_ID ?>">
                                 <?php
                                 if ($entry->supervisor_ID == 0) {
                                     $supervisor = "Root Employee, Don't have Supervisor";

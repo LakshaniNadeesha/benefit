@@ -25,6 +25,14 @@ class UpdateemployeeController extends Controller{
                 $arr['marital_status'] = $_POST['marital'];
                 $arr['contact_number'] = $_POST['contact'];
                 $arr['supervisor_ID'] = $_POST['supervisor'];
+
+                $c_supervisor = $_POST['c_supervisor'];
+
+                echo $c_supervisor;
+
+                $s_id = $_POST['supervisor'];
+                $arr2['user_role'] = "Supervisor";
+                $arr3['user_role'] = "Employee";
                 $arr['department_ID'] = $_POST['department'];
                 $email =  filter_input(INPUT_POST, 'email_new', FILTER_SANITIZE_EMAIL);
 
@@ -35,8 +43,18 @@ class UpdateemployeeController extends Controller{
                 }else{
                     $arr['email'] = filter_input(INPUT_POST, 'email_new', FILTER_SANITIZE_EMAIL);
                 }
-                
+                $ar = $user->where('supervisor_ID',$c_supervisor);
+                echo "<br> test before print array <br>";
+                print_r($ar);
+                echo "<br> size of array <br>";
+                print_r(sizeof($ar));
+
+                if($ar){
+                    $set = $user->update($c_supervisor,$arr3);
+                }
                 $set = $user->update($id,$arr);
+                $set = $user->update($s_id,$arr2);
+
 
                 if((isset($set))){
                     $this->redirect('EmployeelistController');

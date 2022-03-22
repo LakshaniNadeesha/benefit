@@ -146,6 +146,11 @@ table td{
     border: 1.5px solid black;
 }
 
+#delete {
+    background-color: #6fccee;
+    border: 1.5px solid var(--header);
+    border: 1.5px solid black;
+}
 
 .main_container .msg .emp_details .buttons form  :hover{
     box-shadow: 3px 5px 15px rgba(0,0,0,.50);  

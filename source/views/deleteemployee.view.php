@@ -18,6 +18,17 @@
 </head>
 
 <body>
+    <div>
+        <?php $this->view('includes/header1') ?>
+    </div>
+
+    <?php if (Auth::access('HR Manager')) : ?>
+        <div>
+            <?php
+            $this->view('includes/hrmanagernavbar');
+            ?>
+        </div>
+    <?php endif; ?>
     <!--<div>-->
     <!--    --><?php
                 //    $this->view('includes/header1')
@@ -89,7 +100,13 @@
                             <?php if ($entry->user_role == "Supervisor" && $entry->supervisor_ID == 0) {
                                 echo "Root Supervisor";
                             ?>
-                                <button class="show-more" id="hr" type="submit" name="show">Show More <i class="fas fa-arrow-right"></i></button>
+                                <div class="buttons">
+                                    <button type="sumbit" id="cancel" name="cancel">Cancel</button>
+                                    <button class="show-more" id="hr" type="submit" name="show">Show More <i class="fas fa-arrow-right"></i></button>
+
+                                    <!-- <button type="submit" id="add" name="submit">Update</button> -->
+                                </div>
+
                             <?php
                             } elseif ($entry->user_role == "Supervisor" && $entry->supervisor_ID != 0) {
                                 echo "Supervisore under supervisore";
@@ -134,7 +151,7 @@
                                         <p>Enter Supervisor ID</p>
                                     </td>
 
-                                    <td> <input type="number" name="supervisor" id="supervisor"> </td>
+                                    <td> <input type="number" name="supervisor" id="supervisor"  required> </td>
                                     <td><button type="button" id="search" onclick="searchFunction()">Search</button></td>
                                     <!-- <td><input type="submit"></td> -->
                                 </tr>
@@ -142,97 +159,108 @@
                         </form>
 
 
-                            <script>
-                                var passedArray =
-                                    <?php echo json_encode($rows2); ?>;
-                                    console.log(passedArray);
+                        <script>
+                            var passedArray =
+                                <?php echo json_encode($rows2); ?>;
+                            console.log(passedArray);
 
-                                var entryID = <?php echo $entry->employee_ID ?>; 
-                                
-                                for (var i = 0; i < passedArray.length; i++) {
-                                    document.write(passedArray[i].employee_ID);
-                                }
+                            var entryID = <?php echo $entry->employee_ID ?>;
 
-                                function searchFunction(){
-                                   var sid =  document.getElementById("supervisor").value;
-                                   console.log(sid);
-                                   
-                                //    var i = 0;
-                                   for (var i = 0; i < passedArray.length; i++) {
-                                    // document.write(passedArray[i].employee_ID);
-                                    if(passedArray[i].employee_ID === sid && passedArray[i].employee_ID != entryID){
-                                        document.querySelector("#tdata").style.display = "block";
-                                        var x = passedArray[i].profile_image;
+                            for (var i = 0; i < passedArray.length; i++) {
+                                document.write(passedArray[i].employee_ID);
+                            }
 
-                                        document.getElementsByClassName("img").src = x ;
-                                        document.getElementById("employee_ID").innerHTML = passedArray[i].employee_ID;
-                                        document.getElementById("name").innerHTML = passedArray[i].first_name + " " + passedArray[i].last_name;
-                                        document.getElementById("email").innerHTML = passedArray[i].email;
-                                        document.getElementById("nic").innerHTML = passedArray[i].employee_NIC;
-                                        document.getElementById("user_role").innerHTML = passedArray[i].user_role;
+                            var sid = document.getElementById("supervisor").value;
 
-                                        if(passedArray[i].department_ID == 1){
-                                            document.getElementById("dept").innerHTML = "Operational Department";
-                                        }else if(passedArray[i].department_ID == 2){
-                                            document.getElementById("dept").innerHTML = "HR Department";
-                                        }else if(passedArray[i].department_ID == 3){
-                                            document.getElementById("dept").innerHTML = "Sells Department";
-                                        }else {
-                                            document.getElementById("dept").innerHTML = "Account Department";
-                                        }
-                                        
-                                        break;
-                                    }
-
-                                    // if(i = passedArray.length){
-                                    //     document.getElementById("err").innerHTML = "Employee Not Found";
-                                    // }
-                                }
-                                }
-                                
-
-                                
-                            </script>
                             
+                            // if (sid) {
+                                function searchFunction() {
+                                    var sid = document.getElementById("supervisor").value;
+                                    console.log(sid);
+                                    document.getElementById("supervisor_f").value = sid;
+                                    //    var i = 0;
+                                    for (var i = 0; i < passedArray.length; i++) {
+                                        // document.write(passedArray[i].employee_ID);
+                                        if (passedArray[i].employee_ID === sid && passedArray[i].employee_ID != entryID) {
+                                            document.querySelector("#tdata").style.display = "block";
+                                            var x = passedArray[i].profile_image;
 
-                                <div class="picture" style="display:none;">
-                                    <img id="img" src="" alt="Picture not found">
+                                            document.getElementsByClassName("img").src = x;
+                                            document.getElementById("employee_ID").innerHTML = passedArray[i].employee_ID;
+                                            document.getElementById("name").innerHTML = passedArray[i].first_name + " " + passedArray[i].last_name;
+                                            document.getElementById("email").innerHTML = passedArray[i].email;
+                                            document.getElementById("nic").innerHTML = passedArray[i].employee_NIC;
+                                            document.getElementById("user_role").innerHTML = passedArray[i].user_role;
 
-                                </div>
-                                <center>
-                                    <h2 id="err"></h2>
-                                </center>
-                                
-                                <table id="tdata" style="display:none;">
-                                    <tr>
-                                        <td class="left"  >EMPLOYEE ID</td>
-                                        <td id="employee_ID"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="left" >NAME</td>
-                                        <td id="name"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="left" >E MAIL</td>
-                                        <td id="email"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="left" >NIC</td>
-                                        <td id="nic"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="left" >User Role</td>
-                                        <td id="user_role"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="left" >Department</td>
-                                        <td id="dept"></td>
-                                    </tr>
-                                    
-                                </table>
-                                <div class="confirm__buttons">
-                                    <button class="confirm__button confirm__button--cancel ">OK</button>
-                                </div>
+                                            if (passedArray[i].department_ID == 1) {
+                                                document.getElementById("dept").innerHTML = "Operational Department";
+                                            } else if (passedArray[i].department_ID == 2) {
+                                                document.getElementById("dept").innerHTML = "HR Department";
+                                            } else if (passedArray[i].department_ID == 3) {
+                                                document.getElementById("dept").innerHTML = "Sells Department";
+                                            } else {
+                                                document.getElementById("dept").innerHTML = "Account Department";
+                                            }
+
+                                            break;
+                                        }
+
+                                        // if(i = passedArray.length){
+                                        //     document.getElementById("err").innerHTML = "Employee Not Found";
+                                        // }
+                                    }
+                                }
+                            // }
+                            // else{
+                            //     document.getElementById("delete").style.display = "none";
+
+                            // }
+                        </script>
+
+
+                        <div class="picture" style="display:none;">
+                            <img id="img" src="" alt="Picture not found">
+
+                        </div>
+                        <center>
+                            <h2 id="err"></h2>
+                        </center>
+
+                        <table id="tdata" style="display:none;">
+                            <tr>
+                                <td class="left">EMPLOYEE ID</td>
+                                <td id="employee_ID"></td>
+                            </tr>
+                            <tr>
+                                <td class="left">NAME</td>
+                                <td id="name"></td>
+                            </tr>
+                            <tr>
+                                <td class="left">E MAIL</td>
+                                <td id="email"></td>
+                            </tr>
+                            <tr>
+                                <td class="left">NIC</td>
+                                <td id="nic"></td>
+                            </tr>
+                            <tr>
+                                <td class="left">User Role</td>
+                                <td id="user_role"></td>
+                            </tr>
+                            <tr>
+                                <td class="left">Department</td>
+                                <td id="dept"></td>
+                            </tr>
+
+                        </table>
+                        <div class="confirm__buttons">
+                            <!-- <button class="confirm__button confirm__button--cancel ">OK</button> -->
+                            <form method="post">
+                                <input type="hidden" name="supervisor_f" id="supervisor_f" >
+                                <input type="submit" id="delete" name="delete" value="Delete" />
+                            </form>
+                        </div>
+
 
 
                     </div>
