@@ -34,7 +34,7 @@ $i = 0;
     for ($i = 0; $i < sizeof($bene_row1); $i++) {
             $vai = $bene_row1[$i]; 
             $pdf->Cell(35,10,$vai->employee_ID,0,0,'C');
-            $pdf->Cell(30,10,$vai->claim_date,0,0,'C');
+            $pdf->Cell(30,10,$vai->handled_date,0,0,'C');
             $pdf->Cell(55,10,$vai->benefit_type,0,0,'C');
             $pdf->Cell(35,10,$vai->claim_amount,0,0,'C');
             $pdf->Cell(40,10,$vai->benefit_description,0,0,'C');

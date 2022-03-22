@@ -3,8 +3,11 @@ require('fpdf/fpdf.php');
 
 class PDF3 extends FPDF{
     function Header(){
-        $this->SetFont('Arial','B',12);
+        $this->SetTextColor(0,0,139);
+        $this->SetFont('Arial','B',16);
         $this->Cell(180,10,'Benefit Report',0,1,'C');
+        $this->SetTextColor(0,0,0);
+        $this->SetFont('Arial','B',11);
         $this->Cell(35,10,'Employee ID',0,0,'C');
         $this->Cell(30,10,'Claim Date',0,0,'C');
         $this->Cell(55,10,'Benefit Type',0,0,'C');
@@ -26,7 +29,7 @@ class PDF3 extends FPDF{
 
 $pdf = new PDF3();
 $pdf->AddPage();
-$pdf->SetFont('Arial','B',10);
+$pdf->SetFont('Arial','',10);
 
 
 $i = 0;
@@ -34,7 +37,7 @@ $i = 0;
     for ($i = 0; $i < sizeof($bene_row3); $i++) {
             $vai = $bene_row3[$i]; 
             $pdf->Cell(35,10,$vai->employee_ID,0,0,'C');
-            $pdf->Cell(30,10,$vai->claim_date,0,0,'C');
+            $pdf->Cell(30,10,$vai->handled_date,0,0,'C');
             $pdf->Cell(55,10,$vai->benefit_type,0,0,'C');
             $pdf->Cell(35,10,$vai->claim_amount,0,0,'C');
             $pdf->Cell(40,10,$vai->benefit_description,0,0,'C');

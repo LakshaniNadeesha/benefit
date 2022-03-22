@@ -6,7 +6,7 @@ class PDF1 extends FPDF{
         $this->SetFont('Arial','B',12);
         $this->Cell(180,10,'Reimbursement Report',0,1,'C');
         $this->Cell(35,10,'Employee ID',0,0,'C');
-        $this->Cell(40,10,'Claim Date',0,0,'C');
+        $this->Cell(40,10,'Handled Date',0,0,'C');
         $this->Cell(40,10,'Claim Amount',0,0,'C');
         $this->Cell(40,10,'Reason',0,0,'C');
         $this->Cell(40,10,'Status',0,1,'C');
@@ -33,7 +33,7 @@ $i = 0;
     for ($i = 0; $i < sizeof($reim_row3); $i++) {
             $vai = $reim_row3[$i]; 
             $pdf->Cell(35,10,$vai->employee_ID,0,0,'C');
-            $pdf->Cell(40,10,$vai->claim_date,0,0,'C');
+            $pdf->Cell(40,10,$vai->handled_date,0,0,'C');
             $pdf->Cell(40,10,$vai->claim_amount,0,0,'C');
             $pdf->Cell(40,10,$vai->reimbursement_reason,0,0,'C');
             $pdf->Cell(40,10,$vai->reimbursement_status,0,1,'C');
