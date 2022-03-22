@@ -65,7 +65,7 @@ class UpdateemployeeController extends Controller{
 	}
 function addfomeremp($id){
 
-        $user=new Employeedetails();
+        $user=new UpdateemployeeModel();
         $data=$user->where('employee_ID',$id);
         if(count($_POST)>0){
 
@@ -76,6 +76,7 @@ function addfomeremp($id){
                 $arr['province'] = filter_input(INPUT_POST, 'province', FILTER_SANITIZE_STRING);
                 $arr['marital_status'] = $_POST['marital'];
                 $arr['contact_number'] = $_POST['contact'];
+                $arr['supervisor_ID'] = $_POST['supervisor'];
                 $email =  filter_input(INPUT_POST, 'email_new', FILTER_SANITIZE_EMAIL);
 
                 $validate = $this->email_validate($email,$user);
@@ -97,7 +98,7 @@ function addfomeremp($id){
             // $this->view('employeelist',['rows'=>$data]);
             $this->redirect('EmployeelistController');
         }
-        $this->view('updateemployee',['rows'=>$data]);
+        $this->view('updateemployeeformer',['rows'=>$data]);
     
     }
     
