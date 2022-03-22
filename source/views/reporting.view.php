@@ -180,7 +180,7 @@
                 </div>
             </div>
 
-            <!-- <div class="divide_line"></div> -->
+            <div class="divide_line"></div>
 
             <div class="chart" id="time_off_chart">
                 <div class="report_title">
@@ -203,7 +203,6 @@
                         <th>Employee Name</th>
                         <th>Date</th>
                         <th>OT Hours</th>
-                        <th>Status</th>
 
                     </tr>
                     <?php
@@ -220,7 +219,6 @@
                                     <td><?php print_r($vai3->name); ?></td>
                                     <td><?php print_r($vai3->date); ?></td>
                                     <td><?php print_r($vai3->ot_hours); ?></td>
-                                    <td><?php print_r($vai3->status); ?></td>
 
 
                                 </tr>
@@ -245,7 +243,6 @@
                         <th>Employee Name</th>
                         <th>Date</th>
                         <th>OT Hours</th>
-                        <th>Status</th>
 
                     </tr>
                     <?php
@@ -262,7 +259,6 @@
                                     <td><?php print_r($vai3->name); ?></td>
                                     <td><?php print_r($vai3->date); ?></td>
                                     <td><?php print_r($vai3->ot_hours); ?></td>
-                                    <td><?php print_r($vai3->status); ?></td>
 
 
                                 </tr>
@@ -286,7 +282,7 @@
                         <th>Employee Name</th>
                         <th>Date</th>
                         <th>OT Hours</th>
-                        <th>Status</th>
+            
 
                     </tr>
                     <?php
@@ -303,7 +299,6 @@
                                     <td><?php print_r($vai3->name); ?></td>
                                     <td><?php print_r($vai3->date); ?></td>
                                     <td><?php print_r($vai3->ot_hours); ?></td>
-                                    <td><?php print_r($vai3->status); ?></td>
 
 
                                 </tr>
@@ -351,7 +346,7 @@
                 <table id="benefit_history_table_month1">
                     <tr>
                         <th>Employee ID</th>
-                        <th>Claim Date</th>
+                        <th>Handled Date</th>
                         <th>Benefit Type</th>
                         <th>Claim Amount</th>
                         <th>Description</th>
@@ -369,7 +364,7 @@
                     ?>
                                <tr>
                                     <td><?php print_r($vai2->employee_ID); ?></td>
-                                    <td><?php print_r($vai2->claim_date); ?></td>
+                                    <td><?php print_r($vai2->handled_date); ?></td>
                                     <td><?php print_r($vai2->benefit_type); ?></td>
                                     <td><?php print_r($vai2->claim_amount); ?></td>
                                     <td><?php print_r($vai2->benefit_description); ?></td>
@@ -393,7 +388,7 @@
                 <table id="benefit_history_table_month2">
                     <tr>
                         <th>Employee ID</th>
-                        <th>Claim Date</th>
+                        <th>Handled Date</th>
                         <th>Benefit Type</th>
                         <th>Claim Amount</th>
                         <th>Description</th>
@@ -411,7 +406,7 @@
                     ?>
                                <tr>
                                     <td><?php print_r($vai2->employee_ID); ?></td>
-                                    <td><?php print_r($vai2->claim_date); ?></td>
+                                    <td><?php print_r($vai2->handled_date); ?></td>
                                     <td><?php print_r($vai2->benefit_type); ?></td>
                                     <td><?php print_r($vai2->claim_amount); ?></td>
                                     <td><?php print_r($vai2->benefit_description); ?></td>
@@ -435,7 +430,7 @@
                 <table id="benefit_history_table_month3">
                     <tr>
                         <th>Employee ID</th>
-                        <th>Claim Date</th>
+                        <th>Handled Date</th>
                         <th>Benefit Type</th>
                         <th>Claim Amount</th>
                         <th>Description</th>
@@ -453,7 +448,7 @@
                     ?>
                                <tr>
                                     <td><?php print_r($vai2->employee_ID); ?></td>
-                                    <td><?php print_r($vai2->claim_date); ?></td>
+                                    <td><?php print_r($vai2->handled_date); ?></td>
                                     <td><?php print_r($vai2->benefit_type); ?></td>
                                     <td><?php print_r($vai2->claim_amount); ?></td>
                                     <td><?php print_r($vai2->benefit_description); ?></td>
@@ -509,7 +504,7 @@
                 <table id="claim_history_table_month1">
                     <tr>
                         <th>Employee ID</th>
-                        <th>Claim Date</th>
+                        <th>Handled Date</th>
                         <th>Claim Amount</th>
                         <th>Reason</th>
                         <th>Status</th>
@@ -526,7 +521,7 @@
                     ?>
                                <tr>
                                     <td><?php print_r($vai->employee_ID); ?></td>
-                                    <td><?php print_r($vai->claim_date); ?></td>
+                                    <td><?php print_r($vai->handled_date); ?></td>
                                     <td><?php print_r($vai->claim_amount); ?></td>
                                     <td><?php print_r($vai->reimbursement_reason); ?></td>
                                     <td><?php print_r($vai->reimbursement_status); ?></td>
@@ -552,7 +547,7 @@
                 <table id="claim_history_table_month2">
                     <tr>
                         <th>Employee ID</th>
-                        <th>Claim Date</th>
+                        <th>Handled Date</th>
                         <th>Claim Amount</th>
                         <th>Reason</th>
                         <th>Status</th>
@@ -569,7 +564,7 @@
                     ?>
                                <tr>
                                     <td><?php print_r($vai->employee_ID); ?></td>
-                                    <td><?php print_r($vai->claim_date); ?></td>
+                                    <td><?php print_r($vai->handled_date); ?></td>
                                     <td><?php print_r($vai->claim_amount); ?></td>
                                     <td><?php print_r($vai->reimbursement_reason); ?></td>
                                     <td><?php print_r($vai->reimbursement_status); ?></td>
@@ -593,7 +588,7 @@
                 <table id="claim_history_table_month3">
                     <tr>
                         <th>Employee ID</th>
-                        <th>Claim Date</th>
+                        <th>Handled Date</th>
                         <th>Claim Amount</th>
                         <th>Reason</th>
                         <th>Status</th>
@@ -610,7 +605,7 @@
                     ?>
                                <tr>
                                     <td><?php print_r($vai->employee_ID); ?></td>
-                                    <td><?php print_r($vai->claim_date); ?></td>
+                                    <td><?php print_r($vai->handled_date); ?></td>
                                     <td><?php print_r($vai->claim_amount); ?></td>
                                     <td><?php print_r($vai->reimbursement_reason); ?></td>
                                     <td><?php print_r($vai->reimbursement_status); ?></td>

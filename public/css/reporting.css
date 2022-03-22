@@ -227,7 +227,7 @@ tr:nth-child(even) {
     border-radius: 10px;
     color: black;
     padding: 12px 40px;
-    margin-left: 52%;
+    margin-left: 50%;
     margin-top: 3%;
     cursor: pointer;
     font-size: 16px;
@@ -241,7 +241,7 @@ tr:nth-child(even) {
     border-radius: 10px;
     color: black;
     padding: 12px 40px;
-    margin-left: 52%;
+    margin-left: 50%;
     margin-top: 3%;
     cursor: pointer;
     font-size: 16px;
