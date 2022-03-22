@@ -193,7 +193,7 @@ class Login extends Controller
 				}
 				elseif ($tokenCheck===true) {
 					$tokenEmail=$row->pwdResetEmail;
-					$user= new EmployeelistModel();
+					$user= new Employeedetails();
 					$newpassword=password_hash($password, PASSWORD_DEFAULT);
 					$arr['password']=$newpassword;
 					$row=$user->where('email',$userEmail);
