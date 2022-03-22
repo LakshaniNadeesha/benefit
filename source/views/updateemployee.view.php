@@ -54,14 +54,14 @@
                         <form method="post">
 
                             <div class="address">
-                                <label for="">Address</label>
+                                <label for="" id="left">Address</label>
 
                                 <div class="address_content">
-                                    <label for="street">Street</label>
+                                    <label for="street" id="left">Street</label>
                                     <input type="text" id="street" name="street" value="<?php echo $entry->street ?>">
-                                    <label for="city">City</label>
+                                    <label for="city" id="left">City</label>
                                     <input type="text" id="city" name="city" value="<?php echo $entry->city ?>">
-                                    <label for="Province">Province</label>
+                                    <label for="Province" id="left">Province</label>
                                     <select id="province" name="province">
                                         <option value="<?php echo $entry->province ?>"><?php echo (ucfirst($entry->province)) ?>
                                             Province
@@ -81,30 +81,30 @@
                             </div>
 
                             <div class="marital">
-                                <label for="marital" name="marital">Marital Status</label>
+                                <label for="marital" name="marital" id="left">Marital Status</label>
                                 <input type="text" name="marital" id="set" value="<?php echo $entry->marital_status ?>">
                                 <input type="radio" id="yes" name="marital" value="yes">
-                                <label for="yes">Yes</label>
+                                <label for="yes" id="left">Yes</label>
                                 <input type="radio" id="no" name="marital" value="no">
-                                <label for="no">No</label><br>
+                                <label for="no" id="left">No</label><br>
                             </div>
                             <div>
-                                <label for="contact">Contact Number</label>
+                                <label for="contact" id="left">Contact Number</label>
                                 <input type="tel" id="contact" name="contact" placeholder="076-256****" pattern="[0-9]{3}-[0-9]{7}" size="50" value="<?php echo $entry->contact_number ?>">
                             </div>
 
                             <div>
-                                <label for="email_current">Current E Mail</label>
-                                <label for="email_current"><?php echo $entry->email ?></label><br>
+                                <label for="email_current" id="left">Current E Mail</label>
+                                <label for="email_current" id="left"><?php echo $entry->email ?></label><br>
                                 <input type="email" id="email_current" name="email_current" value="<?php echo $entry->email ?>">
                             </div>
 
                             <div>
-                                <label for="email_new">New E Mail</label>
+                                <label for="email_new" id="left">New E Mail</label>
                                 <input type="email" id="email_new" name="email_new" size="50" required><br>
                             </div>
                             <div>
-                                <p>Current Supervisor ID</p>
+                                <p id="left">Current Supervisor ID</p>
 
                                 <?php
                                 if ($entry->supervisor_ID == 0) {
@@ -114,50 +114,70 @@
                                 }
 
                                 ?>
-                                <p><?php echo $supervisor ?></p><br>
+                                <p id="left"><?php echo $supervisor ?></p><br>
                                 <!-- <?php print_r($rows) ?> -->
 
                             </div>
                             <div>
-                                <label for="supervisor">New Supervisor ID</label>
+                                <label for="supervisor" id="left">New Supervisor ID</label>
                                 <input type="number" id="supervisor" name="supervisor" size="50" value="<?php echo $entry->supervisor_ID ?>">
                             </div>
-                            <div>
-                                <label for="department">Department</label>
-                                <input type="text" id="department" name="department" size="50" value="<?php echo $entry->department_ID ?>">
-                                <select id="department" name="department" >
+                            <div id="newdepart">
+                                <label for="department" id="left">Department</label>
 
-                                <?php if($entry->department_ID == 1){?>
-                                    <option value= 1 >Operational Department</option>
-                                    <option value= 2 >HR Department</option>
-                                    <option value= 3 >Sells Department</option>
-                                    <option value= 4 >Account Department</option>
-                                <?php }
-                                elseif($entry->department_ID == 2){ ?>
-                                    <option value= 2 >HR Department</option>
-                                    <option value= 3 >Sells Department</option>
-                                    <option value= 4 >Account Department</option>
-                                    <option value= 1 >Operational Department</option>
-                                <?php }
-                                elseif($entry->department_ID == 3) { ?>
-                                    <option value= 3 >Sells Department</option>
-                                    <option value= 4 >Account Department</option>
-                                    <option value= 1 >Operational Department</option>
-                                    <option value= 2 >HR Department</option>
-                                <?php }
-                                else { ?> 
-                                    <option value= 4 >Account Department</option>
-                                    <option value= 1 >Operational Department</option>
-                                    <option value= 2 >HR Department</option>
-                                    <option value= 3 >Sells Department</option>
-                                <?php }
-                                ?>
-                                    <!-- <option value = "" ><?php echo $entry->department_ID ?></option>
+                                <div id="dept_h">
+                                    <div id="dept">
+                                        <label id="d_left">Current</label>
+                                        <!-- <label type="text" id="depart" name="depart" size="50" value="<?php echo $entry->department_ID ?>"> -->
+                                        <?php
+                                            if($entry->department_ID == 1){
+                                                $depart = "Operational Department";
+                                            }elseif($entry->department_ID == 2){
+                                                $depart = "HR Department";
+                                            }elseif($entry->department_ID == 3){
+                                                $depart = "Sells Department";
+                                            }else{
+                                                $depart = "Account Department";
+                                            }
+                                        ?>
+                                        <label id="d_left"><?php echo $depart ?></label>
+                                    </div>
+                                    <div id="dept">
+                                        <label id="d_left">New</label>
+                                        <select id="department" name="department">
+
+                                            <?php if ($entry->department_ID == 1) { ?>
+                                                <option value=1>Operational Department</option>
+                                                <option value=2>HR Department</option>
+                                                <option value=3>Sells Department</option>
+                                                <option value=4>Account Department</option>
+                                            <?php } elseif ($entry->department_ID == 2) { ?>
+                                                <option value=2>HR Department</option>
+                                                <option value=3>Sells Department</option>
+                                                <option value=4>Account Department</option>
+                                                <option value=1>Operational Department</option>
+                                            <?php } elseif ($entry->department_ID == 3) { ?>
+                                                <option value=3>Sells Department</option>
+                                                <option value=4>Account Department</option>
+                                                <option value=1>Operational Department</option>
+                                                <option value=2>HR Department</option>
+                                            <?php } else { ?>
+                                                <option value=4>Account Department</option>
+                                                <option value=1>Operational Department</option>
+                                                <option value=2>HR Department</option>
+                                                <option value=3>Sells Department</option>
+                                            <?php }
+                                            ?>
+                                            <!-- <option value = "" ><?php echo $entry->department_ID ?></option>
                                     <option value= 1 >Operational Department</option>
                                     <option value= 2 >HR Department</option>
                                     <option value= 3 >Sells Department</option>
                                     <option value= 4 >Account Department</option> -->
-                                </select>
+                                        </select>
+                                    </div>
+                                </div>
+
+
                             </div>
 
                     <?php }

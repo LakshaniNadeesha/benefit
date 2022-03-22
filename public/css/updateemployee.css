@@ -146,6 +146,41 @@ svg{
     visibility: hidden;
 }
 
+
+#depart {
+    width: 20px;
+    /* color: red; */
+}
+
+#newdepart {
+    max-width: 100%;
+    overflow: hidden;
+    /* background-color: bisque; */
+    display: flex;
+    justify-content: space-around;
+}
+
+#dept{
+  
+}
+
+#supervisor{
+    width: auto;
+    text-align: center;
+}
+
+#dept_h{
+    width: 100%;
+    overflow: hidden;
+    /* background-color: green; */
+    display: block;
+    justify-content: space-between;
+}
+
+#d_left{
+    
+}
+
 .main_container .form .input_feild form .buttons button {
     width: 150px;
     border-radius: 100px;
@@ -182,6 +217,10 @@ svg{
     box-shadow: 0px 2px 5px var(--header);
     transform: scale(1.05);
     border-style: none;
+}
+
+#left{
+    font-weight: bold;
 }
 
 @media screen and (max-width: 1000px) {
