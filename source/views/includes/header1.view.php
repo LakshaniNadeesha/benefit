@@ -76,7 +76,15 @@
                                             ?>
                                             <li class="">
                                                     <div class="left_content">
+                                                        <?php if($notifications[$j]->description == "Benefit Request"){ ?>
                                                         <a href="<?= PATH ?>Approvebenefit" class="link"><?php print_r($notifications[$j]->description); ?></a>
+                                                        <?PHP } ?>
+                                                        <?php if($notifications[$j]->description == "Reimbursement Request"){ ?>
+                                                            <a href="<?= PATH ?>Approvereimbursement" class="link"><?php print_r($notifications[$j]->description); ?></a>
+                                                        <?PHP } ?>
+                                                        <?php if($notifications[$j]->description == "Leave Request"){ ?>
+                                                            <a href="<?= PATH ?>Approvereimbursement" class="link"><?php print_r($notifications[$j]->description); ?></a>
+                                                        <?PHP } ?>
                                                 </div>
                                                 <div class="right_content">
                                                     <?php
