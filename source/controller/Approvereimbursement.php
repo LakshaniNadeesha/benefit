@@ -85,6 +85,7 @@ class Approvereimbursement extends Controller
             $get_row = $user->where('invoice_hashing',$id);
             $hashVal = $get_row[0]->invoice_hashing;
             $ar['reimbursement_status'] = "accepted";
+			$ar['handled_date']=date("Y-m-d");
             $user->update_status($hashVal, 'invoice_hashing', $ar);
 
             $this->redirect('Approvereimbursement');
@@ -101,6 +102,7 @@ class Approvereimbursement extends Controller
             $get_row = $user->where('invoice_hashing',$id);
             $hashVal = $get_row[0]->invoice_hashing;
             $ar['reimbursement_status'] = "rejected";
+			$ar['handled_date']=date("Y-m-d");
             $user->update_status($hashVal, 'invoice_hashing', $ar);
 
             $this->redirect('Approvereimbursement');

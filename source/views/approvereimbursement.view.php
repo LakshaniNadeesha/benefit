@@ -67,14 +67,20 @@
                                 <button class="show_btn" type="button" name="show" value="show" id="<?php echo $btnChange ?>" onclick="reply_click(this.id)">Show</button>
                             </center>
                             <script type="text/javascript">
+                                    <?php
+                                    $string = $requested[$i]['details']->invoice_submission;
+                                    $newString = substr($string,31);
+
+                                    ?>
 
                                 document.querySelector('<?php echo "#".$btnChange;?>').addEventListener('click', () => {
                                     Confirm.open({
                                         title: 'Request From <?php print_r($requested[$i]['first_name']); echo " "; print_r($requested[$i]['last_name']); ?>',
-                                        message: 'Claimed Date : <?php print_r($requested[$i]['details']->claim_date); echo "<br>";?> ' +
-                                            'Claimed Amount : <?php print_r($requested[$i]['details']->claim_amount); echo "<br>";?>' +
-                                            'Description : <?php print_r($requested[$i]['details']->reimbursement_reason); echo "<br>";?>' +
-                                            'Report : <?php print_r($requested[$i]['details']->invoice_submission); echo "<br>";?>',
+                                        ClaimedDate : '<?php print_r($requested[$i]['details']->claim_date); echo "<br>";?>',
+                                        ClaimedAmount : '<?php print_r($requested[$i]['details']->claim_amount); echo "<br>";?>',
+                                        Description : '<?php print_r($requested[$i]['details']->reimbursement_reason); echo "<br>";?>',
+                                        document: '<?php print_r($newString); echo "<br>";?>',
+                                        link: '<?php print_r($requested[$i]['details']->invoice_submission) ?>',
                                         onok: () => {
                                             window.location.href = "Approvereimbursement/accept/<?php print_r($requested[$i]['details']->invoice_hashing); ?>"
                                         },
@@ -130,6 +136,9 @@
                 </table>
                 <?php
                 }
+                else{
+                    echo "<div style='padding-left: 10px'>No history yet</div>";
+                }
                 ?>
             </div>
         </div>
@@ -153,9 +162,12 @@
         open(options){
             options = Object.assign({},{
                 title: '',
-                message: '',
+                ClaimedDate: '',
+                ClaimedAmount: '',
+                Description: '',
+                document: '',
+                link: '',
                 okText: 'Accept',
-                //cancelText: 'Reject',
                 rejectText: 'Reject',
                 onok: function () {},
                 oncancel: function () {},
@@ -169,7 +181,41 @@
             <span class="confirm__title">${options.title}</span>
             <button class="confirm__close">&times;</button>
         </div>
-        <div class="confirm__content">${options.message}
+        <div class="confirm__content">
+            <div class="row">
+                <div class="column_1">
+                    <p>Claimed Date</p>
+                </div>
+                <div class="column_2">
+                    <p>${options.ClaimedDate}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column_1">
+                    <p>Claimed Amount</p>
+                </div>
+                <div class="column_2">
+                    <p>${options.ClaimedAmount}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column_1">
+                    <p>Reason</p>
+                </div>
+                <div class="column_2">
+                    <p>${options.Description}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column_1">
+                    <p>Report Submission</p>
+                </div>
+                <div class="column_2">
+                    <p>${options.document}</p>
+                    <button class="btn" onclick="document.getElementById('link-1').click()"><i class="fa fa-download"></i>      Download</button>
+                    <a id="link-1" href="${options.link}" download hidden></a>
+                </div>
+            </div>
         </div>
         <div class="confirm__buttons">
             <button class="confirm__button confirm__button--ok confirm__button--fill">${options.okText}</button>

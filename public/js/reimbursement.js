@@ -1,21 +1,3 @@
-// function number_validation() {
-//     var n = document.forms["myform"]["claim_amount"].value;
-//     if (isNaN(n)) {
-//         alert("Please enter numeric value as claim amount");
-//         reason_validation();
-//         return false;
-//     } else {
-//         // document.getElementById("validText").innerHTML = "Numeric";
-//         var f1 = reason_validation();
-//         var f2 = true
-//         if (f1 && f2) {
-//             return true;
-//         } else {
-//             return false;
-//         }
-//     }
-// }
-
 function validation() {
     var p = document.forms["myform"]["claim_amount"].value;
     var decimal = /^[+]?[0-9]+\.[0-9]+$/;
@@ -78,28 +60,43 @@ function uploadFile(name) {
 }
 
 //get claim date
-// var today = new Date();
-// var max_m = today.getUTCMonth() + 1;
-// var max_d = today.getUTCDate();
-// var max_y = today.getUTCFullYear();
+var today = new Date();
+var max_m = today.getUTCMonth() + 1;
+var max_d = today.getUTCDate();
+var max_y = today.getUTCFullYear();
 
-// today_date = max_y + "-" + max_m + "-" + max_d;
+max_m = setDecimal(max_m);
+max_d = setDecimal(max_d);
 
-// document.getElementById("claim_date").setAttribute("max", today_date);
+today_date = max_y + "-" + max_m + "-" + max_d;
 
-// var dateObj = new Date();
+document.getElementById("claim_date").setAttribute("max", today_date);
 
-// var min_date = subDays(dateObj, 6);
+var dateObj = new Date();
 
-// var min_m = min_date.getUTCMonth() + 1; //months from 1-12
-// var min_d = min_date.getUTCDate();
-// var min_y = min_date.getUTCFullYear();
+var min_date = subDays(dateObj, 6);
 
-// newdate = min_y + "-" + min_m + "-" + min_d;
+var min_m = min_date.getUTCMonth() + 1; //months from 1-12
+var min_d = min_date.getUTCDate();
+var min_y = min_date.getUTCFullYear();
 
-// document.getElementById("claim_date").setAttribute("min", newdate);
+min_m = setDecimal(min_m);
+min_d = setDecimal(min_d);
+
+newdate = min_y + "-" + min_m + "-" + min_d;
+
+document.getElementById("claim_date").setAttribute("min", newdate);
 
 
-// function subDays(myDate, days) {
-//     return new Date(myDate.getTime() - days * 24 * 60 * 60 * 1000);
-// }
+function subDays(myDate, days) {
+    return new Date(myDate.getTime() - days * 24 * 60 * 60 * 1000);
+}
+
+
+function setDecimal(val) {
+    if (number.indexOf(val) != -1) {
+        val = "0" + val;
+        console.log(`inside decimal point if condition ${val}`);
+    }
+    return val;
+}
