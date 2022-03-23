@@ -1,19 +1,16 @@
 @import "color.css";
 
 /*profile*/
-body{
+
+body {
     font-family: Robot, sans-serif;
     height: auto;
     background-color: var(--w);
 }
 
 .profile_container {
-    width: 80%;
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin: auto;
-    border-radius: 10px;
+    height: 100%;
 }
 
 #myProfile {
@@ -105,33 +102,28 @@ body{
     margin-top: auto;
 }
 
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1200px) {
     #myProfile {
         flex-direction: row;
     }
-
     .profile_container {
         flex-direction: column-reverse;
         width: 100% !important;
     }
-
     .profile {
         width: 100%;
         box-shadow: none;
         height: max-content;
     }
-
     .content {
         width: 100vh;
     }
-
     .details {
         display: flex;
         flex-direction: column;
         width: 80%;
         justify-content: space-around;
     }
-
     .main_details {
         display: flex;
         flex-direction: column;
@@ -140,7 +132,6 @@ body{
         font-size: small;
         margin: 0;
     }
-
     .co_details {
         display: flex;
         text-align: center;
@@ -148,69 +139,68 @@ body{
         justify-content: space-around;
         font-size: smaller;
     }
-
     .contact {
         margin-bottom: 0;
     }
-
-    .contact, .email, .hire, .date, .address, .supervisor {
+    .contact,
+    .email,
+    .hire,
+    .date,
+    .address,
+    .supervisor {
         width: max-content;
         margin-bottom: 0;
         margin-right: 5px;
     }
-
-    .name, .job{
+    .name,
+    .job {
         padding: 0;
         margin: 0;
     }
-
     .profile__image {
         width: 60px;
         height: 60px;
     }
-
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 600px) {
     #myProfile {
         font-size: smaller;
     }
-
-    .main_details{
+    .main_details {
         font-size: smaller;
     }
-
     .profile__image {
         width: 60px;
         height: 60px;
         text-align: center;
     }
-
     .co_details {
         flex-direction: column;
         justify-content: center;
         width: 100%;
     }
-
-    .co_details span, .co_details i{
+    .co_details span,
+    .co_details i {
         font-size: medium;
     }
-
-    .supervisor span{
+    .supervisor span {
         font-size: smaller;
         margin: auto;
     }
-
-    .contact, .email, .hire, .date, .address, .supervisor {
+    .contact,
+    .email,
+    .hire,
+    .date,
+    .address,
+    .supervisor {
         text-align: center;
         width: 100%;
     }
-
     center {
         margin: auto;
     }
     /*.profile__image {*/
-
     /*    width: 30px;*/
     /*    height: 30px;*/
     /*}*/
