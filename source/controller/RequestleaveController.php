@@ -161,9 +161,9 @@ class RequestleaveController extends Controller{
                     $date_list = date_calc($from_date, $to_date);
                     array_push($date_list, $half_date);
 
-                    print_r($date_list);
+                    // print_r($date_list);
 
-                    echo "Half Date is : ". $half_date;
+                    // echo "Half Date is : ". $half_date;
                     $arr_end = sizeof($date_list)-1;
 
                     echo "<br>";
@@ -206,9 +206,9 @@ class RequestleaveController extends Controller{
                        
                        
                         
-                        print_r($arr);
-                        echo "<br>";
-                        echo "<br>";
+                        // print_r($arr);
+                        // echo "<br>";
+                        // echo "<br>";
 
                     }
 
@@ -231,18 +231,11 @@ class RequestleaveController extends Controller{
                     }
 
 
-                    print_r($arr);
+                    // print_r($arr);
                     
                 }
                 
-                echo "<br>";
-                echo "<br>";
-                print_r($date_list);
-                
-                
-                echo "<br>";
-                echo "<br>";
-                print_r($_POST);
+                // git
 
                 // $user->insert($arr);
             }
