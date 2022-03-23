@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<div>
+    <div>
     <?php
     $this->view('includes/header1')
     ?>
@@ -36,80 +36,68 @@
         ?>
     <?php endif; ?>
 
-    <!-- 	<?php
-    print_r($row);
+<!--    <?php
+        print_r($row);
 
-    ?>
+     ?>
  -->
-    <div class="topnavs">
-        <div class="search-container">
-            <input st type="text" id="myInput" onkeyup='tableSearch()' placeholder="Search By NIC" class="fa fa-search">
-        </div>
-    </div>
-    <div class="former_emp">
-        <table class="table" id="myTable" data-filter-control="true" data-show-search-clear-button="true">
+<div class="topnavs">
+  <div class="search-container">
+<input st type="text" id="myInput" onkeyup='tableSearch()' placeholder="Search By NIC" class="fa fa-search">
+</div>
+</div>
 
-            <tr>
-                <th class="check-box">
-                    <!--                <label>-->
-                    <!--                    <input name="select_all" value="1" type="checkbox">-->
-                    <!--                </label>-->
+<table class="table" id="myTable" data-filter-control="true" data-show-search-clear-button="true">
 
-                </th>
-                <th>Name</th>
-                <!-- <th>Last Name</th> -->
-                <th>Gender</th>
-                <th>NIC</th>
-                <th>Communication overall</th>
-                <th>Quality of work overall</th>
-                <th>Organizationoverall</th>
-                <th>Team skills overall</th>
-                <th>Multitasking ability overall</th>
-                <th>Last modifydate</th>
-                <th>Option</th>
-
-            </tr>
-            <?php
-            // foreach ($row as $key )
-            if (boolval($row)) {
-                // print_r($row);
-                for ($i = 0; $i < sizeof($row); $i++) {
+                <tr>
+                    <th><label>
+                            <input name="select_all" value="1" type="checkbox">
+                        </label></th>
+                    <th>Name</th>
+                    <!-- <th>Last Name</th> -->
+                    <th>Gender</th>
+                    <th>NIC</th>
+                    <th>Communication overall</th>
+                    <th>Quality of work overall</th>
+                    <th>Organizationoverall</th>
+                    <th>Team skills overall</th>
+                    <th>Multitasking ability overall</th>
+                    <th>Last modifydate</th>
+                    <th>Option</th>
+                    
+                </tr>
+                <?php
+                     // foreach ($row as $key ) 
+                if(boolval($row))
+                { 
+                   // print_r($row);
+                    for($i=0;$i<sizeof($row);$i++){
 
                     ?>
 
 
-                    <tr>
-                        <td><input type="checkbox" name="name1"></td>
-                        <!--                    <td>--><?php //print_r($row[$i]['first_name']);
-                        ?><!--  --><?php //print_r($row[$i]['last_name']);
-                        ?><!--</td>-->
-                        <!-- <td><?php print_r($row[$i]['last_name']); ?> </td> -->
-                        <td><?php print_r($row[$i]['gender']); ?> </td>
-                        <td><?php print_r($row[$i]['employee_NIC']); ?></td>
-                        <td><?php print_r($row[$i]['details']->communication_overall);
-                            echo "%"; ?></td>
-                        <td><?php print_r($row[$i]['details']->quality_of_work_overall);
-                            echo "%"; ?></td>
-                        <td><?php print_r($row[$i]['details']->organization_overall);
-                            echo "%"; ?></td>
-                        <td><?php print_r($row[$i]['details']->team_skills_overall);
-                            echo "%"; ?></td>
-                        <td><?php print_r($row[$i]['details']->multitasking_ability_overall);
-                            echo "%"; ?></td>
-                        <td><?php print_r($row[$i]['details']->last_modifydate);
-                            echo "%"; ?></td>
-                        <td>
-                            <a href="<?= PATH ?>UpdateemployeeController/addfomeremp/<?= $row[$i]['employee_ID'] ?>"><i
-                                        class="fas fa-edit"></i></a>
-                        </td>
-
-                    </tr>
-                    <?php
-                }
-            } ?>
-        </table>
-    </div>
-    <script type="application/javascript">
+                <tr>
+                    <td><input type="checkbox" name="name1" ></td>
+                    <td><?php print_r($row[$i]['first_name']);?>  <?php print_r($row[$i]['last_name']);?></td>
+                    <!-- <td><?php print_r($row[$i]['last_name']);?> </td> -->
+                    <td><?php print_r($row[$i]['gender']);?> </td>
+                    <td><?php print_r($row[$i]['employee_NIC']);?></td>
+                    <td><?php print_r($row[$i]['details']->communication_overall);echo"%";?></td>
+                    <td><?php print_r($row[$i]['details']->quality_of_work_overall);echo"%";?></td>
+                    <td><?php print_r($row[$i]['details']->organization_overall);echo"%";?></td>
+                    <td><?php print_r($row[$i]['details']->team_skills_overall);echo"%";?></td>
+                    <td><?php print_r($row[$i]['details']->multitasking_ability_overall);echo"%";?></td>
+                    <td><?php print_r($row[$i]['details']->last_modifydate);echo"%";?></td>
+                   <td> 
+                        <a href="<?= PATH ?>UpdateemployeeController/addfomeremp/<?=$row[$i]['employee_ID']?>"><i class="fas fa-edit"></i></a>
+                    </td>
+                    
+                </tr>
+                <?php
+                     }   
+                    }?>
+            </table>
+<script type="application/javascript">
         function tableSearch() {
             let input, filter, table, tr, td, txtValue;
 
@@ -120,7 +108,7 @@
             tr = table.getElementsByTagName("tr");
 
             for (let i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[4];
+                td = tr[i].getElementsByTagName("td")[3];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -133,6 +121,6 @@
 
         }
     </script>
-
+    
 </body>
 </html>
