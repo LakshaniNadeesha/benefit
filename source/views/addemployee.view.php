@@ -326,7 +326,7 @@
                              <tr>
                             
                                 <td id="c2" colspan="2"><label for="hired_date">Hired Date</label></td>
-                                 <td id="c4" colspan="6"><input type="date" id="hired" name="hired" required ></td>
+                                 <td id="c4" colspan="6"><input type="date" id="hired" name="hired"  max="2022-03-24" required ></td>
             
                             </tr>
 
