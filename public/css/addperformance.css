@@ -25,6 +25,20 @@ body {
     justify-content: space-between;
 }
 
+.cur_head {
+    margin-top: 10%;
+    margin-left: 5%;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.pre_table {
+    margin-top: 2%;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
 .employee_details {
     margin: 0 10px 10px 0;
     height: max-content;
@@ -87,7 +101,8 @@ body {
     padding: 10px;
 }
 
-th, td {
+th,
+td {
     width: 15%;
     padding: 15px 0;
     border-bottom: 1px solid #ccc;
@@ -119,9 +134,16 @@ textarea:hover {
     text-align: left;
 }
 
+
 /*.btn-block {*/
+
+
 /*    margin-top: 20px;*/
+
+
 /*    text-align: center;*/
+
+
 /*}*/
 
 .testbox button {

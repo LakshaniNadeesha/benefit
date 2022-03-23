@@ -58,7 +58,7 @@
                     </div>
                     <div class="row">
                         <label for="lname">Date</label>
-                        <input type="date" id="date" name="date" placeholder="Your last name.." required="required"><br>
+                        <input type="date" id="date" name="date" placeholder="Your last name.." required="required" max="2022-03-24"><br>
                     </div>
                     <div class="row">
                         <label for="subject">Outcomes</label>

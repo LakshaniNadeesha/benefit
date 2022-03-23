@@ -47,9 +47,9 @@ if (boolval($errors)) {
                         <?php if(boolval($rows)){ $rows=$rows[0];
                             ?>
                             <div>
-                        <h2>Current Values</h2>
+                        <div class="cur_head">Current Values</div>
                             </div>
-                            <div>
+                            <div class="pre_table"> 
                                  <table>
                                 <tr>
                                     <th>Communication</th>
