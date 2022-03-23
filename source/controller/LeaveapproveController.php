@@ -89,17 +89,30 @@ class LeaveapproveController extends Controller
             // echo "Check post ";
 
             
-            if(isset($_POST['submit'])){
-                // print_r($_POST);
+            if(isset($_POST['submit1'])){
+                print_r($_POST);
                 $date = $_POST['date'];
                 $id = $_POST['id'];
-                $val = $_POST['l_status'];
+                // $val = $_POST['l_status'];
+                $val = "reject";
 
                 // echo($_POST['l_status']);
 
                 $user_x->updateLeave($id,$date,$val);
 
                 // echo "after user_x";
+            }
+
+            if(isset($_POST['submit'])){
+                print_r($_POST);
+                $date = $_POST['date'];
+                $id = $_POST['id'];
+                // $val = $_POST['l_status'];
+                $val = "approve";
+
+                // echo($_POST['l_status']);
+
+                $user_x->updateLeave($id,$date,$val);
             }
         // }
 

@@ -25,7 +25,7 @@
         <?php if (Auth::access('Supervisor')) : ?>
 
             <?php
-          
+
             $this->view('includes/parentemployeenavbar');
             ?>
 
@@ -35,11 +35,11 @@
             <div>
                 <?php
                 $this->view('includes/hrmanagernavbar');
-              
+
                 ?>
             </div>
         <?php endif; ?>
-       
+
         <?php
         if (boolval($emp)) {
             // print_r($emp) 
@@ -80,7 +80,7 @@
 
                                                 switch ($type) {
                                                     case "casual":
-                                                        
+
                                                 ?>
                                                         <i class="fas fa-sun"></i>
 
@@ -115,31 +115,32 @@
                                         <center>
                                             <form method="post">
 
-                                                <button type="submit" name="submit" value="reject" id="reject" onclick="myFunction1()">Reject</button>
+                                                <button type="submit" name="submit1" value="reject" id="reject" onclick="myFunction1()">Reject</button>
                                                 <input type="hidden" name="date" value=<?php print_r($emp[$i]['details'][$j]->date); ?>>
-                                                <input type="hidden" name="l_status" id="l_status">
+                                                <input type="hidden" name="l_status" id="l_status" />
                                                 <input type="hidden" name="id" value=<?php print_r($emp[$i]['employee_ID']) ?>>
 
 
                                                 <button type="submit" name="submit" value="approve" id="approve" onclick="myFunction2()">Approve</button>
-
-                                                <script>
-                                                    function myFunction1() {
-                                                        document.getElementById("l_status").value = "reject";
-                                                        alert(document.getElementById("l_status").value);
-                                                        alert(document.getElementById("date").value);
-                                                        console.log(document.getElementById("reject"));
-                                                        console.log("inside reject");
-                                                    }
-
-                                                    function myFunction2() {
-                                                        document.getElementById("l_status").value = "approve";
-                                                        console.log(document.getElementById("approve"));
-                                                        console.log("inside Approve");
-                                                    }
-                                                </script>
-
                                             </form>
+                                            <script>
+                                                function myFunction1() {
+                                                    document.getElementById("l_status").value = "reject";
+                                                    // document.getElementById("nameofid").value = "My value";
+                                                    // alert(document.getElementById("l_status").value);
+                                                    // alert(document.getElementById("date").value);
+                                                    console.log(document.getElementById("reject"));
+                                                    console.log("inside reject");
+                                                }
+
+                                                function myFunction2() {
+                                                    document.getElementById("l_status").value = "approve";
+                                                    console.log(document.getElementById("approve"));
+                                                    console.log("inside Approve");
+                                                }
+                                            </script>
+
+
 
                                         </center>
                                     </div>
@@ -159,7 +160,7 @@
                         <hr>
                         <table id="claim_history_table">
                             <tr>
-                                
+
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Leave Type</th>
@@ -177,17 +178,17 @@
                                     for ($j = 0; $j < sizeof($emps[$i]['details']); $j++) {
                                         if ($emps[$i]['details'][$j]->date != '0000-00-00') { ?>
 
-                                        <tr>
-                                            <td><?php print_r($emps[$i]['first_name']); ?></td>
-                                            <td><?php print_r($emps[$i]['last_name']); ?> </td>
-                                            <td><?php print_r($emps[$i]['details'][$j]->leave_type); ?> </td>
-                                            <td><?php print_r($emps[$i]['details'][$j]->date); ?> </td>
-                                            <td ><?php print_r(ucfirst ($emps[$i]['details'][$j]->leave_status)); ?></td> 
+                                            <tr>
+                                                <td><?php print_r($emps[$i]['first_name']); ?></td>
+                                                <td><?php print_r($emps[$i]['last_name']); ?> </td>
+                                                <td><?php print_r($emps[$i]['details'][$j]->leave_type); ?> </td>
+                                                <td><?php print_r($emps[$i]['details'][$j]->date); ?> </td>
+                                                <td><?php print_r(ucfirst($emps[$i]['details'][$j]->leave_status)); ?></td>
 
-                                        </tr>
+                                            </tr>
                             <?php
+                                        }
                                     }
-                                }
                                 }
                             } ?>
                         </table>
