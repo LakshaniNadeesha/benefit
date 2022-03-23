@@ -215,6 +215,7 @@ body {
 
 .dd_right li a {
     text-decoration: none;
+    font-size: unset;
 }
 
 .dd_menu li {
