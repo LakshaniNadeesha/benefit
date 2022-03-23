@@ -34,10 +34,6 @@ class LeaveapproveController extends Controller
                             //print_r($empss);
                         for($j = 0;$j<sizeof($leave_details);$j++){
 
-                            // $emp[$i]['employee_ID'] = $employee_details[0]->employee_ID;
-                            // $emp[$i]['first_name'] = $employee_details[0]->first_name;
-                            // $emp[$i]['last_name'] = $employee_details[0]->last_name;
-                            // $emp[$i]['profile_image'] = $employee_details[0]->profile_image;
                             $emp[$i]['details'][$j] = $leave_details[$j];
                               //print_r($emp)[$k]['details'][$j];
                         }
@@ -52,7 +48,7 @@ class LeaveapproveController extends Controller
                     $employee_detailss = $user->where_condition('employee_ID','banned_employees',$row[$i]->employee_ID,0);
                     if(boolval($employee_detailss)){
                         //print_r($employee_detailss);
-                    $leave_detailss = $user_x->where_condition('employee_ID', 'leave_status', $row[$i]->employee_ID, 'approve');
+                    $leave_detailss = $user_x->where_or_double('employee_ID', 'leave_status', $row[$i]->employee_ID, 'approve','reject');
                     //print_r($leave_detailss);
                     if(boolval($leave_detailss)){
                   
@@ -62,10 +58,7 @@ class LeaveapproveController extends Controller
                             $emps[$l]['profile_image'] = $employee_detailss[0]->profile_image;
                             $empsss[$l]=sizeof($leave_detailss);
                         for($j = 0;$j<sizeof($leave_detailss);$j++){
-                            // $emps[$l]['employee_ID'] = $employee_detailss[0]->employee_ID;
-                            // $emps[$l]['first_name'] = $employee_detailss[0]->first_name;
-                            // $emps[$l]['last_name'] = $employee_detailss[0]->last_name;
-                            // $emps[$l]['profile_image'] = $employee_detailss[0]->profile_image;
+                            
                             $emps[$l]['details'][$j] = $leave_detailss[$j];
                         }
                
@@ -77,8 +70,8 @@ class LeaveapproveController extends Controller
 
             }
 
-            // echo "jfnbnenbnoeno";
-              $this->view('leaveapprove',['emp'=>$emp]);
+            
+              $this->view('leaveapprove',['emp'=>$emp,'emps'=>$emps]);
         // if(count($_POST)> 0){
             // echo "jfnbnenbnoeno";
             // if(isset($_POST['button'])){
@@ -98,12 +91,12 @@ class LeaveapproveController extends Controller
             
             if(isset($_POST['submit'])){
                 print_r($_POST);
-                echo "jfnbnenbnoeno";
                 $date = $_POST['date'];
                 $id = $_POST['id'];
-                // $id1 = 'employee_ID';
-                // $id2 = 'date';
-                $val = $_POST['val'];
+                $val = $_POST['l_status'];
+
+                echo($_POST['l_status']);
+
                 $user_x->updateLeave($id,$date,$val);
 
                 echo "after user_x";
