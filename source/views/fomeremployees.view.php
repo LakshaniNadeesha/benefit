@@ -87,7 +87,7 @@
                     <td><?php print_r($row[$i]['details']->organization_overall);echo"%";?></td>
                     <td><?php print_r($row[$i]['details']->team_skills_overall);echo"%";?></td>
                     <td><?php print_r($row[$i]['details']->multitasking_ability_overall);echo"%";?></td>
-                    <td><?php print_r($row[$i]['details']->last_modifydate);echo"%";?></td>
+                    <td><?php print_r($row[$i]['details']->last_modifydate);?></td>
                    <td> 
                         <a href="<?= PATH ?>UpdateemployeeController/addfomeremp/<?=$row[$i]['employee_ID']?>"><i class="fas fa-edit"></i></a>
                     </td>
