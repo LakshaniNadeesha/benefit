@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= CSS_PATH ?>color.css">
     <link rel="stylesheet" href="<?= CSS_PATH ?>supervisorviewperformance.css">
-    <title>Performance</title>
+    <title>Performance</title> 
 </head>
 <script>
     var dataTable = document.getElementById('claim_history_table');
@@ -27,7 +27,7 @@
     <?php
     $this->view('includes/header1');
     ?>
-</div>
+</div> 
 
 <div class="page_content">
     <?php
@@ -64,16 +64,16 @@
                     </div> -->
 
                    <div class="options">
-                   <a href="<?= PATH ?>Supervisor/Insert_Performance/<?=$emp[$i]['employee_ID'] ?>">
+                   <!-- <a href="<?= PATH ?>Supervisor/Insert_Performance/<?=$emp[$i]['employee_ID'] ?>">
                             <i class="fas fa-plus"></i>
-                        </a>
+                        </a> -->
 
                         <a href="<?= PATH ?>Supervisor/Update_Performance/<?=$emp[$i]['employee_ID'] ?> ">
                             <i class="fas fa-edit"></i>
                         </a>
 
-<!--                         <a href="<?= PATH ?>Supervisor/Delete_Performance/<?=$emp[$i]['employee_ID']?>">
-                            <i class="fas fa-trash-alt"></i> -->
+                         <a href="<?= PATH ?>Supervisor/Delete_Performance/<?=$emp[$i]['employee_ID']?>">
+                            <i class="fas fa-trash-alt"></i>
                         </a>
                     </div>
                 </div> 
@@ -113,7 +113,7 @@
                     <td><?php print_r($handled[$i]['details']->last_modifydate);?> </td>
                     <td> 
                         <a href="<?= PATH ?>Supervisor/Update_Performance/<?=$handled[$i]['employee_ID']?>"><i class="fas fa-edit"></i></a>
-                       <!--  <a href="<?= PATH ?>Supervisor/Delete_Performance/<?=$handled[$i]['employee_ID']?>"><i class="fas fa-trash-alt"></i></a> -->
+                        <a href="<?= PATH ?>Supervisor/Delete_Performance/<?=$handled[$i]['employee_ID']?>"><i class="fas fa-trash-alt"></i></a> 
                     </td>
                     
                 </tr>
@@ -126,3 +126,4 @@
 </div>
 </body>
 </html>
+
