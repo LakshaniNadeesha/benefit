@@ -54,98 +54,111 @@
                     <hr>
 
                     <div class="card-container">
+
                         <?php
+
+                        echo "<pre>";
+                        print_r($emp);
+                        echo "</pre>";
+
+                        print_r(sizeof($emp[0]['details']));
+
                         for ($i = 0; $i < sizeof($emp); $i++) {
-                            if ($emp >= 1 && ($emp[$i]['details']->date != '0000-00-00')) { ?>
-                                <div class="header-approve" style="height: 280px;" id="btn">
-                                    <center>
-                                        <img src="<?= IMG_PATH ?>\profile\download.png" class="profile__image">
-                                    </center>
-                                    <p class="name"><?php print_r($emp[$i]['first_name']); ?></p>
-                                    <p class="name"><?php print_r($emp[$i]['last_name']); ?></p>
-                                    <div>
+                            for ($j = 0; $j < sizeof($emp[$i]['details']); $j++) {
+                                if ($emp >= 1 && ($emp[$i]['details'][$j]->date != '0000-00-00')) { ?>
+                                    <div class="header-approve" style="height: 280px;" id="btn">
                                         <center>
-
-                                            <?php
-                                            $type = $emp[$i]['details']->leave_type;
-
-                                            switch ($type) {
-                                                case "casual":
-                                                    // echo "leave type is casual";
-                                            ?>
-                                                    <!-- <i class="fas fa-band-aid"></i> -->
-                                                    <i class="fas fa-sun"></i>
-
-                                                <?php
-                                                    break;
-                                                case "sick":
-                                                ?>
-                                                    <i class="fas fa-band-aid"></i>
-
-                                                <?php
-                                                    break;
-                                                case "annual":
-                                                ?>
-                                                    <i class="far fa-calendar-plus"></i>
-
-                                                <?php
-                                                    break;
-                                                default:
-                                                ?><i class="far fa-calendar-plus"></i><?php
-                                                                                }
-                                                                                        ?>
-
+                                            <img src="<?= IMG_PATH ?>\profile\download.png" class="profile__image">
                                         </center>
-                                        <p class="date"><?php print_r($emp[$i]['details']->date); ?> </p>
-                                        <!-- <p class="date"><?php print_r($emp[$i]['details']->ending_date); ?></p> -->
-                                        <p class="date"><?php print_r($emp[$i]['details']->leave_type); ?></p>
-                                        <!-- <p ><?php print_r($emp[$i]['employee_ID']) ?></p> -->
-
-
+                                        <p class="name"><?php print_r($emp[$i]['first_name']); ?></p>
+                                        <p class="name"><?php print_r($emp[$i]['last_name']); ?></p>
+                                        <div>
+                                            <center>
+    
+                                                <?php
+                                                $type = $emp[$i]['details'][$j]->leave_type;
+    
+                                                switch ($type) {
+                                                    case "casual":
+                                                        // echo "leave type is casual";
+                                                ?>
+                                                        <!-- <i class="fas fa-band-aid"></i> -->
+                                                        <i class="fas fa-sun"></i>
+    
+                                                    <?php
+                                                        break;
+                                                    case "sick":
+                                                    ?>
+                                                        <i class="fas fa-band-aid"></i>
+    
+                                                    <?php
+                                                        break;
+                                                    case "annual":
+                                                    ?>
+                                                        <i class="far fa-calendar-plus"></i>
+    
+                                                    <?php
+                                                        break;
+                                                    default:
+                                                    ?><i class="far fa-calendar-plus"></i><?php
+                                                                                    }
+                                                                                            ?>
+    
+                                            </center>
+                                            <p class="date"><?php print_r($emp[$i]['details'][$j]->date); ?> </p>
+                                            <!-- <p class="date"><?php print_r($emp[$i]['details'][$j]->ending_date); ?></p> -->
+                                            <p class="date"><?php print_r($emp[$i]['details'][$j]->leave_type); ?></p>
+                                            <!-- <p ><?php print_r($emp[$i]['employee_ID']) ?></p> -->
+    
+    
+                                        </div>
+    
+                                        <center>
+                                            <form method="post">
+    
+                                                <button type="submit" name="submit" value="reject" id="reject" onclick="myFunction1()">Reject</button>
+                                                <input type="hidden" name="date" value=<?php print_r($emp[$i]['details'][$j]->date); ?>>
+                                                <!-- <p><?php print_r($emp[$i]['details']->date); ?></p> -->
+                                                <!-- <p>khefbvkjwljbvkbvck jkbhjbskjvbjherhjv b vkjerhbvjbsjkekbjhv</p> -->
+                                                <input type="hidden" name="id" value=<?php print_r($emp[$i]['employee_ID']) ?>>
+                                                <input type="hidden" name="val" id="val">
+    
+                                                <button type="submit" name="submit" value="approve" id="approve" onclick="myFunction2()">Approve</button>
+    
+                                                <script>
+                                                    // document.getElementById("reject").onclick = function() {
+                                                    //     myFunction1()
+                                                    // };
+                                                    // document.getElementById("approve").onclick = function() {
+                                                    //     myFunction2()
+                                                    // };
+    
+    
+                                                    function myFunction1() {
+                                                        document.getElementById("val").value = "reject";
+                                                        // document.getElementById("reject").type = "submit";
+                                                        // document.getElementById("reject").name = "submit";
+                                                        alert(document.getElementById("val").value);
+                                                        console.log(document.getElementById("reject"));
+                                                        console.log("inside reject");
+                                                    }
+    
+                                                    function myFunction2() {
+                                                        document.getElementById("val").value = "approve";
+                                                        // document.getElementById("approve").type = "submit";
+                                                        // document.getElementById("approve").name = "submit";
+                                                        console.log(document.getElementById("approve"));
+                                                        console.log("inside Approve");
+                                                    }
+                                                </script>
+    
+                                            </form>
+    
+                                        </center>
                                     </div>
-
-                                    <center>
-                                        <form method="post">
-                                            <button type="submit" name="submit" value="reject" id="reject" onclick="myFunction1()">Reject</button>
-                                            <input type="hidden" name="date" value=<?php print_r($emp[$i]['details']->date); ?>>
-                                            <input type="hidden" name="id" value=<?php print_r($emp[$i]['employee_ID']) ?>>
-                                            <input type="hidden" name="val" id="val" >
-                                            
-                                            <button type="submit" name="submit" value="approve" id="approve" onclick="myFunction2()">Approve</button>
-
-                                            <script>
-
-                                                document.getElementById("reject").onclick = function() {
-                                                    myFunction1()
-                                                };
-                                                document.getElementById("approve").onclick = function() {
-                                                    myFunction2()
-                                                };
-
-                                                
-                                                function myFunction1() {
-                                                    document.getElementById("val").value = "reject";
-                                                    // document.getElementById("reject").type = "submit";
-                                                    // document.getElementById("reject").name = "submit";
-
-                                                    console.log(document.getElementById("reject"));
-                                                    console.log("inside reject");
-                                                }
-
-                                                function myFunction2(){
-                                                    document.getElementById("val").value = "approve";
-                                                    // document.getElementById("approve").type = "submit";
-                                                    // document.getElementById("approve").name = "submit";
-                                                    console.log(document.getElementById("approve"));
-                                                    console.log("inside Approve");
-                                                }
-                                            </script>
-
-                                        </form>
-
-                                    </center>
-                                </div>
-                    <?php }
+                        <?php }
+                            }
+                            
                         }
                     } ?>
                     <!--  <div class="header-approve" id="btn">
@@ -200,7 +213,7 @@
                                 <th>Date</th>
 
                             </tr>
-                            
+
                             <?php
                             print_r($emp);
                             if (boolval($emp)) {
