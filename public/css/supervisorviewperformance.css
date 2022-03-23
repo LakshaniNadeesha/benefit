@@ -25,7 +25,6 @@ body {
     font-weight: bold;
 }
 
-
 .details {
     display: flex;
     flex-direction: column;
@@ -55,8 +54,13 @@ body {
     white-space: nowrap;
 }
 
+
 /*.data :hover {*/
+
+
 /*    box-shadow: 3px 5px 15px rgba(0, 0, 0, .30);*/
+
+
 /*}*/
 
 .cards {
@@ -65,8 +69,8 @@ body {
     align-items: center;
     background-color: white;
     border: 1px solid var(--h1);
-    width: 200px;
-    height: 270px;
+    width: 150px;
+    height: 230px;
     max-height: max-content;
     border-radius: 10px;
     font-size: 20px;
@@ -82,13 +86,13 @@ body {
     height: auto;
 }
 
-img {
+.profile__image {
     width: 100px;
     height: 100px;
-    object-fit: cover;
     border-radius: 50%;
     padding: 10px;
-    margin: 0 0 20px;
+    padding-bottom: 15px;
+    margin-top: 15px;
 }
 
 .name {
