@@ -5,73 +5,14 @@
     <meta name="viewport"content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="<?=CSS_PATH?>reimbursement.css">
+    <link rel="stylesheet" href="<?= CSS_PATH ?>header1.css">
+    <link rel="stylesheet" href="<?= CSS_PATH ?>profile1.css">
 	<script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 	<title>Update Reimbursment Details</title>
 	
 </head>
-<!-- <script type="text/javascript">
-	function validation() {
-    var p = document.forms["myform"]["claim_amount"].value;
-    var decimal = /^[+]?[0-9]+\.[0-9]+$/;
-    if (p.match(decimal)) {
-        var f1 = reason_validation();
-        var f2 = true
-        if (f1 && f2) {
-            return true;
-        } else {
-            return false;
-        }
-    } else {
-        alert('Please enter valid numeric value')
-            // Swal.fire('Please enter valid numeric value')
-        reason_validation();
-        return false;
-    }
-}
-
-function reason_validation() {
-    var m = document.forms["myform"]["subject"].value;
-    if (isNaN(m)) {
-        // document.getElementById("validText").innerHTML = "Reason: " + m;
-        return true;
-    } else {
-        alert("Please enter a valid reason");
-        return false;
-    }
-}
-
-//get claim date
-function dating(){
-var today = new Date();
-var max_m = today.getUTCMonth() + 1;
-var max_d = today.getUTCDate();
-var max_y = today.getUTCFullYear();
-
-today_date = max_y + "-" + max_m + "-" + max_d;
-
-document.getElementById("claim_date").setAttribute("max", today_date);
-
-var dateObj = new Date();
-
-var min_date = subDays(dateObj, 6);
-
-var min_m = min_date.getUTCMonth() + 1; //months from 1-12
-var min_d = min_date.getUTCDate();
-var min_y = min_date.getUTCFullYear();
-
-newdate = min_y + "-" + min_m + "-" + min_d;
-
-document.getElementById("claim_date").setAttribute("min", newdate);
-
-
-function subDays(myDate, days) {
-    return new Date(myDate.getTime() - days * 24 * 60 * 60 * 1000);
-}
-}
-
-</script> -->
 <body class="update-body">
 
 <div>
@@ -232,35 +173,7 @@ function reason_validation() {
     }
 }
 
-//get claim date
-// function dating(){
 
-// var today = new Date();
-// var max_m = today.getUTCMonth() + 1;
-// var max_d = today.getUTCDate();
-// var max_y = today.getUTCFullYear();
-
-// today_date = max_y + "-" + max_m + "-" + max_d;
-
-// document.getElementById("claim_date").setAttribute("max", today_date);
-
-// var dateObj = new Date();
-
-// var min_date = subDays(dateObj, 6);
-
-// var min_m = min_date.getUTCMonth() + 1; //months from 1-12
-// var min_d = min_date.getUTCDate();
-// var min_y = min_date.getUTCFullYear();
-
-// newdate = min_y + "-" + min_m + "-" + min_d;
-
-// document.getElementById("claim_date").setAttribute("min", newdate);
-
-
-// function subDays(myDate, days) {
-//     return new Date(myDate.getTime() - days * 24 * 60 * 60 * 1000);
-// }
-// }
 
 </script>   		
 	<!-- <script src="public/js/reimbursement.js"></script> -->

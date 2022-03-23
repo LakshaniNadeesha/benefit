@@ -46,7 +46,7 @@
                             <label for="c_date">Claim Date</label>
                         </div>
                         <div class="column_2">
-                            <input type="date" id="claim_date" name="claim_date" min="2022-03-21" max="2022-03-28"
+                            <input type="date" id="claim_date" name="claim_date" min="2022-03-17" max="2022-03-24"
                                    placeholder="mm/dd/yyyy" required>
                         </div>
                         <p id="hello"></p>
@@ -147,6 +147,7 @@
                     <tr>
                         <th>Date</th>
                         <th>Amount</th>
+                        <th>Reason</th>
                         <th>Status</th>
                     </tr>
 
@@ -163,6 +164,7 @@
                                 <tr>
                                     <td><?php print_r($vai->claim_date); ?></td>
                                     <td><?php print_r($vai->claim_amount); ?></td>
+                                    <td><?php print_r($vai->reimbursement_reason); ?></td>
                                     <td><?php print_r($vai->reimbursement_status); ?></td>
                                 </tr>
 

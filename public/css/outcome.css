@@ -5,10 +5,26 @@ body {
     background: #f1f1f1;
 }
 
+.profile_container {
+    border-radius: 15px;
+    box-shadow: 3px 3px 15px rgb(0 0 0 / 20%);
+    height: 100%;
+    width: 80%;
+    align-items: center;
+    margin-left: 10%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    background-color: white;
+}
+
 .add_meeting {
     width: 100%;
     display: flex;
     justify-content: flex-end;
+}
+
+svg {
+    border-radius: 15px;
 }
 
 .add_meeting button {
@@ -22,7 +38,9 @@ body {
     cursor: pointer;
 }
 
+
 /* Header/Blog Title */
+
 .header {
     padding: 30px;
     font-size: 40px;
@@ -54,21 +72,29 @@ body {
     margin: 0 0 10px;
 }
 
+
 /* Create two unequal columns that floats next to each other */
+
+
 /* Left column */
+
 .leftcolumn {
     float: left;
     width: 100%;
 }
 
+
 /* Right column */
+
 .rightcolumn {
     float: left;
     width: 25%;
     padding-left: 20px;
 }
 
+
 /* Fake image */
+
 .fakeimg {
     background-color: #aaa;
     width: 100%;
@@ -80,16 +106,20 @@ body {
     flex-direction: row;
 }
 
+
 /* Add a card effect for articles */
+
 .card {
     background-color: white;
     padding: 20px;
     margin-top: 20px;
-    margin-right: 10px;
-    margin-left: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     border: 1px solid #0f9eb8;
+    border-radius: 10px;
 }
 
 .outcome_content {
@@ -119,14 +149,18 @@ body {
     width: 100%;
 }
 
+
 /* Clear floats after the columns */
+
 .row:after {
     content: "";
     display: table;
     clear: both;
 }
 
+
 /* Footer */
+
 .footer {
     padding: 20px;
     text-align: center;
@@ -134,9 +168,12 @@ body {
     margin-top: 20px;
 }
 
+
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+
 @media screen and (max-width: 800px) {
-    .leftcolumn, .rightcolumn {
+    .leftcolumn,
+    .rightcolumn {
         width: 100%;
         padding: 0;
     }
