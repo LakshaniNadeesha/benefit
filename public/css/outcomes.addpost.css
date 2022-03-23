@@ -20,6 +20,18 @@ svg {
     border-radius: 15px;
 }
 
+.back_btn {
+    margin-left: 5%;
+    font-size: larger;
+    color: black;
+}
+
+.back_btn i {
+    margin-left: 5%;
+    font-size: xx-large;
+    color: black;
+}
+
 .container h3 {
     width: 100%;
     font-size: larger;
