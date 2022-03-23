@@ -21,26 +21,26 @@
                 events: <?= Auth::calendar() ?>,
                 selectable:true,
                 selectHelper:true,
-                // select: function(start, end, allDay)
-                // {
-                //     var title = prompt("Enter Event Title");
-                //     if(title)
-                //     {
-                //         var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-                //         var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
-                //         $.ajax({
-                //             url:"http://localhost/benefit/Calendar",
-                //             type:"POST",
-                //             data:{title:title, start:start, end:end},
-                //             success:function()
-                //             {
-                //                 calendar.fullCalendar('refetchEvents');
-                //                 alert("Added Successfully");
-                //             }
-                //         })
-                //     }
-                // },
-                // editable:true,
+                select: function(start, end, allDay)
+                {
+                    var title = prompt("Enter Event Title");
+                    if(title)
+                    {
+                        var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
+                        var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+                        $.ajax({
+                            url:"http://localhost/benefit/Calendar",
+                            type:"POST",
+                            data:{title:title, start:start, end:end},
+                            success:function()
+                            {
+                                calendar.fullCalendar('refetchEvents');
+                                alert("Added Successfully");
+                            }
+                        })
+                    }
+                },
+                editable:true,
 
                 // eventDrop:function(event)
                 // {
