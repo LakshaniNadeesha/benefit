@@ -23,25 +23,37 @@
             <li><a href="<?= PATH ?>Approvebenefit"><i class="fab fa-gratipay"></i><span>Handle Benefits</span></a></li>
             <!-- <li><a href="<?= PATH ?>LeaveapproveController"><i class="fas fa-calendar-week"></i><span>Handle Time Off</span></a></li> -->
             <li><a href="<?= PATH ?>Reporting"><i class="fas fa-chart-line"></i><span>Reports</span></a></li>
-            <li><a href="<?= PATH ?>AddemployeeController"><i class="far fa-address-book"></i><span>Registration</span></a></li>
-            <li><a href="<?= PATH ?>EmployeelistController"><i class="fas fa-user-edit"></i><span>Employee Management</span></a>
-            <li><a href="<?= PATH ?>Hrdocuments/updatedocuments"><i class="fas fa-edit"></i><span>Document Settings</span></a></li>
-            <li><a href="<?= PATH ?>Benefit/update"><i class="fas fa-address-card"></i><span>Benefit Settings</span></a></li>
-            <li><a href="<?= PATH ?>FomerEmployees"><i class="fas fa-address-card"></i><span>Former Employees</span></a></li>
-            <li><a href="<?= PATH ?>PerformanceView"><i class="fas fa-edit"></i><span>Promotion (Performance)</span></a></li>
+            <li><a href="<?= PATH ?>AddemployeeController"><i class="far fa-address-book"></i><span>Registration</span></a>
+            </li>
+            <li><a href="<?= PATH ?>EmployeelistController"><i
+                            class="fas fa-user-edit"></i><span>Employee Management</span></a>
+            <li><a href="<?= PATH ?>Hrdocuments/updatedocuments"><i
+                            class="fas fa-edit"></i><span>Document Settings</span></a></li>
+            <li><a href="<?= PATH ?>Benefit/update"><i class="fas fa-address-card"></i><span>Benefit Settings</span></a>
+            </li>
+            <li><a href="<?= PATH ?>FomerEmployees"><i class="fas fa-address-card"></i><span>Former Employees</span></a>
+            </li>
+            <li><a href="<?= PATH ?>PerformanceView"><i class="fas fa-edit"></i><span>Promotion (Performance)</span></a>
+            </li>
         <?php endif; ?>
     </ul>
 </div>
 <div class="stroke2">
     <ul>
         <?php if (Auth::access('HR Manager')): ?>
-            <li title="Handle Benefits"><a href="<?= PATH ?>Approvebenefit" ><i class="fab fa-gratipay"></i></a></li>
-            <li title="Handle Time Off"><a href="<?= PATH ?>LeaveapproveController" ><i class="fas fa-calendar-week"></i></a></li>
+            <li title="Handle Benefits"><a href="<?= PATH ?>Approvebenefit"><i class="fab fa-gratipay"></i></a></li>
             <li title="Reports"><a href="<?= PATH ?>Reporting"><i class="fas fa-chart-line"></i></a></li>
-            <li title="Registration"><a href="<?= PATH ?>AddemployeeController"><i class="far fa-address-book"></i></a></li>
+            <li title="Registration"><a href="<?= PATH ?>AddemployeeController"><i class="far fa-address-book"></i></a>
+            </li>
             <li title="Employee Management"><a href="<?= PATH ?>EmployeelistController"><i class="fas fa-user-edit"></i></a>
-            <li title="Document Settings"><a href="<?= PATH ?>Hrdocuments/updatedocuments"><i class="fas fa-edit"></i></a></li>
-            <li title="Benefit Settings"><a href="<?= PATH ?>Benefit/update"><i class="fas fa-address-card"></i></a></li>
+            <li title="Document Settings"><a href="<?= PATH ?>Hrdocuments/updatedocuments"><i
+                            class="fas fa-edit"></i></a></li>
+            <li title="Benefit Settings"><a href="<?= PATH ?>Benefit/update"><i class="fas fa-address-card"></i></a>
+            </li>
+            <li><a href="<?= PATH ?>FomerEmployees"><i class="fas fa-address-card"></i><span>Former Employees</span></a>
+            </li>
+            <li><a href="<?= PATH ?>PerformanceView"><i class="fas fa-edit"></i><span>Promotion (Performance)</span></a>
+            </li>
         <?php endif; ?>
     </ul>
 </div>
