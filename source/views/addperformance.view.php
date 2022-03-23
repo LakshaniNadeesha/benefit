@@ -44,7 +44,34 @@ if (boolval($errors)) {
                 <div class="form_head">
                     <div>
                         <h1>Employees Feedback Form</h1>
-                        <hr/>
+                        <?php if(boolval($rows)){ $rows=$rows[0];
+                            ?>
+                            <div>
+                        <h2>Current Values</h2>
+                            </div>
+                            <div>
+                                 <table>
+                                <tr>
+                                    <th>Communication</th>
+                                    <th>Quality Of Work</th>
+                                    <th>Organization</th>
+                                    <th>Team Skills</th>
+                                    <th>Multitasking Ability</th>
+                                </tr>
+                                <tr>
+                                    <td><?php print_r($rows->communication) ?></td>
+                                    <td><?php print_r($rows->quality_of_work) ?></td>
+                                    <td><?php print_r($rows->organization) ?></td>
+                                    <td><?php print_r($rows->team_skills) ?></td>
+                                    <td><?php print_r($rows->multitasking_ability) ?></td>
+                                </tr>
+                            </table>
+                            </div>
+                           
+
+
+                        <?php  }?>
+                        <!-- <hr/> -->
                     </div>
                     <div class="employee_details">
 <!--                        <center>-->
@@ -54,6 +81,7 @@ if (boolval($errors)) {
 <!--                        (Operational Worker)</p>-->
                     </div>
                 </div>
+                
                 <h3>Overall Experience of Worker</h3>
                 <table>
                     <tr>
@@ -64,9 +92,11 @@ if (boolval($errors)) {
                         <th>Poor</th>
                         <th>Very Poor</th>
                     </tr>
+                    
                     <tr>
-                        <td class="first-col">Task Completing</td>
-                        <td><input type="radio" value="100" name="communication"/></td>
+
+                        <td class="first-col">Communication</td>
+                        <td><input type="radio" value="100"  name="communication"/></td>
                         <td><input type="radio" value="75" name="communication"/></td>
                         <td><input type="radio" value="50" name="communication"/></td>
                         <td><input type="radio" value="25" name="communication"/></td>
@@ -81,7 +111,7 @@ if (boolval($errors)) {
                         <td><input type="radio" value="0" name="quality_of_work"/></td>
                     </tr>
                     <tr>
-                        <td class="first-col">Duely Work</td>
+                        <td class="first-col">Organization</td>
                         <td><input type="radio" value="100" name="organization"/></td>
                         <td><input type="radio" value="75" name="organization"/></td>
                         <td><input type="radio" value="50" name="organization"/></td>
