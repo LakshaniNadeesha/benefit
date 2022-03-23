@@ -54,7 +54,7 @@
                         <div class="meeting_name">
                             <h2><?php print_r($row[$i]->title); ?></h2>
                             <?php if (Auth::access('HR Officer') || Auth::access('HR Manager')): ?>
-                                <a href="<?= PATH ?>" class="edit_icon"><i class="fas fa-edit"></i></a>
+                                <a href="<?= PATH ?>/Outcomes/updatepost/<?php print_r($row[$i]->post_id); ?>" class="edit_icon"><i class="fas fa-edit"></i></a>
                             <?php endif; ?>
                         </div>
                         <h5>Meeting Date: <?php print_r($row[$i]->date); ?></h5>

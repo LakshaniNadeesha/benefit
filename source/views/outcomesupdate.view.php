@@ -17,20 +17,7 @@
     <?php $this->view('includes/header1') ?>
 </div>
 
-
-<!-- <div class="profile">
-        <?php
-$this->view('includes/profile1');
-?>
-</div> -->
-<!-- a -->
-<div class="profile_container">
-    <div class="profile">
-        <?php
-        $this->view('includes/profile1');
-        ?>
-    </div>
-
+<div class="profile_container1">
 
     <div class="row">
         <div class="title">Meeting Outcomes</div>
