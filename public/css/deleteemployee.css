@@ -99,13 +99,25 @@ table td{
     font-weight: bold;
 }
 
-.main_container .msg .emp_details .buttons{
+.buttons{
     width: 100%;
     margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#buttons{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#buttons :hover{
+    box-shadow: 3px 5px 15px rgba(0,0,0,.50);  
+    transform: scale(1.05);
+    border-style: none;
 }
 
 .main_container .msg .emp_details .buttons form{
-    max-width: 100%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     padding-top: 20px;
@@ -133,51 +145,61 @@ table td{
     letter-spacing: 2px;
 }
 
-.main_container .msg .emp_details .buttons form #cancel {
+#cancel {
     color: var(--red);
     background-color: #fcfaf9;
     border: 1.5px solid black;
+    border-radius: 20px;
+    min-width: 120px;
+    height: 40px;
+    cursor: pointer;
     
-}
-
-.main_container .msg .emp_details .buttons form #delete {
-    background-color: #6fccee;
-    border: 1.5px solid var(--header);
-    border: 1.5px solid black;
 }
 
 #delete {
     background-color: #6fccee;
     border: 1.5px solid var(--header);
     border: 1.5px solid black;
+    border-radius: 20px;
+    min-width: 120px;
+    height: 40px;
+    cursor: pointer;
 }
 
-.main_container .msg .emp_details .buttons form  :hover{
+.butt :hover{
     box-shadow: 3px 5px 15px rgba(0,0,0,.50);  
     transform: scale(1.05);
     border-style: none;
 }
 
-.show-more {
+/* #delete {
+    background-color: #6fccee;
+    border: 1.5px solid var(--header);
+    border: 1.5px solid black;
+} */
+.buttons form :hover{
+    box-shadow: 3px 5px 15px rgba(0,0,0,.50);  
+    transform: scale(1.05);
+    border-style: none;
+}
+
+/* .show-more {
     min-width: 120px;
     height: 40px;
     background-color: #dbe3e6;
-
-    /* border: 1px solid black; */
     box-shadow: 3px 3px 5px rgba(0, 0, 0, .200);
     border-radius: 20px;
     padding: 12px;
     border-style: none;
     cursor: pointer;
     color: black;
-}
+} */
 
-.show-more:hover {
-    /* background-color: #E4F1F5; */
+/* .show-more:hover {
     box-shadow: 3px 5px 5px rgba(0, 0, 0, .25);
     width: 125px;
     height: 41px;
-}
+} */
 
 
 @media screen and (max-width: 450px){

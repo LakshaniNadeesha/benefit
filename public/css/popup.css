@@ -38,7 +38,7 @@
     transform: scale(0.75);
     animation-name: confirm__window---open;
     animation-fill-mode: forwards;
-    animation-duration: 1.2s;
+    animation-duration: 0.3s;
 }
 
 .confirm__titlebar,

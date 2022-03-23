@@ -97,13 +97,16 @@
                             </table>
 
 
-                            <?php if ($entry->user_role == "Supervisor" && $entry->supervisor_ID == 0) {
+                            <?php if ($entry->user_role == "Supervisor" && $entry->supervisor_ID == $entry->employee_ID) {
                                 echo "Root Supervisor";
                             ?>
-                                <div class="buttons">
-                                    <button type="sumbit" id="cancel" name="cancel">Cancel</button>
-                                    <button class="show-more" id="hr" type="submit" name="show">Show More <i class="fas fa-arrow-right"></i></button>
-
+                                <div class="buttons" id="buttons">
+                                    <!-- <button type="sumbit" id="cancel" name="cancel">Cancel</button>
+                                    <button class="show-more" id="hr" type="submit" name="show">Show More <i class="fas fa-arrow-right"></i></button> -->
+                                    <!-- <form method="post"> -->
+                                    <input type="submit" id="cancel" class="butt" name="cancel" value="Cancel" />
+                                    <input type="submit" id="delete" class="butt" name="delete" value="Delete" />
+                                    <!-- </form> -->
                                     <!-- <button type="submit" id="add" name="submit">Update</button> -->
                                 </div>
 
@@ -111,13 +114,22 @@
                             } elseif ($entry->user_role == "Supervisor" && $entry->supervisor_ID != 0) {
                                 echo "Supervisore under supervisore";
                             ?>
-                                <button class="show-more" id="hr" type="submit" name="show">Show More <i class="fas fa-arrow-right"></i></button>
+                                <!-- <button class="show-more" id="hr" type="submit" name="show">Show More <i class="fas fa-arrow-right"></i></button> -->
+                                <div class="buttons" id="buttons">
+                                    <!-- <button type="sumbit" id="cancel" name="cancel">Cancel</button>
+                                    <button class="show-more" id="delete" type="submit" name="show">Show More</button> -->
+                                    <!-- <form method="post"> -->
+                                    <input type="submit" id="cancel" class="butt" name="cancel" value="Cancel" />
+                                    <input type="submit" id="delete" class="butt" name="delete" value="Delete" />
+                                    <!-- </form> -->
+                                    <!-- <button type="submit" id="add" name="submit">Update</button> -->
+                                </div>
                             <?php
                             } else { ?>
                                 <div class="buttons">
                                     <form method="post">
-                                        <input type="submit" id="cancel" name="cancel" value="Cancel" />
-                                        <input type="submit" id="delete" name="delete" value="Delete" />
+                                        <input type="submit" id="cancel" class="butt" name="cancel" value="Cancel" />
+                                        <input type="submit" id="delete" class="butt" name="delete" value="Delete" />
                                     </form>
                                 </div>
                             <?php
@@ -166,9 +178,9 @@
 
                             var entryID = <?php echo $entry->employee_ID ?>;
 
-                            for (var i = 0; i < passedArray.length; i++) {
-                                document.write(passedArray[i].employee_ID);
-                            }
+                            // for (var i = 0; i < passedArray.length; i++) {
+                            //      document.write(passedArray[i].employee_ID);
+                            // }
 
                             var sid = document.getElementById("supervisor").value;
 
@@ -199,7 +211,7 @@
                                             } else if (passedArray[i].department_ID == 3) {
                                                 document.getElementById("dept").innerHTML = "Sells Department";
                                             } else {
-                                                document.getElementById("dept").innerHTML = "Account Department";
+                                                document.getElementById("dept").innerHTML = "Financial Department";
                                             }
 
                                             break;
@@ -272,7 +284,8 @@
 
     </div>
     <script>
-        const hr = document.querySelector('#hr');
+        const hr = document.querySelector('#delete');
+        const cancel = document.querySelector('#cancel');
         const sub = document.querySelector('#sub');
         const confirmEl = document.querySelector('.confirm');
         const btnClose = document.querySelector('.confirm__close');
@@ -304,6 +317,10 @@
             document.getElementById("dhr").style.display = "block";
 
         });
+
+        // cancel.addEventListener('click',()=>{
+
+        // })
 
         function close(confirmEl) {
             console.log('You closed the window!');
