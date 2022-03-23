@@ -32,7 +32,7 @@ class Supervisor extends Controller
 		}
 		if(Auth::access('Supervisor'))
 		{
-		$user=new EmployeelistModel();
+		$user=new Employeedetails();
 		$user_x = new PerformanceModel();
 		$id=Auth::user();
 		$row=$user->where('supervisor_ID',$id);
@@ -88,7 +88,7 @@ class Supervisor extends Controller
          //        }
                 
          //    }
-		$user_n=new EmployeelistModel();
+		$user_n=new Employeedetails();
 		$user_s = new PerformanceModel();
 		$id=Auth::user();
 		$row=$user->where('supervisor_ID',$id);
