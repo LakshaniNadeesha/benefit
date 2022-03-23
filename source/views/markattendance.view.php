@@ -45,34 +45,38 @@
             <div class="section1">
                 <p class="title"><u>On Leave</u></p>
                 <p>Today</p>
-                <?php
-                if (boolval($today)) {
-                    for ($i = 0; $i < sizeof($today); $i++) { ?>
-                        <div class="pro-box">
-                            <img src="<?php print_r($today[$i]->profile_image); ?>" alt="on-leave-people"
-                                 class="on-leave-people">
-                            <span><?php print_r($today[$i]->first_name); ?></span>
-                        </div>
+                <div class="top_today">
+                    <?php
+                    if (boolval($today)) {
+                        for ($i = 0; $i < sizeof($today); $i++) { ?>
+                            <div class="pro-box">
+                                <img src="<?php print_r($today[$i]->profile_image); ?>" alt="on-leave-people"
+                                     class="on-leave-people">
+                                <span><?php print_r($today[$i]->first_name); ?></span>
+                            </div>
+                        <?php }
+                    } else { ?>
+                        <div style="margin-left: 7px; margin-top: 10px; font-size: smaller">No one</div>
                     <?php }
-                } else { ?>
-                    <div style="margin-left: 7px; margin-top: 10px; font-size: smaller">No one</div>
-                <?php }
-                ?>
+                    ?>
+                </div>
 
                 <p>Tomorrow</p>
-                <?php
-                if (boolval($tomorrow)) {
-                    for ($i = 0; $i < sizeof($tomorrow); $i++) { ?>
-                        <div class="pro-box">
-                            <img src="<?php print_r($tomorrow[$i]->profile_image); ?>" alt="on-leave-people"
-                                 class="on-leave-people">
-                            <span><?php print_r($tomorrow[$i]->first_name); ?></span>
-                        </div>
+                <div class="top_tomorrow">
+                    <?php
+                    if (boolval($tomorrow)) {
+                        for ($i = 0; $i < sizeof($tomorrow); $i++) { ?>
+                            <div class="pro-box">
+                                <img src="<?php print_r($tomorrow[$i]->profile_image); ?>" alt="on-leave-people"
+                                     class="on-leave-people">
+                                <span><?php print_r($tomorrow[$i]->first_name); ?></span>
+                            </div>
+                        <?php }
+                    } else { ?>
+                        <div style="margin-left: 7px; margin-top: 10px; font-size: smaller">No one</div>
                     <?php }
-                } else { ?>
-                    <div style="margin-left: 7px; margin-top: 10px; font-size: smaller">No one</div>
-                <?php }
-                ?>
+                    ?>
+                </div>
             </div>
             <div class="section2">
                 <p class="title"><u>Calender</u></p>
@@ -92,7 +96,7 @@
                             <div class="slideshow-container">
                                 <div class="mySlides fade">
                                     <div class="now">
-                                        <p class="to-do">To Be Add</p>
+                                        <p class="to-do">To Be Added</p>
                                         <hr>
 
                                         <?php
@@ -492,8 +496,8 @@
                             </div>
                         </div>
                         <div class="confirm__buttons">
-                            <button class="confirm__button confirm__button--cancel" type="reset">${options.cancelText}</button>
-                            <button class="confirm__button confirm__button--ok confirm__button--fill" type="submit" value="Change" name="submit">Change</button>
+                            <button class="confirm_button confirm_button--cancel" type="reset">${options.cancelText}</button>
+                            <button class="confirm_button confirmbutton--ok confirm_button--fill" type="submit" value="Change" name="submit">Change</button>
                         </div>
                  </form>
             </div>
