@@ -90,7 +90,7 @@ class LeaveapproveController extends Controller
 
             
             if(isset($_POST['submit1'])){
-                print_r($_POST);
+                // print_r($_POST);
                 $date = $_POST['date'];
                 $id = $_POST['id'];
                 // $val = $_POST['l_status'];
@@ -104,7 +104,7 @@ class LeaveapproveController extends Controller
             }
 
             if(isset($_POST['submit'])){
-                print_r($_POST);
+                // print_r($_POST);
                 $date = $_POST['date'];
                 $id = $_POST['id'];
                 // $val = $_POST['l_status'];

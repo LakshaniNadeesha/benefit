@@ -177,7 +177,7 @@ class RequestleaveController extends Controller{
                         $arr['date'] = $date_list[$i];
                         $row = "date";
                         $arr['half_time'] = null;
-                        $arr['leave_status'] = "Pending";
+                        $arr['leave_status'] = "pending";
 
                         $week_day = date_create($date_list[$i]);
                         if(date_format($week_day,"l") == "Sunday"){
@@ -196,7 +196,7 @@ class RequestleaveController extends Controller{
                             $date_exist = $this->validate($arr['date'],$user,$row);
 
                             if($date_exist){
-                                echo "Date already leave";
+                                // echo "Date already leave";
                                 break;  
                             }
                             else{
