@@ -3,8 +3,11 @@ require('fpdf/fpdf.php');
 
 class PDF1 extends FPDF{
     function Header(){
-        $this->SetFont('Arial','B',12);
+        $this->SetFont('Arial','B',16);
+        $this->SetTextColor(0,0,139);
         $this->Cell(180,10,'Reimbursement Report',0,1,'C');
+        $this->SetFont('Arial','B',11);
+        $this->SetTextColor(0,0,0);
         $this->Cell(35,10,'Employee ID',0,0,'C');
         $this->Cell(40,10,'Handled Date',0,0,'C');
         $this->Cell(40,10,'Claim Amount',0,0,'C');
@@ -25,7 +28,7 @@ class PDF1 extends FPDF{
 
 $pdf = new PDF1();
 $pdf->AddPage();
-$pdf->SetFont('Arial','B',10);
+$pdf->SetFont('Arial','',10);
 
 
 $i = 0;
