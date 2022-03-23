@@ -167,155 +167,8 @@
         64L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,
         0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z"></path>
             </svg>
-        <div class="report_container">
-            <div class="report_type">
-                <div class="report_name">
-                    <p>Time Offs</p>
-                </div>
-                <div class="options">
-                    <button id="button" onclick="show_time_off()"><i class="fa fa-eye"></i>         View</button>
-                    <!-- <div class="download">
-                        <i class="fa fa-download" style="font-size:30px"></i>
-                    </div> -->
-                </div>
-            </div>
-
-            <div class="divide_line"></div>
-
-            <div class="chart" id="time_off_chart">
-                <div class="report_title">
-                    <p>Time Offs</p>
-                </div>
-                <form method="post">
-                    <input type="text" value="Time-Offs" hidden>
-                    <div class="select">
-                        <input type="radio" id="leave_1" value="1 month" name="duration" onclick="view_leave()"> <label for="1 month">One month</label><br>
-                        <input type="radio" id="leave_2" value="2 month" name="duration" onclick="view_leave()"> <label for="2 month">Two month</label><br>
-                        <input type="radio" id="leave_3" value="3 month" name="duration" onclick="view_leave()"> <label for="2 month">Three month</label><br>
-                    </div>
-                </form>
-
-                <!-- leave_1 -->
-                <div class="leave_report" id="leave_report">
-                <table id="leave_history_table_month1">
-                    <tr>
-                        <th>Employee ID</th>
-                        <th>Employee Name</th>
-                        <th>Date</th>
-                        <th>OT Hours</th>
-
-                    </tr>
-                    <?php
-                    $i = 0;
-
-                    if (boolval($leave_row1)) {
-
-                        for ($i = 0; $i < sizeof($leave_row1); $i++) {
-
-                            $vai3 = $leave_row1[$i]; 
-                    ?>
-                               <tr>
-                                    <td><?php print_r($vai3->employee_ID); ?></td>
-                                    <td><?php print_r($vai3->name); ?></td>
-                                    <td><?php print_r($vai3->date); ?></td>
-                                    <td><?php print_r($vai3->ot_hours); ?></td>
-
-
-                                </tr>
-
-                            <?php 
-                        }
-                    } ?>
-
-
-                </table>
-                </div>
-                <div id="leave_button1">
-                <a href="<?= PATH ?>Reporting/leavereport1" class="btn1" target="_blank"><i class="fa fa-download"></i>    Download</a>
-                </div>
-
-
-                   <!-- leave_2 -->
-                   <div class="leave_report" id="leave_report">
-                <table id="leave_history_table_month2">
-                    <tr>
-                        <th>Employee ID</th>
-                        <th>Employee Name</th>
-                        <th>Date</th>
-                        <th>OT Hours</th>
-
-                    </tr>
-                    <?php
-                    $i = 0;
-
-                    if (boolval($leave_row2)) {
-
-                        for ($i = 0; $i < sizeof($leave_row2); $i++) {
-
-                            $vai3 = $leave_row2[$i]; 
-                    ?>
-                               <tr>
-                                    <td><?php print_r($vai3->employee_ID); ?></td>
-                                    <td><?php print_r($vai3->name); ?></td>
-                                    <td><?php print_r($vai3->date); ?></td>
-                                    <td><?php print_r($vai3->ot_hours); ?></td>
-
-
-                                </tr>
-
-                            <?php 
-                        }
-                    } ?>
-
-
-                </table>
-                </div>
-                <div id="leave_button2">
-                <a href="<?= PATH ?>Reporting/leavereport2" class="btn1" target="_blank"><i class="fa fa-download"></i>    Download</a>
-                </div>
-
-                   <!-- leave_3 -->
-                   <div class="leave_report3" id="leave_report3">
-                <table id="leave_history_table_month3">
-                    <tr>
-                        <th>Employee ID</th>
-                        <th>Employee Name</th>
-                        <th>Date</th>
-                        <th>OT Hours</th>
-            
-
-                    </tr>
-                    <?php
-                    $i = 0;
-
-                    if (boolval($leave_row3)) {
-
-                        for ($i = 0; $i < sizeof($leave_row3); $i++) {
-
-                            $vai3 = $leave_row3[$i]; 
-                    ?>
-                               <tr>
-                                    <td><?php print_r($vai3->employee_ID); ?></td>
-                                    <td><?php print_r($vai3->name); ?></td>
-                                    <td><?php print_r($vai3->date); ?></td>
-                                    <td><?php print_r($vai3->ot_hours); ?></td>
-
-
-                                </tr>
-
-                            <?php 
-                        }
-                    } ?>
-
-
-                </table>
-                </div>
-                <div id="leave_button3">
-                <a href="<?= PATH ?>Reporting/leavereport3" class="btn1" target="_blank"><i class="fa fa-download"></i>    Download</a>
-                </div>
-            </div>
-        </div>
-
+      
+    
         <div class="report_container">
             <div class="report_type">
                 <div class="report_name">
@@ -624,6 +477,154 @@
                 </div>
             </div>
         </div> 
+        <div class="report_container">
+            <div class="report_type">
+                <div class="report_name">
+                    <p>Time Offs</p>
+                </div>
+                <div class="options">
+                    <button id="button" onclick="show_time_off()"><i class="fa fa-eye"></i>         View</button>
+                    <!-- <div class="download">
+                        <i class="fa fa-download" style="font-size:30px"></i>
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="divide_line"></div>
+
+            <div class="chart" id="time_off_chart">
+                <div class="report_title">
+                    <p>Time Offs</p>
+                </div>
+                <form method="post">
+                    <input type="text" value="Time-Offs" hidden>
+                    <div class="select">
+                        <input type="radio" id="leave_1" value="1 month" name="duration" onclick="view_leave()"> <label for="1 month">One month</label><br>
+                        <input type="radio" id="leave_2" value="2 month" name="duration" onclick="view_leave()"> <label for="2 month">Two month</label><br>
+                        <input type="radio" id="leave_3" value="3 month" name="duration" onclick="view_leave()"> <label for="2 month">Three month</label><br>
+                    </div>
+                </form>
+
+                <!-- leave_1 -->
+                <div class="leave_report" id="leave_report">
+                <table id="leave_history_table_month1">
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Employee Name</th>
+                        <th>Date</th>
+                        <th>OT Hours</th>
+
+                    </tr>
+                    <?php
+                    $i = 0;
+
+                    if (boolval($leave_row1)) {
+
+                        for ($i = 0; $i < sizeof($leave_row1); $i++) {
+
+                            $vai3 = $leave_row1[$i]; 
+                    ?>
+                               <tr>
+                                    <td><?php print_r($vai3->employee_ID); ?></td>
+                                    <td><?php print_r($vai3->name); ?></td>
+                                    <td><?php print_r($vai3->date); ?></td>
+                                    <td><?php print_r($vai3->ot_hours); ?></td>
+
+
+                                </tr>
+
+                            <?php 
+                        }
+                    } ?>
+
+
+                </table>
+                </div>
+                <div id="leave_button1">
+                <a href="<?= PATH ?>Reporting/leavereport1" class="btn1" target="_blank"><i class="fa fa-download"></i>    Download</a>
+                </div>
+
+
+                   <!-- leave_2 -->
+                   <div class="leave_report" id="leave_report">
+                <table id="leave_history_table_month2">
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Employee Name</th>
+                        <th>Date</th>
+                        <th>OT Hours</th>
+
+                    </tr>
+                    <?php
+                    $i = 0;
+
+                    if (boolval($leave_row2)) {
+
+                        for ($i = 0; $i < sizeof($leave_row2); $i++) {
+
+                            $vai3 = $leave_row2[$i]; 
+                    ?>
+                               <tr>
+                                    <td><?php print_r($vai3->employee_ID); ?></td>
+                                    <td><?php print_r($vai3->name); ?></td>
+                                    <td><?php print_r($vai3->date); ?></td>
+                                    <td><?php print_r($vai3->ot_hours); ?></td>
+
+
+                                </tr>
+
+                            <?php 
+                        }
+                    } ?>
+
+
+                </table>
+                </div>
+                <div id="leave_button2">
+                <a href="<?= PATH ?>Reporting/leavereport2" class="btn1" target="_blank"><i class="fa fa-download"></i>    Download</a>
+                </div>
+
+                   <!-- leave_3 -->
+                   <div class="leave_report3" id="leave_report3">
+                <table id="leave_history_table_month3">
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Employee Name</th>
+                        <th>Date</th>
+                        <th>OT Hours</th>
+            
+
+                    </tr>
+                    <?php
+                    $i = 0;
+
+                    if (boolval($leave_row3)) {
+
+                        for ($i = 0; $i < sizeof($leave_row3); $i++) {
+
+                            $vai3 = $leave_row3[$i]; 
+                    ?>
+                               <tr>
+                                    <td><?php print_r($vai3->employee_ID); ?></td>
+                                    <td><?php print_r($vai3->name); ?></td>
+                                    <td><?php print_r($vai3->date); ?></td>
+                                    <td><?php print_r($vai3->ot_hours); ?></td>
+
+
+                                </tr>
+
+                            <?php 
+                        }
+                    } ?>
+
+
+                </table>
+                </div>
+                <div id="leave_button3">
+                <a href="<?= PATH ?>Reporting/leavereport3" class="btn1" target="_blank"><i class="fa fa-download"></i>    Download</a>
+                </div>
+            </div>
+        </div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 50 1440 150">
                 <path fill="#0f9eb8" fill-opacity="1" d="M0,160L48,144C96,128,192,96,288,80C384,
             64,480,64,576,96C672,128,768,192,864,192C960,192,1056,128,1152,90.7C1248,53,1344,43,1392,37.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,
