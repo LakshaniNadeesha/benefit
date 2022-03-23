@@ -1,0 +1,114 @@
+@import "color.css";
+body {
+    font-family: Robot, sans-serif;
+    background-color: var(--background);
+}
+
+.profile_container1 {
+    border-radius: 15px;
+    box-shadow: 3px 3px 15px rgb(0 0 0 / 20%);
+    height: 100%;
+    width: 70%;
+    align-items: center;
+    margin-left: 14%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    background-color: white;
+}
+
+svg {
+    border-radius: 15px;
+}
+
+.back_btn {
+    margin-left: 5%;
+    font-size: larger;
+    color: black;
+}
+
+.back_btn i {
+    margin-left: 5%;
+    font-size: xx-large;
+    color: black;
+}
+
+.title {
+    width: 100%;
+    font-size: larger;
+    font-weight: bold;
+    margin: 16px auto auto;
+    display: flex;
+    justify-content: center;
+    color: var(--h1);
+    padding: 1%;
+    margin-bottom: 6px;
+}
+
+.form_details {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    margin: auto;
+}
+
+.row label {
+    margin: auto 10px auto 0;
+    width: 15%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.row input[type=text],
+.row textarea,
+.row input[type=date] {
+    width: 40%;
+    padding: 12px;
+    border: 1px solid var(--grey);
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+.row textarea {
+    height: 200px;
+}
+
+.buttons {
+    width: 65%;
+    display: flex;
+    /*justify-content: flex-end;*/
+    justify-content: right;
+    margin: auto;
+    padding: 3%;
+}
+
+.buttons input[type=submit] {
+    background-color: var(--h1);
+    color: var(--w);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.buttons input[type=reset] {
+    background-color: var(--w);
+    color: var(--h1);
+    margin-right: 10px;
+    padding: 12px 20px;
+    border: 2px solid var(--h1);
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
