@@ -19,6 +19,18 @@ class Model extends Database
         ]);
     }
 
+    public function where_or_double($column1, $column2, $value1, $value2, $value3)
+    {
+        $column1 = addslashes($column1);
+        $column2 = addslashes($column2);
+        $query = "select * from $this->table where $column1 = :value1 && $column2 = :value2 || $column2 = :value3";
+        return $this->query($query, [
+            'value1' => $value1,
+            'value2' => $value2,
+            'value3' => $value3
+        ]);
+    }
+
     public  function three_where_condition($column1,$column2,$column3,$value1,$value2,$value3){
         $column1 = addslashes($column1);
         $column2 = addslashes($column2);
@@ -227,10 +239,11 @@ class Model extends Database
         return $this->query($query, $data);
     }
 
+    
     public function updateLeave($id,$date,$val)
     {
 
-        $query = "update $this->table set leave_status = '$val' where employee_ID = '$id' and date = '$date'";
+        $query = "update $this->table set leave_status = '$val' where employee_ID = '$id' and date = '$date' ";
         return $this->query($query);
     }
 
