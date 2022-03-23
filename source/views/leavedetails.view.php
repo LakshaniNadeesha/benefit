@@ -98,7 +98,7 @@
                                 <div class="description">
     
                                     <div class="leave_name">
-                                        <p id="day"><?php print_r($arr1[$i]->date); ?></p>
+                                        <p id="day"><?php print_r($arr1[$i]->date. " " . ucfirst(($arr1[$i]->half_time))); ?></p>
                                         <p id="reson">Request <?php print_r(ucfirst($arr1[$i]->leave_type)); ?> Leave</p>
                                     </div>
     
