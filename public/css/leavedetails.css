@@ -121,6 +121,12 @@ hr {
     /*margin-bottom: 5px;*/
 }
 
+.upcomming_data{
+    display: block;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
 .leave_container .upcoming_timeoff .upcoming_header {
     display: flex;
     justify-content: left;
@@ -242,6 +248,9 @@ hr {
     padding: 20px 0;
     margin-left: auto;
     margin-right: auto;
+    /* display: block; */
+    max-height: 250px;
+    overflow-y: scroll;
 }
 
 table {

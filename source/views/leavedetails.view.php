@@ -88,32 +88,36 @@
                     </div>
                     <hr>
 
-                    <?php if(boolval($arr1)){ 
-                         for ($i = 0; $i < sizeof($arr1); $i++) { ?>
-                            <div class="upcoming_detail">
-                                <div class="icon">
-                                    <i class="item" data-feather="smile"></i>
-                                </div>
-    
-                                <div class="description">
-    
-                                    <div class="leave_name">
-                                        <p id="day"><?php print_r($arr1[$i]->date. " " . ucfirst(($arr1[$i]->half_time))); ?></p>
-                                        <p id="reson">Request <?php print_r(ucfirst($arr1[$i]->leave_type)); ?> Leave</p>
+                    <div class="upcomming_data">
+                        <?php if (boolval($arr1)) {
+                            for ($i = 0; $i < sizeof($arr1); $i++) { ?>
+                                <div class="upcoming_detail">
+                                    <div class="icon">
+                                        <i class="item" data-feather="smile"></i>
                                     </div>
-    
-                                    <div class="leave_status">
-                                        <p id="status"><i><?php print_r(ucfirst($arr1[$i]->leave_status)); ?></i></p>
+
+                                    <div class="description">
+
+                                        <div class="leave_name">
+                                            <p id="day"><?php print_r($arr1[$i]->date . " " . ucfirst(($arr1[$i]->half_time))); ?></p>
+                                            <p id="reson">Request <?php print_r(ucfirst($arr1[$i]->leave_type)); ?> Leave</p>
+                                        </div>
+
+                                        <div class="leave_status">
+                                            <p id="status"><i><?php print_r(ucfirst($arr1[$i]->leave_status)); ?></i></p>
+                                        </div>
+
+
                                     </div>
-    
-    
+
                                 </div>
-    
-                            </div>
                         <?php
-                        } 
-                    } ?>
-                    
+                            }
+                        } ?>
+                    </div>
+
+
+
 
                 </div>
                 <div class="leave_history">
@@ -124,7 +128,7 @@
                     <hr>
 
 
-                    <div class="leave_type">
+                    <!-- <div class="leave_type">
                         <form action="">
                             <select id="leave" name="leave">
                                 <option value="sick">Sick Leaves</option>
@@ -133,29 +137,28 @@
                             </select>
                             <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
                         </form>
-                    </div>
+                    </div> -->
 
-        
+
                     <table id="leave_history_result">
 
 
-                        <?php 
-                        if(boolval($arr2)){
+                        <?php
+                        if (boolval($arr2)) {
 
                             // print_r($arr3);
-                            for ($i = 0; $i < sizeof($arr2); $i++) {?>
-                            
-                            <tr>
-                                <td> <?php print_r($arr2[$i]->date); ?></td>
-                                <td><?php print_r(ucfirst($arr2[$i]->leave_status)); ?></td>
-                                <td><?php print_r(ucfirst($arr2[$i]->leave_type))?> Leave</td>
-                                <?php $type = $arr2[$i]->leave_type ?>
-                                <td>+<?php print_r($arr3[$type]) ?></td>
-                            </tr>
-                            
-                    <?php
-                        }
-                        
+                            for ($i = 0; $i < sizeof($arr2); $i++) { ?>
+
+                                <tr>
+                                    <td> <?php print_r($arr2[$i]->date); ?></td>
+                                    <td><?php print_r(ucfirst($arr2[$i]->leave_status)); ?></td>
+                                    <td><?php print_r(ucfirst($arr2[$i]->leave_type)) ?> Leave</td>
+                                    <?php $type = $arr2[$i]->leave_type ?>
+                                    <td>+<?php print_r($arr3[$type]) ?></td>
+                                </tr>
+
+                        <?php
+                            }
                         } ?>
 
                     </table>
