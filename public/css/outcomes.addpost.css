@@ -1,21 +1,34 @@
 @import "color.css";
-
 body {
     font-family: Robot, sans-serif;
     background-color: var(--background);
 }
 
 .container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-    width: 100%;
-    padding-bottom: 158px;
+    border-radius: 15px;
+    box-shadow: 3px 3px 15px rgb(0 0 0 / 20%);
+    height: 100%;
+    width: 70%;
+    align-items: center;
+    margin-left: 14%;
+    margin-top: 4%;
+    margin-bottom: 2%;
+    background-color: white;
+}
+
+svg {
+    border-radius: 15px;
 }
 
 .container h3 {
+    width: 100%;
+    font-size: larger;
+    font-weight: bold;
+    margin: 16px auto auto;
     display: flex;
     justify-content: center;
+    color: var(--h1);
+    padding: 3%;
 }
 
 .form_details {
@@ -40,7 +53,9 @@ body {
     justify-content: flex-start;
 }
 
-.row input[type=text], .row textarea, .row input[type=date]{
+.row input[type=text],
+.row textarea,
+.row input[type=date] {
     width: 40%;
     padding: 12px;
     border: 1px solid var(--grey);
@@ -51,7 +66,7 @@ body {
     resize: vertical;
 }
 
-.row textarea{
+.row textarea {
     height: 200px;
 }
 
@@ -61,9 +76,10 @@ body {
     /*justify-content: flex-end;*/
     justify-content: right;
     margin: auto;
+    padding: 3%;
 }
 
-.buttons input[type=submit]{
+.buttons input[type=submit] {
     background-color: var(--h1);
     color: var(--w);
     padding: 12px 20px;
@@ -73,7 +89,7 @@ body {
     cursor: pointer;
 }
 
-.buttons input[type=reset]{
+.buttons input[type=reset] {
     background-color: var(--w);
     color: var(--h1);
     margin-right: 10px;
