@@ -240,9 +240,9 @@ body {
     display: flex;
 }
 
-.list .current {
-    background-color: red;
-}
+/*.list .current {*/
+/*    background-color: red;*/
+/*}*/
 
 @media screen and (max-width: 1160px) {
     .logo {
