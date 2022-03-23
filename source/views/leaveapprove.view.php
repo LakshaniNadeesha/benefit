@@ -61,7 +61,7 @@
                         // print_r($emp);
                         // echo "</pre>";
 
-                        print_r(sizeof($emp[0]['details']));
+                        // print_r(sizeof($emp[0]['details']));
 
                         for ($i = 0; $i < sizeof($emp); $i++) {
                             for ($j = 0; $j < sizeof($emp[$i]['details']); $j++) {
@@ -169,19 +169,15 @@
                             </tr>
 
                             <?php
-                            echo "<pre>";
-                            print_r($emps);
-                            echo "</pre>";
+                            // echo "<pre>";
+                            // print_r($emps);
+                            // echo "</pre>";
                             if (boolval($emps)) {
                                 for ($i = 0; $i < sizeof($emps); $i++) {
                                     for ($j = 0; $j < sizeof($emps[$i]['details']); $j++) {
-
-
-
-                            ?>
+                                        if ($emps[$i]['details'][$j]->date != '0000-00-00') { ?>
 
                                         <tr>
-                                            <!--  <td><input type="checkbox" name="name1" /></td> -->
                                             <td><?php print_r($emps[$i]['first_name']); ?></td>
                                             <td><?php print_r($emps[$i]['last_name']); ?> </td>
                                             <td><?php print_r($emps[$i]['details'][$j]->leave_type); ?> </td>
@@ -191,6 +187,7 @@
                                         </tr>
                             <?php
                                     }
+                                }
                                 }
                             } ?>
                         </table>

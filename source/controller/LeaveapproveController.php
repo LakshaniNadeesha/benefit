@@ -17,7 +17,7 @@ class LeaveapproveController extends Controller
             $row=$user->where('supervisor_ID',$id);
              $emp=array();
              $emps=array();
-            $k=0;
+
                 if(boolval($row)){
                 for($i = 0;$i<sizeof($row);$i++){
                     $employee_details = $user->where_condition('employee_ID','banned_employees',$row[$i]->employee_ID,0);
@@ -39,7 +39,7 @@ class LeaveapproveController extends Controller
                         }
                         
                         // $i = $i+sizeof($leave_details)-1;
-                        $k++;
+                       
                     }
                 }
                 }
@@ -86,20 +86,20 @@ class LeaveapproveController extends Controller
 
             //     echo "after user_x";
             // }
-            echo "Check post ";
+            // echo "Check post ";
 
             
             if(isset($_POST['submit'])){
-                print_r($_POST);
+                // print_r($_POST);
                 $date = $_POST['date'];
                 $id = $_POST['id'];
                 $val = $_POST['l_status'];
 
-                echo($_POST['l_status']);
+                // echo($_POST['l_status']);
 
                 $user_x->updateLeave($id,$date,$val);
 
-                echo "after user_x";
+                // echo "after user_x";
             }
         // }
 
