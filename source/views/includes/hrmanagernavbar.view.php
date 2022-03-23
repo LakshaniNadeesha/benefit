@@ -28,7 +28,7 @@
             <li><a href="<?= PATH ?>Hrdocuments/updatedocuments"><i class="fas fa-edit"></i><span>Document Settings</span></a></li>
             <li><a href="<?= PATH ?>Benefit/update"><i class="fas fa-address-card"></i><span>Benefit Settings</span></a></li>
             <li><a href="<?= PATH ?>FomerEmployees"><i class="fas fa-address-card"></i><span>Former Employees</span></a></li>
-            <li><a href="<?= PATH ?>PerformanceView"><i class="fas fa-edit"></i><span>Promotion (Perfomance)</span></a></li>
+            <li><a href="<?= PATH ?>PerformanceView"><i class="fas fa-edit"></i><span>Promotion (Performance)</span></a></li>
         <?php endif; ?>
     </ul>
 </div>

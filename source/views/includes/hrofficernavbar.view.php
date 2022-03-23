@@ -22,7 +22,7 @@
                     <span>Remove Employees</span></a></li>
             <li><a href="<?= PATH ?>Hrdocuments/updatedocuments"><i class="fas fa-edit"></i><span>Update Documents</span></a></li>
             <li><a href="<?= PATH ?>Benefit/update"><i class="fas fa-edit"></i><span>Update Benefits</span></a></li>
-            <li><a href="<?= PATH ?>PerformanceView/hro"><i class="fas fa-edit"></i><span>Promotion and Demotion</span></a></li>
+            <li><a href="<?= PATH ?>PerformanceView/hro"><i class="fas fa-edit"></i><span>Promotion (Performance)</span></a></li>
 
         <?php endif; ?>
     </ul>
