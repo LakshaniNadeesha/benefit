@@ -47,7 +47,7 @@ class RequestleaveController extends Controller{
                     $arr['employee_ID'] = Auth::user();
                     $arr['leave_type'] = $_POST['leave_type'];
                     $arr['date'] = $_POST['start_date'];
-                    $arr['leave_status'] = "Pending";
+                    $arr['leave_status'] = "pending";
                     $from_date = $_POST['start_date'];
                     $to_date = $_POST['end_date'];
                 
