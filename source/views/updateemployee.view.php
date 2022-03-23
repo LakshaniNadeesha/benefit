@@ -137,7 +137,7 @@
                                             }elseif($entry->department_ID == 3){
                                                 $depart = "Sells Department";
                                             }else{
-                                                $depart = "Account Department";
+                                                $depart = "Financial Department";
                                             }
                                         ?>
                                         <label id="d_left"><?php echo $depart ?></label>
@@ -150,19 +150,19 @@
                                                 <option value=1>Operational Department</option>
                                                 <option value=2>HR Department</option>
                                                 <option value=3>Sells Department</option>
-                                                <option value=4>Account Department</option>
+                                                <option value=4>Financal Department</option>
                                             <?php } elseif ($entry->department_ID == 2) { ?>
                                                 <option value=2>HR Department</option>
                                                 <option value=3>Sells Department</option>
-                                                <option value=4>Account Department</option>
+                                                <option value=4>Financal Department</option>
                                                 <option value=1>Operational Department</option>
                                             <?php } elseif ($entry->department_ID == 3) { ?>
                                                 <option value=3>Sells Department</option>
-                                                <option value=4>Account Department</option>
+                                                <option value=4>Financal Department</option>
                                                 <option value=1>Operational Department</option>
                                                 <option value=2>HR Department</option>
                                             <?php } else { ?>
-                                                <option value=4>Account Department</option>
+                                                <option value=4>Financial Department</option>
                                                 <option value=1>Operational Department</option>
                                                 <option value=2>HR Department</option>
                                                 <option value=3>Sells Department</option>
