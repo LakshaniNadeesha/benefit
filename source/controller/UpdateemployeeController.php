@@ -45,11 +45,15 @@ class UpdateemployeeController extends Controller{
                 }
                 $ar = $user->where('supervisor_ID',$c_supervisor);
                 echo "<br> test before print array <br>";
+
+                echo $c_supervisor;
+
+                echo "<br> vnbiebiiniininininininnn <br>";
                 print_r($ar);
                 echo "<br> size of array <br>";
                 print_r(sizeof($ar));
 
-                if($ar){
+                if(sizeof($ar)==1){
                     $set = $user->update($c_supervisor,$arr3);
                 }
                 $set = $user->update($id,$arr);
