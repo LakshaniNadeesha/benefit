@@ -23,7 +23,7 @@
 
 .confirm__window{
     max-height: 95vh;
-    min-height: 375px;
+    min-height:fit-content;
     width: 100%;
     max-width: 600px;
     font-size: 14px;
@@ -83,10 +83,11 @@
     height: fit-content;
     max-height: 60vh;
     overflow: scroll;
+    width: 99%;
 }
 
 .confirm__buttons {
-    background: #eeeeee;
+    background: white;
     display: flex;
     position: relative;
     bottom: 0;
