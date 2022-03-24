@@ -91,26 +91,32 @@
                     <div class="upcomming_data">
                         <?php if (boolval($arr1)) {
                             for ($i = 0; $i < sizeof($arr1); $i++) { ?>
-                                <div class="upcoming_detail">
-                                    <div class="icon">
-                                        <i class="item" data-feather="smile"></i>
-                                    </div>
-
-                                    <div class="description">
-
-                                        <div class="leave_name">
-                                            <p id="day"><?php print_r($arr1[$i]->date . " " . ucfirst(($arr1[$i]->half_time))); ?></p>
-                                            <p id="reson">Request <?php print_r(ucfirst($arr1[$i]->leave_type)); ?> Leave</p>
+                                <form method="post">
+                                    <div class="upcoming_detail">
+                                        <div class="icon">
+                                            <i class="item" data-feather="smile"></i>
                                         </div>
 
-                                        <div class="leave_status">
-                                            <p id="status"><i><?php print_r(ucfirst($arr1[$i]->leave_status)); ?></i></p>
+                                        <div class="description">
+                                            <div class="leave_name">
+                                                <p id="day"><?php print_r($arr1[$i]->date . " " . ucfirst(($arr1[$i]->half_time))); ?></p>
+                                                <input type="hidden" name="d_date" value="<?php print_r($arr1[$i]->date) ?>">
+                                                <p id="reson">Request <?php print_r(ucfirst($arr1[$i]->leave_type)); ?> Leave</p>
+                                            </div>
+
+                                            <div class="leave_status">
+                                                <p id="status"><i><?php print_r(ucfirst($arr1[$i]->leave_status)); ?></i></p>
+
+                                            </div>
+
+                                            <div class="delete_leave">
+                                                <button class="button-btn" type="submit" id="delete" name="submit"><i class='fas fa-trash-alt'></i></button>
+                                            </div>
+
                                         </div>
-
-
                                     </div>
+                                </form>
 
-                                </div>
                         <?php
                             }
                         } ?>
@@ -155,6 +161,7 @@
                                     <td><?php print_r(ucfirst($arr2[$i]->leave_type)) ?> Leave</td>
                                     <?php $type = $arr2[$i]->leave_type ?>
                                     <td>+<?php print_r($arr3[$type]) ?></td>
+
                                 </tr>
 
                         <?php

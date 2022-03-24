@@ -253,6 +253,23 @@ hr {
     overflow-y: scroll;
 }
 
+#delete {
+    color: rgb(240, 88, 88);
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#delete :hover{
+    font-size: large;
+}
+
+.delete_leave{
+    margin-top: auto;
+    margin-bottom: auto;
+    
+}
+
 table {
     padding-top: 10px;
     font-family: arial, sans-serif;
