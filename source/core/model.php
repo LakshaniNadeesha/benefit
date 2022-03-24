@@ -262,6 +262,13 @@ class Model extends Database
         return $this->query($query,$data);
         
     }
+
+    public function delete_two_and($column1,$data1,$column2,$data2){
+        $query = "delete from $this->table where $column1= :data1 and $column2 = :data2";
+        $data['data1'] = $data1;
+        $data['data2'] = $data2;
+        return $this->query($query,$data);
+    }
     
     public function deletepsw($id)
     {
