@@ -125,7 +125,81 @@ class Supervisor extends Controller
 		}
 	}
 
-	function Update_Performance($id=null)
+// 	function Update_Performance($id=null)
+// 	{
+// 		$errors=array();
+
+// 		if(!Auth::logged_in())
+// 		{
+// 			$this->redirect('login');
+// 		}
+// 		if(Auth::access('Supervisor'))
+// 		{
+// 				$user= new PerformanceModel();
+// 				if(count($_POST)>0 && $user->validate($_POST)){
+// 					$data['communication']=$_POST['communication'];
+// 					$data['quality_of_work']=$_POST['quality_of_work'];
+// 					$data['organization']=$_POST['organization'];
+// 					$data['team_skills']=$_POST['team_skills'];
+// 					$data['multitasking_ability']=$_POST['multitasking_ability'];
+					
+// 					//print_r($rows);
+// 					// $rows=$user->where($id,'employee_ID');
+// 					//print_r($rows);
+// 				// if($_POST['communication']==1)
+// 				// {
+// 				// 	$data['communication']=$_POST['communication']=0;
+// 				// }
+// 				// else{
+// 				// 	$data['communication']=$_POST['communication'];
+// 				// }
+// 				// if ($_POST['quality_of_work']==1) {
+// 				// 	$data['quality_of_work']=$_POST['quality_of_work']=0;
+// 				// }
+// 				// else{
+// 				// 	$data['quality_of_work']=$_POST['quality_of_work'];
+// 				// } 
+// 				// if ($_POST['organization']==1) {
+// 				// 	$data['organization']=$_POST['organization']=0;
+// 				// }
+// 				// else{
+// 				// 	$data['organization']=$_POST['organization'];
+// 				// }
+// 				// if ($_POST['team_skills']==1) {
+// 				// 	$data['team_skills']=$_POST['team_skills']=0;
+// 				// }
+// 				// else{
+// 				// 	$data['team_skills']=$_POST['team_skills'];
+// 				// }
+// 				// if ($_POST['multitasking_ability']==1) {
+// 				// 	$data['multitasking_ability']=$_POST['multitasking_ability']=0;
+// 				// }
+// 				// else{
+// 				// 	$data['multitasking_ability']=$_POST['multitasking_ability'];
+// 				// }
+
+// 				 date_default_timezone_set('Asia/Colombo');
+// 				 $data['last_modifydate'] = date("Y/m/d");
+// 				//$data['last_modifydate']= date("Y/m/d") ;
+// 				$data['date']=date("U")+7890000;
+// 				$row=$user->update($id,$data);
+// 				$this->redirect('Supervisor');
+// 				}
+// 				else{
+// 					$errors = $user->errors;
+// 				}
+// 				 $rows=$user->where('employee_ID',$id);
+// 				 //print_r($rows);
+
+// 		$this->view('addperformance',['errors'=>$errors,'rows'=>$rows]);
+// 		}
+// 		else{
+// 			$this->view('404');
+// 		}
+// 	}
+	
+	
+		function Update_Performance($id=null)
 	{
 		$errors=array();
 
@@ -136,61 +210,68 @@ class Supervisor extends Controller
 		if(Auth::access('Supervisor'))
 		{
 				$user= new PerformanceModel();
-				if(count($_POST)>0 && $user->validate($_POST)){
-					$data['communication']=$_POST['communication'];
-					$data['quality_of_work']=$_POST['quality_of_work'];
-					$data['organization']=$_POST['organization'];
-					$data['team_skills']=$_POST['team_skills'];
-					$data['multitasking_ability']=$_POST['multitasking_ability'];
-					
-					//print_r($rows);
-					// $rows=$user->where($id,'employee_ID');
-					//print_r($rows);
-				// if($_POST['communication']==1)
-				// {
-				// 	$data['communication']=$_POST['communication']=0;
-				// }
-				// else{
-				// 	$data['communication']=$_POST['communication'];
-				// }
-				// if ($_POST['quality_of_work']==1) {
-				// 	$data['quality_of_work']=$_POST['quality_of_work']=0;
-				// }
-				// else{
-				// 	$data['quality_of_work']=$_POST['quality_of_work'];
-				// } 
-				// if ($_POST['organization']==1) {
-				// 	$data['organization']=$_POST['organization']=0;
-				// }
-				// else{
-				// 	$data['organization']=$_POST['organization'];
-				// }
-				// if ($_POST['team_skills']==1) {
-				// 	$data['team_skills']=$_POST['team_skills']=0;
-				// }
-				// else{
-				// 	$data['team_skills']=$_POST['team_skills'];
-				// }
-				// if ($_POST['multitasking_ability']==1) {
-				// 	$data['multitasking_ability']=$_POST['multitasking_ability']=0;
-				// }
-				// else{
-				// 	$data['multitasking_ability']=$_POST['multitasking_ability'];
-				// }
+				$row=$user->where('employee_ID',$id);
+				$count=$row[0]->count;
+				if($count==0){
 
-				 date_default_timezone_set('Asia/Colombo');
-				 $data['last_modifydate'] = date("Y/m/d");
-				//$data['last_modifydate']= date("Y/m/d") ;
-				$data['date']=date("U")+7890000;
-				$row=$user->update($id,$data);
-				$this->redirect('Supervisor');
+					if(count($_POST)>0 && $user->validate($_POST))
+					{
+						$data['communication']=$_POST['communication'];
+						$data['quality_of_work']=$_POST['quality_of_work'];
+						$data['organization']=$_POST['organization'];
+						$data['team_skills']=$_POST['team_skills'];
+						$data['multitasking_ability']=$_POST['multitasking_ability'];
+						$data['communication_overall']=$_POST['communication'];
+						$data['quality_of_work_overall']=$_POST['quality_of_work'];
+						$data['organization_overall']=$_POST['organization'];
+						$data['team_skills_overall']=$_POST['team_skills'];
+						$data['multitasking_ability_overall']=$_POST['multitasking_ability'];
+						date_default_timezone_set('Asia/Colombo');
+						$data['last_modifydate'] = date("Y/m/d");
+						$data['date']=date("U")+7890000;
+						$data['count']=1;
+						$row=$user->update($id,$data);
+						$this->redirect('Supervisor');
+					}
+					else
+					{
+						$errors = $user->errors;
+					}
 				}
-				else{
-					$errors = $user->errors;
-				}
-				 $rows=$user->where('employee_ID',$id);
-				 //print_r($rows);
+				if($count>=1)
+				{
+					$row=$row[0];
+					if(count($_POST)>0 && $user->validate($_POST))
+					{
+						$new_count=$count+1;
+						//print_r($new_count);
+						$data['communication']=$_POST['communication'];
+						$data['quality_of_work']=$_POST['quality_of_work'];
+						$data['organization']=$_POST['organization'];
+						$data['team_skills']=$_POST['team_skills'];
+						$data['multitasking_ability']=$_POST['multitasking_ability'];
+						$data['communication_overall']=($_POST['communication']+($count*$row->communication_overall))/$new_count;
+						$data['quality_of_work_overall']=($_POST['quality_of_work']+($count*$row->quality_of_work_overall))/$new_count;
+						$data['organization_overall']=($_POST['organization']+($count*$row->organization_overall))/$new_count;
+						$data['team_skills_overall']=($_POST['team_skills']+($count*$row->team_skills_overall))/$new_count;
+						$data['multitasking_ability_overall']=($_POST['multitasking_ability']+($count*$row->multitasking_ability_overall))/$new_count;
 
+						$data['date']=date("U")+7890000;
+						date_default_timezone_set('Asia/Colombo');
+						$data['last_modifydate'] = date("Y/m/d");
+						$data['count']=$new_count;
+						//$data['count']=1;
+						$row=$user->update($id,$data);
+						$this->redirect('Supervisor');
+						
+
+					}
+					else
+					{
+						$errors = $user->errors;
+					}
+				}
+			$rows=$user->where('employee_ID',$id);
 		$this->view('addperformance',['errors'=>$errors,'rows'=>$rows]);
 		}
 		else{
