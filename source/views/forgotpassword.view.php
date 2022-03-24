@@ -44,9 +44,6 @@
     </div>
 </div>
 
-<!--<div class="footer">-->
-<!--    <p class="ofs">Copyright © 2021 Oracle Freight Solutions | Powered by Oracle Freight Solutions</p>-->
-<!--</div>-->
 
 </body>
 </html>

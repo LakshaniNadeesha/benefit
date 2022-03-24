@@ -75,8 +75,8 @@ class Login extends Controller
 
 			$massage.='<a href="'.$url.'">'.$url.'</a></p>';
 
-			$headers="From:mmtuts <chathurabimalka1997@gmail>\r\n";
-			$headers="Reply-To: chathurabimalka1997@gmail.com\r\n";
+			$headers="From:mmtuts <oraclefreightsolutionspvt@gmail.com>\r\n";
+			$headers="Reply-To: oraclefreightsolutionspvt@gmail.com\r\n";
 			$headers="Content-type:text/html\r\n";
 			mail($to, $subject,$massage,$headers);
 			header("Location:forgotpassword?reset=success");

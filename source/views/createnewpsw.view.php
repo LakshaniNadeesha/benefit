@@ -47,7 +47,7 @@
                 <input type="text" class="new1" placeholder="Re-enter password" name="pwd-password" required><br> 
             </div>
             <div class="form2">
-                 <button type="submit" name="reset-password">reset password</button>
+                 <button type="submit" name="reset-password">Reset Password</button>
             </div>
         </form>
           <div class="reset_form">
@@ -82,9 +82,7 @@
     }
 </script>
 
-<div class="footer">
-    <p class="ofs">Copyright © 2021 Oracle Freight Solutions | Powered by Oracle Freight Solutions</p>
-</div>
+
 
 </body>
 </html>
