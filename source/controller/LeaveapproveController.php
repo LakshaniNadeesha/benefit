@@ -15,21 +15,32 @@ class LeaveapproveController extends Controller
             $user_x = new RequestleaveModel();
             $id=Auth::user();
             $row=$user->where('supervisor_ID',$id);
+
+            // echo "<br> ////////////////// <br><pre>";
+            //             print_r($row);
+            //         echo "</pre>";
+            // Employees under supervisor
+
              $emp=array();
              $emps=array();
 
                 if(boolval($row)){
                 for($i = 0;$i<sizeof($row);$i++){
                     $employee_details = $user->where_condition('employee_ID','banned_employees',$row[$i]->employee_ID,0);
+                    //Get unbanned employees where same supervisor
                     if(boolval($employee_details)){
-                    $leave_details = $user_x->where_condition('employee_ID', 'leave_status', $row[$i]->employee_ID, 'Pending');
-                
+                    $leave_details = $user_x->where_condition('employee_ID', 'leave_status', $employee_details[$i]->employee_ID, 'Pending');
+
+                    //Get Pending leaves where employee's supervisor id same
+                    // echo "leave Details ////////////////// <pre>";
+                    // print_r($leave_details);
+                    //  echo "</pre>";
                     if(boolval($leave_details)){
                             //print_r($leave_details);
-                            $emp[$i]['employee_ID'] = $employee_details[0]->employee_ID;
-                            $emp[$i]['first_name'] = $employee_details[0]->first_name;
-                            $emp[$i]['last_name'] = $employee_details[0]->last_name;
-                            $emp[$i]['profile_image'] = $employee_details[0]->profile_image;
+                            $emp[$i]['employee_ID'] = $employee_details[$i]->employee_ID;
+                            $emp[$i]['first_name'] = $employee_details[$i]->first_name;
+                            $emp[$i]['last_name'] = $employee_details[$i]->last_name;
+                            $emp[$i]['profile_image'] = $employee_details[$i]->profile_image;
                             $empss[$i]=sizeof($leave_details);
                             //print_r($empss);
                         for($j = 0;$j<sizeof($leave_details);$j++){
@@ -46,20 +57,47 @@ class LeaveapproveController extends Controller
                                $l=0;
                   for($i= 0;$i<sizeof($row);$i++){
                     $employee_detailss = $user->where_condition('employee_ID','banned_employees',$row[$i]->employee_ID,0);
-                    if(boolval($employee_detailss)){
-                        //print_r($employee_detailss);
-                    $leave_detailss = $user_x->where_or_double('employee_ID', 'leave_status', $row[$i]->employee_ID, 'approve','reject');
+                    
+
+                    // print_r("<br> <br>".$i . " iteration <br>");
+                    // print_r("Row[" . $i . "]-> employee_ID ".$row[$i]->employee_ID . "<br>");
+                    // echo "<br> Employee Details ////////////////// <pre>";
+                    //     print_r($employee_detailss);
+                    // echo "</pre> <br>";
+
+                    if(boolval($employee_detailss[$i])){
+                        // print_r("<br>inside if condition <br>");
+
+                        // print_r("employee_detailss[" . $i."]->employee_ID -> ".  $employee_detailss[$i]->employee_ID. "<br>");
+                    $leave_detailss = $user_x->where_or_double('employee_ID', 'leave_status', $employee_detailss[$i]->employee_ID , 'approve','reject');
                     //print_r($leave_detailss);
-                    if(boolval($leave_detailss)){
+                    // echo "<br> Leave Detailss ////////////////// <pre>";
+                    //     print_r($leave_detailss);
+                    // echo "</pre> <br>";
+
+                    // print_r("<br> after where or double condition <br>");
+
+                    if(($employee_detailss[$i]->employee_ID) != null){
+
+                    // }
+                    // if(boolval($leave_detailss)){
                   
-                            $emps[$l]['employee_ID'] = $employee_detailss[0]->employee_ID;
-                            $emps[$l]['first_name'] = $employee_detailss[0]->first_name;
-                            $emps[$l]['last_name'] = $employee_detailss[0]->last_name;
-                            $emps[$l]['profile_image'] = $employee_detailss[0]->profile_image;
-                            $empsss[$l]=sizeof($leave_detailss);
+                            $emps[$i]['employee_ID'] = $employee_detailss[$i]->employee_ID;
+                            $emps[$i]['first_name'] = $employee_detailss[$i]->first_name;
+                            $emps[$i]['last_name'] = $employee_detailss[$i]->last_name;
+                            $emps[$i]['profile_image'] = $employee_detailss[$i]->profile_image;
+                            $empsss[$i]=sizeof($leave_detailss);
+
+                            // print_r("Size of Employee Leave array -> ".sizeof($leave_detailss));
                         for($j = 0;$j<sizeof($leave_detailss);$j++){
                             
-                            $emps[$l]['details'][$j] = $leave_detailss[$j];
+                            // print_r("<br>Inside 2nd for Loop <br>");
+
+                            $emps[$i]['details'][$j] = $leave_detailss[$j];
+
+                            // print_r("emps[" . $i. "]['details'][".$j."] -> "); 
+                            // print_r($leave_detailss[$j]);
+                            // echo("<br><br>");
                         }
                
                         // $i = $i+sizeof($leave_detailss)-1;
@@ -67,8 +105,25 @@ class LeaveapproveController extends Controller
                     }
                 }
                 }
+                // echo "<br> Leave Detailsss ////////////////// <br><pre>";
+                //         print_r($leave_detailss);
+                //     echo "</pre>";
 
             }
+
+            function date_compare($element1, $element2) {
+                $datetime1 = strtotime($element1['date']);
+                $datetime2 = strtotime($element2['date']);
+                return $datetime1 - $datetime2;
+            } 
+              
+            // Sort the array 
+            usort($emps, 'date_compare');
+              
+            // Print the array
+            // echo "<pre>";
+            // print_r($emps);
+            // echo "<pre/>";
 
             
               $this->view('leaveapprove',['emp'=>$emp,'emps'=>$emps]);
@@ -99,6 +154,7 @@ class LeaveapproveController extends Controller
                 // echo($_POST['l_status']);
 
                 $user_x->updateLeave($id,$date,$val);
+                $this->redirect('LeaveapproveController');
 
                 // echo "after user_x";
             }
@@ -113,6 +169,7 @@ class LeaveapproveController extends Controller
                 // echo($_POST['l_status']);
 
                 $user_x->updateLeave($id,$date,$val);
+                $this->redirect('LeaveapproveController');
             }
         // }
 
