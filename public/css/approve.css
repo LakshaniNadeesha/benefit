@@ -204,6 +204,27 @@ hr {
     font-weight: bold;
 }
 
+.search_bar {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.fa, .fas {
+    font-weight: 900;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 5px;
+}
+
+.benefit_search{
+    width: 170px;
+    height: 25px;
+    border: 1px solid var(--grey);
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
 #claim_history_table {
     width: 95%;
     padding: 20px 0;

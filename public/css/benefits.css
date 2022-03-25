@@ -274,13 +274,23 @@ a .delete_button:hover {
 .feather-clipboard {
     margin: auto;
     padding-right: 10px;
+    color: var(--grey);
 }
 
 #benefit_history_result {
-    width: 95%;
+    width: 100%;
     padding: 20px 0;
-    margin-left: auto;
+    margin-left: 10px;
     margin-right: auto;
+}
+
+.benefit_search {
+    width: 170px;
+    height: 25px;
+    margin-left: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid var(--grey);
 }
 
 .history_table {

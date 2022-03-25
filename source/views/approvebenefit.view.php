@@ -7,7 +7,27 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= CSS_PATH ?>approve.css">
-    <title>Aprove Benefit</title>
+    <title>Approve Benefit</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#accepted").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#accepted_table tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            $("#rejected").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#rejected_table tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -20,7 +40,7 @@
 <div class="page_content">
     <?php
     $this->view('includes/hrmanagernavbar');
-//    $this->view('includes/hrnav');
+    //    $this->view('includes/hrnav');
     ?>
 
     <div class="main_container">
@@ -32,157 +52,176 @@
             <div class="card-container">
                 <?php
 
-                if(boolval($requested)){
-                for ($i = 0;$i < sizeof($requested);$i++) {
-                    if ($requested >= 1) {
-                //            for ($j = 0; $j < sizeof($requested[$i]); $j++) { ?>
-                        <div class='header-approve' id='btn'>
-                            <center>
-                                <img src="<?php echo $requested[$i]['profile_image'];?>" alt='Profile Image'
-                                     class='profile__image'>
-                            </center>
-                            <p class='name'>
-                                <?php
-                                print_r($requested[$i]['first_name']); ?>
-                            </p>
-                            <p class="name">
-                                <?php
-                                echo " ";
-                                print_r($requested[$i]['last_name']);
-                                ?>
-                            </p>
-                            <div style="margin-bottom: 15px">
-                                <p class='date'>
+                if (boolval($requested)) {
+                    for ($i = 0; $i < sizeof($requested); $i++) {
+                        if ($requested >= 1) {
+                            //            for ($j = 0; $j < sizeof($requested[$i]); $j++) { ?>
+                            <div class='header-approve' id='btn'>
+                                <center>
+                                    <img src="<?php echo $requested[$i]['profile_image']; ?>" alt='Profile Image'
+                                         class='profile__image'>
+                                </center>
+                                <p class='name'>
                                     <?php
-                                    print_r($requested[$i]['details']->benefit_type); ?>
+                                    print_r($requested[$i]['first_name']); ?>
                                 </p>
-                                <p class='date'>
+                                <p class="name">
                                     <?php
-                                    print_r($requested[$i]['details']->claim_date); ?>
+                                    echo " ";
+                                    print_r($requested[$i]['last_name']);
+                                    ?>
                                 </p>
-                            </div>
-                            <?php
+                                <div style="margin-bottom: 15px">
+                                    <p class='date'>
+                                        <?php
+                                        print_r($requested[$i]['details']->benefit_type); ?>
+                                    </p>
+                                    <p class='date'>
+                                        <?php
+                                        print_r($requested[$i]['details']->claim_date); ?>
+                                    </p>
+                                </div>
+                                <?php
                                 $btnChange = 'btnChange';
                                 $btnChange .= $i;
                                 //echo $btnChange;
-                            ?>
-                            <center>
-                                <button class="show_btn" type="button" name="show" value="show" id="<?php echo $btnChange ?>" onclick="reply_click(this.id)">Show</button>
-                            </center>
-                            <script type="text/javascript">
-                                <?php
-                                    $string = $requested[$i]['details']->report_location;
-                                    $newString = substr($string,25);
                                 ?>
+                                <center>
+                                    <button class="show_btn" type="button" name="show" value="show"
+                                            id="<?php echo $btnChange ?>" onclick="reply_click(this.id)">Show
+                                    </button>
+                                </center>
+                                <script type="text/javascript">
+                                    <?php
+                                    $string = $requested[$i]['details']->report_location;
+                                    $newString = substr($string, 25);
+                                    ?>
 
-                                document.querySelector('<?php echo "#".$btnChange;?>').addEventListener('click', () => {
-                                    Confirm.open({
-                                        title: 'Request From <?php print_r($requested[$i]['first_name']); echo " "; print_r($requested[$i]['last_name']); ?>',
-                                        benefitType: '<?php print_r($requested[$i]['details']->benefit_type); echo "<br>";?> ',
-                                        claimedDate: '<?php print_r($requested[$i]['details']->claim_date); echo "<br>";?>',
-                                        claimedAmount: '<?php print_r($requested[$i]['details']->claim_amount); echo "<br>";?>' ,
-                                        description: '<?php print_r($requested[$i]['details']->benefit_description); echo "<br>";?>' ,
-                                        document: '<?php print_r($newString); echo "<br>";?>',
-                                        link: '<?php print_r($requested[$i]['details']->report_location) ?>',
-                                        onok: () => {
-                                            //document.body.style.backgroundColor = 'blue';
-                                            window.location.href = "Approvebenefit/accept/<?php print_r($requested[$i]['details']->report_hashing); ?>"
-                                        },
-                                        onreject: () => {
-                                            window.location.href = "Approvebenefit/reject/<?php print_r($requested[$i]['details']->report_hashing); ?>"
-                                        }
+                                    document.querySelector('<?php echo "#" . $btnChange;?>').addEventListener('click', () => {
+                                        Confirm.open({
+                                            title: 'Request From <?php print_r($requested[$i]['first_name']); echo " "; print_r($requested[$i]['last_name']); ?>',
+                                            benefitType: '<?php print_r($requested[$i]['details']->benefit_type); echo "<br>";?> ',
+                                            claimedDate: '<?php print_r($requested[$i]['details']->claim_date); echo "<br>";?>',
+                                            claimedAmount: '<?php print_r($requested[$i]['details']->claim_amount); echo "<br>";?>',
+                                            description: '<?php print_r($requested[$i]['details']->benefit_description); echo "<br>";?>',
+                                            document: '<?php print_r($newString); echo "<br>";?>',
+                                            link: '<?php print_r($requested[$i]['details']->report_location) ?>',
+                                            onok: () => {
+                                                //document.body.style.backgroundColor = 'blue';
+                                                window.location.href = "Approvebenefit/accept/<?php print_r($requested[$i]['details']->report_hashing); ?>"
+                                            },
+                                            onreject: () => {
+                                                window.location.href = "Approvebenefit/reject/<?php print_r($requested[$i]['details']->report_hashing); ?>"
+                                            }
 
-                                    })
-                                });
-                            </script>
+                                        })
+                                    });
+                                </script>
 
-                        </div>
-                        <?php
+                            </div>
+                            <?php
+                        }
                     }
-                }
-                }
-                else {
+                } else {
                     echo "<div style='padding-left: 10px'>No requests yet</div>";
-                }?>
-
-                </div>
+                } ?>
 
             </div>
-            <div class="approve-container">
-                <div>
-                    <p class="handling_title">Benefit History</p>
-                </div>
-                <hr>
-                <div class="history_table" style="margin-bottom: 10px">
-                    <div class="accept_title">Approved List</div>
-                    <?php
-                    if (boolval($accepted)) { ?>
-                        <table id="claim_history_table">
+
+        </div>
+        <div class="approve-container">
+            <div>
+                <p class="handling_title">Benefit History</p>
+            </div>
+            <hr>
+            <div class="accept_title">Approved List</div>
+            <div class="search_bar">
+                <input class="benefit_search" type="text" id="accepted">
+                <i class="fa fa-search"></i>
+            </div>
+            <div class="history_table" style="margin-bottom: 10px">
+
+                <?php
+                if (boolval($accepted)) { ?>
+                    <table id="claim_history_table">
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Benefit Type</th>
+                            <th>Description</th>
+                            <th>Amount(LKR)</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody id="accepted_table">
+                        <?php
+                        for ($i = 0; $i < sizeof($accepted); $i++) { ?>
                             <tr>
-                                <th>Date</th>
-                                <th>Name</th>
-                                <th>Benefit Type</th>
-                                <th>Description</th>
-                                <th>Amount(LKR)</th>
-                                <th>Status</th>
+                                <td><?php print_r($accepted[$i]['benefit_details']->claim_date); ?></td>
+                                <td><?php print_r($accepted[$i]['emp_details'][0]->first_name);
+                                    echo ' ';
+                                    print_r($accepted[$i]['emp_details'][0]->last_name); ?></td>
+                                <td><?php print_r($accepted[$i]['benefit_details']->benefit_type); ?></td>
+                                <td><?php print_r($accepted[$i]['benefit_details']->benefit_description); ?></td>
+                                <td><?php print_r($accepted[$i]['benefit_details']->claim_amount); ?></td>
+                                <td class="status"><?php print_r($accepted[$i]['benefit_details']->benefit_status); ?></td>
                             </tr>
                             <?php
-                            for ($i = 0; $i < sizeof($accepted); $i++) { ?>
-                                <tr>
-                                    <td><?php print_r($accepted[$i]['benefit_details']->claim_date); ?></td>
-                                    <td><?php print_r($accepted[$i]['emp_details'][0]->first_name);
-                                        echo ' ';
-                                        print_r($accepted[$i]['emp_details'][0]->last_name); ?></td>
-                                    <td><?php print_r($accepted[$i]['benefit_details']->benefit_type); ?></td>
-                                    <td><?php print_r($accepted[$i]['benefit_details']->benefit_description); ?></td>
-                                    <td><?php print_r($accepted[$i]['benefit_details']->claim_amount); ?></td>
-                                    <td class="status"><?php print_r($accepted[$i]['benefit_details']->benefit_status); ?></td>
-                                </tr>
-                                <?php
-                            } ?>
-                        </table>
-                        <?php
-                    } else {
-                        echo "<div style='padding-left: 10px'>No history yet</div>";
-                    } ?>
-                </div>
-                <div class="accept_title">Rejected List</div>
-                <div class="history_table">
+                        } ?>
+                        </tbody>
+                    </table>
                     <?php
-                    if (boolval($rejected)) { ?>
-                        <table id="claim_history_table">
+                } else {
+                    echo "<div style='padding-left: 10px'>No history yet</div>";
+                } ?>
+            </div>
+            <div class="accept_title">Rejected List</div>
+            <div class="search_bar">
+                <input class="benefit_search" type="text" id="rejected">
+                <i class="fa fa-search"></i>
+            </div>
+            <div class="history_table">
+
+                <?php
+                if (boolval($rejected)) { ?>
+                    <table id="claim_history_table">
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Benefit Type</th>
+                            <th>Description</th>
+                            <th>Amount(LKR)</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody id="rejected_table">
+                        <?php
+                        for ($i = 0; $i < sizeof($rejected); $i++) { ?>
                             <tr>
-                                <th>Date</th>
-                                <th>Name</th>
-                                <th>Benefit Type</th>
-                                <th>Description</th>
-                                <th>Amount(LKR)</th>
-                                <th>Status</th>
+                                <td><?php print_r($rejected[$i]['benefit_details']->claim_date); ?></td>
+                                <td><?php print_r($rejected[$i]['emp_details'][0]->first_name);
+                                    echo ' ';
+                                    print_r($rejected[$i]['emp_details'][0]->last_name); ?></td>
+                                <td><?php print_r($rejected[$i]['benefit_details']->benefit_type); ?></td>
+                                <td><?php print_r($rejected[$i]['benefit_details']->benefit_description); ?></td>
+                                <td><?php print_r($rejected[$i]['benefit_details']->claim_amount); ?></td>
+                                <td class="status"><?php print_r($rejected[$i]['benefit_details']->benefit_status); ?></td>
                             </tr>
                             <?php
-                            for ($i = 0; $i < sizeof($rejected); $i++) { ?>
-                                <tr>
-                                    <td><?php print_r($rejected[$i]['benefit_details']->claim_date); ?></td>
-                                    <td><?php print_r($rejected[$i]['emp_details'][0]->first_name);
-                                        echo ' ';
-                                        print_r($rejected[$i]['emp_details'][0]->last_name); ?></td>
-                                    <td><?php print_r($rejected[$i]['benefit_details']->benefit_type); ?></td>
-                                    <td><?php print_r($rejected[$i]['benefit_details']->benefit_description); ?></td>
-                                    <td><?php print_r($rejected[$i]['benefit_details']->claim_amount); ?></td>
-                                    <td class="status"><?php print_r($rejected[$i]['benefit_details']->benefit_status); ?></td>
-                                </tr>
-                                <?php
-                            } ?>
-                        </table>
-                        <?php
-                    } else {
-                        echo "<div style='padding-left: 10px'>No history yet</div>";
-                    } ?>
-                </div>
+                        } ?>
+                        </tbody>
+                    </table>
+                    <?php
+                } else {
+                    echo "<div style='padding-left: 10px'>No history yet</div>";
+                } ?>
             </div>
         </div>
-
     </div>
+
+</div>
 </div>
 
 <script>
@@ -197,9 +236,9 @@
 </script>
 
 <script>
-    const  Confirm = {
-        open(options){
-            options = Object.assign({},{
+    const Confirm = {
+        open(options) {
+            options = Object.assign({}, {
                 title: '',
                 benefitType: '',
                 claimedDate: '',
@@ -209,9 +248,12 @@
                 link: '',
                 okText: 'Accept',
                 rejectText: 'Reject',
-                onok: function () {},
-                oncancel: function () {},
-                onreject: function () {}
+                onok: function () {
+                },
+                oncancel: function () {
+                },
+                onreject: function () {
+                }
             }, options);
 
 
@@ -283,7 +325,7 @@
             //const btnCancel = template.content.querySelector('.confirm__button--cancel');
 
             confirmEl.addEventListener('click', e => {
-                if(e.target === confirmEl){
+                if (e.target === confirmEl) {
                     options.oncancel();
                     this._close(confirmEl);
                 }
@@ -309,7 +351,7 @@
             document.body.appendChild(template.content);
         },
 
-        _close (confirmEl){
+        _close(confirmEl) {
             confirmEl.classList.add('confirm--close');
             confirmEl.addEventListener('animationend', () => {
                 document.body.removeChild(confirmEl);

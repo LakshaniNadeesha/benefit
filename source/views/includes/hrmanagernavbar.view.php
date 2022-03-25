@@ -50,9 +50,9 @@
                             class="fas fa-edit"></i></a></li>
             <li title="Benefit Settings"><a href="<?= PATH ?>Benefit/update"><i class="fas fa-address-card"></i></a>
             </li>
-            <li><a href="<?= PATH ?>FomerEmployees"><i class="fas fa-address-card"></i><span>Former Employees</span></a>
+            <li><a href="<?= PATH ?>FomerEmployees"><i class="fas fa-address-card"></i></a>
             </li>
-            <li><a href="<?= PATH ?>PerformanceView"><i class="fas fa-edit"></i><span>Promotion (Performance)</span></a>
+            <li><a href="<?= PATH ?>PerformanceView"><i class="fas fa-edit"></i></a>
             </li>
         <?php endif; ?>
     </ul>
