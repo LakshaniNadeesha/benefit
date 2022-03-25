@@ -179,6 +179,7 @@ git .status
 hr {
     padding-left: 10px;
     margin: 0 20px 32px 10px;
+    margin-bottom: 15px;
     background-color: rgba(213, 211, 211, 0.99);
 }
 
@@ -188,10 +189,18 @@ hr {
     padding-bottom: 10px;
 }
 
+.accept_title {
+    margin-left: 10px;
+    margin-top: auto;
+    font-size: large;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
 #claim_history_table {
     width: 95%;
     padding: 20px 0;
-    margin-left: auto;
+    margin-left: 10px;
     margin-right: auto;
 }
 
@@ -312,6 +321,12 @@ tr:nth-child(odd) {
 .column_1 p, .column_2 p {
     margin: auto;
     margin-bottom: 6px;
+}
+
+.column_2 input {
+    height: 60px;
+    border: 1px solid var(--f);
+    border-radius: 4px;
 }
 
 .confirm__close {

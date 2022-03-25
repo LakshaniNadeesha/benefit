@@ -113,36 +113,71 @@
                     <p class="handling_title">Benefit History</p>
                 </div>
                 <hr>
+                <div class="history_table" style="margin-bottom: 10px">
+                    <div class="accept_title">Approved List</div>
+                    <?php
+                    if (boolval($accepted)) { ?>
+                        <table id="claim_history_table">
+                            <tr>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Benefit Type</th>
+                                <th>Description</th>
+                                <th>Amount(LKR)</th>
+                                <th>Status</th>
+                            </tr>
+                            <?php
+                            for ($i = 0; $i < sizeof($accepted); $i++) { ?>
+                                <tr>
+                                    <td><?php print_r($accepted[$i]['benefit_details']->claim_date); ?></td>
+                                    <td><?php print_r($accepted[$i]['emp_details'][0]->first_name);
+                                        echo ' ';
+                                        print_r($accepted[$i]['emp_details'][0]->last_name); ?></td>
+                                    <td><?php print_r($accepted[$i]['benefit_details']->benefit_type); ?></td>
+                                    <td><?php print_r($accepted[$i]['benefit_details']->benefit_description); ?></td>
+                                    <td><?php print_r($accepted[$i]['benefit_details']->claim_amount); ?></td>
+                                    <td class="status"><?php print_r($accepted[$i]['benefit_details']->benefit_status); ?></td>
+                                </tr>
+                                <?php
+                            } ?>
+                        </table>
+                        <?php
+                    } else {
+                        echo "<div style='padding-left: 10px'>No history yet</div>";
+                    } ?>
+                </div>
+                <div class="accept_title">Rejected List</div>
                 <div class="history_table">
                     <?php
-                    if(boolval($handled)){ ?>
-                    <table id="claim_history_table">
-                        <tr>
-                            <th>Date</th>
-                            <th>Name</th>
-                            <th>Benefit Type</th>
-                            <th>Description</th>
-                            <th>Amount(LKR)</th>
-                            <th>Status</th>
-                        </tr>
+                    if (boolval($rejected)) { ?>
+                        <table id="claim_history_table">
+                            <tr>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Benefit Type</th>
+                                <th>Description</th>
+                                <th>Amount(LKR)</th>
+                                <th>Status</th>
+                            </tr>
+                            <?php
+                            for ($i = 0; $i < sizeof($rejected); $i++) { ?>
+                                <tr>
+                                    <td><?php print_r($rejected[$i]['benefit_details']->claim_date); ?></td>
+                                    <td><?php print_r($rejected[$i]['emp_details'][0]->first_name);
+                                        echo ' ';
+                                        print_r($rejected[$i]['emp_details'][0]->last_name); ?></td>
+                                    <td><?php print_r($rejected[$i]['benefit_details']->benefit_type); ?></td>
+                                    <td><?php print_r($rejected[$i]['benefit_details']->benefit_description); ?></td>
+                                    <td><?php print_r($rejected[$i]['benefit_details']->claim_amount); ?></td>
+                                    <td class="status"><?php print_r($rejected[$i]['benefit_details']->benefit_status); ?></td>
+                                </tr>
+                                <?php
+                            } ?>
+                        </table>
                         <?php
-                        for($i=0;$i<sizeof($handled);$i++){ ?>
-                        <tr>
-                            <td><?php print_r($handled[$i]['benefit_details']->claim_date); ?></td>
-                            <td><?php print_r($handled[$i]['emp_details'][0]->first_name); echo ' '; print_r($handled[$i]['emp_details'][0]->last_name);?></td>
-                            <td><?php print_r($handled[$i]['benefit_details']->benefit_type); ?></td>
-                            <td><?php print_r($handled[$i]['benefit_details']->benefit_description); ?></td>
-                            <td><?php print_r($handled[$i]['benefit_details']->claim_amount); ?></td>
-                            <td class="status"><?php print_r($handled[$i]['benefit_details']->benefit_status); ?></td>
-                        </tr>
-                        <?php
-                        }?>
-                    </table>
-                    <?php
-                    }
-                    else {
+                    } else {
                         echo "<div style='padding-left: 10px'>No history yet</div>";
-                    }?>
+                    } ?>
                 </div>
             </div>
         </div>

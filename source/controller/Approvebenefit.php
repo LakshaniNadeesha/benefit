@@ -36,21 +36,28 @@ class Approvebenefit extends Controller
 
 
             //show handled requests
-            $handled = array();
+            $rejected = array();
+            $accepted = array();
             $all = $user_x->findAll();
+            $k = 0;
             $j = 0;
             if(boolval($all)) {
                 for ($i = 0; $i < sizeof($all); $i++) {
-                    if ($all[$i]->benefit_status != 'pending') {
-                        $handled[$j]['emp_details'] = $user->where('employee_ID', $all[$i]->employee_ID);
-                        $handled[$j]['benefit_details'] = $all[$i];
+                    if ($all[$i]->benefit_status == 'Accepted' || $all[$i]->benefit_status == 'Half-Accepted') {
+                        $accepted[$j]['emp_details'] = $user->where('employee_ID', $all[$i]->employee_ID);
+                        $accepted[$j]['benefit_details'] = $all[$i];
                         $j++;
+                    }
+                    if ($all[$i]->benefit_status == 'Rejected') {
+                        $rejected[$k]['emp_details'] = $user->where('employee_ID', $all[$i]->employee_ID);
+                        $rejected[$k]['benefit_details'] = $all[$i];
+                        $k++;
                     }
                 }
             }
 
 
-            $this->view('approvebenefit', ['requested'=>$requested, 'handled'=>$handled]);
+            $this->view('approvebenefit', ['requested'=>$requested, 'accepted'=>$accepted, 'rejected'=>$rejected]);
         }
         else {
             $this->view('404');
