@@ -8,8 +8,20 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?= CSS_PATH ?>attendance.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <title>Attendance</title>
+
+    <script>
+        $(document).ready(function () {
+            $("#attendance").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#attendance_table tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 </head>
 <script>
     function date_validation() {
@@ -253,6 +265,10 @@
         <div class="history-table">
             <p>Attendance History</p>
             <hr>
+            <div class="search_bar">
+                <input class="attendance_search" type="text" id="attendance">
+                <i class="fa fa-search"></i>
+            </div>
             <?php if (boolval($history)) { ?>
                 <div id="h-table">
                     <table>
@@ -265,7 +281,7 @@
                         <th>Status</th>
                         <th>Option</th>
                         </thead>
-                        <tbody>
+                        <tbody id="attendance_table">
                         <?php
                         for ($i = 0; $i < sizeof($history); $i++) {
                             if (boolval($history[$i])) {

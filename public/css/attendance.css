@@ -523,6 +523,27 @@ tr:nth-child(even) {
 
 /*Attendance changing form*/
 
+.search_bar {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.attendance_search {
+    width: 170px;
+    height: 25px;
+    border: 1px solid var(--grey);
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.fa, .fas {
+    font-weight: 900;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 5px;
+}
+
 .attendance-update_form {
     width: 100%;
     height: max-content;
