@@ -13,10 +13,22 @@ class Home extends Controller
 		{
 			$this->redirect('login');
 		}
-
+		$id = Auth::user();
+		$select = new AddemployeeModel();
+		$user=new Employeedetails();
+		$row1 = $user->where_condition('employee_ID','supervisor_ID',$id,0);
+		
+		// echo "<pre>";
+		// print_r($row1[0]->supervisor_ID);
+		// echo "</pre>";
+		if(boolval($row1)){
+			if($row1[0]->supervisor_ID == 0){
+				$arr['supervisor_ID'] = $id;
+				$select->update_status($id,"employee_ID",$arr);
+			}
+		}
 		
 
-		$select = new AddemployeeModel();
 		$oper = $select->where('department_ID',1);
 		$hr = $select->where('department_ID',2);
 		$sells = $select->where('department_ID',3);
