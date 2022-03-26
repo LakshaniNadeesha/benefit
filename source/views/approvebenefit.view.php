@@ -92,31 +92,19 @@
                                     </button>
                                 </center>
                                 <script type="text/javascript">
-                                    <?php
-                                    $string = $requested[$i]['details']->report_location;
-                                    $newString = substr($string, 25);
-                                    ?>
-
-                                    document.querySelector('<?php echo "#" . $btnChange;?>').addEventListener('click', () => {
-                                        Confirm.open({
-                                            title: 'Request From <?php print_r($requested[$i]['first_name']); echo " "; print_r($requested[$i]['last_name']); ?>',
-                                            benefitType: '<?php print_r($requested[$i]['details']->benefit_type); echo "<br>";?> ',
-                                            claimedDate: '<?php print_r($requested[$i]['details']->claim_date); echo "<br>";?>',
-                                            claimedAmount: '<?php print_r($requested[$i]['details']->claim_amount); echo "<br>";?>',
-                                            description: '<?php print_r($requested[$i]['details']->benefit_description); echo "<br>";?>',
-                                            document: '<?php print_r($newString); echo "<br>";?>',
-                                            link: '<?php print_r($requested[$i]['details']->report_location) ?>',
-                                            onok: () => {
-                                                //document.body.style.backgroundColor = 'blue';
-                                                window.location.href = "Approvebenefit/accept/<?php print_r($requested[$i]['details']->report_hashing); ?>"
-                                            },
-                                            onreject: () => {
-                                                window.location.href = "Approvebenefit/reject/<?php print_r($requested[$i]['details']->report_hashing); ?>"
-                                            }
-
+                                    document.querySelector('<?php echo "#".$btnChange; ?>').addEventListener('click',()=>{
+                                        Change.open({
+                                            title: 'Benefit Request',
+                                            type: '<?php print_r($requested[$i]['details']->benefit_type); ?>',
+                                            amount: '<?php print_r($requested[$i]['details']->claim_amount); ?>',
+                                            date: '<?php print_r($requested[$i]['details']->claim_date); ?>',
+                                            description: '<?php print_r($requested[$i]['details']->benefit_description); ?>',
+                                            document: '<?php print_r($requested[$i]['details']->report_location); ?>',
+                                            application: '<?php print_r($requested[$i]['details']->application_number); ?>'
                                         })
                                     });
                                 </script>
+
 
                             </div>
                             <?php
@@ -222,7 +210,133 @@
     </div>
 
 </div>
-</div>
+
+<script>
+    //Add button
+    const  Change = {
+        open(options){
+            options = Object.assign({},{
+                title: '',
+                type: '',
+                amount: '',
+                date: '',
+                description: '',
+                document: '',
+                application: '',
+                cancelText: 'Reject',
+                oncancel: function () {}
+            }, options);
+
+
+            const html = `<div class="confirm">
+    <div class="confirm__window">
+        <div class="confirm__titlebar">
+            <span class="confirm__title">${options.title}</span>
+            <button class="confirm__close">&times;</button>
+        </div>
+        <div class="confirm__content">
+            <div class="benefit_head" id="myForm">
+
+                <div class="benefit_form">
+
+                    <form name="myForm" action="" method="post" autocomplete="off" onsubmit=" return number_validation(); " enctype="multipart/form-data">
+
+                        <input type="text" name="application_number" value="${options.application}" hidden>
+
+                        <div class="benefit_row_1">
+                            <div class="benefit_column_1">
+                                <label for="benefit_type">Benefit Type</label>
+                            </div>
+                            <div class="benefit_column_2">
+                                <input class="benefit_type" type="text" id="benefit_type" name="benefit_type" value="${options.type}" readonly>
+                            </div>
+                        </div>
+                        <div class="benefit_row_1">
+                            <div class="benefit_column_1">
+                                <label for="benefit_type">Claimed Date</label>
+                            </div>
+                            <div class="benefit_column_2">
+                                <input class="claimed_date" type="text" id="claimed_date" name="claimed_date" value="${options.date}" readonly>
+                            </div>
+                        </div>
+                        <div class="benefit_row_1">
+                            <div class="benefit_column_1">
+                                <label for="claim_amount">Amount (LKR)</label>
+                            </div>
+                            <div class="benefit_column_2">
+                                <input class="claim_amount" type="text" id="claim_amount" name="claim_amount" value="${options.amount}" readonly>
+                            </div>
+                        </div>
+                        <div class="benefit_row_1">
+                            <div class="benefit_column_1">
+                                <p>Report Submission</p>
+                            </div>
+                            <div class="benefit_column_2">
+                                <button class="btn" onclick="document.getElementById('link-1').click()"><i class="fa fa-download"></i>Download</button>
+                                <a id="link-1" href="${options.document}" download hidden></a>
+                            </div>
+                        </div>
+                        <div class="benefit_row_1">
+                            <div class="benefit_column_1">
+                                <label for="accepting_amount">Accepting Amount (LKR)</label>
+                            </div>
+                            <div class="benefit_column_2">
+                                <input type="text" name="accepting_amount" value="${options.amount}">
+                            </div>
+                        </div>
+                        <div class="benefit_row_1">
+                            <div class="benefit_column_1">
+                                <label for="reason">Note (If any)</label>
+                            </div>
+                            <div class="benefit_column_2">
+                                <input type="text" name="reason">
+                            </div>
+                        </div>
+                        <div class="confirm__buttons">
+                            <button class="confirm__button confirm__button--ok confirm__button--fill" type="submit" value="Accept" name="submit">Accept</button>
+                            <button class="confirm__button confirm__button--cancel" type="submit" value="Reject" name="reject">${options.cancelText}</button>
+                        </div>
+                    </form>
+
+        </div>
+        </div>
+
+    </div>
+</div>`;
+
+            const template_1 = document.createElement('template');
+            template_1.innerHTML = html;
+
+            const confirmEl = template_1.content.querySelector('.confirm');
+            const btnClose = template_1.content.querySelector('.confirm__close');
+            const btnCancel = template_1.content.querySelector('.confirm__button--cancel');
+
+            confirmEl.addEventListener('click', e => {
+                if(e.target === confirmEl){
+                    options.oncancel();
+                    this._close(confirmEl);
+                }
+            });
+
+            [btnCancel, btnClose].forEach(el => {
+                el.addEventListener('click', () => {
+                    options.oncancel();
+                    this._close(confirmEl);
+                });
+            });
+
+            document.body.appendChild(template_1.content);
+        },
+
+        _close (confirmEl){
+            confirmEl.classList.add('confirm--close');
+            confirmEl.addEventListener('animationend', () => {
+                document.body.removeChild(confirmEl);
+            });
+        }
+    }
+
+</script>
 
 <script>
 
@@ -235,130 +349,7 @@
 
 </script>
 
-<script>
-    const Confirm = {
-        open(options) {
-            options = Object.assign({}, {
-                title: '',
-                benefitType: '',
-                claimedDate: '',
-                claimedAmount: '',
-                description: '',
-                document: '',
-                link: '',
-                okText: 'Accept',
-                rejectText: 'Reject',
-                onok: function () {
-                },
-                oncancel: function () {
-                },
-                onreject: function () {
-                }
-            }, options);
 
-
-            const html = `<div class="confirm">
-    <div class="confirm__window">
-        <div class="confirm__titlebar">
-            <span class="confirm__title">${options.title}</span>
-            <button class="confirm__close">&times;</button>
-        </div>
-        <div class="confirm__content">
-            <div class="row">
-                <div class="column_1">
-                    <p>Benefit Type</p>
-                </div>
-                <div class="column_2">
-                    <p>${options.benefitType}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column_1">
-                    <p>Claimed Date</p>
-                </div>
-                <div class="column_2">
-                    <p>${options.claimedDate}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column_1">
-                    <p>Claimed Amount</p>
-                </div>
-                <div class="column_2">
-                    <p>${options.claimedAmount}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column_1">
-                    <p>Reason</p>
-                </div>
-                <div class="column_2">
-                    <p>${options.description}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column_1">
-                    <p>Report Submission</p>
-                </div>
-                <div class="column_2">
-                    <p>${options.document}</p>
-                    <button class="btn" onclick="document.getElementById('link-1').click()"><i class="fa fa-download"></i>      Download</button>
-                    <a id="link-1" href="${options.link}" download hidden></a>
-                </div>
-            </div>
-        </div>
-        <div class="confirm__buttons">
-            <button class="confirm__button confirm__button--ok confirm__button--fill">${options.okText}</button>
-            <button class="confirm__button confirm__button--cancel">${options.rejectText}</button>
-
-</div>
-    </div>
-</div>`;
-
-            const template = document.createElement('template');
-            template.innerHTML = html;
-
-            const confirmEl = template.content.querySelector('.confirm');
-            const btnReject = template.content.querySelector('.confirm__button--cancel');
-            const btnClose = template.content.querySelector('.confirm__close');
-            const btnOk = template.content.querySelector('.confirm__button--ok');
-            //const btnCancel = template.content.querySelector('.confirm__button--cancel');
-
-            confirmEl.addEventListener('click', e => {
-                if (e.target === confirmEl) {
-                    options.oncancel();
-                    this._close(confirmEl);
-                }
-            });
-
-            btnReject.addEventListener('click', e => {
-                options.onreject();
-                this._close(confirmEl);
-            });
-
-            btnOk.addEventListener('click', () => {
-                options.onok();
-                this._close(confirmEl);
-            });
-
-            [btnClose].forEach(el => {
-                el.addEventListener('click', () => {
-                    options.oncancel();
-                    this._close(confirmEl);
-                });
-            });
-
-            document.body.appendChild(template.content);
-        },
-
-        _close(confirmEl) {
-            confirmEl.classList.add('confirm--close');
-            confirmEl.addEventListener('animationend', () => {
-                document.body.removeChild(confirmEl);
-            });
-        }
-    }
-</script>
 
 </body>
 </html>

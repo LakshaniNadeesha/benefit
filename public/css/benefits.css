@@ -230,9 +230,9 @@ a .delete_button:hover {
     /*margin: 15px;*/
     font-size: medium;
     height: 50px;
-    width: 95%;
-    margin-right: auto;
-    margin-left: auto;
+    width: 100%;
+    margin-right: 10px;
+    margin-left: 10px;
     margin-bottom: 15px;
 }
 
@@ -314,8 +314,8 @@ table tr {
 
 table th, table td {
     height: 56px;
-    text-align: left;
-    padding-left: 8px;
+    text-align: center;
+    /*padding-left: 8px;*/
 }
 
 table th {

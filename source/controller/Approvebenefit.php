@@ -56,6 +56,40 @@ class Approvebenefit extends Controller
                 }
             }
 
+            if (count($_POST)>0){
+                if(isset($_POST['submit'])){
+                    $handled['handling_reason'] = $_POST['reason'];
+                    $handled['handled_date'] = date("Y-m-d");
+                    $id = $_POST['application_number'];
+                    $accepting_amount = $_POST['accepting_amount'];
+                    $claim_amount = $_POST['claim_amount'];
+                    if($claim_amount > $accepting_amount){
+                        $handled['accepted_amount'] = $accepting_amount;
+                        $handled['benefit_status'] = "Half-Accepted";
+                    }
+                    else if($claim_amount < $accepting_amount){
+                        $handled['accepted_amount'] = $claim_amount;
+                        $handled['benefit_status'] = "Accepted";
+                    }
+                    else {
+                        $handled['accepted_amount'] = $claim_amount;
+                        $handled['benefit_status'] = "Accepted";
+                    }
+                    $user_x->update_status($id,'application_number',$handled);
+                    $this->redirect('Approvebenefit');
+                }
+                else if(isset($_POST['reject'])){
+                    $handled['handling_reason'] = $_POST['reason'];
+                    $handled['handled_date'] = date("Y-m-d");
+                    $id = $_POST['application_number'];
+                    $handled['accepted_amount'] = 0;
+                    $handled['benefit_status'] = "Rejected";
+                    $user_x->update_status($id,'application_number',$handled);
+                    $this->redirect('Approvebenefit');
+
+                }
+            }
+
 
             $this->view('approvebenefit', ['requested'=>$requested, 'accepted'=>$accepted, 'rejected'=>$rejected]);
         }
@@ -64,57 +98,21 @@ class Approvebenefit extends Controller
         }
     }
 
-    function accept ($id=null){
+    function accept(){
         if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
         if(Auth::access('HR Manager')){
-            $user = new BenefitrequestModel();
-            $user_x = new BenefitapplicationModel();
-            $benefits = new BenefitdetailsModel();
-
-            $get_row = $user->where('report_hashing',$id);
-            $relevant_benefits = $benefits->where('benefit_type',$get_row[0]->benefit_type);
-            $remain = $user_x->where_condition('benefit_ID','employee_ID',$relevant_benefits[0]->benefit_ID,$get_row[0]->employee_ID);
-            print_r($remain);
-
-
-            $hashVal = $get_row[0]->report_hashing;
-            if($remain[0]->remaining_amount >= $get_row[0]->claim_amount){
-                $ar['benefit_status'] = "Accepted";
-                $ar['handled_date'] = date("Y/m/d");
-                $user->update_status($hashVal, 'report_hashing', $ar);
+            $benefit = new BenefitrequestModel();
+            if (count($_POST)>0){
+                if(isset($_POST['submit'])){
+                    echo "ok";
+                }
+                else {
+                    echo "no";
+                }
             }
-            else if($remain[0]->remaining_amount == 0){
-                $ar['benefit_status'] = "Rejected";
-                $ar['accepted_amount'] = 0;
-                $ar['handled_date'] = date("Y/m/d");
-                $user->update_status($hashVal, 'report_hashing', $ar);
-            }else {
-                $ar['benefit_status'] = "Half-Accepted";
-                $ar['accepted_amount'] = $remain[0]->remaining_amount;
-                $ar['handled_date'] = date("Y/m/d");
-                $user->update_status($hashVal, 'report_hashing', $ar);
-            }
-
-            $this->redirect('Approvebenefit');
-        }
-    }
-
-    function reject($id=null){
-        if (!Auth::logged_in()) {
-            $this->redirect('login');
-        }
-
-        if(Auth::access('HR Manager')){
-            $user = new BenefitrequestModel();
-            $get_row = $user->where('report_hashing',$id);
-            $hashVal = $get_row[0]->report_hashing;
-            $ar['benefit_status'] = "Rejected";
-            $user->update_status($hashVal, 'report_hashing', $ar);
-
-            $this->redirect('Approvebenefit');
         }
     }
 

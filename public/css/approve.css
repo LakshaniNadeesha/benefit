@@ -162,6 +162,34 @@ git .status .detail-container {
     justify-items: center;
 }
 
+.benefit_row_1 {
+    display: flex;flex-direction: row;
+    width: 100%;
+    height: max-content;
+}
+
+.benefit_column_1 {
+    width: 30%;
+}
+
+.benefit_column_2 {
+    width: 70%;
+    margin: auto;
+}
+
+.benefit_column_2 input {
+    outline: none;
+}
+
+.benefit_column_2 .benefit_type, .benefit_column_2 .claimed_date, .benefit_column_2 .claim_amount {
+    border: none;
+}
+
+.benefit_column_2 .reason {
+    height: 100px;
+    border: 1px solid var(--grey);
+}
+
 .details .row .column_1 {
     width: 30%;
     padding-left: 15px;

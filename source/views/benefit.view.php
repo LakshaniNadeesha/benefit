@@ -135,6 +135,7 @@
                         <th>Claimed Amount(LKR)</th>
                         <th>Accepted Amount(LKR)</th>
                         <th>Status</th>
+                        <th>Notes (If any)</th>
                     </tr>
                     </thead>
                     <tbody id="myTable">
@@ -148,6 +149,13 @@
                         <td><?php print_r($handled[$i]->claim_amount); ?> </td>
                         <td><?php print_r($handled[$i]->accepted_amount); ?></td>
                         <td><?php print_r($handled[$i]->benefit_status); ?> </td>
+                        <td style="text-transform: capitalize"><?php
+                            if($handled[$i]->handling_reason){
+                                print_r($handled[$i]->handling_reason);
+                            } else {
+                                echo "-";
+                            }
+                            ?> </td>
                     </tr>
                 <?php
                     }

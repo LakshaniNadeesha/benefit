@@ -241,7 +241,6 @@
                                                      class="on-leave-people">
                                                 <p class="content"><?php print_r($previous[$i]->name); ?></p>
                                             </div>
-
                                             <?php
                                         }
                                     } ?>
