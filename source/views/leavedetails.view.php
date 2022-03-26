@@ -87,37 +87,50 @@
                         <p class="main_title">Upcoming Time Off</p>
                     </div>
                     <hr>
+                    <!-- <?php
+                            echo "<pre>";
+                            print_r($arr1);
+                            echo "</pre>";
+                            ?> -->
 
                     <div class="upcomming_data">
-                        <?php if (boolval($arr1)) {
-                            for ($i = 0; $i < sizeof($arr1); $i++) { ?>
-                                <form method="post">
-                                    <div class="upcoming_detail">
-                                        <div class="icon">
-                                            <i class="item" data-feather="smile"></i>
+                        <?php
+                        if (boolval($arr1)) {
+
+                            for ($i = 0; $i < sizeof($arr1); $i++) {
+
+                                if ($arr1[$i]->leave_status == "pending") {
+                                    
+                        ?>
+                                    <form method="post">
+                                        <div class="upcoming_detail">
+                                            <div class="icon">
+                                                <i class="item" data-feather="smile"></i>
+                                            </div>
+
+                                            <div class="description">
+                                                <div class="leave_name">
+                                                    <p id="day"><?php print_r($arr1[$i]->date . " " . ucfirst(($arr1[$i]->half_time))); ?></p>
+                                                    <input type="hidden" name="d_date" value="<?php print_r($arr1[$i]->date) ?>">
+                                                    <p id="reson">Request <?php print_r(ucfirst($arr1[$i]->leave_type)); ?> Leave</p>
+                                                </div>
+
+                                                <div class="leave_status">
+                                                    <p id="status"><i><?php print_r(ucfirst($arr1[$i]->leave_status)); ?></i></p>
+
+                                                </div>
+
+                                                <div class="delete_leave">
+                                                    <button class="button-btn" type="submit" id="delete" name="submit"><i class='fas fa-trash-alt'></i></button>
+                                                </div>
+
+                                            </div>
                                         </div>
+                                    </form>
 
-                                        <div class="description">
-                                            <div class="leave_name">
-                                                <p id="day"><?php print_r($arr1[$i]->date . " " . ucfirst(($arr1[$i]->half_time))); ?></p>
-                                                <input type="hidden" name="d_date" value="<?php print_r($arr1[$i]->date) ?>">
-                                                <p id="reson">Request <?php print_r(ucfirst($arr1[$i]->leave_type)); ?> Leave</p>
-                                            </div>
-
-                                            <div class="leave_status">
-                                                <p id="status"><i><?php print_r(ucfirst($arr1[$i]->leave_status)); ?></i></p>
-
-                                            </div>
-
-                                            <div class="delete_leave">
-                                                <button class="button-btn" type="submit" id="delete" name="submit"><i class='fas fa-trash-alt'></i></button>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </form>
 
                         <?php
+                                }
                             }
                         } ?>
                     </div>
@@ -132,45 +145,68 @@
                         <p class="main_title">Leave History</p>
                     </div>
                     <hr>
+                    <?php
+                    if (boolval($arr2)) { ?>
+
+                        <h3>Approve Leaves</h3>
 
 
-                    <!-- <div class="leave_type">
-                        <form action="">
-                            <select id="leave" name="leave">
-                                <option value="sick">Sick Leaves</option>
-                                <option value="casual">Casual Leaves</option>
-                                <option value="annual">Annual Leaves</option>
-                            </select>
-                            <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-                        </form>
-                    </div> -->
+                        <table id="leave_history_result">
 
 
-                    <table id="leave_history_result">
 
-
-                        <?php
-                        if (boolval($arr2)) {
-
+                            <?php
                             // print_r($arr3);
-                            for ($i = 0; $i < sizeof($arr2); $i++) { ?>
+                            for ($i = 0; $i < sizeof($arr2); $i++) {
+                                if ($arr2[$i]->leave_status == "approve") {
+                            ?>
 
-                                <tr>
-                                    <td> <?php print_r($arr2[$i]->date); ?></td>
-                                    <td><?php print_r(ucfirst($arr2[$i]->leave_status)); ?></td>
-                                    <td><?php print_r(ucfirst($arr2[$i]->leave_type)) ?> Leave</td>
-                                    <?php $type = $arr2[$i]->leave_type ?>
-                                    <td>+<?php print_r($arr3[$type]) ?></td>
+                                    <tr>
+                                        <td> <?php print_r($arr2[$i]->date); ?></td>
+                                        <td><?php print_r(ucfirst($arr2[$i]->leave_status)); ?></td>
+                                        <td><?php print_r(ucfirst($arr2[$i]->leave_type)) ?> Leave</td>
+                                        <?php $type = $arr2[$i]->leave_type ?>
+                                        <td>+<?php print_r($arr3[$type]) ?></td>
 
-                                </tr>
+                                    </tr>
 
                         <?php
+                                }
                             }
                         } ?>
 
-                    </table>
+                        </table>
 
-                
+                        <?php
+                        if (boolval($arr2)) { ?>
+                            <h3>Reject Leaves</h3>
+                            <table id="leave_history_result">
+
+
+                                <?php
+                                // print_r($arr3);
+                                for ($i = 0; $i < sizeof($arr2); $i++) {
+                                    if ($arr2[$i]->leave_status == "reject") {
+                                ?>
+
+                                        <tr>
+                                            <td> <?php print_r($arr2[$i]->date); ?></td>
+                                            <td><?php print_r(ucfirst($arr2[$i]->leave_status)); ?></td>
+                                            <td><?php print_r(ucfirst($arr2[$i]->leave_type)); ?> Leave</td>
+                                            <td><?php print_r(ucfirst($arr2[$i]->reason)); ?></td>
+                                            <?php $type = $arr2[$i]->leave_type ?>
+                                            <td>+<?php print_r($arr3[$type]) ?></td>
+
+                                        </tr>
+
+                            <?php
+                                    }
+                                }
+                            } ?>
+
+                            </table>
+
+
                 </div>
             </div>
         </div>

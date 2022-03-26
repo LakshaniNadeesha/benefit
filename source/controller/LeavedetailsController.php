@@ -24,7 +24,32 @@ class LeavedetailsController extends Controller
             for ($i = 0; $i < sizeof($leave_list); $i++) {
                 $today = date("Y-m-d");
                 $new_date = $leave_list[$i]->date;
+                $request_date = $leave_list[$i]->request_date;
+                $r_date = date_create($request_date);
+                // echo "<br> request date : ";
+                // echo $request_date;
+                // echo "<br> ";
+                $date1 = date_create($today);
+                $date2 = date_create($new_date);
+                $date_difference = date_diff($date2, $date1);
+                $date_difference1 = date_diff($r_date,$date2);
 
+                // echo $date_difference;
+                // echo $date_difference1->format("%R%a days");
+                if ($date_difference->format("%R%a") >= 0 && $date_difference->format("%R%a") < 3 && $date_difference1->format("%R%a") >2 &&  $leave_list[$i]->leave_status == "pending") {
+                    // echo "inside if";
+                    $date = $leave_list[$i]->date;
+                    // echo $date;
+                    // echo "<br> ";
+                    // echo $id;
+                    // $val = $_POST['l_status'];
+                    $val = "approve";
+
+                    // echo($_POST['l_status']);
+
+                    $user_x->updateLeave($id, $date, $val);
+                }
+                
                 if ($today <= $new_date) {
                     array_push($arr1, $leave_list[$i]);
                 }
@@ -58,7 +83,7 @@ class LeavedetailsController extends Controller
                 $query = $user_x->delete_two_and($column1, $data1, $column2, $data2);
                 print_r($query);
 
-                if(boolval($query)){
+                if (boolval($query)) {
                     $this->redirect('LeavedetailsController');
                 }
             }

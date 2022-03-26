@@ -244,13 +244,23 @@ hr {
 
 /* Dont work */
 #leave_history_result {
-    width: 95%;
+    
+    /* background-color:red; */
     padding: 20px 0;
     margin-left: auto;
     margin-right: auto;
-    /* display: block; */
+    display: block; 
+    width: 95%;
     max-height: 250px;
     overflow-y: scroll;
+}
+
+tr{
+    width:100%;
+    /* background-color:red; */
+}
+td{
+    width:2%;
 }
 
 #delete {

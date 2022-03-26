@@ -21,6 +21,8 @@ class LeaveapproveController extends Controller
             //         echo "</pre>";
             // Employees under supervisor
 
+            
+
              $emp=array();
              $emps=array();
 
