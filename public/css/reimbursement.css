@@ -199,6 +199,15 @@ hr {
     margin-bottom: 5px;
 }
 
+.reimbursement_search {
+    width: 170px;
+    height: 25px;
+    border: 1px solid var(--grey);
+    border-radius: 5px;
+    margin-left: 26px;
+    margin-bottom: 10px;
+}
+
 input[type=submit] {
     background-color: #6fccee;
     border-radius: 100px;

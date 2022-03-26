@@ -232,6 +232,13 @@ hr {
     margin-left: 10px;
 }
 
+.reimbursement_search {
+    width: 170px;
+    height: 25px;
+    border: 1px solid var(--grey);
+    border-radius: 5px;
+    margin-left: 10px;}
+
 #claim_history_table {
     width: 95%;
     padding: 20px 0;

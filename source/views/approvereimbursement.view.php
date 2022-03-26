@@ -8,6 +8,17 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= CSS_PATH ?>approve.css">
     <title>Approve Reimbursement</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#reimbursement").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#reimbursement_table tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -106,33 +117,41 @@
                 <p class="handling_title">Reimbursement History</p>
             </div>
             <hr>
+            <div class="search_bar">
+                <input class="reimbursement_search" type="text" id="reimbursement">
+                <i class="fa fa-search"></i>
+            </div>
             <div class="history_table">
                 <?php
                 if(boolval($requested_approve)){
                 ?>
                 <table id="claim_history_table">
+                    <thead>
                     <tr>
                         <th>Date</th>
                         <th>Name</th>
                         <th>Description</th>
-                        <th>Amount</th>
+                        <th>Amount (LKR)</th>
                         <th>Status</th>
                     </tr>
+                    </thead>
+                    <tbody id="reimbursement_table">
                     <?php
                     for ($i = 0;$i < sizeof($requested_approve);$i++) {
                     ?>
                     <tr>
                         <td><?php print_r($requested_approve[$i]['details']->claim_date)?></td>
                         <td><?php print_r($requested_approve[$i]['first_name']); echo "  "; print_r($requested_approve[$i]['last_name']);?></td>
-                        <td><?php print_r($requested_approve[$i]['details']->reimbursement_reason)?></td>
+                        <td style="text-transform: capitalize;"><?php print_r($requested_approve[$i]['details']->reimbursement_reason)?></td>
                         <td><?php print_r($requested_approve[$i]['details']->claim_amount)?></td>
-                        <td><?php print_r($requested_approve[$i]['details']->reimbursement_status)?></td>
+                        <td style="text-transform: capitalize"><?php print_r($requested_approve[$i]['details']->reimbursement_status)?></td>
 
 
                     </tr>
                     <?php
                     }
                     ?>
+                    </tbody>
                 </table>
                 <?php
                 }
