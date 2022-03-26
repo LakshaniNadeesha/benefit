@@ -163,7 +163,7 @@
                                         <p>Enter Supervisor ID</p>
                                     </td>
 
-                                    <td> <input type="number" name="supervisor" id="supervisor"  required> </td>
+                                    <td> <input type="number" name="supervisor" id="supervisor" required> </td>
                                     <td><button type="button" id="search" onclick="searchFunction()">Search</button></td>
                                     <!-- <td><input type="submit"></td> -->
                                 </tr>
@@ -184,44 +184,44 @@
 
                             var sid = document.getElementById("supervisor").value;
 
-                            
+
                             // if (sid) {
-                                function searchFunction() {
-                                    var sid = document.getElementById("supervisor").value;
-                                    console.log(sid);
-                                    document.getElementById("supervisor_f").value = sid;
-                                    //    var i = 0;
-                                    for (var i = 0; i < passedArray.length; i++) {
-                                        // document.write(passedArray[i].employee_ID);
-                                        if (passedArray[i].employee_ID === sid && passedArray[i].employee_ID != entryID) {
-                                            document.querySelector("#tdata").style.display = "block";
-                                            var x = passedArray[i].profile_image;
+                            function searchFunction() {
+                                var sid = document.getElementById("supervisor").value;
+                                console.log(sid);
+                                document.getElementById("supervisor_f").value = sid;
+                                //    var i = 0;
+                                for (var i = 0; i < passedArray.length; i++) {
+                                    // document.write(passedArray[i].employee_ID);
+                                    if (passedArray[i].employee_ID === sid && passedArray[i].employee_ID != entryID) {
+                                        document.querySelector("#tdata").style.display = "block";
+                                        var x = passedArray[i].profile_image;
 
-                                            document.getElementsByClassName("img").src = x;
-                                            document.getElementById("employee_ID").innerHTML = passedArray[i].employee_ID;
-                                            document.getElementById("name").innerHTML = passedArray[i].first_name + " " + passedArray[i].last_name;
-                                            document.getElementById("email").innerHTML = passedArray[i].email;
-                                            document.getElementById("nic").innerHTML = passedArray[i].employee_NIC;
-                                            document.getElementById("user_role").innerHTML = passedArray[i].user_role;
+                                        document.getElementsByClassName("img").src = x;
+                                        document.getElementById("employee_ID").innerHTML = passedArray[i].employee_ID;
+                                        document.getElementById("name").innerHTML = passedArray[i].first_name + " " + passedArray[i].last_name;
+                                        document.getElementById("email").innerHTML = passedArray[i].email;
+                                        document.getElementById("nic").innerHTML = passedArray[i].employee_NIC;
+                                        document.getElementById("user_role").innerHTML = passedArray[i].user_role;
 
-                                            if (passedArray[i].department_ID == 1) {
-                                                document.getElementById("dept").innerHTML = "Operational Department";
-                                            } else if (passedArray[i].department_ID == 2) {
-                                                document.getElementById("dept").innerHTML = "HR Department";
-                                            } else if (passedArray[i].department_ID == 3) {
-                                                document.getElementById("dept").innerHTML = "Sells Department";
-                                            } else {
-                                                document.getElementById("dept").innerHTML = "Financial Department";
-                                            }
-
-                                            break;
+                                        if (passedArray[i].department_ID == 1) {
+                                            document.getElementById("dept").innerHTML = "Operational Department";
+                                        } else if (passedArray[i].department_ID == 2) {
+                                            document.getElementById("dept").innerHTML = "HR Department";
+                                        } else if (passedArray[i].department_ID == 3) {
+                                            document.getElementById("dept").innerHTML = "Sells Department";
+                                        } else {
+                                            document.getElementById("dept").innerHTML = "Financial Department";
                                         }
 
-                                        // if(i = passedArray.length){
-                                        //     document.getElementById("err").innerHTML = "Employee Not Found";
-                                        // }
+                                        break;
                                     }
+
+                                    // if(i = passedArray.length){
+                                    //     document.getElementById("err").innerHTML = "Employee Not Found";
+                                    // }
                                 }
+                            }
                             // }
                             // else{
                             //     document.getElementById("delete").style.display = "none";
@@ -268,7 +268,7 @@
                         <div class="confirm__buttons">
                             <!-- <button class="confirm__button confirm__button--cancel ">OK</button> -->
                             <form method="post">
-                                <input type="hidden" name="supervisor_f" id="supervisor_f" >
+                                <input type="hidden" name="supervisor_f" id="supervisor_f">
                                 <input type="submit" id="delete" name="delete" value="Delete" />
                             </form>
                         </div>

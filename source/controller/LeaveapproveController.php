@@ -144,8 +144,9 @@ class LeaveapproveController extends Controller
             // echo "Check post ";
 
             
-            if(isset($_POST['submit1'])){
-                print_r($_POST);
+            if(isset($_POST['delete'])){
+                // print_r($_POST);
+                
                 $date = $_POST['date'];
                 $id = $_POST['id'];
                 // $val = $_POST['l_status'];
@@ -156,13 +157,15 @@ class LeaveapproveController extends Controller
                 // echo($_POST['l_status']);
 
                 $user_x->rejectLeave($id,$date,$val,$reason);
-                // $this->redirect('LeaveapproveController');
+                // $this->redirect('Approvereimbursement');
+                header("Refresh:1");
 
                 // echo "after user_x";
             }
 
             if(isset($_POST['submit'])){
-                print_r($_POST);
+                // print_r($_POST);
+
                 $date = $_POST['date'];
                 $id = $_POST['id'];
                 // $val = $_POST['l_status'];
@@ -171,7 +174,8 @@ class LeaveapproveController extends Controller
                 // echo($_POST['l_status']);
 
                 $user_x->updateLeave($id,$date,$val);
-                // $this->redirect('LeaveapproveController');
+                // $this->redirect('Approvereimbursement');
+                header("Refresh:1");
             }
         // }
 

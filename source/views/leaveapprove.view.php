@@ -7,8 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public\css\color.css">
     <link rel="stylesheet" href="public\css\approve.css">
+    <link rel="stylesheet" href="public\css\popup.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+
     <title>Leave Approve</title>
 </head>
 
@@ -75,7 +78,7 @@
                                 if (boolval($emp[$i]['details'])) {
                                     $n = count($emp[$i]['details']);
                                     // }
-
+                                    $id_arr = array();
                                     // echo $n;
                                     for ($j = 0; $j < $n; $j++) {
                                         if ($emp >= 1 && ($emp[$i]['details'][$j]->date != '0000-00-00')) { ?>
@@ -113,82 +116,170 @@
                                                                 break;
                                                             default:
                                                             ?><i class="far fa-calendar-plus"></i><?php
-                                                                                        }
-                                                                                                ?>
+                                                                                            }
+                                                                                                    ?>
 
                                                     </center>
                                                     <p class="date"><?php print_r($emp[$i]['details'][$j]->date); ?> </p>
 
                                                     <p class="date"><?php print_r(ucfirst($emp[$i]['details'][$j]->leave_type)); ?></p>
                                                     <!-- <form method="post" id="reason"> -->
-                                                    <form method="post" id="form1">
-                                                    <input type="text" id="<?php echo $j ?>" class="reason" name="reason" form="form1">
-                                                    <?php echo $j?>
-                                                    <!-- </form> -->
-                                                    <!-- <textarea id="reason" class="reason" name="reason" rows="2" cols="50"></textarea> -->
+                                                    <form method="post" id="<?php echo "form" . $j ?>" name="">
+                                                        <input type="text" id="<?php echo $j ?>" class="reason" name="reason" form="form1">
+                                                        <!-- <?php echo $j ?> -->
+                                                        <!-- <?php echo "form" . $j  ?> -->
 
 
                                                 </div>
 
                                                 <center>
-                                                    
 
-                                                        <button type="submit" name="submit1" value="reject" id="reject"  onclick="myFunction1(<?php echo $j ?>)">Reject</button>
-                                                        <input type="hidden" name="date" value=<?php print_r($emp[$i]['details'][$j]->date); ?>>
-                                                        <input type="hidden" name="l_status" id="l_status">
-                                                        <!-- <input type="text-area" name="reason" id> -->
-                                                        <!-- <input type="text" id="reason" name="reason" > -->
-                                                        <input type="hidden" name="id" value=<?php print_r($emp[$i]['employee_ID']) ?>>
-
-
-                                                        <button type="submit" name="submit" value="approve" id="approve" onclick="myFunction2()">Approve</button>
+                                                    <!-- onclick="myFunction1(<?php echo $j ?>)" -->
+                                                    <button type="button" name="submit1" value="reject" id="<?php echo "reject".$i. $j ?>" class="reject">Reject</button>
+                                                    <?php
+                                                    array_push($id_arr,"reject". $i . $j);
+                                                    ?>
+                                                    <!-- <?php echo "reject" . $j ?> -->
+                                                    <input type="hidden" name="date" value=<?php print_r($emp[$i]['details'][$j]->date); ?>>
+                                                    <input type="hidden" name="l_status" id="l_status">
+                                                    <input type="hidden" name="id" value=<?php print_r($emp[$i]['employee_ID']) ?>>
+                                                    <button type="submit" name="submit" value="approve" id="approve" onclick="myFunction2()">Approve</button>
                                                     </form>
 
 
 
                                                 </center>
                                             </div>
+
                     <?php }
                                     }
                                 }
                             }
                         }
                     } ?>
+
+                    <!-- <?php print_r($id_arr); ?> -->
+
+                    <div class="confirm init">
+
+                        <div class="confirm__window ">
+                            <div class="confirm__titlebar">
+                                <span class="confirm__title">Enter Reason For Reject</span>
+                                <button class="confirm__close">&times;</button>
+                            </div>
+
+                            <div class="confirm__content" id="dhr" style="display:none;">
+
+
+                                <div class="data">
+                                    <div>
+                                        <form method="post">
+                                            <textarea rows="4" cols="70" placeholder="Describe yourself here..." name="reason" required></textarea>
+                                            <input type="hidden" name="id" id="id">
+                                            <input type="hidden" name="date" id="date">
+
+                                    </div>
+
+                                    <div class="confirm__buttons">
+
+                                        <!-- <input type="hidden" name="supervisor_f" id="supervisor_f"> -->
+                                        <input type="submit" id="delete" name="delete" value="Delete" />
+                                        </form>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
                     <script>
-                        function myFunction1(l) {
-                            // document.getElementById("l_status").value = "reject";
-                            
-                            document.getElementById(l).style.display = "block";
-                            document.getElementById(l).required = true;
-                            // alert(document.getElementById(l).value).length;
-                            // document.getElementById("reject").type = "submit";
-                            // document.getElementById("nameofid").value = "My value";
-                            if((document.getElementById(l).value) == ""){
-                                alert(l);
-                                alert("enter the reason");
-                            }else if((document.getElementById(l).value) != ""){
-                                alert("Now You Can Delete");
-                                document.getElementById("reject").type = "submit";
+                        var idArray =
+                            <?php echo json_encode($id_arr); ?>;
+                        console.log(idArray);
+
+                        var dataArray =
+                            <?php echo json_encode($emp); ?>;
+                        console.log(dataArray);
+                        console.log(dataArray.length);
+                        console.log(dataArray[0]['details'].length);
+
+                        // decoment.write(dataArray.length);
+                        // document.write(dataArray[0]['details'][0]['employee_ID']);
+                        for (let i = 0; i < dataArray.length; i++) {
+                            console.log(dataArray[i]['details'].length);
+                            for (let j = 0; j < dataArray[i]['details'].length; j++) {
+
+                                var id = "#reject" + i+j;
+                                // document.write(id);
+                                const reject = document.querySelector(id);
+                                const cancel = document.querySelector('#cancel');
+                                const sub = document.querySelector('#sub');
+                                const confirmEl = document.querySelector('.confirm');
+                                const btnClose = document.querySelector('.confirm__close');
+
+                                console.log(dataArray[i]['details'][j]['employee_ID']);
+                                console.log(dataArray[i]['details'][j]['date']);
+
+                                document.getElementById("id").value = dataArray[i]['details'][j]['employee_ID'];
+                                document.getElementById("date").value = dataArray[i]['details'][j]['date'];
+
+                                const btnCancel = document.querySelector('.confirm__button--cancel');
+
+                                confirmEl.addEventListener('click', e => {
+                                    if (e.target === confirmEl && e.target !== sub) {
+                                        // options.oncancel();
+                                        close(confirmEl);
+                                    }
+                                });
+
+                                [btnCancel, btnClose].forEach(el => {
+                                    if (el && el.target !== sub) {
+                                        el.addEventListener('click', () => {
+                                            // options.oncancel();
+                                            close(confirmEl);
+                                        });
+                                    };
+
+                                });
+
+
+                                reject.addEventListener('click', () => {
+
+                                    pop(confirmEl);
+                                    console.log("This is hr " + reject);
+                                    document.getElementById("dhr").style.display = "block";
+
+                                });
                             }
 
-                            // alert(document.getElementById("date").value);
-                            console.log(document.getElementById("reject"));
-                            console.log("inside reject");
-                        }
 
-                        const myform = document.getElementById("submit");
-                        myform.addEventListener("submit",(e)=>{
-                            e.preventDefault();
-                            document.getElementById("reject").type = "submit";
-                            console.log("form has been submited");
-                        });
+                            // cancel.addEventListener('click',()=>{
 
-                        function myFunction2() {
-                            document.getElementById("l_status").value = "approve";
-                            console.log(document.getElementById("approve"));
-                            console.log("inside Approve");
+                            // })
+
+                            function close(confirmEl) {
+                                console.log('You closed the window!');
+                                confirmEl.classList.add('confirm--close');
+
+                                document.body.removeChild(confirmEl);
+
+
+                            };
+
+                            function pop(confirmEl) {
+
+                                document.body.appendChild(confirmEl);
+                                confirmEl.classList.remove('confirm--close');
+                                confirmEl.classList.remove('init');
+                            };
+
                         }
                     </script>
+
 
                     </div>
                     <div class="detail-container">
@@ -264,7 +355,7 @@
                                                 <td><?php print_r(ucfirst($emps[$i]['details'][$j]->leave_type)); ?> </td>
                                                 <td><?php print_r($emps[$i]['details'][$j]->date); ?> </td>
                                                 <td><?php print_r(ucfirst($emps[$i]['details'][$j]->leave_status)); ?></td>
-                                                <td><?php print_r($emps[$i]['last_name']); ?> </td>
+                                                <td><?php print_r(ucfirst($emps[$i]['details'][$j]->reason)); ?> </td>
 
                                             </tr>
                             <?php
