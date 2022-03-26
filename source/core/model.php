@@ -108,21 +108,24 @@ class Model extends Database
     public function find_groupby($column1,$column2,$column3,$column4,$column5,$value1,$value2,$value3)
     {
         $column3 = addslashes($column3);
-        $query = "select $column1,$column2,sum($column3) as $column3,$column4,$column5 from $this->table where $column2 between :value1 and :value2 and $column5 = :value3 group by $column1";
+        $query = "select $column1,$column2,$column3,$column4,$column5 from $this->table where $column2 between :value1 
+        and :value2 and $column5 = :value3 order by $column1 asc";
         return $this->query($query,['value1'=>$value1,'value2'=>$value2,'value3'=>$value3]);
     }
 
     public function find_timeoff_groupby($column1,$column2,$column3,$column4,$value1,$value2,$value3)
     {
         $column3 = addslashes($column3);
-        $query = "select $column1,$column2,$column3,sum($column4) as $column4 from $this->table where $column3 between :value1 and :value2 and $column4 <> :value3 group by $column1";
+        $query = "select $column1,$column2,$column3,$column4 from $this->table where $column3 between :value1 and :value2
+         and $column4 <> :value3 order by $column1 asc";
         return $this->query($query,['value1'=>$value1,'value2'=>$value2,'value3'=>$value3]);
     }
 
     public function find_benefit_groupby($column1,$column2,$column3,$column4,$column5,$column6,$value1,$value2,$value3)
     {
         $column3 = addslashes($column3);
-        $query = "select $column1,$column2,$column3,sum($column4) as $column4,$column5,$column6 from $this->table where $column2 between :value1 and :value2 and $column6 = :value3 group by $column1,$column3";
+        $query = "select $column1,$column2,$column3,$column4,$column5,$column6 from $this->table where 
+        $column2 between :value1 and :value2 and $column6 = :value3 order by $column1,$column3";
         return $this->query($query,['value1'=>$value1,'value2'=>$value2,'value3'=>$value3]);
     }
     
@@ -252,6 +255,8 @@ class Model extends Database
         $query = "update $this->table set leave_status = '$val', reason = '$reason' where employee_ID = '$id' and date = '$date' ";
         return $this->query($query);
     }
+
+   
 
     public function delete($id)
     {

@@ -21,6 +21,7 @@ class PerformanceView extends Controller
                     $employee_details[$i]['employee_NIC'] = $row[$i]->employee_NIC;
 
                     $row1 = $user_x->where('employee_ID', $row[$i]->employee_ID);
+                    if(boolval($row1)){
                     $employee_details[$i]['communication'] = $row1[0]->communication;
                     $employee_details[$i]['quality_of_work'] = $row1[0]->quality_of_work;
                     $employee_details[$i]['organization'] = $row1[0]->organization;
@@ -32,6 +33,7 @@ class PerformanceView extends Controller
                     $employee_details[$i]['team_skills_overall'] = $row1[0]->team_skills_overall;
                     $employee_details[$i]['multitasking_ability_overall'] = $row1[0]->multitasking_ability_overall;
                 }
+            }
             }
 
             $this->view('performanceview', ['employee_details' => $employee_details]);

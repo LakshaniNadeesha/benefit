@@ -1,21 +1,23 @@
 @import "color.css";
 body {
     font-family: Roboto, sans-serif;
-    background-color: white;
-    height: 100%;
+    background-color: var(--background);
 }
 
-
-/* * {
-    box-sizing: border-box;
-} */
-
-.hrdocuments_container {
-    /*width: 100%;*/
-    margin-top: 0;
-    border-radius: 10px;
+.main_container1 {
+    border-radius: 15px;
+    box-shadow: 3px 3px 15px rgb(0 0 0 / 20%);
+    height: 100%;
+    width: 80%;
+    align-items: center;
+    margin-left: 10%;
+    margin-top: 1%;
+    margin-bottom: 2%;
     background-color: white;
-    transition: 0.5s;
+}
+
+svg {
+    border-radius: 15px;
 }
 
 .h1 {
@@ -69,21 +71,6 @@ body {
 
 .btn:hover {
     background-color: rgb(143, 167, 238);
-}
-
-.main_container {
-    height: 100%;
-    width: 80%;
-    align-items: center;
-    margin-left: 10%;
-    margin-top: 1%;
-    border-radius: 10px;
-    box-shadow: 3px 3px 15px rgb(0 0 0 / 20%);
-}
-
-.document_list {
-    /* background-color: rgb(198, 231, 238); */
-    height: 100%;
 }
 
 table {

@@ -37,6 +37,9 @@
     <?php endif; ?>
 
     <div class="main_container">
+    <div class="back_btn1">
+                    <a href="<?= PATH ?>Hrdocuments/updatedocuments"><i class="large material-icons">arrow_back</i></a>
+                </div>
     <div class="benefit_head">
     <fieldset>
                 <legend><div>UPDATE DOCUMENTS</div></legend>
@@ -97,8 +100,8 @@
                         <div class="d_button">
                     <a href="<?= PATH ?>Hrdocuments/updatedocuments">
                         <input type="submit" value="Update" name="submit"></a>
-                        <a href="<?= PATH ?>Hrdocuments/updatedocuments">
-                            <input class="cancle_button" type="button" value="Cancel"></a>
+                        <!-- <a href="<?= PATH ?>Hrdocuments/updatedocuments"> -->
+                            <input class="cancle_button" type="reset" value="Cancel"></a>
 
                     </div>                 
                 </div>

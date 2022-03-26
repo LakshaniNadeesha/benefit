@@ -32,6 +32,9 @@
         ?>
         <div class="reimbursement_container">
 <div class="reimbursement_details">
+<div class="back_btn1">
+                    <a href="<?= PATH ?>Reimbursement"><i class="large material-icons">arrow_back</i></a>
+                </div>
             <fieldset class="feildset-1">
                 <legend>UPDATE REIMBURSEMENT</legend> 
               
@@ -102,8 +105,8 @@
 		<a href="<?=PATH?>Reimbursement/updating/<?= $arr->invoice_hashing?>">
         <input type="submit" value="Update" name="submit" id="update-confirmation"></a>
 
-		<a href="<?=PATH?>/Reimbursement">
-		<input class="cancle-confirmation" type="button" value="Cancel"></a>
+		
+		<input class="cancle-confirmation" type="reset" value="Cancel"></a>
 
 		<script type="text/javascript">
 			const form = document.querySelector("form2"),

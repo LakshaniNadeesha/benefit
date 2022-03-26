@@ -18,18 +18,8 @@
 </div>
 
 
-<!-- <div class="profile">
-        <?php
-//$this->view('includes/profile1');
-?>
-</div> -->
-<!-- a -->
 <div class="profile_container">
-<!--    <div class="profile">-->
-<!--        --><?php
-//        $this->view('includes/profile1');
-//        ?>
-<!--    </div>-->
+
   
 
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 50 1440 185"><path fill="#0f9eb8" fill-opacity="1" d="M0,64L26.7,58.7C53.3,

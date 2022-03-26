@@ -24,6 +24,60 @@
                 });
             });
         });
+
+        $(document).ready(function () {
+            $("#reimbursement1").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#handled_table1 tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+        
+//get claim date
+var today = new Date();
+var max_m = today.getUTCMonth() + 1;
+var max_d = today.getUTCDate();
+var max_y = today.getUTCFullYear();
+
+max_m = setDecimal(max_m);
+max_d = setDecimal(max_d);
+
+today_date = max_y + "-" + max_m + "-" + max_d;
+
+document.getElementById("claim_date").setAttribute("max", today_date);
+
+var dateObj = new Date();
+
+var min_date = subDays(dateObj, 6);
+
+var min_m = min_date.getUTCMonth() + 1; //months from 1-12
+var min_d = min_date.getUTCDate();
+var min_y = min_date.getUTCFullYear();
+
+min_m = setDecimal(min_m);
+min_d = setDecimal(min_d);
+
+newdate = min_y + "-" + min_m + "-" + min_d;
+
+document.getElementById("claim_date").setAttribute("min", newdate);
+
+
+function subDays(myDate, days) {
+    return new Date(myDate.getTime() - days * 24 * 60 * 60 * 1000);
+}
+
+
+function setDecimal(val) {
+    if (number.indexOf(val) != -1) {
+        val = "0" + val;
+        console.log(`inside decimal point if condition ${val}`);
+    }
+    return val;
+}
+
+
     </script>
 </head>
 <body>
@@ -55,10 +109,10 @@
 
                         <div class="row">
                             <div class="column_1">
-                                <label for="c_date">Claim Date</label>
+                                <label for="c_date">Date</label>
                             </div>
                             <div class="column_2">
-                                <input type="date" id="claim_date" name="claim_date" min="2022-03-17" max="2022-03-24"
+                                <input type="date" id="claim_date" name="claim_date" min="" max=""
                                        placeholder="mm/dd/yyyy" required>
                             </div>
                             <p id="hello"></p>
@@ -73,7 +127,7 @@
                         </div>
                         <div class="row">
                             <div class="column_1">
-                                <label for="subject">Pay For</label>
+                                <label for="subject">Pay For Transaction</label>
                             </div>
                             <div class="column_2">
                             <textarea id="subject" name="subject" placeholder="Write something.." style="height:100px;"
@@ -150,10 +204,19 @@
                         <?php }
                     }
                 } ?>
+                <!-- <div class="search_bar">
+                    <input class="reimbursement_search" type="text" id="reimbursement">
+                    <i class="fa fa-search"></i>
+                </div> -->
+                <div class="name_tab">
+                <p><i class="fa fa-check"></i>  Accepted Reimbursements</p>
+                <hr>
+                </div>
                 <div class="search_bar">
                     <input class="reimbursement_search" type="text" id="reimbursement">
                     <i class="fa fa-search"></i>
                 </div>
+                <div class="accepted_table">
                 <table id="claim_history_table">
                     <thead>
                     <tr>
@@ -170,7 +233,7 @@
                     if (boolval($row)) {
                         for ($i = 0; $i < sizeof($row); $i++) {
                             $vai = $row[$i];
-                            if ($vai->reimbursement_status == "accepted" || $vai->reimbursement_status == "rejected") { ?>
+                            if ($vai->reimbursement_status == "accepted") { ?>
                                 <tr>
                                     <td><?php print_r($vai->claim_date); ?></td>
                                     <td><?php print_r($vai->claim_amount); ?></td>
@@ -183,6 +246,46 @@
                     } ?>
                     </tbody>
                 </table>
+                </div>
+                <div class="name_tab">
+                <p><i class="fa fa-times"></i>  Rejected Reimbursements</p>
+                <hr>
+                </div>
+                <div class="search_bar">
+                    <input class="reimbursement_search" type="text" id="reimbursement1">
+                    <i class="fa fa-search"></i>
+                </div>
+                <div class="rejected_table">
+                <table id="claim_history_table">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="handled_table1">
+                    <?php
+                    $i = 0;
+                    if (boolval($row)) {
+                        for ($i = 0; $i < sizeof($row); $i++) {
+                            $vai = $row[$i];
+                            if ($vai->reimbursement_status == "rejected") { ?>
+                                <tr>
+                                    <td><?php print_r($vai->claim_date); ?></td>
+                                    <td><?php print_r($vai->claim_amount); ?></td>
+                                    <td><?php print_r($vai->reimbursement_reason); ?></td>
+                                    <td style="text-transform: capitalize"><?php print_r($vai->reimbursement_status); ?></td>
+                                </tr>
+
+                            <?php }
+                        }
+                    } ?>
+                    </tbody>
+                </table>
+                </div>
             </div>
 
         </div>
@@ -191,6 +294,3 @@
 <script src="public/js/reimbursement.js"></script>
 </body>
 </html>
-
-
-

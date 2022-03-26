@@ -15,6 +15,13 @@ body {
     width: 100%;
 }
 
+.back_btn1 i {
+    margin-left: 4%;
+    margin-top: 2px;
+    font-size: xx-large;
+    color: #1C1D1D;
+}
+
 .reimbursement_details {
     background-color: white;
     max-width: 100%;
@@ -206,6 +213,16 @@ hr {
     border-radius: 5px;
     margin-left: 26px;
     margin-bottom: 10px;
+}
+
+.accepted_table {
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+
+.name_tab p {
+    margin-top: 3%;
+    margin-left: 25px;
 }
 
 input[type=submit] {

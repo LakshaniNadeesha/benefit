@@ -9,6 +9,7 @@ class Reporting extends Controller
 
         if(Auth::access('HR Manager')){
             $user1=new ReimbursementrequestModel();
+            $row1=new Employeedetails();
             $user2=new BenefitrequestModel();
             $user3=new AttendanceModel();
             $reim_row1=array();
@@ -28,7 +29,24 @@ class Reporting extends Controller
             $new3 = date_format($new_date3,"Y-m-d");
             $cur_status = "accepted";
             $ot_status = 0;
+            $row=$row1->findAll();
+            
             $reim_row1=$user1->find_groupby('employee_ID','handled_date','claim_amount','reimbursement_reason','reimbursement_status',$new1,$current_date,$cur_status);
+            // if(boolval($row)){
+            //     for($i=0;$i<sizeof($row)-1;$i++){
+            //         $rows = $user1->find_groupby('employee_ID','handled_date','claim_amount','reimbursement_reason','reimbursement_status',$new1,$current_date,$cur_status,$row[$i]->employee_ID);
+            //         $reim_row1[$i]['employee_NIC']=$row[$i]->employee_NIC;
+            //         $reim_row1[$i]['first_name']=$row[$i]->first_name;
+            //         $reim_row1[$i]['last_name']=$row[$i]->last_name;
+            //         if(boolval($rows)){
+            //             for($j=0;$j<sizeof($rows);$j++){
+
+            //         $reim_row1[$i]['details']=$rows[$j];
+            //         //print_r($reim_row1[$i]['details']);                     
+            //         }
+            //     }
+            //     }
+            // }
             $reim_row2=$user1->find_groupby('employee_ID','handled_date','claim_amount','reimbursement_reason','reimbursement_status',$new2,$current_date,$cur_status);
             $reim_row3=$user1->find_groupby('employee_ID','handled_date','claim_amount','reimbursement_reason','reimbursement_status',$new3,$current_date,$cur_status);
             $bene_row1=$user2->find_benefit_groupby('employee_ID','handled_date','benefit_type','claim_amount','benefit_description','benefit_status',$new1,$current_date,$cur_status);
@@ -37,8 +55,9 @@ class Reporting extends Controller
             $leave_row1=$user3->find_timeoff_groupby('employee_ID','name','date','ot_hours',$new1,$current_date,$ot_status);
             $leave_row2=$user3->find_timeoff_groupby('employee_ID','name','date','ot_hours',$new2,$current_date,$ot_status);
             $leave_row3=$user3->find_timeoff_groupby('employee_ID','name','date','ot_hours',$new3,$current_date,$ot_status);
-           
 
+        
+        //    print_r($reim_row1);
             $this->view('reporting',['reim_row1'=>$reim_row1,'reim_row2'=>$reim_row2, 'reim_row3'=>$reim_row3,
             'bene_row1'=>$bene_row1,'bene_row2'=>$bene_row2, 'bene_row3'=>$bene_row3,
             'leave_row1'=>$leave_row1,'leave_row2'=>$leave_row2, 'leave_row3'=>$leave_row3]);

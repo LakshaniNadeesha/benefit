@@ -98,7 +98,7 @@ body {
     cursor: pointer;
 }
 
-.reject {
+#reject {
     color: rgb(226, 90, 90);
     border: 3px solid rgb(226, 86, 86);
 }
@@ -127,19 +127,9 @@ body {
     color: var(--h2);
 }
 
-.reject:hover {
+#reject:hover {
     background-color: var(--h1);
     color: var(--h2);
-}
-
-#delete {
-    background-color: #6fccee;
-    border: 1.5px solid var(--header);
-    border: 1.5px solid black;
-    border-radius: 20px;
-    min-width: 120px;
-    height: 40px;
-    cursor: pointer;
 }
 
 git .status .detail-container {
@@ -210,6 +200,14 @@ hr {
     overflow-y: auto;
     max-height: 350px;
     padding-bottom: 10px;
+    margin-bottom: 3%;
+}
+
+.history_table1 {
+    overflow-y: auto;
+    max-height: 350px;
+    padding-bottom: 10px;
+    margin-bottom: 3%;
 }
 
 .accept_title {
@@ -255,6 +253,28 @@ hr {
     padding: 20px 0;
     margin-left: 10px;
     margin-right: auto;
+}
+
+#accepted_amount {
+    width: 85%;
+    height: 90%;
+    padding: 0px 20px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#rejected_reason {
+    width: 85%;
+    height: 90%;
+    padding: 0px 20px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 table {
