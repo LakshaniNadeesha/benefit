@@ -247,6 +247,12 @@ class Model extends Database
         return $this->query($query);
     }
 
+    public function rejectLeave($id,$date,$val,$reason)
+    {
+        $query = "update $this->table set leave_status = '$val', reason = '$reason' where employee_ID = '$id' and date = '$date' ";
+        return $this->query($query);
+    }
+
     public function delete($id)
     {
         $query = "delete from $this->table where employee_ID= :id";

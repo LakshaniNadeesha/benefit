@@ -28,7 +28,7 @@ class UpdateemployeeController extends Controller{
 
                 $c_supervisor = $_POST['c_supervisor'];
 
-                echo $c_supervisor;
+                // echo $c_supervisor;
 
                 $s_id = $_POST['supervisor'];
                 $arr2['user_role'] = "Supervisor";
@@ -44,14 +44,14 @@ class UpdateemployeeController extends Controller{
                     $arr['email'] = filter_input(INPUT_POST, 'email_new', FILTER_SANITIZE_EMAIL);
                 }
                 $ar = $user->where('supervisor_ID',$c_supervisor);
-                echo "<br> test before print array <br>";
+                // echo "<br> test before print array <br>";
 
-                echo $c_supervisor;
+                // echo $c_supervisor;
 
-                echo "<br> vnbiebiiniininininininnn <br>";
-                print_r($ar);
-                echo "<br> size of array <br>";
-                print_r(sizeof($ar));
+                // echo "<br> vnbiebiiniininininininnn <br>";
+                // print_r($ar);
+                // echo "<br> size of array <br>";
+                // print_r(sizeof($ar));
 
                 if(sizeof($ar)==1){
                     $set = $user->update($c_supervisor,$arr3);

@@ -24,7 +24,7 @@ if(count($_POST)>0){
 
         $arr1['supervisor_ID'] = $_POST['supervisor_f'];
 
-        print_r($arr1);
+        // print_r($arr1);
 
         $rows = $user->update_del($id,$arr1);
         if($rows){
@@ -38,6 +38,7 @@ if(count($_POST)>0){
     }
 }
     if(isset($_POST['cancel'])){
+
         $this->redirect('EmployeelistController');
     }
 

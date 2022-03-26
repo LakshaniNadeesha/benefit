@@ -97,8 +97,8 @@
                             </table>
 
 
-                            <?php if ($entry->user_role == "Supervisor" && $entry->supervisor_ID == $entry->employee_ID) {
-                                echo "Root Supervisor";
+                            <?php if ($entry->user_role == "Supervisor" && $entry->supervisor_ID == 0) {
+                                // echo "Root Supervisor";
                             ?>
                                 <div class="buttons" id="buttons">
                                     <!-- <button type="sumbit" id="cancel" name="cancel">Cancel</button>
@@ -112,7 +112,7 @@
 
                             <?php
                             } elseif ($entry->user_role == "Supervisor" && $entry->supervisor_ID != 0) {
-                                echo "Supervisore under supervisore";
+                                // echo "Supervisore under supervisore";
                             ?>
                                 <!-- <button class="show-more" id="hr" type="submit" name="show">Show More <i class="fas fa-arrow-right"></i></button> -->
                                 <div class="buttons" id="buttons">

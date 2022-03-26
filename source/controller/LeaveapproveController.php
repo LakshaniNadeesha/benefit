@@ -145,22 +145,24 @@ class LeaveapproveController extends Controller
 
             
             if(isset($_POST['submit1'])){
-                // print_r($_POST);
+                print_r($_POST);
                 $date = $_POST['date'];
                 $id = $_POST['id'];
                 // $val = $_POST['l_status'];
                 $val = "reject";
+                $reason = $_POST['reason'];
+                // $reason = "mnvjbfhj";
 
                 // echo($_POST['l_status']);
 
-                $user_x->updateLeave($id,$date,$val);
-                $this->redirect('LeaveapproveController');
+                $user_x->rejectLeave($id,$date,$val,$reason);
+                // $this->redirect('LeaveapproveController');
 
                 // echo "after user_x";
             }
 
             if(isset($_POST['submit'])){
-                // print_r($_POST);
+                print_r($_POST);
                 $date = $_POST['date'];
                 $id = $_POST['id'];
                 // $val = $_POST['l_status'];
@@ -169,7 +171,7 @@ class LeaveapproveController extends Controller
                 // echo($_POST['l_status']);
 
                 $user_x->updateLeave($id,$date,$val);
-                $this->redirect('LeaveapproveController');
+                // $this->redirect('LeaveapproveController');
             }
         // }
 
