@@ -99,7 +99,7 @@ body {
     cursor: pointer;
 }
 
-#reject {
+.reject {
     color: rgb(226, 90, 90);
     border: 3px solid rgb(226, 86, 86);
 }
@@ -128,10 +128,21 @@ body {
 }
 
 
-#reject:hover {
+.reject:hover {
     background-color: var(--h1);
     color: var(--h2);
 }
+
+#delete {
+    background-color: #6fccee;
+    border: 1.5px solid var(--header);
+    border: 1.5px solid black;
+    border-radius: 20px;
+    min-width: 120px;
+    height: 40px;
+    cursor: pointer;
+}
+
 git .status
 .detail-container {
     width: 100%;

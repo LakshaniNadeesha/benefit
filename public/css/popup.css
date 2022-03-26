@@ -118,6 +118,17 @@
     display: none;
 }
 
+/*///////////////// Don't remove below part  This is for Leave Reject part ///////////////////////////////////////*/
+#delete { 
+    background-color: #6fccee;
+    border: 1.5px solid var(--header);
+    border: 1.5px solid black;
+    border-radius: 10px;
+    min-width: 120px;
+    height: 40px;
+    cursor: pointer;
+}
+
 @keyframes confirm---close {
      from {opacity: 1;}
      to {opacity: 0;}    
