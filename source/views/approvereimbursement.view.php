@@ -115,8 +115,6 @@ function reason_validation() {
                             <center>
                                 <button class="show_btn" type="button" name="show" value="show" id="<?php echo $btnChange ?>" 
                                 onclick="reply_click(this.id)">Show</button>
-                                <!-- <a href="<?= PATH ?>Approvereimbursement/accept_reject/<?//= $requested[$i]['details']->invoice_hashing?>">
-                                <input class="show_btn" type="button" value="Show"></a> -->
                             </center>
                             <script type="text/javascript">
                                     <?php
@@ -283,7 +281,7 @@ function reason_validation() {
                 Description: '',
                 document: '',
                 link: '',
-                // okText: 'Accept',
+                okText: 'Accept',
                 rejectText: 'Reject',
                 onok: function () {},
                 oncancel: function () {},
@@ -298,7 +296,6 @@ function reason_validation() {
             <button class="confirm__close">&times;</button>
         </div>
         <div class="confirm__content">
-        <form name="myForm" action="" method="post" onsubmit="return validation();" enctype="multipart/form-data">
             <div class="row">
                 <div class="column_1">
                     <p>Claimed Date</p>
@@ -333,28 +330,13 @@ function reason_validation() {
                     <a id="link-1" href="${options.link}" download hidden></a>
                 </div>
             </div>
-            <div class="row">
-                <div class="column_1">
-                    <p>Accepted Amount</p>
-                </div>
-                <div class="column_2">
-                    <input type="text" id="accepted_amount" name="accepted_amount">
-                </div>
-            </div>
-            <div class="row">
-                <div class="column_1">
-                    <p>Rejected Reason (If Any)</p>
-                </div>
-                <div class="column_2">
-                    <input type="text" id="rejected_reason" name="rejected_reason">
-                </div>
-            </div>
         </div>      
         <div class="confirm__buttons">
-            <button class="confirm__button confirm__button--ok confirm__button--fill" type="submit" name="submit">Accept</button>
+            <button class="confirm__button confirm__button--ok confirm__button--fill">${options.okText}</button>
+
             <button class="confirm__button confirm__button--cancel">${options.rejectText}</button>
 </div>
-</form>
+
     </div>
 </div>`;
 
