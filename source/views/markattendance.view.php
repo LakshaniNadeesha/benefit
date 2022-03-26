@@ -129,7 +129,7 @@
                                                     $select = 'select';
                                                     $select .= $i;
                                                     ?>
-                                                    <input type="checkbox" id="<?php echo $select ?>" name="person[]"
+                                                    <input class="to_marked" type="checkbox" id="<?php echo $select ?>" name="person[]"
                                                            value="<?php print_r($not_marked[$i]->employee_ID); ?>"
                                                            onclick="checkMe(this.id)">
                                                     <script>
@@ -137,9 +137,13 @@
                                                         hideBox.addEventListener('change', function (e) {
                                                             if (hideBox.checked) {
                                                                 list.style.display = "initial";
-                                                            } else {
+                                                            } else if(hideBox.checked == false){
                                                                 list.style.display = "none";
                                                             }
+                                                        });
+
+                                                        $('.to_marked').on('change', function () {
+                                                            $('.mark').not(this).prop('checked', false);
                                                         });
                                                     </script>
                                                     <a href="http://localhost/benefit/markattendance/absent/<?php print_r($not_marked[$i]->employee_ID); ?>/<?php echo date('Y-m-d'); ?>">
@@ -167,7 +171,7 @@
                                                 <p class="content1"><?php print_r($previous[$j]->name); ?></p>
 
                                                 <p class="content2"
-                                                   id="previousDate"><?php print_r($previous[$j]->date) ?>
+                                                   id="previousDate<?php echo $j;?>" value="<?php print_r($previous[$j]->date) ?>"><?php print_r($previous[$j]->date) ?>
                                                 <p class="content3"><?php print_r($previous[$j]->designation_code) ?></p>
                                                 <?php
                                                 $selected = 'selected';
@@ -188,6 +192,9 @@
                                             $('.mark').on('change', function () {
                                                 $('.mark').not(this).prop('checked', false);
                                             });
+                                            $('.mark').on('change', function () {
+                                                $('.to_marked').not(this).prop('checked', false);
+                                            });
                                         </script>
                                         <?php
                                         } ?>
@@ -201,8 +208,7 @@
                             <div class="form-content">
                                 <div class="date">
                                     <div for="date">Date :</div>
-                                    <input type="date" name="date" id="date" value="<?php echo date('Y-m-d'); ?>"
-                                           required>
+                                    <input type="date" name="date" id="attend_date" value="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d'); ?>" required>
                                 </div>
                                 <div class="selected-names">
                                     <?php
@@ -240,6 +246,7 @@
                                         }
                                     } ?>
                                 </div>
+                                <div class="form_data">
                                 <div class="row">
                                     <label for="arrival">Arrival</label>
                                     <input type="time" name="arrival" id="arrival" value="08:00:00" required>
@@ -252,6 +259,7 @@
                                     <label for="ot-hours">OT Hours</label>
                                     <input type="number" name="ot-hours" id="ot-hours" value="0" min="0">
                                 </div>
+                                </div>
                                 <div class="buttons">
                                     <button type="reset" class="m-cancel">Cancel</button>
                                     <input type="submit" class="m-mark" value="Mark" name="mark">
@@ -261,14 +269,9 @@
 
             </div>
         </div>
-
         <div class="history-table">
             <p>Attendance History</p>
             <hr>
-            <div class="search_bar">
-                <input class="attendance_search" type="text" id="attendance">
-                <i class="fa fa-search"></i>
-            </div>
             <?php if (boolval($history)) { ?>
                 <div id="h-table">
                     <table>
@@ -281,7 +284,7 @@
                         <th>Status</th>
                         <th>Option</th>
                         </thead>
-                        <tbody id="attendance_table">
+                        <tbody>
                         <?php
                         for ($i = 0; $i < sizeof($history); $i++) {
                             if (boolval($history[$i])) {
@@ -342,96 +345,6 @@
     </div>
 </div>
 <script>
-    function checkMe(select) {
-        var check = document.getElementById(select);
-        var border = document.getElementById('attendance_form');
-        let text1 = select;
-        let text2 = "ab_";
-        let t = text2.concat(text1);
-        var show = document.getElementById(t);
-        if (check.checked == true) {
-            show.style.display = "block";
-            border.style.display = "block";
-            border.style.border = "3px solid orange";
-        } else {
-            show.style.display = "none";
-            border.style.display = "none";
-            border.style.border = "2px solid var(--h1)";
-        }
-    }
-
-    function checkThis(selected) {
-        var check = document.getElementById(selected);
-        var now = document.getElementById('now');
-        var not_now = document.getElementById('not-now');
-        var border = document.getElementById('attendance_form');
-        var date = document.getElementById('date');
-        var previousDate = document.getElementById('previousDate');
-        let text1 = selected;
-        let text2 = "abs_";
-        let t = text2.concat(text1);
-        var show = document.getElementById(t);
-        if (check.checked == true) {
-            show.style.display = "block";
-            border.style.display = "block";
-            border.style.border = "3px solid orange";
-            now.style.display = "none";
-            date.value = previousDate;
-
-            //var today = new Date();
-            //previousDate = previousDate.value.split("-").reverse().join("-");
-            //var dd = String(previousDate.getDate()).padStart(2, '0');
-            //var mm = String(previousDate.getMonth() + 1).padStart(2, '0'); //January is 0!
-            //var yyyy = previousDate.getFullYear();
-
-            //previousDate = mm + '/' + dd + '/' + yyyy;
-            console.log(previousDate);
-            console.log(typeof previousDate);
-
-            //console.log(date.value);
-        } else {
-            show.style.display = "none";
-            border.style.display = "none";
-            border.style.border = "2px solid var(--h1)";
-        }
-    }
-</script>
-<script>
-    var slideIndex = 1;
-    showSlides(slideIndex);
-
-    // Next/previous controls
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
-
-    // Thumbnail image controls
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
-        var dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {
-            slideIndex = 1
-        }
-        if (n < 1) {
-            slideIndex = slides.length
-        }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " active";
-
-    }
-</script>
-<script>
     const Change = {
         open(options) {
             options = Object.assign({}, {
@@ -477,6 +390,14 @@
                                     <input type="date" id="date" name="date" value="${options.date}" readonly>
                                 </div>
                             </div>
+                            <div class="row">
+                            <div class="column_1">
+                                <label for="status" style="outline: none">Status: </label>
+                            </div>
+                            <div class="column_2">
+                                <input type="text" style="outline: none" id="status" name="status" value="${options.status}" readonly>
+                            </div>
+                        </div>
                         </div>
                         <div class="row">
                             <div class="column_1">
@@ -486,7 +407,6 @@
                                 <input type="time" id="arrival" name="arrival" value="${options.arrival}" required >
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="column_1">
                                 <label for="departure">Departure</label>
@@ -503,17 +423,9 @@
                                 <input type="number" id="ot_hours" name="ot_hours" value="${options.ot}" required>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="column_1">
-                                <label for="status">Status</label>
-                            </div>
-                            <div class="column_2">
-                                <input type="text" id="status" name="status" value="${options.status}" readonly>
-                            </div>
-                        </div>
                         <div class="confirm__buttons">
-                            <button class="confirm_button confirm_button--cancel" type="reset">${options.cancelText}</button>
-                            <button class="confirm_button confirmbutton--ok confirm_button--fill" type="submit" value="Change" name="submit">Change</button>
+                            <button class="confirm__button confirm__button--cancel" type="reset">${options.cancelText}</button>
+                            <button class="confirm__button confirm__button--ok confirm__button--fill" type="submit" value="Change" name="submit">Change</button>
                         </div>
                  </form>
             </div>
@@ -553,6 +465,95 @@
         }
     }
 
+</script>
+<script>
+    function checkMe(select) {
+        var check = document.getElementById(select);
+        var border = document.getElementById('attendance_form');
+        let text1 = select;
+        let text2 = "ab_";
+        let t = text2.concat(text1);
+        var show = document.getElementById(t);
+        if (check.checked == true) {
+            show.style.display = "block";
+            border.style.display = "block";
+            border.style.border = "3px solid orange";
+        } else {
+            show.style.display = "none";
+            border.style.display = "none";
+            border.style.border = "2px solid var(--h1)";
+        }
+    }
+
+    function checkThis(selected) {
+        var check = document.getElementById(selected);
+        var now = document.getElementById('now');
+        var not_now = document.getElementById('not-now');
+        var border = document.getElementById('attendance_form');
+
+        var id = selected[8];
+        var text3 = "previousDate";
+        var date_id = text3.concat(id);
+        var previousDate = document.getElementById(date_id).getAttribute('value');
+        //console.log(date_id);
+        console.log(previousDate);
+
+        let text1 = selected;
+        let text2 = "abs_";
+        let t = text2.concat(text1);
+        var show = document.getElementById(t);
+        if (check.checked) {
+            show.style.display = "block";
+            border.style.display = "block";
+            border.style.border = "3px solid orange";
+            now.style.display = "none";
+            var date = document.getElementById('attend_date');
+            date.value = '2022-03-01';
+            console.log(previousDate);
+            console.log('hi');
+
+        } else {
+            show.style.display = "none";
+            border.style.display = "none";
+            border.style.border = "2px solid var(--h1)";
+            console.log('no-hi');
+        }
+    }
+</script>
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    // Next/previous controls
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    // Thumbnail image controls
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+
+    }
 </script>
 </body>
 </html>
