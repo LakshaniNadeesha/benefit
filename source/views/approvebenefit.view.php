@@ -27,6 +27,22 @@
                 });
             });
         });
+
+        function validate_amount(e) {
+                var t = e.value;
+                e.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 3)) : t;
+        }
+
+        function number_validation() {
+            var n = document.forms["myform"]["claim_amount"].value;
+
+            var decimal = /^[+]?[0-9]+\.[0-9]{2}$/;
+            if (!n.match(decimal)) {
+                document.getElementById("numberText").innerHTML = "<div style='font-family: Arial,serif; font-size: smaller; color: red'><i class='fas fa-exclamation' style='color: red;'></i> Please enter Numeric value</div>";
+                return false;
+            }
+        }
+
     </script>
 </head>
 
@@ -281,7 +297,7 @@
                                 <label for="accepting_amount">Accepting Amount (LKR)</label>
                             </div>
                             <div class="benefit_column_2">
-                                <input type="text" name="accepting_amount" value="${options.amount}">
+                                <input type="text" name="accepting_amount" value="${options.amount}" pattern="[0-9._%+-]+\.[0-9]{2}$" required oninput="validate_amount(this)">
                             </div>
                         </div>
                         <div class="benefit_row_1">
