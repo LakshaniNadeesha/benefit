@@ -97,7 +97,7 @@
                             </table>
 
 
-                            <?php if ($entry->user_role == "Supervisor" && $entry->supervisor_ID == 0) {
+                            <?php if (($entry->user_role == "Supervisor" || $entry->user_role == "HR Manager" || $entry->user_role == "HR Officer") && $entry->supervisor_ID == 0) {
                                 // echo "Root Supervisor";
                             ?>
                                 <div class="buttons" id="buttons">
@@ -111,7 +111,7 @@
                                 </div>
 
                             <?php
-                            } elseif ($entry->user_role == "Supervisor" && $entry->supervisor_ID != 0) {
+                            } elseif (($entry->user_role == "Supervisor" || $entry->user_role == "HR Manager" || $entry->user_role == "HR Officer") && $entry->supervisor_ID != 0) {
                                 // echo "Supervisore under supervisore";
                             ?>
                                 <!-- <button class="show-more" id="hr" type="submit" name="show">Show More <i class="fas fa-arrow-right"></i></button> -->

@@ -5,46 +5,56 @@
  */
 class DeleteemployeeController extends Controller
 {
-	
-	function index()
-	{
 
-        if(!isset($_SESSION)){
+    function index()
+    {
+
+        if (!isset($_SESSION)) {
             session_start();
         }
 
-		$user = new UpdateemployeeModel();
-        $data = $user->where('employee_ID',$_SESSION['id'] );
+        $user = new UpdateemployeeModel();
+        $data = $user->where('employee_ID', $_SESSION['id']);
         $data1 = $user->findAll();
         $id = $_SESSION['id'];
 
-if(count($_POST)>0){
-    if(isset($_POST['delete'])){
-        //$user=new Employeedetails();
+        echo "<pre>";
+        print_r($data[0]->user_role);
+        echo "</pre>";
 
-        $arr1['supervisor_ID'] = $_POST['supervisor_f'];
+        if (count($_POST) > 0) {
 
-        // print_r($arr1);
+            print_r($_POST);
+            if (isset($_POST['delete'])) {
+                //$user=new Employeedetails();
 
-        $rows = $user->update_del($id,$arr1);
-        if($rows){
-            echo "done /////////////////////////////////////////////////////////////";
+                $arr1['supervisor_ID'] = $_POST['supervisor_f'];
+
+                print_r($arr1);
+
+                // if ($data[0]->user_role == "HR Manager" || $data[0]->user_role == "HR Officer" || $data[0]->user_role == "Director") {
+                //     $arr2['user_role'] = $data[0]->user_role;
+                //     $row = $user->update($_POST['supervisor_f'], $arr2);
+                // }
+                $arr2['user_role'] = $data[0]->user_role;
+                $row = $user->update($_POST['supervisor_f'], $arr2);
+
+                $rows = $user->update_del($id, $arr1);
+                if ($rows) {
+                    echo "done /////////////////////////////////////////////////////////////";
+                }
+                $arr['banned_employees'] = 1;
+                $row = $user->update($id, $arr);
+
+                //$set = $user->delete($id);
+                // $this->redirect('EmployeelistController');
+            }
         }
-        $arr['banned_employees']=1;
-        $row=$user->update($id,$arr);
+        if (isset($_POST['cancel'])) {
 
-        //$set = $user->delete($id);
-        $this->redirect('EmployeelistController');
+            $this->redirect('EmployeelistController');
+        }
+
+        $this->view('deleteemployee', ['rows' => $data, 'rows2' => $data1]);
     }
-}
-    if(isset($_POST['cancel'])){
-
-        $this->redirect('EmployeelistController');
-    }
-
-    $this->view('deleteemployee',['rows'=>$data, 'rows2'=>$data1]);
-
-
-}
-   
 }
