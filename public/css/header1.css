@@ -102,6 +102,10 @@ body {
     cursor: pointer;
 }
 
+.show_hide {
+    display: none !important;
+}
+
 
 /* bell notification*/
 
@@ -264,6 +268,7 @@ body {
         right: 0;
         float: right;
         display: block;
+        margin-top: 5px;
     }
 }
 
@@ -310,11 +315,23 @@ body {
     /*.toggle_section {*/
     /*    display: none;*/
     /*}*/
-    #show_hide {
+    .show_hide {
         display: block !important;
     }
+
+    .dd_main {
+        display: none;
+    }
+
+
     .toggle_section {
-        margin-top: 0;
+        margin-bottom: auto;
+        margin-right: 40px;
+        margin-top: 15px;
+    }
+
+    .topnav responsive {
+        margin-bottom: auto;
     }
 }
 

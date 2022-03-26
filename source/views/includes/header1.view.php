@@ -37,9 +37,9 @@
             //     $(this).addClass("active");
             // });
         });
-        
+
     </script>
-   
+
 </head>
 <body>
 <div class="topnav" id="myTopnav">
@@ -61,8 +61,7 @@
         <?php endif; ?>
 
 
-        <a href="<?= PATH ?>Logout" id="#show_hide" style="display: none">Log Out </a>
-        <a href="" id="#show_hide" style="display: none">Notifications </a>
+        <a href="<?= PATH ?>Logout" id="#show_hide" class="show_hide">Log Out </a>
     </div>
 
     <div class="toggle_section">
@@ -70,8 +69,9 @@
             <div class="navbar">
                 <div class="navbar_right">
                     <div class="notifications">
-                        <div class="icon_wrap"><i class="far fa-bell" aria-hidden="true"></i><?php $notifications = Auth::notification();
-                                if (boolval($notifications)) {?><span class="badge"></span><?php } ?></div>
+                        <div class="icon_wrap"><i class="far fa-bell"
+                                                  aria-hidden="true"></i><?php $notifications = Auth::notification();
+                            if (boolval($notifications)) { ?><span class="badge"></span><?php } ?></div>
 
                         <div class="notification_dd">
                             <ul class="notification_ul">
@@ -81,43 +81,45 @@
                                         for ($j = 0; $j < sizeof($notifications); $j++) {
                                             ?>
                                             <li class="">
-                                                    <div class="left_content">
-                                                        <?php if($notifications[$j]->description == "Benefit Request"){ ?>
-                                                        <a href="<?= PATH ?>Approvebenefit" class="link"><?php print_r($notifications[$j]->description); ?></a>
-                                                        <?PHP } ?>
-                                                        <?php if($notifications[$j]->description == "Reimbursement Request"){ ?>
-                                                            <a href="<?= PATH ?>Approvereimbursement" class="link"><?php print_r($notifications[$j]->description); ?></a>
-                                                        <?PHP } ?>
-                                                        <?php if($notifications[$j]->description == "Leave Request"){ ?>
-                                                            <a href="<?= PATH ?>Approvereimbursement" class="link"><?php print_r($notifications[$j]->description); ?></a>
-                                                        <?PHP } ?>
+                                                <div class="left_content">
+                                                    <?php if ($notifications[$j]->description == "Benefit Request") { ?>
+                                                        <a href="<?= PATH ?>Approvebenefit"
+                                                           class="link"><?php print_r($notifications[$j]->description); ?></a>
+                                                    <?PHP } ?>
+                                                    <?php if ($notifications[$j]->description == "Reimbursement Request") { ?>
+                                                        <a href="<?= PATH ?>Approvereimbursement"
+                                                           class="link"><?php print_r($notifications[$j]->description); ?></a>
+                                                    <?PHP } ?>
+                                                    <?php if ($notifications[$j]->description == "Leave Request") { ?>
+                                                        <a href="<?= PATH ?>Approvereimbursement"
+                                                           class="link"><?php print_r($notifications[$j]->description); ?></a>
+                                                    <?PHP } ?>
                                                 </div>
                                                 <div class="right_content">
                                                     <?php
                                                     date_default_timezone_set("Asia/Colombo");
-                                                    $day1=date("y-m-d");
-                                                    $day2=$notifications[$j]->date;
+                                                    $day1 = date("y-m-d");
+                                                    $day2 = $notifications[$j]->date;
                                                     $date1 = date_create($day1);
-                                                    $date2=date_create($day2);
-                                                    $diff=date_diff($date2,$date1);
+                                                    $date2 = date_create($day2);
+                                                    $diff = date_diff($date2, $date1);
                                                     $days = $diff->format("%R%a days");
-                                                    if($days >= 1){
+                                                    if ($days >= 1) {
                                                         echo $days;
                                                     } else {
-                                                       $t1 = $notifications[$j]->time;
-                                                       $t2 = date("H:m:s");
-                                                       $time1 = date_create($t1);
-                                                       $time2 = date_create($t2);
-                                                       $time_diff = date_diff($time2,$time1);
-                                                       if($time_diff->h < 1){
-                                                           $minutes = $time_diff->days * 24 * 60;
-                                                           $minutes += $time_diff->h * 60;
-                                                           $minutes += $time_diff->i;
-                                                           echo $minutes.' minutes ago';
-                                                       }
-                                                       else {
-                                                           echo $time_diff->h . "h ago";
-                                                       }
+                                                        $t1 = $notifications[$j]->time;
+                                                        $t2 = date("H:m:s");
+                                                        $time1 = date_create($t1);
+                                                        $time2 = date_create($t2);
+                                                        $time_diff = date_diff($time2, $time1);
+                                                        if ($time_diff->h < 1) {
+                                                            $minutes = $time_diff->days * 24 * 60;
+                                                            $minutes += $time_diff->h * 60;
+                                                            $minutes += $time_diff->i;
+                                                            echo $minutes . ' minutes ago';
+                                                        } else {
+                                                            echo $time_diff->h . "h ago";
+                                                        }
                                                     }
                                                     ?>
                                                 </div>
