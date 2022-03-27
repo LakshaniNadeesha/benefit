@@ -118,7 +118,7 @@ class Currentdataformer extends Controller
                     $annual_array['leave_type'] = $_POST['annual'];
                     $annual_array['max_leave_count'] = $_POST['annual_max'];
                     $annual_array['remain_leave_count'] = $_POST['annual_remaining'];
-                    //$leave->insert($annual_array);
+                    $leave->insert($annual_array);
                     //print_r($arr);
 //                    print_r($sick_array);
 //                    print_r($casual_array);

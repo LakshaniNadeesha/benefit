@@ -116,6 +116,7 @@ body {
 .title {
     font-weight: bold;
     font-size: larger;
+    margin-left: 10px;
 }
 
 .header-approve:hover {
