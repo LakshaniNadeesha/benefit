@@ -11,6 +11,7 @@ class UpdateemployeeController extends Controller{
         $user = new UpdateemployeeModel();
         $data = $user->where('employee_ID',$_SESSION['id'] );
         // echo $data;
+        // print_r($data);
         // echo "khbkcbiik";
         $id = $_SESSION['id'];
 
@@ -59,7 +60,11 @@ class UpdateemployeeController extends Controller{
 
                 }
                 $set = $user->update($id,$arr);
-                $set = $user->update($s_id,$arr2);
+
+                if($data[0]->user_role != "HR Manager"){
+                    $set = $user->update($s_id,$arr2);
+                }
+                
 
 
                 if((isset($set))){

@@ -13,9 +13,9 @@ class LeavedetailsController extends Controller
         $leave_list = $user_x->where('employee_ID', $id);
         $remain_list = $user2->where('employee_ID', $id);
 
-        echo "<pre>";
-        print_r($remain_list);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($remain_list);
+        // echo "</pre>";
         $arr1 = array();
         $arr2 = array();
         $arr3 = array();
@@ -72,9 +72,9 @@ class LeavedetailsController extends Controller
                     $arr3['sick'] = $sick;
                 }
 
-                echo "<pre>";
-                print_r($arr3);
-                echo "</pre>";
+                // echo "<pre>";
+                // print_r($arr3);
+                // echo "</pre>";
             }
         }
 
@@ -86,9 +86,9 @@ class LeavedetailsController extends Controller
                 $column1 = "employee_ID";
                 $column2 = "date";
 
-                print_r($_POST);
+                // print_r($_POST);
                 $query = $user_x->delete_two_and($column1, $data1, $column2, $data2);
-                print_r($query);
+                // print_r($query);
 
                 if (boolval($query)) {
                     $this->redirect('LeavedetailsController');

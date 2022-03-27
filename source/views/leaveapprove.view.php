@@ -62,9 +62,9 @@
 
                         // print_r($emp[1]);
 
-                        // echo "<pre>";
-                        // print_r($emp);
-                        // echo "</pre>";
+                        echo "<pre>";
+                        print_r($emp);
+                        echo "</pre>";
 
                         if (boolval($emp)) {
 
@@ -81,7 +81,7 @@
                                     $id_arr = array();
                                     // echo $n;
                                     for ($j = 0; $j < $n; $j++) {
-                                        if ($emp >= 1 && ($emp[$i]['details'][$j]->date != '0000-00-00')) { ?>
+                                        if ($emp >= 1) { ?>
                                             <div class="header-approve" style="height: 280px;" id="btn">
                                                 <center>
                                                     <img src="<?= IMG_PATH ?>\profile\download.png" class="profile__image">
@@ -158,7 +158,7 @@
                         }
                     } ?>
 
-                    <!-- <?php print_r($id_arr); ?> -->
+                    <?php print_r($id_arr); ?>
 
                     <div class="confirm init">
 
@@ -214,7 +214,7 @@
                             for (let j = 0; j < dataArray[i]['details'].length; j++) {
 
                                 var id = "#reject" + i+j;
-                                // document.write(id);
+                                document.write(id);
                                 const reject = document.querySelector(id);
                                 const cancel = document.querySelector('#cancel');
                                 const sub = document.querySelector('#sub');

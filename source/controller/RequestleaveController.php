@@ -42,62 +42,117 @@ class RequestleaveController extends Controller
         $arr1 = array();
 
 
-        echo "leavelist<pre>";
-        print_r($leave_list);
-        echo "</pre>";
+        // echo "leavelist<pre>";
+        // print_r($leave_list);
+        // echo "</pre>";
 
         if (boolval($leave_list)) {
 
             $sick = 0;
             $casual = 0;
             $annual = 0;
+            $sick1 = 0;
+            $casual1 = 0;
+            $annual1 = 0;
             for ($i = 0; $i < sizeof($leave_list); $i++) {
 
                 if ($leave_list[$i]->leave_status === "pending" || $leave_list[$i]->leave_status === "approve") {
                     array_push($arr1, $leave_list[$i]);
-                    if ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending" && $leave_list[$i]->leave_type == "sick") {
-                        $sick = $sick + 1;
-                    } elseif ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending"  && $leave_list[$i]->leave_type == "sick" && $leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening") {
-                        $sick = $sick + 0.5;
-                    }elseif ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending"  && $leave_list[$i]->leave_type == "casual") {
-                        $casual = $casual + 1;
-                    }elseif ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending"  && $leave_list[$i]->leave_type == "casual" && $leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening") {
-                        $casual = $casual + 0.5;
-                    } elseif ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending" && $leave_list[$i]->leave_type == "annual" && $leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening") {
-                        $annual = $annual + 0.5;
-                    }elseif ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending" && $leave_list[$i]->leave_type == "annual") {
-                        $annual = $annual + 1;
-                      
-                    }elseif ($leave_list[$i]->leave_status === "reject" && $leave_list[$i]->leave_type == "casual") {
-                        $casual = $casual - 1;
-                    }elseif ($leave_list[$i]->leave_status === "reject" && $leave_list[$i]->leave_type == "casual" && $leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening") {
-                        $casual = $casual - 0.5;
-                    }elseif ($leave_list[$i]->leave_status === "reject" && $leave_list[$i]->leave_type == "annual") {
-                        $annual = $annual - 1;
-                    }elseif ($leave_list[$i]->leave_status === "reject" && $leave_list[$i]->leave_type == "annual" && $leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening") {
-                        $annual = $annual - 0.5;
-                    }
-
-                    $arr3['casual'] = $casual;
-                    $arr3['annual'] = $annual;
-                    $arr3['sick'] = $sick;
-
-
-
-                    print_r($arr1);
-                    echo "casual" . $casual . "<br>";
-                    echo "annual" . $annual . "<br>";
-                    echo "sick" . $sick . "<br>";
                 }
+
+                if($leave_list[$i]->leave_type == "sick"){
+                    if($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending"){
+                        if($leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening"){
+                            $sick = $sick + 0.5;
+                        }else{
+                            $sick = $sick + 1;
+                        }
+                    }else{
+                        if($leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening"){
+                            $sick1 = $sick1 - 0.5;
+                        }else{
+                            $sick1 = $sick1 - 1;
+                        }
+                    }
+                }
+
+                if($leave_list[$i]->leave_type == "annual"){
+                    if($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending"){
+                        if($leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening"){
+                            $annual = $annual + 0.5;
+                        }else{
+                            $annual = $annual + 1;
+                        }
+                    }else{
+                        if($leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening"){
+                            $annual1 = $annual1 - 0.5;
+                        }else{
+                            $annual1 = $annual1 - 1;
+                        }
+                    }
+                }
+                if($leave_list[$i]->leave_type == "casual"){
+                    if($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending"){
+                        if($leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening"){
+                            $casual = $casual + 0.5;
+                        }else{
+                            $casual = $casual + 1;
+                        }
+                    }else{
+                        if($leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening"){
+                            $casual1 = $casual1 - 0.5;
+                        }else{
+                            $casual1 = $casual1 - 1;
+                        }
+                    }
+                }
+
+            //     if ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending" && $leave_list[$i]->leave_type == "sick") {
+            //         $sick = $sick + 1;
+            //     if ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending"  && $leave_list[$i]->leave_type == "sick" && $leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening") {
+            //         $sick = $sick + 0.5;
+            //     }
+            //  } elseif ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending"  && $leave_list[$i]->leave_type == "casual") {
+            //         $casual = $casual + 1;
+            //     } elseif ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending"  && $leave_list[$i]->leave_type == "casual" && $leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening") {
+            //         $casual = $casual + 0.5;
+            //     } elseif ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending" && $leave_list[$i]->leave_type == "annual" && $leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening") {
+            //         $annual = $annual + 0.5;
+            //     } elseif ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending" && $leave_list[$i]->leave_type == "annual") {
+            //         $annual = $annual + 1;
+            //     } elseif ($leave_list[$i]->leave_status === "reject" && $leave_list[$i]->leave_type == "casual") {
+            //         $casual = $casual - 1;
+            //     } elseif ($leave_list[$i]->leave_status === "reject" && $leave_list[$i]->leave_type == "casual" && $leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening") {
+            //         $casual = $casual - 0.5;
+            //     } elseif ($leave_list[$i]->leave_status === "reject" && $leave_list[$i]->leave_type == "annual") {
+            //         $annual = $annual - 1;
+            //     } elseif ($leave_list[$i]->leave_status === "reject" && $leave_list[$i]->leave_type == "annual" && $leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening") {
+            //         $annual = $annual - 0.5;
+            //     }
+
+                // $arr3['casual'] = $casual;
+                // $arr3['annual'] = $annual;
+                // $arr3['sick'] = $sick;
+                echo "casual1" . $casual1 . "<br>";
+                echo "annual1" . $annual1 . "<br>";
+                echo "sick1" . $sick1 . "<br>";
+
+
+
+                // print_r($arr1);
+                echo "casual" . $casual . "<br>";
+                echo "annual" . $annual . "<br>";
+                echo "sick" . $sick . "<br>";
+
             }
             for ($j = 0; $j < 3; $j++) {
                 if ($remain_list[$j]->leave_type == 'casual') {
                     $casual_count = $remain_list[$j]->max_leave_count - $casual;
                 }
-                if ($remain_list[$j]->leave_type == 'annual') {
+                elseif ($remain_list[$j]->leave_type == 'annual') {
                     $annual_count = $remain_list[$j]->max_leave_count - $annual;
                 }
-                if ($remain_list[$j]->leave_type == 'sick') {
+                elseif ($remain_list[$j]->leave_type == 'sick') {
                     $sick_count = $remain_list[$j]->max_leave_count - $sick;
                 }
             }
@@ -116,15 +171,15 @@ class RequestleaveController extends Controller
             $user2->update_condition($id, 'employee_ID', 'sick', 'leave_type', $ar_sick);
         }
 
-        echo "remain list<pre>";
-        print_r($remain_list);
-        echo "</pre>";
+        // echo "remain list<pre>";
+        // print_r($remain_list);
+        // echo "</pre>";
         // $sick = 0;
         // $casual = 0;
         // $annual = 0;
 
 
-
+        print_r($_POST);
 
         if (count($_POST) > 0) {
 
@@ -155,68 +210,60 @@ class RequestleaveController extends Controller
 
 
                     // echo(sizeof($date_list));
+                    print_r($date_list);
 
                     if (boolval($date_list)) {
-                    };
-                    for ($i = 0; $i < sizeof($date_list); $i++) {
-                        // echo("size of date list ". sizeof($date_list));
-                        // echo "<br>";
-                        // echo $i;
-                        $week_day = date_create($date_list[$i]);
-                        // echo "<br>";
-                        // echo "Week day ";
-                        // echo date_format($week_day,"l");
 
-
-                        if (date_format($week_day, "l") == "Sunday") {
+                        for ($i = 0; $i < sizeof($date_list); $i++) {
+                            // echo("size of date list ". sizeof($date_list));
                             // echo "<br>";
-                            // echo "inside if condition";
+                            // echo $i;
+                            $week_day = date_create($date_list[$i]);
                             // echo "<br>";
+                            // echo "Week day ";
                             // echo date_format($week_day,"l");
-                            // echo "<br>";
-                            // continue;
-                            // echo($i);
-                            $arr2[1] = 1;
 
 
-                            // echo "<br>";
+                            if (date_format($week_day, "l") == "Sunday") {
+                                // echo "<br>";
+                                // echo "inside if condition";
+                                // echo "<br>";
+                                // echo date_format($week_day,"l");
+                                // echo "<br>";
+                                // continue;
+                                // echo($i);
+                                $arr2[1] = 1;
 
-                        } else {
 
-                            // echo "else part  ";
-                            // $arr2['sunday'] = 0;
-                            $arr['employee_ID'] = Auth::user();
-                            $arr['leave_type'] = $_POST['leave_type'];
-                            $arr['date'] = $date_list[$i];
-                            $arr['request_date'] = $today;
-                            $arr['leave_status'] = "pending";
-                            $row = "date";
-                            $date_exist = $this->validate($arr['date'], $user, $row);
-
-                            // if($arr['leave_type'] == 'sick'){
-                            //     $ar_sick['sick'] = $sick_count;
-                            // }
-                            // $ar_casual['casual'] = $casual_count;
-                            // $ar_annual['annual'] = $annual_count;
-
-                            if (boolval($date_exist)) {
-
-                                // echo "Date already leave";
-                                // $arr2['date_validation'] = $arr['date'] . " Date is already Requested";
-                                $arr2[0] = $arr['date'] . " Date is already Requested";
-                                // print_r($arr2);
-
-                                // break;
+                                // echo "<br>";
 
                             } else {
-                                $user->insert($arr);
-                                // $user2->update_condition($id,'employee_ID',$arr['leave_type'],'leave_type',$ar_sick);
 
+                                // echo "else part  ";
+                                // $arr2['sunday'] = 0;
+                                $arr['employee_ID'] = Auth::user();
+                                $arr['leave_type'] = $_POST['leave_type'];
+                                $arr['date'] = $date_list[$i];
+
+                                print_r($date_list[$i]);
+                                $arr['request_date'] = $today;
+                                $arr['leave_status'] = "pending";
+                                $row = "date";
+
+
+                                $date_exist = $this->validate('employee_ID', 'date', $arr['employee_ID'], $arr['date'], $user);
+
+                                if (boolval($date_exist)) {
+                                    $arr2['date_validation'] = $arr['date'] . " Date is already Requested";
+                                    // break;  
+                                } else {
+                                    $user->insert($arr);
+                                }
+
+                                // print_r($arr);
+                                // echo "<br>";
+                                // echo "<br>";
                             }
-
-                            // print_r($arr);
-                            // echo "<br>";
-                            // echo "<br>";
                         }
                     }
                 }
@@ -251,14 +298,11 @@ class RequestleaveController extends Controller
                         // echo "<br>";
 
                     } else {
-                        $date_exist = $this->validate($arr['date'], $user, $row);
+                        $date_exist = $this->validate('employee_ID', 'date', $arr['employee_ID'], $arr['date'], $user);
 
                         if (boolval($date_exist)) {
-                            $arr2[0] =  $arr['date'] . " Date is already Requested";
-
-                            // break;
-                            // echo "Date already leave";
-                            // print_r($arr2);
+                            $arr2['date_validation'] = $arr['date'] . " Date is already Requested";
+                            // break;  
                         } else {
                             $user->insert($arr);
                         }
@@ -276,7 +320,7 @@ class RequestleaveController extends Controller
                     $arr['leave_type'] = $_POST['leave_type'];
                     $arr['date'] = $_POST['start_date'];
                     // $arr['ending_date'] = $_POST['end_date'];
-                    $arr['leave_status'] = "Pending";
+                    $arr['leave_status'] = "pending";
                     $arr['date'] = $_POST['half_date'];
                     $arr['request_date'] = $today;
                     $half_date = $_POST['half_date'];
@@ -324,7 +368,7 @@ class RequestleaveController extends Controller
                             // echo "<br>";
 
                         } else {
-                            $date_exist = $this->validate($arr['date'], $user, $row);
+                            $date_exist = $this->validate('employee_ID', 'date', $arr['employee_ID'], $arr['date'], $user);
 
                             if (boolval($date_exist)) {
                                 $arr2['date_validation'] = $arr['date'] . " Date is already Requested";
@@ -342,34 +386,34 @@ class RequestleaveController extends Controller
 
                     }
 
-                    $arr['employee_ID'] = Auth::user();
-                    $arr['leave_type'] = $_POST['leave_type'];
-                    $arr['date'] = $date_list[$arr_end];
+                    // $arr['employee_ID'] = Auth::user();
+                    // $arr['leave_type'] = $_POST['leave_type'];
+                    // $arr['date'] = $date_list[$arr_end];
 
-                    if (boolval($_POST['half_time'])) {
-                        $arr['half_time'] = $_POST['half_time'];
-                    }
-                    // $arr['half_time'] = $_POST['half_time'];
-                    $arr['leave_status'] = "Pending";
+                    // if (boolval($_POST['half_time'])) {
+                    //     $arr['half_time'] = $_POST['half_time'];
+                    // }
+                    // // $arr['half_time'] = $_POST['half_time'];
+                    // $arr['leave_status'] = "pending";
 
-                    $row = "date";
-                    $date_exist = $this->validate($arr['date'], $user, $row);
+                    // $row = "date";
+                    // $date_exist = $this->validate($arr['date'], $user, $row);
 
-                    if ($date_exist) {
-                        $arr2['date_validation'] = $arr['date'] . " Date is already Requested";
+                    // if ($date_exist) {
+                    //     $arr2['date_validation'] = $arr['date'] . " Date is already Requested";
 
-                        // echo "Date already leave";
-                        // break;  
-                    } else {
-                        $user->insert($arr);
-                        $arr2['date_validation'] = $arr['date'] . " Date is already Requested";
+                    //     // echo "Date already leave";
+                    //     // break;  
+                    // } else {
+                    //     $user->insert($arr);
+                    //     $arr2['date_validation'] = $arr['date'] . " Date is already Requested";
 
-                        if (boolval($user)) {
-                            $this->redirect('LeavedetailsController', ['row' => $arr2]);
-                        } else {
-                            $this->redirect('RequestleaveController', ['row' => $arr2]);
-                        }
-                    }
+                    //     if (boolval($user)) {
+                    //         $this->redirect('LeavedetailsController', ['row' => $arr2]);
+                    //     } else {
+                    //         $this->redirect('RequestleaveController', ['row' => $arr2]);
+                    //     }
+                    // }
 
 
                     // print_r($arr);
@@ -386,9 +430,9 @@ class RequestleaveController extends Controller
         }
     }
 
-    function validate($email, $user, $row)
+    function validate($colum1, $colum2, $data1, $data2, $user)
     {
-        $validate = $user->where($row, $email);
+        $validate = $user->where_condition($colum1, $colum2, $data1, $data2);
         return $validate;
     }
 }
