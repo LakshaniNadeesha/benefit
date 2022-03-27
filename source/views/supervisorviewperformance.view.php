@@ -45,15 +45,18 @@
             </div>
             <hr>
             <div class="data">
-              <?php
+                <?php
 
                 if(boolval($emp)){
                 for ($i = 0;$i < sizeof($emp);$i++) {
-                    if ($emp >= 1) { ?>
+                    if ($emp >= 1) { 
+                        $address=$emp[$i]['profile_image'];
+                    $profile = substr($address,11); ?>
                 <!-- <form method="post">-->
                 <div class="cards">
                     <center>
-                        <img src="<?php echo $emp[$i]['profile_image'];?>" alt='Profile Image' class="profile__image">
+
+                        <img src="<?= IMG_PATH?>/<?php print_r($profile); ?>" alt='Profile Image' class="profile__image">
                     </center>
                     <div class="name">
                         <p><?php print_r($emp[$i]['first_name']);?></p>
