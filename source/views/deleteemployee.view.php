@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public\css\color.css">
     <!-- <link rel="stylesheet" href="<?= CSS_PATH ?>addemployeeRedirect.css"> -->
-    <link rel="stylesheet" href="public\css\deleteemployee.css">
     <link rel="stylesheet" href="public\css\popup.css">
+    <link rel="stylesheet" href="public\css\deleteemployee.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"> </script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>

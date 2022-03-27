@@ -172,6 +172,16 @@ table td{
     border-style: none;
 }
 
+#delete {
+    background-color: #6fccee;
+    border: 1.5px solid var(--header);
+    border: 1.5px solid black;
+    /* border-radius: 10px; */
+    min-width: 120px;
+    height: 40px;
+    cursor: pointer;
+}
+
 /* #delete {
     background-color: #6fccee;
     border: 1.5px solid var(--header);
