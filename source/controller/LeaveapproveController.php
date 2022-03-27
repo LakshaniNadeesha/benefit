@@ -14,8 +14,9 @@ class LeaveapproveController extends Controller
             $user = new Employeedetails();
             $user_x = new RequestleaveModel();
             $id = Auth::user();
-            $row = $user->where('supervisor_ID', $id);
+            $row = $user->where('supervisor_ID', $id);  //Select All Employee Under this employee
             $row1 = $user->where_condition('employee_ID', 'supervisor_ID', $id, 0);
+            // $row3 = $user->three_where_condition('employee_ID','supervisor_ID','banned_employees',$id,)
 
             // print_r($row1);
             // echo "<br> ////////////////// <br><pre>";
@@ -71,38 +72,37 @@ class LeaveapproveController extends Controller
                 //         print_r($emp);
                 //     echo "</pre> <br>";
 
-                $l = 0;
+                // $l = 0;
                 for ($i = 0; $i < sizeof($row); $i++) {
                     $employee_detailss = $user->where_condition('employee_ID', 'banned_employees', $row[$i]->employee_ID, 0);
 
-
-                    // print_r("<br> <br>".$i . " iteration <br>");
-                    // print_r("Row[" . $i . "]-> employee_ID ".$row[$i]->employee_ID . "<br>");
-                    // echo "<br> Employee Details ////////////////// <pre>";
-                    //     print_r($employee_details);
+                    // echo "<br> Employee Detailss ////////////////// <pre>";
+                    //     print_r($employee_detailss);
                     // echo "</pre> <br>";
 
-                    if (boolval($employee_detailss[$i])) {
+                    if (boolval($employee_detailss)) {
                         // print_r("<br>inside if condition <br>");
 
                         // print_r("employee_detailss[" . $i."]->employee_ID -> ".  $employee_detailss[$i]->employee_ID. "<br>");
-                        $leave_detailss = $user_x->where_or_double('employee_ID', 'leave_status', $employee_detailss[$i]->employee_ID, 'approve', 'reject');
+                        // echo $employee_detailss[0]->employee_ID;
+                        // $leave_detailss = $user_x->where_or_double('employee_ID', 'leave_status', $employee_detailss[0]->employee_ID, 'approve', 'reject');
+                        $leave_detailss = $user_x->where_not('employee_ID','leave_status',$employee_detailss[0]->employee_ID,'pending');
                         //print_r($leave_detailss);
                         // echo "<br> Leave Detailss ////////////////// <pre>";
                         //     print_r($leave_detailss);
                         // echo "</pre> <br>";
 
-                        // print_r("<br> after where or double condition <br>");
+                        // echo sizeof($leave_detailss);
 
-                        if (($employee_detailss[$i]->employee_ID) != null) {
+                        if (($employee_detailss[0]->employee_ID) != null) {
 
                             // }
                             if (boolval($leave_detailss)) {
 
-                                $emps[$i]['employee_ID'] = $employee_detailss[$i]->employee_ID;
-                                $emps[$i]['first_name'] = $employee_detailss[$i]->first_name;
-                                $emps[$i]['last_name'] = $employee_detailss[$i]->last_name;
-                                $emps[$i]['profile_image'] = $employee_detailss[$i]->profile_image;
+                                $emps[$i]['employee_ID'] = $employee_detailss[0]->employee_ID;
+                                $emps[$i]['first_name'] = $employee_detailss[0]->first_name;
+                                $emps[$i]['last_name'] = $employee_detailss[0]->last_name;
+                                $emps[$i]['profile_image'] = $employee_detailss[0]->profile_image;
 
 
                                 $empsss[$i] = sizeof($leave_detailss);
@@ -110,17 +110,11 @@ class LeaveapproveController extends Controller
                                 // print_r("Size of Employee Leave array -> ".sizeof($leave_detailss));
                                 for ($j = 0; $j < sizeof($leave_detailss); $j++) {
 
-                                    // print_r("<br>Inside 2nd for Loop <br>");
-
                                     $emps[$i]['details'][$j] = $leave_detailss[$j];
-
-                                    // print_r("emps[" . $i. "]['details'][".$j."] -> "); 
-                                    // print_r($leave_detailss[$j]);
-                                    // echo("<br><br>");
+                                
                                 }
 
-                                // $i = $i+sizeof($leave_detailss)-1;
-                                $l++;
+                                
                             }
                         }
                     }
@@ -128,6 +122,10 @@ class LeaveapproveController extends Controller
                 // echo "<br> Leave Detailsss ////////////////// <br><pre>";
                 //         print_r($leave_detailss);
                 //     echo "</pre>";
+                // echo "<br> Emps ////////////////// <pre>";
+                //         print_r($emps);
+                //     echo "</pre> <br>";
+
 
             }
 
@@ -148,44 +146,30 @@ class LeaveapproveController extends Controller
 
 
             $this->view('leaveapprove', ['emp' => $emp, 'emps' => $emps]);
-            // if(count($_POST)> 0){
-            // echo "jfnbnenbnoeno";
-            // if(isset($_POST['button'])){
-
-            //     echo "jfnbnenbnoeno";
-            //     $date = $_POST['date'];
-            //     $id = $_POST['id'];
-            //     // $id1 = 'employee_ID';
-            //     // $id2 = 'date';
-            //     $val = 'reject';
-            //     $user_x->updateLeave($id,$date,$val);
-
-            //     echo "after user_x";
-            // }
-            // echo "Check post ";
+            
 
 
-            if (isset($_POST['delete'])) {
-                // print_r($_POST);
+            if (isset($_POST['submit1'])) {
+                print_r($_POST);
 
                 $date = $_POST['date'];
                 $id = $_POST['id'];
-                // $val = $_POST['l_status'];
+                
                 $val = "reject";
                 $reason = $_POST['reason'];
-                // $reason = "mnvjbfhj";
+                // // $reason = "mnvjbfhj";
 
-                // echo($_POST['l_status']);
+                // $this->redirect('AddemployeeRedirectController');
 
                 $user_x->rejectLeave($id, $date, $val, $reason);
-                // $this->redirect('Approvereimbursement');
-                header("Refresh:1");
+                $this->redirect('LeaveapproveRedirect');
+                // header("Refresh:1");
 
                 // echo "after user_x";
             }
 
             if (isset($_POST['submit'])) {
-                // print_r($_POST);
+                print_r($_POST);
 
                 $date = $_POST['date'];
                 $id = $_POST['id'];
@@ -193,10 +177,25 @@ class LeaveapproveController extends Controller
                 $val = "approve";
 
                 // echo($_POST['l_status']);
+                // $this->redirect('AddemployeeRedirectController');
 
                 $user_x->updateLeave($id, $date, $val);
-                // $this->redirect('Approvereimbursement');
+                $this->redirect('LeaveapproveController');
                 header("Refresh:1");
+            }
+
+            if(isset($_POST['table_submit'])){
+                print_r($_POST);
+                $date = $_POST['table_date'];
+                $id = $_POST['table_id'];
+                
+                $val = "reject";
+                $reason = $_POST['table_reason'];
+                // // $reason = "mnvjbfhj";
+
+                // $this->redirect('AddemployeeRedirectController');
+
+                $user_x->rejectLeave($id, $date, $val, $reason);
             }
             // }
 
