@@ -116,8 +116,7 @@
                                             date: '<?php print_r($requested[$i]['details']->claim_date); ?>',
                                             description: '<?php print_r($requested[$i]['details']->benefit_description); ?>',
                                             document: '<?php print_r($requested[$i]['details']->report_location); ?>',
-                                            application: '<?php print_r($requested[$i]['details']->application_number); ?>'
-                                        })
+                                            application: '<?php print_r($requested[$i]['details']->application_number); ?>'                                        })
                                     });
                                 </script>
 

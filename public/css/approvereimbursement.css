@@ -256,7 +256,19 @@ hr {
 }
 
 #accepted_amount {
-    width: 85%;
+    width: 90%;
+    height: 90%;
+    padding: 0px 20px;
+    margin: 10px 0;
+    margin-bottom: 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#rejected_reason {
+    width: 90%;
     height: 90%;
     padding: 0px 20px;
     margin: 10px 0;
@@ -266,15 +278,14 @@ hr {
     box-sizing: border-box;
 }
 
-#rejected_reason {
-    width: 85%;
-    height: 90%;
-    padding: 0px 20px;
-    margin: 10px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+#claim_amount {
+    border: none;
+    margin: 0;
+    height: 10px;
+}
+
+#additional_feilds {
+    margin-top: 14px;
 }
 
 table {
@@ -427,6 +438,7 @@ tr:nth-child(odd) {
     background-color: #EEEEEE;
     display: flex;
     justify-content: flex-end;
+    margin-top: 4%;
 }
 
 .confirm__button {

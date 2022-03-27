@@ -90,7 +90,7 @@ table tr {
 table th,
 table td {
     height: 50px;
-    text-align: center;
+    text-align: left;
     padding-left: 8px;
 }
 

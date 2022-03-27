@@ -7,6 +7,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= CSS_PATH ?>approvereimbursement.css">
+
     <title>Approve Reimbursement</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
@@ -113,8 +114,9 @@ function reason_validation() {
                                 //echo $btnChange;
                             ?>
                             <center>
-                                <button class="show_btn" type="button" name="show" value="show" id="<?php echo $btnChange ?>" 
-                                onclick="reply_click(this.id)">Show</button>
+                            <button class="show_btn" type="button" name="show" value="show"
+                                            id="<?php echo $btnChange ?>" onclick="reply_click(this.id)">Show
+                                    </button>
                             </center>
                             <script type="text/javascript">
                                     <?php
@@ -126,19 +128,19 @@ function reason_validation() {
                                 document.querySelector('<?php echo "#".$btnChange;?>').addEventListener('click', () => {
                                     Confirm.open({
                                         title: 'Request From <?php print_r($requested[$i]['first_name']); echo " "; print_r($requested[$i]['last_name']); ?>',
-                                        ClaimedDate : '<?php print_r($requested[$i]['details']->claim_date); echo "<br>";?>',
-                                        ClaimedAmount : '<?php print_r($requested[$i]['details']->claim_amount); echo "<br>";?>',
-                                        Description : '<?php print_r($requested[$i]['details']->reimbursement_reason); echo "<br>";?>',
-                                        document: '<?php print_r($newString); echo "<br>";?>',
+                                        ClaimedDate : '<?php print_r($requested[$i]['details']->claim_date); ?>',
+                                        ClaimedAmount : '<?php print_r($requested[$i]['details']->claim_amount); ?>',
+                                        Description : '<?php print_r($requested[$i]['details']->reimbursement_reason);?>',
+                                        document: '<?php print_r($newString);?>',
                                         link: '<?php print_r($requested[$i]['details']->invoice_submission) ?>',
-                                        onok: () => {
-                                            window.location.href = "Approvereimbursement/accept/<?php print_r($requested[$i]['details']->invoice_hashing); ?>"
-                                        },
-                                        onreject: () => {
-                                            window.location.href = "Approvereimbursement/reject/<?php print_r($requested[$i]['details']->invoice_hashing); ?>"
-                                        }
+                                        application: '<?php print_r($requested[$i]['details']->reimbursement_ID); ?>'                                        })
 
-                                    })
+                                        // onok: () => {
+                                        //     window.location.href = "Approvereimbursement/accept/<?php //print_r($requested[$i]['details']->invoice_hashing); ?>"
+                                        // },
+                                        // onreject: () => {
+                                        //     window.location.href = "Approvereimbursement/reject/<?php //print_r($requested[$i]['details']->invoice_hashing); ?>"
+                                        // }
                                 });
                             </script>
                         </div>
@@ -181,7 +183,7 @@ function reason_validation() {
                     <tbody id="reimbursement_table">
                     <?php
                     for ($i = 0;$i < sizeof($requested_approve);$i++) {
-                        if($requested_approve[$i]['details']->reimbursement_status == "accepted"){
+                        if($requested_approve[$i]['details']->reimbursement_status == "accepted" || $requested_approve[$i]['details']->reimbursement_status == "half-accepted"){
                     ?>
                     <tr>
                         <td><?php print_r($requested_approve[$i]['details']->claim_date)?></td>
@@ -281,11 +283,12 @@ function reason_validation() {
                 Description: '',
                 document: '',
                 link: '',
-                okText: 'Accept',
+                application:'',
+                // okText: 'Accept',
                 rejectText: 'Reject',
-                onok: function () {},
+                //onok: function () {},
                 oncancel: function () {},
-                onreject: function () {}
+                //onreject: function () {}
             }, options);
 
 
@@ -296,6 +299,14 @@ function reason_validation() {
             <button class="confirm__close">&times;</button>
         </div>
         <div class="confirm__content">
+        <div class="benefit_head" id="myForm">
+
+        <div class="benefit_form">
+
+            <form name="myForm" action="" method="post" autocomplete="off" onsubmit=" return validation(); " enctype="multipart/form-data">
+
+            <input type="text" name="application_number" value="${options.application}" hidden>
+
             <div class="row">
                 <div class="column_1">
                     <p>Claimed Date</p>
@@ -309,7 +320,7 @@ function reason_validation() {
                     <p>Claimed Amount</p>
                 </div>
                 <div class="column_2">
-                    <p>${options.ClaimedAmount}</p>
+                    <input class="claim_amount" type="text" id="claim_amount" name="claim_amount" value="${options.ClaimedAmount}" readonly>
                 </div>
             </div>
             <div class="row">
@@ -330,11 +341,30 @@ function reason_validation() {
                     <a id="link-1" href="${options.link}" download hidden></a>
                 </div>
             </div>
-        </div>      
+            <div class="row">
+                <div class="column_1">
+                <p id="additional_feilds">Accepting Amount (LKR)</p>
+                </div>
+                <div class="column_2">
+                <input type="text" name="accepted_amount" value="${options.ClaimedAmount}" id="accepted_amount">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column_1">
+                <p id="additional_feilds">Rejected Reason (If Any)</p>
+                </div>
+                <div class="column_2">
+                <input type="text" name="rejected_reason" id="rejected_reason">
+                </div>
+            </div>     
         <div class="confirm__buttons">
-            <button class="confirm__button confirm__button--ok confirm__button--fill">${options.okText}</button>
+            <button class="confirm__button confirm__button--ok confirm__button--fill" 
+            type="submit" value="Accept" name="submit">Accept</button>
+            <button class="confirm__button confirm__button--cancel" type="submit" value="Reject" name="reject">${options.rejectText}</button>
+        </div>
+</form>
 
-            <button class="confirm__button confirm__button--cancel">${options.rejectText}</button>
+</div>
 </div>
 
     </div>
@@ -346,7 +376,7 @@ function reason_validation() {
             const confirmEl = template.content.querySelector('.confirm');
             const btnReject = template.content.querySelector('.confirm__button--cancel');
             const btnClose = template.content.querySelector('.confirm__close');
-            const btnOk = template.content.querySelector('.confirm__button--ok');
+            // const btnOk = template.content.querySelector('.confirm__button--ok');
 
             confirmEl.addEventListener('click', e => {
                 if(e.target === confirmEl){
@@ -355,16 +385,16 @@ function reason_validation() {
                 }
             });
 
-            btnReject.addEventListener('click', e => {
-                options.onreject();
-                this._close(confirmEl);
-            });
+            // btnReject.addEventListener('click', e => {
+            //     options.onreject();
+            //     this._close(confirmEl);
+            // });
 
 
-            btnOk.addEventListener('click', () => {
-                options.onok();
-                this._close(confirmEl);
-            });
+            // btnOk.addEventListener('click', () => {
+            //     options.onok();
+            //     this._close(confirmEl);
+            // });
 
             [btnClose].forEach(el => {
                 el.addEventListener('click', () => {

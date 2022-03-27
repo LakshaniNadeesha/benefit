@@ -137,7 +137,7 @@ function setDecimal(val) {
 
                         <div class="row">
                             <div class="column_1">
-                                <label for="submission">Invoice Submission</label>
+                                <label for="submission" id="sub_name">Invoice Submission</label>
                             </div>
                             <div id="error_show">
 
@@ -233,7 +233,7 @@ function setDecimal(val) {
                     if (boolval($row)) {
                         for ($i = 0; $i < sizeof($row); $i++) {
                             $vai = $row[$i];
-                            if ($vai->reimbursement_status == "accepted") { ?>
+                            if ($vai->reimbursement_status == "accepted" || $vai->reimbursement_status == "half-accepted") { ?>
                                 <tr>
                                     <td><?php print_r($vai->claim_date); ?></td>
                                     <td><?php print_r($vai->claim_amount); ?></td>

@@ -66,6 +66,41 @@ class Approvereimbursement extends Controller
 
 			}
 		}
+		if (count($_POST)>0){
+			if(isset($_POST['submit'])){
+				$handled['rejected_reason'] = $_POST['rejected_reason'];
+				$handled['handled_date'] = date("Y-m-d");
+				$id = $_POST['application_number'];
+				$accepted_amount = $_POST['accepted_amount'];
+				$claim_amount = $_POST['claim_amount'];
+				if($claim_amount > $accepted_amount){
+					$handled['accepted_amount'] = $accepted_amount;
+					$handled['reimbursement_status'] = "half-accepted";
+				}
+				else if($claim_amount < $accepted_amount){
+					$handled['accepted_amount'] = $claim_amount;
+					$handled['reimbursement_status'] = "accepted";
+				}
+				else {
+					$handled['accepted_amount'] = $claim_amount;
+					$handled['reimbursement_status'] = "accepted";
+				}
+				$user_x->update_status($id,'reimbursement_ID',$handled);
+				$this->redirect('Approvereimbursement');
+			}
+			else if(isset($_POST['reject'])){
+				$handled['rejected_reason'] = $_POST['rejected_reason'];
+				$handled['handled_date'] = date("Y-m-d");
+				$id = $_POST['application_number'];
+				$handled['accepted_amount'] = 0;
+				$handled['reimbursement_status'] = "rejected";
+				$user_x->update_status($id,'reimbursement_ID',$handled);
+				$this->redirect('Approvereimbursement');
+
+			}
+		}
+
+
 				$this->view('approvereimbursement',['requested'=>$request_pending,'requested_approve'=>$request_approve]);
 
 		}
@@ -73,83 +108,24 @@ class Approvereimbursement extends Controller
 				$this->view('404');
 			}
 	} 
-
-	// function accept_reject($id = null)
-	// {
-    //     if(!Auth::logged_in())
-    //     {
-    //         $this->redirect('login');
-    //     }
-	// 	if(Auth::access('Supervisor')){
-        
-    //     $errors=array();
-    //     $new_arr=array();
-    //     $user=new ReimbursementrequestModel();
-    //     $ar=Auth::user();
-    //     $arr = $user->where_condition('employee_ID', 'invoice_hashing', $ar, $id);
-    //     $arr1 = $user->where('invoice_hashing',$id);
-    //     $reim_id= $arr1[0]->reimbursement_ID;
-
-        // if (boolval($reim_id)) {
-        //     $row = $user->where('employee_ID',$ar);
-        //     $data= $user->where('invoice_submission',$ar);
-
-        //     if(count($_POST)>0)
-        //     {
-        //         if(isset($_POST['submit']))
-        //         {
-                   
-        //             $new_arr['claim_amount']=$_POST['accepted_amount'];
-        //             $new_arr['rejected_reason']=$_POST['rejected_reason'];
-		// 			$new_arr['reimbursement_reason']="accepted";
-                   
-        //             $user->update_status($reim_id,'reimbursement_ID',$new_arr);
-        //                 // $user->update($ar,$arr);
-        //             $this->redirect('Approvereimbursement');
-		// 		}
-        //     }
-        // }
-    //     $this->view('acceptreimbursement', ['errors'=>$errors,'arr'=>$arr]);
-
-    //         } else {
-    //             $this->view('404');
-    //         }
+ 
 
 
-	// } 
-
-
-	function accept ($id=null){
+	function accept (){
         if (!Auth::logged_in()) {
             $this->redirect('login');
         }
 
         if(Auth::access('Supervisor')){
             $user = new ReimbursementrequestModel();
-            $get_row = $user->where('invoice_hashing',$id);
-            $hashVal = $get_row[0]->invoice_hashing;
-            $ar['reimbursement_status'] = "accepted";
-			$ar['handled_date']=date("Y-m-d");
-            $user->update_status($hashVal, 'invoice_hashing', $ar);
-
-            $this->redirect('Approvereimbursement');
-        }
-    }
-
-    function reject($id=null){
-        if (!Auth::logged_in()) {
-            $this->redirect('login');
-        }
-
-        if(Auth::access('Supervisor')){
-            $user = new ReimbursementrequestModel();
-            $get_row = $user->where('invoice_hashing',$id);
-            $hashVal = $get_row[0]->invoice_hashing;
-            $ar['reimbursement_status'] = "rejected";
-			$ar['handled_date']=date("Y-m-d");
-            $user->update_status($hashVal, 'invoice_hashing', $ar);
-
-            $this->redirect('Approvereimbursement');
+			if(count($_POST)>0){
+				if(isset($_POST['submit'])>0){
+					echo "ok";
+				}
+				else{
+					echo "no";
+				}
+			}
         }
     }
 	

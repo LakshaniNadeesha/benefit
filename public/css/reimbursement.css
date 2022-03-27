@@ -69,10 +69,19 @@ fieldset {
 
 .column_1 {
     font-size: 18px;
+    width: 25%;
+    color: #1C1D1D;
+    text-align: left;
+    font-family: Roboto, sans-serif;
+}
+
+#sub_name {
+    font-size: 18px;
     /*padding: 12px 20px;*/
     width: 25%;
     color: #1C1D1D;
     text-align: left;
+    margin-left: 8%;
     font-family: Roboto, sans-serif;
 }
 
@@ -218,6 +227,12 @@ hr {
 .accepted_table {
     margin-top: 1%;
     margin-bottom: 2%;
+    /* overflow-y: auto; */
+}
+
+.rejected_table {
+    margin-bottom: 2%;
+    /* overflow-y: auto; */
 }
 
 .name_tab p {
@@ -330,6 +345,7 @@ a .update_button {
     padding: 20px 0;
     margin-left: auto;
     margin-right: auto;
+    /* overflow-y: auto; */
 }
 
 table {
