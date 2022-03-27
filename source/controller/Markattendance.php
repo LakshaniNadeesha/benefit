@@ -19,13 +19,12 @@ class Markattendance extends Controller
             $attendance = new AttendanceModel();
             $previous = new AttendDate();
             $leave = new LeaveapplicationModel();
+            $leave_details = new LeavedetailsModel();
 
             $all_emp = $user->where_condition('supervisor_ID','banned_employees', $id,0);
-            //print_r($all_emp);
 
             date_default_timezone_set("Asia/Colombo");
             $today = date("Y-m-d");
-            //$today = "2021-12-21";
 
             $j=0; $k=0;
             $marked = array();
@@ -75,6 +74,7 @@ class Markattendance extends Controller
                 }
             }
 
+            $all_leaves = $leave->findAll();
 
             //Getting form data and send it to database
 
@@ -102,6 +102,17 @@ class Markattendance extends Controller
 
                         if($hours >= '8:30'){
                             $arr['status'] = 'Yes';
+                            $applied_leave = $leave->where('employee_ID',$chk);
+                            print_r($applied_leave);
+                            if (boolval($applied_leave)){
+                                print_r($applied_leave);
+                                $leave->delete_two_and('employee_ID',$chk,'date',$date);
+                                $leave_count = $leave_details->where_condition('employee_ID','leave_type',$chk,$applied_leave[0]->leave_type);
+                                //print_r($leave_count[0]->remain_leave_count);
+                                $update_leave_count['remain_leave_count'] = $leave_count[0]->remain_leave_count + 1;
+                                //print_r($update_leave_count);
+                                $leave_details->update_condition($chk,'employee_ID',$applied_leave[0]->leave_type,'leave_type',$update_leave_count);
+                            }
                         }
                         elseif($hours == '4:00'){
                             $arr['status'] = 'Half-Day';
@@ -180,6 +191,9 @@ class Markattendance extends Controller
                     }
                 }
             }
+
+            //Checking whether he had apply a leave
+
 
 
             $this->view('markattendance', ['not_marked'=>$not_marked, 'history'=>$history, 'previous'=>$not_marked_prev, 'today'=>$today_info, 'tomorrow'=>$tomorrow_info]);
