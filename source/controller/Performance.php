@@ -35,46 +35,48 @@ class Performance extends Controller
 			$id=$rw[$i]->employee_ID;
 			$rww[$i]=$user->where('employee_ID',$id);
 
-			$sum1=$rww[$i][0]->communication+$sum1;
-			$sum2=$rww[$i][0]->quality_of_work+$sum2;
-			$sum3=$rww[$i][0]->organization+$sum3;
-			$sum4=$rww[$i][0]->team_skills+$sum4;
-			$sum5=$rww[$i][0]->multitasking_ability+$sum5;
-			if($rww[$i][0]->communication==null){
-				$j++;
-			}
-			if($rww[$i][0]->quality_of_work==null){
-				$k++;
-			}
-			if($rww[$i][0]->organization==null){
-				$l++;
-			}
-			if($rww[$i][0]->team_skills==null){
-				$m++;
-			}
-			if($rww[$i][0]->multitasking_ability==null){
-				$n++;
-			}
-			$sum6=$rww[$i][0]->communication_overall+$sum6;
-			if($rww[$i][0]->communication_overall==null){
-				$q++;
-			}
-			$sum7=$rww[$i][0]->quality_of_work_overall+$sum7;
-			if($rww[$i][0]->quality_of_work_overall==null){
-				$r++;
-			}
-			$sum8=$rww[$i][0]->organization_overall+$sum8;
-			if($rww[$i][0]->organization_overall==null){
-				$s++;
-			}
-			$sum9=$rww[$i][0]->team_skills_overall+$sum9;
-			if($rww[$i][0]->team_skills_overall==null){
-				$t++;
-			}
-			$sum10=$rww[$i][0]->multitasking_ability_overall+$sum10;
-			if($rww[$i][0]->multitasking_ability_overall==null){
-				$u++;
-			}
+			if (boolval($rww[$i])) {
+                $sum1 = ($rww[$i][0]->communication) + $sum1;
+                $sum2 = ($rww[$i][0]->quality_of_work) + $sum2;
+                $sum3 = ($rww[$i][0]->organization) + $sum3;
+                $sum4 = $rww[$i][0]->team_skills + $sum4;
+                $sum5 = $rww[$i][0]->multitasking_ability + $sum5;
+                if ($rww[$i][0]->communication == null) {
+                    $j++;
+                }
+                if ($rww[$i][0]->quality_of_work == null) {
+                    $k++;
+                }
+                if ($rww[$i][0]->organization == null) {
+                    $l++;
+                }
+                if ($rww[$i][0]->team_skills == null) {
+                    $m++;
+                }
+                if ($rww[$i][0]->multitasking_ability == null) {
+                    $n++;
+                }
+                $sum6 = $rww[$i][0]->communication_overall + $sum6;
+                if ($rww[$i][0]->communication_overall == null) {
+                    $q++;
+                }
+                $sum7 = $rww[$i][0]->quality_of_work_overall + $sum7;
+                if ($rww[$i][0]->quality_of_work_overall == null) {
+                    $r++;
+                }
+                $sum8 = $rww[$i][0]->organization_overall + $sum8;
+                if ($rww[$i][0]->organization_overall == null) {
+                    $s++;
+                }
+                $sum9 = $rww[$i][0]->team_skills_overall + $sum9;
+                if ($rww[$i][0]->team_skills_overall == null) {
+                    $t++;
+                }
+                $sum10 = $rww[$i][0]->multitasking_ability_overall + $sum10;
+                if ($rww[$i][0]->multitasking_ability_overall == null) {
+                    $u++;
+                }
+            }
 		}
 		//print_r($sum1);
 		$sum1=(int)($sum1/(sizeof($rww)-$j));
