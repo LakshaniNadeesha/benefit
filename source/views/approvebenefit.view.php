@@ -296,7 +296,7 @@
                                 <label for="accepting_amount">Accepting Amount (LKR)</label>
                             </div>
                             <div class="benefit_column_2">
-                                <input type="text" name="accepting_amount" value="${options.amount}" pattern="[0-9._%+-]+\.[0-9]{2}$" required oninput="validate_amount(this)">
+                                <input type="text" name="accepting_amount" value="${options.amount}" pattern="[0-9._%+-]+\.[0-9]{2}$" min="0" required oninput="validate_amount(this)">
                             </div>
                         </div>
                         <div class="benefit_row_1">
