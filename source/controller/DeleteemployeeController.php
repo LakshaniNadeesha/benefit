@@ -18,9 +18,9 @@ class DeleteemployeeController extends Controller
         $data1 = $user->findAll();
         $id = $_SESSION['id'];
 
-        echo "<pre>";
-        print_r($data[0]->user_role);
-        echo "</pre>";
+//        echo "<pre>";
+//        print_r($data[0]->user_role);
+//        echo "</pre>";
 
         if (count($_POST) > 0) {
 
@@ -30,7 +30,7 @@ class DeleteemployeeController extends Controller
 
                 $arr1['supervisor_ID'] = $_POST['supervisor_f'];
 
-                print_r($arr1);
+                //print_r($arr1);
 
                 // if ($data[0]->user_role == "HR Manager" || $data[0]->user_role == "HR Officer" || $data[0]->user_role == "Director") {
                 //     $arr2['user_role'] = $data[0]->user_role;
@@ -41,7 +41,7 @@ class DeleteemployeeController extends Controller
 
                 $rows = $user->update_del($id, $arr1);
                 if ($rows) {
-                    echo "done /////////////////////////////////////////////////////////////";
+//                    echo "done /////////////////////////////////////////////////////////////";
                 }
                 $arr['banned_employees'] = 1;
                 $row = $user->update($id, $arr);
