@@ -55,6 +55,8 @@ class UpdateemployeeController extends Controller{
 
                 if(sizeof($ar)==1){
                     $set = $user->update($c_supervisor,$arr3);
+                    $set1 = $user->update($s_id,$arr2);
+
                 }
                 $set = $user->update($id,$arr);
                 $set = $user->update($s_id,$arr2);

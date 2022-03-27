@@ -5,14 +5,17 @@ class LeavedetailsController extends Controller
 
     function index()
     {
-        $user = new LeavedetailsModel();
+        $user2 = new LeavedetailsModel();
         $user_x = new RequestleaveModel();
 
         $id = Auth::user();
 
         $leave_list = $user_x->where('employee_ID', $id);
+        $remain_list = $user2->where('employee_ID', $id);
 
-
+        echo "<pre>";
+        print_r($remain_list);
+        echo "</pre>";
         $arr1 = array();
         $arr2 = array();
         $arr3 = array();
@@ -68,6 +71,10 @@ class LeavedetailsController extends Controller
                     $arr3['annual'] = $annual;
                     $arr3['sick'] = $sick;
                 }
+
+                echo "<pre>";
+                print_r($arr3);
+                echo "</pre>";
             }
         }
 
@@ -93,7 +100,7 @@ class LeavedetailsController extends Controller
 
 
 
-        $this->view('leavedetails', ['arr1' => $arr1, 'arr2' => $arr2, 'arr3' => $arr3]);
+        $this->view('leavedetails', ['arr1' => $arr1, 'arr2' => $arr2, 'arr3' => $arr3, 'remain'=> $remain_list ]);
         // private\models\LeavedetailsController.php
         // C:\xampp\htdocs\benefit\private\views\leavedetails.view.php
         // C:\xampp\htdocs\benefit\private\models\LeavedetailsModel.php

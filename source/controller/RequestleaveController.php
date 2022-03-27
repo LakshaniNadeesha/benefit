@@ -6,7 +6,7 @@ function date_calc($from_date, $to_date)
     $day_arr = array();
     array_push($day_arr, $from_date);
     while (true) {
-        
+
         if ($from_date == $to_date) {
             break;
         }
@@ -15,8 +15,6 @@ function date_calc($from_date, $to_date)
         $from_date = date('Y-m-d', strtotime($from_date . "+1 days"));
 
         array_push($day_arr, $from_date);
-
-        
     }
 
     return $day_arr;
@@ -29,16 +27,99 @@ class RequestleaveController extends Controller
     {
 
         error_reporting(E_ERROR | E_PARSE);
-        // $user = new RequestleaveModel();
+        $user = new RequestleaveModel();
 
         $arr2 = array();
         $user1 = new AddemployeeModel();
-
+        $user2 = new LeavedetailsModel();
+        $id = Auth::user();
+        $user = new RequestleaveModel();
+        $leave_list = $user->where('employee_ID', $id);
+        $remain_list = $user2->where('employee_ID', $id);
         $data = $user1->where('employee_ID', Auth::user());
 
+        $arr3 = array();
+        $arr1 = array();
+
+
+        echo "leavelist<pre>";
+        print_r($leave_list);
+        echo "</pre>";
+
+        if (boolval($leave_list)) {
+
+            $sick = 0;
+            $casual = 0;
+            $annual = 0;
+            for ($i = 0; $i < sizeof($leave_list); $i++) {
+
+                if ($leave_list[$i]->leave_status === "pending" || $leave_list[$i]->leave_status === "approve") {
+                    array_push($arr1, $leave_list[$i]);
+                    if ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending" && $leave_list[$i]->leave_type == "sick") {
+                        $sick = $sick + 1;
+                    } elseif ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending"  && $leave_list[$i]->leave_type == "casual") {
+                        $casual = $casual + 1;
+                    } elseif ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending" && $leave_list[$i]->leave_type == "annual") {
+                        $annual = $annual + 1;
+                    }elseif($leave_list[$i]->leave_status === "reject" && $leave_list[$i]->leave_type == "sick"){
+                        $sick = $sick - 1;    
+                    }elseif ($leave_list[$i]->leave_status === "reject" && $leave_list[$i]->leave_type == "casual") {
+                        $casual = $casual - 1;
+                    }elseif ($leave_list[$i]->leave_status === "reject" && $leave_list[$i]->leave_type == "annual") {
+                        $annual = $annual - 1;
+                    }
+
+                    $arr3['casual'] = $casual;
+                    $arr3['annual'] = $annual;
+                    $arr3['sick'] = $sick;
+
+
+
+                    print_r($arr1);
+                    echo "casual" . $casual . "<br>";
+                    echo "annual" . $annual . "<br>";
+                    echo "sick" . $sick . "<br>";
+                }
+            }
+            for ($j = 0; $j < 3; $j++) {
+                if ($remain_list[$j]->leave_type == 'casual') {
+                    $casual_count = $remain_list[$j]->max_leave_count - $casual;
+                }
+                if ($remain_list[$j]->leave_type == 'annual') {
+                    $annual_count = $remain_list[$j]->max_leave_count - $annual;
+                }
+                if ($remain_list[$j]->leave_type == 'sick') {
+                    $sick_count = $remain_list[$j]->max_leave_count - $sick;
+                }
+            }
+
+            $ar_casual['remain_leave_count'] = $casual_count;
+            $ar_annual['remain_leave_count'] = $annual_count;
+            $ar_sick['remain_leave_count'] = $sick_count;
+
+            echo "casual" . $casual_count . "<br>";
+            echo "annual" . $annual_count . "<br>";
+            echo "sick" . $sick_count . "<br>";
+
+
+            $user2->update_condition($id, 'employee_ID', 'casual', 'leave_type', $ar_casual);
+            $user2->update_condition($id, 'employee_ID', 'annual', 'leave_type', $ar_annual);
+            $user2->update_condition($id, 'employee_ID', 'sick', 'leave_type', $ar_sick);
+        }
+
+        echo "remain list<pre>";
+        print_r($remain_list);
+        echo "</pre>";
+        // $sick = 0;
+        // $casual = 0;
+        // $annual = 0;
+
+
+
+
         if (count($_POST) > 0) {
-            $user = new RequestleaveModel();
-            $user2 = new LeavedetailsModel();
+
+
 
             if (isset($_POST['submit'])) {
                 $date_list = array();
@@ -60,13 +141,14 @@ class RequestleaveController extends Controller
                     //     $date_list = $_POST['start_date'];
                     //     echo "if eka ethule";
                     // } else {
-                        $date_list = date_calc($from_date, $to_date);
+                    $date_list = date_calc($from_date, $to_date);
                     // }
 
 
                     // echo(sizeof($date_list));
 
-                    if(boolval($date_list)){};
+                    if (boolval($date_list)) {
+                    };
                     for ($i = 0; $i < sizeof($date_list); $i++) {
                         // echo("size of date list ". sizeof($date_list));
                         // echo "<br>";
@@ -102,6 +184,12 @@ class RequestleaveController extends Controller
                             $row = "date";
                             $date_exist = $this->validate($arr['date'], $user, $row);
 
+                            // if($arr['leave_type'] == 'sick'){
+                            //     $ar_sick['sick'] = $sick_count;
+                            // }
+                            // $ar_casual['casual'] = $casual_count;
+                            // $ar_annual['annual'] = $annual_count;
+
                             if (boolval($date_exist)) {
 
                                 // echo "Date already leave";
@@ -111,10 +199,12 @@ class RequestleaveController extends Controller
 
                                 // break;
 
-                            }else{
+                            } else {
                                 $user->insert($arr);
+                                // $user2->update_condition($id,'employee_ID',$arr['leave_type'],'leave_type',$ar_sick);
+
                             }
-                                                      
+
                             // print_r($arr);
                             // echo "<br>";
                             // echo "<br>";
@@ -281,10 +371,9 @@ class RequestleaveController extends Controller
 
                 // $user->insert($arr);
             }
-            $this->view('requestleave', ['rows' => $data,'row'=>$arr2]);
+            $this->view('requestleave', ['rows' => $data, 'row' => $arr2]);
         } else {
-            $this->view('requestleave', ['rows' => $data,'row'=>$arr2]);
-
+            $this->view('requestleave', ['rows' => $data, 'row' => $arr2]);
         }
     }
 
