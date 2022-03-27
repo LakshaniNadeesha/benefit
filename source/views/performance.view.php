@@ -35,7 +35,7 @@
                 <div class="conta">
                     <div class="row">
                         <div class="col-6 chart" >
-                            <canvas id="myChart" ></canvas>
+                            <canvas id="myChart2" ></canvas>
                         </div>
                     </div>
                 </div>
@@ -45,9 +45,9 @@
                     //print_r($row);
                     $rows = [$row[0]->communication, $row[0]->quality_of_work, $row[0]->organization, $row[0]->team_skills, $row[0]->multitasking_ability];
                    // print_r($rows);
-                    
+                    $rowss = [$row[0]->communication_overall, $row[0]->quality_of_work_overall, $row[0]->organization_overall, $row[0]->team_skills_overall, $row[0]->multitasking_ability_overall];
                     $sum1=[$sum['communication'],$sum['quality_of_work'],$sum['organization'],$sum['team_skills'],$sum['multitasking_ability']];
-                    
+                    $s2=[$summ['communication_overall'],$summ['quality_of_work_overall'],$summ['organization_overall'],$summ['team_skills_overall'],$summ['multitasking_ability_overall']];
                     // print_r($sum2);
 
                     ?>
@@ -57,9 +57,9 @@
                     <script >
                       var ctx=document.getElementById('myChart').getContext('2d');
                       var data2=<?=json_encode($rows)?>;
-                      
+                   
                       var data4=<?=json_encode($sum1)?>;
-                      
+                  
                       var chart= new Chart(ctx,{
                         type:'radar',
                         data:{
@@ -81,36 +81,37 @@
                         options: {}
                       }); 
                     </script>
+
                 <?php }?>
             </div>
         </div>
-            <div class="performance_details">
-
-            <div class="conta">
+         <div class="performance_details">
+            <div>
+                <div class="conta">
                     <div class="row">
                         <div class="col-6 chart" >
                             <canvas id="myChart2" ></canvas>
                         </div>
                     </div>
                 </div>
-                <div>
                 <?php
-                //print_r($row);
+               
                 if (boolval($row) > 0) {
-                    //print_r($row);
                     
+                    
+                  
                     $rowss = [$row[0]->communication_overall, $row[0]->quality_of_work_overall, $row[0]->organization_overall, $row[0]->team_skills_overall, $row[0]->multitasking_ability_overall];
                     
                     $s2=[$summ['communication_overall'],$summ['quality_of_work_overall'],$summ['organization_overall'],$summ['team_skills_overall'],$summ['multitasking_ability_overall']];
-                    // print_r($sum2);
+                    
 
                     ?>
-                    <canvas id="myChart"></canvas>
+                    <canvas id="myChart1"></canvas>
                     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/2.7.3/chart.min.js" ></script> -->
                     <script type="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
                     <script >
-                      var ctxs=document.getElementById('myChart2').getContext('2d');
-                     
+                      var ctxs=document.getElementById('myChart1').getContext('2d');
+                      
                       var data3=<?=json_encode($rowss)?>;
                       
                       var data5=<?=json_encode($s2)?>;
@@ -135,9 +136,13 @@
                         options: {}
                       }); 
                     </script>
+
                 <?php }?>
             </div>
         </div>
+    </div>
+</div>
+    </div>
 </div>
 <!--<div class="fot">-->
 <!--    --><?php //$this->view('includes/footer')?>
