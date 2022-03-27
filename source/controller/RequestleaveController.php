@@ -179,7 +179,7 @@ class RequestleaveController extends Controller
         // $annual = 0;
 
 
-        print_r($_POST);
+        // print_r($_POST);
 
         if (count($_POST) > 0) {
 
@@ -210,7 +210,7 @@ class RequestleaveController extends Controller
 
 
                     // echo(sizeof($date_list));
-                    print_r($date_list);
+                    // print_r($date_list);
 
                     if (boolval($date_list)) {
 
@@ -245,7 +245,7 @@ class RequestleaveController extends Controller
                                 $arr['leave_type'] = $_POST['leave_type'];
                                 $arr['date'] = $date_list[$i];
 
-                                print_r($date_list[$i]);
+                                // print_r($date_list[$i]);
                                 $arr['request_date'] = $today;
                                 $arr['leave_status'] = "pending";
                                 $row = "date";
