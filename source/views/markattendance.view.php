@@ -147,7 +147,7 @@
                                                         });
                                                     </script>
                                                     <a href="http://localhost/benefit/markattendance/absent/<?php print_r($not_marked[$i]->employee_ID); ?>/<?php echo date('Y-m-d'); ?>">
-                                                        <i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                                                        <i class="fa fa-times-circle" aria-hidden="true" id="option"></i></a>
                                                 </div>
 
 
@@ -182,7 +182,7 @@
                                                        onclick="checkThis(this.id)" name="person[]">
                                                 <!--                                                <i class="fa fa-check-square" aria-hidden="true"></i>-->
                                                 <a href="http://localhost/benefit/markattendance/absent/<?php print_r($previous[$j]->employee_ID); ?>/<?php print_r($previous[$j]->date); ?>">
-                                                    <i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                                                    <i class="fa fa-times-circle" aria-hidden="true" id="option"></i></a>
                                             </div>
 
                                             <?php
@@ -311,7 +311,7 @@
                                         ?>
                                         <td id="options">
                                             <div id="<?php echo $btnChange ?>" onclick="reply_click(this.id)"><i
-                                                        class="fas fa-pencil-alt"></i></div>
+                                                        class="fas fa-pencil-alt" id="option"></i></div>
                                             <script type="text/javascript">
                                                 document.querySelector('<?php echo "#" . $btnChange;?>').addEventListener('click', () => {
                                                     Change.open({

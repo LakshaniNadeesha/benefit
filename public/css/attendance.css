@@ -251,8 +251,9 @@ table tr {
 table th,
 table td {
     height: 56px;
-    text-align: left;
-    padding-left: 8px;
+    /*text-align: left;*/
+    /*padding-left: 8px;*/
+    text-align: center;
 }
 
 table th {
@@ -567,7 +568,12 @@ tr:nth-child(even) {
     /*font-weight: 900;*/
     margin-top: auto;
     margin-bottom: auto;
-    margin-left: 5px;
+    font-size: unset;
+    /*margin-left: 5px;*/
+}
+
+#option {
+    font-size: larger;
 }
 
 .attendance-update_form {
