@@ -41,7 +41,9 @@ class DeleteemployeeController extends Controller
                 $ar['benefit_status'] = 'Accepted';
                 $rowww = $user_x->update_condition($id, 'employee_ID', 'pending', 'benefit_status', $ar);
                 $user_x2 = new BenefitapplicationModel();
-                $row = $user_x2->deleteper('employee_ID', $id);
+                $user_x3 = new LeavedetailsModel();
+                $row_1 = $user_x2->deleteper('employee_ID', $id);
+                $row_2 = $user_x3->deleteper('employee_ID', $id);
                 $user_x1 = new ReimbursementrequestModel();
 
 

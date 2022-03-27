@@ -171,11 +171,12 @@
                         <div class="leave_form">
                             <div class="row_type">
                                 <input class="code" type="text" name="sick_ID" value="01" readonly>
-                                <input class="type" type="text" name="sick" value="sick" readonly>
+                                <input class="type" type="text"  value="Sick Leave" readonly>
+                                <input class="type" type="text" name="sick" value="sick" hidden>
                             </div>
                             <div class="row">
                                 <label>Remaining Leave Count</label>
-                                <input type="text" name="sick_remaining" id="sick_remaining" required>
+                                <input type="number" name="sick_remaining" id="sick_remaining" min="0" max="7" required>
                             </div>
                             <div class="row">
                                 <input type="text" name="sick_max" id="sick_max" value="7" hidden>
@@ -184,11 +185,12 @@
                         <div class="leave_form">
                             <div class="row_type">
                                 <input class="code" type="text" name="casual_ID" value="02" readonly>
-                                <input class="type" type="text" name="casual" value="casual" readonly>
+                                <input class="type" type="text"  value="Casual Leave" readonly>
+                                <input class="type" type="text" name="casual" value="casual" hidden>
                             </div>
                             <div class="row">
                                 <label>Remaining Leave Count</label>
-                                <input type="text" name="casual_remaining" id="casual_remaining" required>
+                                <input type="number" name="casual_remaining" id="casual_remaining" min="0" max="7" required>
                             </div>
                             <div class="row">
                                 <input type="text" name="casual_max" id="casual_max" value="7" hidden>
@@ -197,11 +199,12 @@
                         <div class="leave_form">
                             <div class="row_type">
                                 <input class="code" type="text" name="annual_ID" value="3" readonly>
-                                <input class="type" type="text" name="annual" value="annual" readonly>
+                                <input class="type" type="text"  value="Annual Leave" readonly>
+                                <input class="type" type="text" name="annual" value="annual" hidden>
                             </div>
                             <div class="row">
                                 <label>Remaining Leave Count</label>
-                                <input type="text" name="annual_remaining" id="annual_remaining" required>
+                                <input type="number" name="annual_remaining" id="annual_remaining" min="0" max="14" required>
                             </div>
                             <div class="row">
                                 <input type="text" name="annual_max" id="annual_max" value="14" hidden>

@@ -170,7 +170,7 @@
                                     <label for="benefit_type">Benefit Type</label>
                                 </div>
                                 <div class="column_2">
-                                    <input type="text" id="benefit_type" name="benefit_type" required >
+                                    <input type="text" id="benefit_type" name="benefit_type" required pattern="[A-Za-z].{1,}">
                                 </div>
                             </div>
                             <div class="row_1">
