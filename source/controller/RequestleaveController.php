@@ -161,9 +161,9 @@ class RequestleaveController extends Controller
             $ar_annual['remain_leave_count'] = $annual_count;
             $ar_sick['remain_leave_count'] = $sick_count;
 
-            echo "casual" . $casual_count . "<br>";
-            echo "annual" . $annual_count . "<br>";
-            echo "sick" . $sick_count . "<br>";
+            // echo "casual" . $casual_count . "<br>";
+            // echo "annual" . $annual_count . "<br>";
+            // echo "sick" . $sick_count . "<br>";
 
 
             $user2->update_condition($id, 'employee_ID', 'casual', 'leave_type', $ar_casual);
