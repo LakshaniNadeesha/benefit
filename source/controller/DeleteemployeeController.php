@@ -29,9 +29,9 @@ class DeleteemployeeController extends Controller
                 // print_r($arr1);
 
                 $rows = $user->update_del($id, $arr1);
-                if ($rows) {
-                    // echo "done /////////////////////////////////////////////////////////////";
-                }
+                // if ($rows) {
+                //     // echo "done /////////////////////////////////////////////////////////////";
+                // }
 
                 $arr['banned_employees'] = 1;
                 $row = $user->update($id, $arr);

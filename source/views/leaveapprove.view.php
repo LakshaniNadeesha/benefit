@@ -62,9 +62,9 @@
 
                         // print_r($emp[1]);
 
-                        echo "<pre>";
-                        print_r($emp);
-                        echo "</pre>";
+                        // echo "<pre>";
+                        // print_r($emp);
+                        // echo "</pre>";
 
                         if (boolval($emp)) {
 
@@ -81,7 +81,7 @@
                                     $id_arr = array();
                                     // echo $n;
                                     for ($j = 0; $j < $n; $j++) {
-                                        if ($emp >= 1) { ?>
+                                        if ($emp) { ?>
                                             <div class="header-approve" style="height: 280px;" id="btn">
                                                 <center>
                                                     <img src="<?= IMG_PATH ?>\profile\download.png" class="profile__image">
@@ -136,6 +136,7 @@
 
                                                     <!-- onclick="myFunction1(<?php echo $j ?>)" -->
                                                     <button type="button" name="submit1" value="reject" id="<?php echo "reject".$i. $j ?>" class="reject">Reject</button>
+                                                    <!-- <?php echo "<br>"."reject".$i. $j ."<br>"?> -->
                                                     <?php
                                                     array_push($id_arr,"reject". $i . $j);
                                                     ?>
@@ -158,7 +159,7 @@
                         }
                     } ?>
 
-                    <?php print_r($id_arr); ?>
+                    <!-- <?php print_r($id_arr); ?> -->
 
                     <div class="confirm init">
 
@@ -199,23 +200,25 @@
                     <script>
                         var idArray =
                             <?php echo json_encode($id_arr); ?>;
-                        console.log(idArray);
+                        // console.log(idArray);
 
                         var dataArray =
                             <?php echo json_encode($emp); ?>;
                         console.log(dataArray);
-                        console.log(dataArray.length);
-                        console.log(dataArray[0]['details'].length);
+                        console.log("dataArray Length "+ dataArray.length);  // ???????????????? DataArray Length is undefine
+                        console.log ("dataArray length :- " + Object.keys(dataArray).length);
+                        console.log(dataArray[1]['details'].length);
 
-                        // decoment.write(dataArray.length);
+                        document.write(dataArray);
                         // document.write(dataArray[0]['details'][0]['employee_ID']);
-                        for (let i = 0; i < dataArray.length; i++) {
-                            console.log(dataArray[i]['details'].length);
-                            for (let j = 0; j < dataArray[i]['details'].length; j++) {
+                        for (let i = 0; i < (Object.keys(dataArray).length); i++) {
+                            // console.log(dataArray[i]['details'].length);
+                            for (let j = 0; j < (dataArray[i]['details'].length); j++) {
 
                                 var id = "#reject" + i+j;
-                                document.write(id);
+                                // document.write(id);
                                 const reject = document.querySelector(id);
+                                // document.write(reject);
                                 const cancel = document.querySelector('#cancel');
                                 const sub = document.querySelector('#sub');
                                 const confirmEl = document.querySelector('.confirm');
@@ -309,7 +312,7 @@
                             if (boolval($emps)) {
                                 for ($i = 0; $i < sizeof($emps); $i++) {
                                     for ($j = 0; $j < sizeof($emps[$i]['details']); $j++) {
-                                        if ($emps[$i]['details'][$j]->date != '0000-00-00' && $emps[$i]['details'][$j]->leave_status == "approve") { ?>
+                                        if ( $emps[$i]['details'][$j]->leave_status == "approve") { ?>
 
                                             <tr>
                                                 <td><?php print_r($emps[$i]['first_name'] . " " . $emps[$i]['last_name']); ?></td>
@@ -347,7 +350,7 @@
                             if (boolval($emps)) {
                                 for ($i = 0; $i < sizeof($emps); $i++) {
                                     for ($j = 0; $j < sizeof($emps[$i]['details']); $j++) {
-                                        if ($emps[$i]['details'][$j]->date != '0000-00-00' && $emps[$i]['details'][$j]->leave_status == "reject") { ?>
+                                        if ( $emps[$i]['details'][$j]->leave_status == "reject") { ?>
 
                                             <tr>
                                                 <td><?php print_r($emps[$i]['first_name'] . " " . $emps[$i]['last_name']); ?></td>

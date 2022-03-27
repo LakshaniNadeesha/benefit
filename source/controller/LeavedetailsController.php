@@ -45,7 +45,7 @@ class LeavedetailsController extends Controller
                     // echo $date;
                     // echo "<br> ";
                     // echo $id;
-                    // $val = $_POST['l_status'];
+                    $val = $_POST['l_status'];
                     $val = "approve";
 
                     // echo($_POST['l_status']);

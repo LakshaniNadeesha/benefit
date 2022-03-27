@@ -19,10 +19,10 @@ class Home extends Controller
 		$row1 = $user->where_condition('employee_ID','supervisor_ID',$id,0);
 		
 		// echo "<pre>";
-		// print_r($row1[0]->supervisor_ID);
+		// print_r($row1);
 		// echo "</pre>";
 		if(boolval($row1)){
-			if($row1[0]->supervisor_ID == 0){
+			if($row1[0]->supervisor_ID == 0 ){
 				$arr['supervisor_ID'] = $id;
 				$select->update_status($id,"employee_ID",$arr);
 			}
