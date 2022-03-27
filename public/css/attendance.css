@@ -561,11 +561,10 @@ tr:nth-child(even) {
     height: 25px;
     border: 1px solid var(--grey);
     border-radius: 5px;
-    margin-left: 10px;
 }
 
 .fa, .fas {
-    font-weight: 900;
+    /*font-weight: 900;*/
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 5px;

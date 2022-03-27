@@ -14,7 +14,7 @@
 
     <script>
         $(document).ready(function () {
-            $("#attendance").on("keyup", function () {
+            $("#accepted").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
                 $("#attendance_table tr").filter(function () {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
@@ -271,6 +271,10 @@
         <div class="history-table">
             <p>Attendance History</p>
             <hr>
+            <div class="search_bar">
+                <input class="attendance_search" type="text" id="accepted">
+                <i class="fa fa-search"></i>
+            </div>
             <?php if (boolval($history)) { ?>
                 <div id="h-table">
                     <table>
@@ -283,7 +287,7 @@
                         <th>Status</th>
                         <th>Option</th>
                         </thead>
-                        <tbody>
+                        <tbody id="attendance_table">
                         <?php
                         for ($i = 0; $i < sizeof($history); $i++) {
                             if (boolval($history[$i])) {
