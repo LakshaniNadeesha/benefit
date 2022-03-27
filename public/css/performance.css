@@ -14,7 +14,7 @@ body {
     background-color: white;
     max-width: 100%;
     padding: 50px;
-    /*border-radius: 10px;*/
+    padding-top: 20px;
     min-height: 500px;
     /*margin-right: 5px;*/
     /*margin-bottom: 5px;*/
@@ -29,7 +29,7 @@ body {
     max-width: 100%;
     padding: 2px;
     text-align: center;
-    font-size: large;
+    font-size: larger;
     font-weight: bold;
     color: #057a7a;
 }
@@ -41,4 +41,8 @@ body {
 .performance_details h3 {
     text-align: center;
     margin: 0;
+}
+
+.col-6.chart {
+    display: none;
 }
