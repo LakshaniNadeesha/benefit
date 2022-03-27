@@ -229,7 +229,7 @@ hr {
     font-weight: 900;
     margin-top: auto;
     margin-bottom: auto;
-    margin-left: 5px;
+    /* margin-left: 5px; */
 }
 
 .benefit_search {
