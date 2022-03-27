@@ -133,16 +133,16 @@ class RequestleaveController extends Controller
                 // $arr3['casual'] = $casual;
                 // $arr3['annual'] = $annual;
                 // $arr3['sick'] = $sick;
-                echo "casual1" . $casual1 . "<br>";
-                echo "annual1" . $annual1 . "<br>";
-                echo "sick1" . $sick1 . "<br>";
+                // echo "casual1" . $casual1 . "<br>";
+                // echo "annual1" . $annual1 . "<br>";
+                // echo "sick1" . $sick1 . "<br>";
 
 
 
                 // print_r($arr1);
-                echo "casual" . $casual . "<br>";
-                echo "annual" . $annual . "<br>";
-                echo "sick" . $sick . "<br>";
+                // echo "casual" . $casual . "<br>";
+                // echo "annual" . $annual . "<br>";
+                // echo "sick" . $sick . "<br>";
 
             }
             for ($j = 0; $j < 3; $j++) {
