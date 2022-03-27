@@ -41,6 +41,14 @@
                         <p class="main_title">Time Off</p>
                         <hr>
                     </div>
+                    <!-- <?php
+                    echo "<pre>";
+                    print_r($remain);
+                    echo "</pre>"; 
+                    
+                    print_r($remain[0]->remain_leave_count)
+                    ?> -->
+
 
                     <div class="leave_card">
 
@@ -49,7 +57,7 @@
                                 <p class="title">Casual Leaves</p>
                                 <div class="icon">
                                     <i class="item" data-feather="calendar"></i>
-                                    <p class="remain" id="casual_remain">7</p>
+                                    <p class="remain" id="casual_remain"><?php echo $remain[0]->remain_leave_count ?></p>
                                 </div>
                                 <p>DAYS AVAILABLE</p>
                             </a>
@@ -62,7 +70,7 @@
                                     <p>
                                     <div class="icon">
                                         <i class="item" data-feather="plus-square"></i>
-                                        <p class="remain" id="sick_remain">7</p>
+                                        <p class="remain" id="sick_remain"><?php echo $remain[1]->remain_leave_count ?></p>
                                     </div>
                                     <p>DAYS AVAILABLE</p>
                             </a>
@@ -73,7 +81,7 @@
                                 <p class="title">Annual Leaves</p>
                                 <div class="icon">
                                     <i class="item" data-feather="sun"></i>
-                                    <p class="remain" id="annual_remain">14</p>
+                                    <p class="remain" id="annual_remain"><?php echo $remain[2]->remain_leave_count ?></p>
                                 </div>
                                 <p>DAYS AVAILABLE</p>
                             </a>
@@ -100,7 +108,7 @@
                             for ($i = 0; $i < sizeof($arr1); $i++) {
 
                                 if ($arr1[$i]->leave_status == "pending") {
-                                    
+
                         ?>
                                     <form method="post">
                                         <div class="upcoming_detail">

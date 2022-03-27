@@ -16,6 +16,7 @@ class LeaveapproveController extends Controller
             $id=Auth::user();
             $row=$user->where('supervisor_ID',$id);
 
+            // print_r($row1);
             // echo "<br> ////////////////// <br><pre>";
             //             print_r($row);
             //         echo "</pre>";

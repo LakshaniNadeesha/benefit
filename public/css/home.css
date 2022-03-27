@@ -49,6 +49,8 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 10px;
+    /* background-image: url("../img/finance.svg"); */
+
 }
 
 .card {
@@ -56,12 +58,27 @@ body {
     padding: 10px 8px;
     width: 80%;
     text-align: center;
-    /* background-color:#dbe3e6; */
+    /* background-color:#062e3d; */
     background-color: white;
     border-radius: 10px;
     margin: auto;
     min-height: 250px;
+    
+    
+      
 }
+
+/* #finance {
+    background-image: url("../img/finance.svg");
+    background-repeat: no-repeat;
+    background-size:contain;
+    background-position: bottom;
+   
+}
+
+#hrr{
+
+} */
 
 .card h2 {
     color: var(--h1);

@@ -25,7 +25,7 @@
     <div class="left">
 
         <div class="card_container">
-            <div class="card">
+            <div class="card" id="finance">
                 <h2>Financial Department</h2>
                 <!--                <p><i class="fas fa-user-alt"></i>  Manger: Mr.Aruna</p>-->
                 <p class="users"><i class="fas fa-users"></i>
@@ -40,7 +40,7 @@
         </div>
 
         <div class="card_container">
-            <div class="card">
+            <div class="card" id="operation">
                 <h2>Operational Department</h2>
                 <!--                <p><i class="fas fa-user-alt"></i>  Manger: Mr.Chathura</p>-->
                 <p class="users"><i class="fas fa-users"></i>
@@ -55,7 +55,7 @@
         </div>
 
         <div class="card_container">
-            <div class="card">
+            <div class="card" id="hrr">
                 <h2>HR Department</b></h2>
                 <!--                <p><i class="fas fa-user-alt"></i>  Manger: Mr.Silva</p>-->
                 <p class="users"><i class="fas fa-users"></i>
@@ -70,7 +70,7 @@
         </div>
 
         <div class="card_container">
-            <div class="card">
+            <div class="card" id="sell">
                 <h2>Sales Department</h2>
                 <!--                <p><i class="fas fa-user-alt"></i>  Manger: Mr.Bimsara</p>-->
                 <p class="users"><i class="fas fa-users"></i>
