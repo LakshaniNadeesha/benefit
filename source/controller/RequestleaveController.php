@@ -47,7 +47,7 @@ class RequestleaveController extends Controller
                 if ($_POST['half_date'] == null) {
 
                     ///////////////////////   FILL WITHOUT HALF DAYS ////////////////////////
-                    print_r($_POST);
+                    // print_r($_POST);
                     $arr['employee_ID'] = Auth::user();
                     $arr['leave_type'] = $_POST['leave_type'];
                     $arr['date'] = $_POST['start_date'];
@@ -64,7 +64,7 @@ class RequestleaveController extends Controller
                     // }
 
 
-                    echo(sizeof($date_list));
+                    // echo(sizeof($date_list));
 
                     if(boolval($date_list)){};
                     for ($i = 0; $i < sizeof($date_list); $i++) {
@@ -85,7 +85,7 @@ class RequestleaveController extends Controller
                             // echo "<br>";
                             // continue;
                             // echo($i);
-                            $arr2['sunday'] = 1;
+                            $arr2[1] = 1;
 
 
                             // echo "<br>";
@@ -93,24 +93,28 @@ class RequestleaveController extends Controller
                         } else {
 
                             // echo "else part  ";
-                            $arr2['sunday'] = 0;
+                            // $arr2['sunday'] = 0;
                             $arr['employee_ID'] = Auth::user();
                             $arr['leave_type'] = $_POST['leave_type'];
                             $arr['date'] = $date_list[$i];
                             $arr['request_date'] = $today;
+                            $arr['leave_status'] = "pending";
                             $row = "date";
                             $date_exist = $this->validate($arr['date'], $user, $row);
 
                             if (boolval($date_exist)) {
 
                                 // echo "Date already leave";
-                                $arr2['date_validation'] = $arr['date'] . " Date is already leave";
+                                // $arr2['date_validation'] = $arr['date'] . " Date is already Requested";
+                                $arr2[0] = $arr['date'] . " Date is already Requested";
+                                // print_r($arr2);
+
                                 // break;
 
+                            }else{
+                                $user->insert($arr);
                             }
-                            $arr['leave_status'] = "pending";
-
-                            $user->insert($arr);
+                                                      
                             // print_r($arr);
                             // echo "<br>";
                             // echo "<br>";
@@ -141,7 +145,7 @@ class RequestleaveController extends Controller
                         // echo date_format($week_day,"l");
                         // echo "<br>";
                         // continue;
-                        $arr2['sunday'] = 1;
+                        $arr2[1] = 1;
                         // echo($i);
                         /////////////////// Message eka print wenna ooni.. sunday leave daanna ooni nee kiyala
 
@@ -151,10 +155,11 @@ class RequestleaveController extends Controller
                         $date_exist = $this->validate($arr['date'], $user, $row);
 
                         if (boolval($date_exist)) {
-                            $arr2['date_validation'] = $arr['date'] . " Date is already leave";
+                            $arr2[0] =  $arr['date'] . " Date is already Requested";
 
                             // break;
                             // echo "Date already leave";
+                            // print_r($arr2);
                         } else {
                             $user->insert($arr);
                         }
@@ -214,7 +219,7 @@ class RequestleaveController extends Controller
                             // echo "<br>";
                             // continue;
                             // echo($i);
-                            $arr2['sunday'] = 1;
+                            $arr2[1] = 1;
 
 
                             // echo "<br>";
@@ -223,7 +228,7 @@ class RequestleaveController extends Controller
                             $date_exist = $this->validate($arr['date'], $user, $row);
 
                             if (boolval($date_exist)) {
-                                $arr2['date_validation'] = $arr['date'] . " Date is already leave";
+                                $arr2['date_validation'] = $arr['date'] . " Date is already Requested";
                                 // break;  
                             } else {
                                 $user->insert($arr);
@@ -252,17 +257,18 @@ class RequestleaveController extends Controller
                     $date_exist = $this->validate($arr['date'], $user, $row);
 
                     if ($date_exist) {
-                        $arr2['date_validation'] = $arr['date'] . " Date is already leave";
+                        $arr2['date_validation'] = $arr['date'] . " Date is already Requested";
 
                         // echo "Date already leave";
                         // break;  
                     } else {
                         $user->insert($arr);
+                        $arr2['date_validation'] = $arr['date'] . " Date is already Requested";
 
                         if (boolval($user)) {
-                            $this->redirect('LeavedetailsController', ['rows' => $arr2]);
+                            $this->redirect('LeavedetailsController', ['row' => $arr2]);
                         } else {
-                            $this->redirect('RequestleaveController', ['rows' => $arr2]);
+                            $this->redirect('RequestleaveController', ['row' => $arr2]);
                         }
                     }
 
@@ -275,9 +281,10 @@ class RequestleaveController extends Controller
 
                 // $user->insert($arr);
             }
-            $this->view('requestleave', ['rows' => $data]);
+            $this->view('requestleave', ['rows' => $data,'row'=>$arr2]);
         } else {
-            $this->view('requestleave', ['rows' => $data]);
+            $this->view('requestleave', ['rows' => $data,'row'=>$arr2]);
+
         }
     }
 
