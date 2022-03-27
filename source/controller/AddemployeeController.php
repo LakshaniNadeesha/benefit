@@ -172,6 +172,7 @@ class AddemployeeController extends Controller
 
                 $arr['designation_code'] = $_POST['designation'];
                 $arr['department_ID'] = $_POST['department'];
+                $arr['banned_employees'] = 0;
 
                 if ($email_validate) {
                     $arr1[8] = "email is already used!";
