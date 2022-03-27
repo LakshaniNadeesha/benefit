@@ -10,7 +10,11 @@
 </head>
 <body>
 <div id="myProfile">
-    <center><img src="<?= Auth::getprofile_image() ?>" alt="Profile Image" class="profile__image"></center>
+    <?php
+    $address = Auth::getprofile_image();
+    $profile = substr($address,11)?>
+    <center><img src="<?= IMG_PATH ?>/<?php print_r($profile); ?>" alt="Profile Image" class="profile__image"></center>
+
     <div class="details">
         <div class="main_details">
             <div class="name"><?= Auth::getfirst_name() ?> <?= Auth::getlast_name() ?></div>

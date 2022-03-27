@@ -43,7 +43,7 @@
 </head>
 <body>
 <div class="topnav" id="myTopnav">
-    <img class="logo" src="public/img/logo.png" alt="OFS">
+    <img class="logo" src="<?= IMG_PATH ?>logo.png" alt="OFS">
     <div class="list">
 
         <a href="<?= PATH ?>Home">Home</a>
