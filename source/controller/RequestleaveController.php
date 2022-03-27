@@ -57,16 +57,25 @@ class RequestleaveController extends Controller
                     array_push($arr1, $leave_list[$i]);
                     if ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending" && $leave_list[$i]->leave_type == "sick") {
                         $sick = $sick + 1;
-                    } elseif ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending"  && $leave_list[$i]->leave_type == "casual") {
+                    } elseif ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending"  && $leave_list[$i]->leave_type == "sick" && $leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening") {
+                        $sick = $sick + 0.5;
+                    }elseif ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending"  && $leave_list[$i]->leave_type == "casual") {
                         $casual = $casual + 1;
-                    } elseif ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending" && $leave_list[$i]->leave_type == "annual") {
+                    }elseif ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending"  && $leave_list[$i]->leave_type == "casual" && $leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening") {
+                        $casual = $casual + 0.5;
+                    } elseif ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending" && $leave_list[$i]->leave_type == "annual" && $leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening") {
+                        $annual = $annual + 0.5;
+                    }elseif ($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending" && $leave_list[$i]->leave_type == "annual") {
                         $annual = $annual + 1;
-                    }elseif($leave_list[$i]->leave_status === "reject" && $leave_list[$i]->leave_type == "sick"){
-                        $sick = $sick - 1;    
+                      
                     }elseif ($leave_list[$i]->leave_status === "reject" && $leave_list[$i]->leave_type == "casual") {
                         $casual = $casual - 1;
+                    }elseif ($leave_list[$i]->leave_status === "reject" && $leave_list[$i]->leave_type == "casual" && $leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening") {
+                        $casual = $casual - 0.5;
                     }elseif ($leave_list[$i]->leave_status === "reject" && $leave_list[$i]->leave_type == "annual") {
                         $annual = $annual - 1;
+                    }elseif ($leave_list[$i]->leave_status === "reject" && $leave_list[$i]->leave_type == "annual" && $leave_list[$i]->half_time === "morning" || $leave_list[$i]->half_time === "evening") {
+                        $annual = $annual - 0.5;
                     }
 
                     $arr3['casual'] = $casual;
