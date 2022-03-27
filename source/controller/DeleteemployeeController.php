@@ -1,7 +1,13 @@
 <?php
 
+/**
+ * 
+ */
+error_reporting(E_ERROR | E_PARSE);
+
 class DeleteemployeeController extends Controller
 {
+    
 
     function index()
     {
@@ -20,16 +26,17 @@ class DeleteemployeeController extends Controller
 
                 $arr1['supervisor_ID'] = $_POST['supervisor_f'];
 
-                print_r($arr1);
+                // print_r($arr1);
 
                 $rows = $user->update_del($id, $arr1);
                 if ($rows) {
-                    echo "done /////////////////////////////////////////////////////////////";
+                    // echo "done /////////////////////////////////////////////////////////////";
                 }
+
                 $arr['banned_employees'] = 1;
                 $row = $user->update($id, $arr);
                 $user_x = new BenefitrequestModel();
-// $roww=$user_x->where_condition('employee_ID','benefit_status',$id,'pending');
+                // $roww=$user_x->where_condition('employee_ID','benefit_status',$id,'pending');
                 $ar['employee_ID'] = $id;
                 $ar['benefit_status'] = 'Accepted';
                 $rowww = $user_x->update_condition($id, 'employee_ID', 'pending', 'benefit_status', $ar);
@@ -37,7 +44,7 @@ class DeleteemployeeController extends Controller
                 $row = $user_x2->deleteper('employee_ID', $id);
                 $user_x1 = new ReimbursementrequestModel();
 
-//$set = $user->delete($id);
+
                 $this->redirect('EmployeelistController');
             }
         }
@@ -52,3 +59,4 @@ class DeleteemployeeController extends Controller
 
 
     }
+}

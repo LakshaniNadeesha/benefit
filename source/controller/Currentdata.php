@@ -34,21 +34,28 @@ class Currentdata extends Controller
                         $application->insert($arr);
                     }
 
+                    
                     $sick_array['employee_ID'] = $id[0]->employee_ID;
                     $sick_array['leave_type'] = $_POST['sick'];
-                    $sick_array['max_leave_count'] = $_POST['sick_max'];
+                    // $sick_array['max_leave_count'] = $_POST['sick_max'];
+                    $sick_array['max_leave_count'] = $_POST['sick_remaining'];
+
                     $sick_array['remain_leave_count'] = $_POST['sick_remaining'];
                     $leave->insert($sick_array);
 
                     $casual_array['employee_ID'] = $id[0]->employee_ID;
                     $casual_array['leave_type'] = $_POST['casual'];
-                    $casual_array['max_leave_count'] = $_POST['casual_max'];
+                    // $casual_array['max_leave_count'] = $_POST['casual_max'];
+                    $casual_array['max_leave_count'] = $_POST['casual_remaining'];
+
                     $casual_array['remain_leave_count'] = $_POST['casual_remaining'];
                     $leave->insert($casual_array);
 
                     $annual_array['employee_ID'] = $id[0]->employee_ID;
                     $annual_array['leave_type'] = $_POST['annual'];
-                    $annual_array['max_leave_count'] = $_POST['annual_max'];
+                    // $annual_array['max_leave_count'] = $_POST['annual_max'];
+                    $annual_array['max_leave_count'] = $_POST['annual_remaining'];
+
                     $annual_array['remain_leave_count'] = $_POST['annual_remaining'];
                     $leave->insert($annual_array);
 
