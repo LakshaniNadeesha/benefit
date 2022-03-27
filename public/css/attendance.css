@@ -61,7 +61,7 @@ body {
     padding-top: 10px;
 }
 
-.section1 .top_today {
+.section1 .top_today, .section1 .top_tomorrow {
     display: flex;
     flex-direction: row;
 }
