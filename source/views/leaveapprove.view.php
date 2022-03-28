@@ -213,7 +213,7 @@
                             <?php
 
 
-                            if (boolval($emp)) {
+                            if (boolval($emps)) {
                                 // echo "<pre>";
                                 // print_r($emps);
                                 // echo "</pre>";
