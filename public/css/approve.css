@@ -101,41 +101,6 @@ body {
 .reject {
     color: rgb(226, 90, 90);
     border: 3px solid rgb(226, 86, 86);
-    border-radius: 50px;
-    width: 100px;
-    height: 30px;
-    
-}
-
-#reject{
-    /* display: none; */
-    margin: auto;
-    margin-left: 20px;
-    cursor: pointer;
-}
-
-#table_submit{       
-    background-color: #6fccee;
-    border: 1.5px solid var(--header);
-    border: 1.5px solid black;
-    border-radius: 10px;
-    min-width: 70px;
-    height: 30px;
-    cursor: pointer;
-}
-
-#table_submit:hover {
-    color: var(--red);
-    cursor: pointer;
-    transform: scale(1.02);
-}
-
-#form2{
-    display: flex;
-    width: 500px;
-    margin: auto;
-    justify-content: space-around;
-    /* margin-top: 20px; */
 }
 
 .reason {
@@ -151,7 +116,6 @@ body {
 .title {
     font-weight: bold;
     font-size: larger;
-    margin-left: 10px;
 }
 
 .header-approve:hover {
@@ -199,8 +163,7 @@ git .status .detail-container {
 }
 
 .benefit_row_1 {
-    display: flex;
-    flex-direction: row;
+    display: flex;flex-direction: row;
     width: 100%;
     height: max-content;
 }
@@ -218,9 +181,7 @@ git .status .detail-container {
     outline: none;
 }
 
-.benefit_column_2 .benefit_type,
-.benefit_column_2 .claimed_date,
-.benefit_column_2 .claim_amount {
+.benefit_column_2 .benefit_type, .benefit_column_2 .claimed_date, .benefit_column_2 .claim_amount {
     border: none;
 }
 
@@ -298,7 +259,7 @@ hr {
     font-weight: 900;
     margin-top: auto;
     margin-bottom: auto;
-    /* margin-left: 5px; */
+    margin-left: 5px;
 }
 
 .benefit_search {
@@ -383,7 +344,51 @@ tr:nth-child(odd) {
     justify-content: center;
 }
 
+.confirm--close {
+    animation-name: confirm---close;
+}
 
+.confirm__window {
+    height: min-content;
+    width: 100%;
+    max-width: 600px;
+    background-color: white;
+    font-size: 14px;
+    font-family: sans-serif;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: scale(0.75);
+    animation-name: confir__window---open;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.2s;
+}
+
+.confirm__titlebar,
+.confirm__content,
+.confirm__buttons {
+    padding: 1.25em;
+}
+
+.confirm__titlebar {
+    background-color: var(--h1);
+    color: var(--w);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.confirm__title {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.confirm__content {
+    display: flex;
+    flex-direction: column;
+}
 
 .row {
     display: flex;
@@ -422,7 +427,15 @@ tr:nth-child(odd) {
     cursor: pointer;
 }
 
+.confirm__content {
+    line-height: 1.8em;
+}
 
+.confirm__buttons {
+    background-color: #EEEEEE;
+    display: flex;
+    justify-content: flex-end;
+}
 
 .confirm__button {
     padding: 0.4em 0.8em;
