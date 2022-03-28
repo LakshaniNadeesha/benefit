@@ -76,7 +76,7 @@
                                         if ($emp) { ?>
                                             <div class="header-approve" style="height: 280px;" id="btn">
                                                 <center>
-                                                    <img src="<?= IMG_PATH ?>\profile\download.png" class="profile__image">
+                                                    <img src="<?php print_r($emp[$i]['profile_image']); ?>" class="profile__image">
                                                 </center>
                                                 <p class="name"><?php print_r($emp[$i]['first_name']); ?></p>
                                                 <p class="name"><?php print_r($emp[$i]['last_name']); ?></p>

@@ -242,6 +242,10 @@ hr {
     color: var(--f);
 }
 
+.leave_history h3 {
+    margin-left: 15px;
+}
+
 /* Dont work */
 #leave_history_result {
     
