@@ -196,6 +196,8 @@ class LeaveapproveController extends Controller
                 // $this->redirect('AddemployeeRedirectController');
 
                 $user_x->rejectLeave($id, $date, $val, $reason);
+                $this->redirect('LeaveapproveController');
+
             }
             // }
 
