@@ -32,7 +32,7 @@ class LeavedetailsController extends Controller
 
                 $today = date("Y-m-d");
                 $new_date = $leave_list[$i]->date;
-                if ($leave_list[$i]->leave_status == 'pending') {
+                if ($leave_list[$i]->leave_status === 'pending') {
 
                     $request_date = $leave_list[$i]->request_date;
                     $r_date = date_create($request_date);
@@ -71,11 +71,11 @@ class LeavedetailsController extends Controller
 
                 if ($leave_list[$i]->leave_status === "reject" || $leave_list[$i]->leave_status === "approve") {
                     array_push($arr2, $leave_list[$i]);
-                    if ($leave_list[$i]->leave_status === "approve" && $leave_list[$i]->leave_type == "sick") {
+                    if ($leave_list[$i]->leave_status === "approve" && $leave_list[$i]->leave_type === "sick") {
                         $sick = $sick + 1;
-                    } elseif ($leave_list[$i]->leave_status === "approve" && $leave_list[$i]->leave_type == "casual") {
+                    } elseif ($leave_list[$i]->leave_status === "approve" && $leave_list[$i]->leave_type === "casual") {
                         $casual = $casual + 1;
-                    } elseif ($leave_list[$i]->leave_status === "approve" && $leave_list[$i]->leave_type == "annual") {
+                    } elseif ($leave_list[$i]->leave_status === "approve" && $leave_list[$i]->leave_type === "annual") {
                         $annual = $annual + 1;
                     }
 
@@ -118,9 +118,9 @@ class LeavedetailsController extends Controller
             $annual1 = 0;
             for ($i = 0; $i < sizeof($leave_list); $i++) {
 
-                if ($leave_list[$i]->leave_status === "pending" || $leave_list[$i]->leave_status === "approve") {
-                    array_push($arr1, $leave_list[$i]);
-                }
+                // if ($leave_list[$i]->leave_status === "pending" || $leave_list[$i]->leave_status === "approve") {
+                //     array_push($arr1, $leave_list[$i]);
+                // }
 
                 if($leave_list[$i]->leave_type == "sick"){
                     if($leave_list[$i]->leave_status === "approve" || $leave_list[$i]->leave_status === "pending"){

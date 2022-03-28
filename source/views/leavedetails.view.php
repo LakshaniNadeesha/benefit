@@ -42,12 +42,12 @@
                         <hr>
                     </div>
                     <!-- <?php
-                    echo "<pre>";
-                    print_r($remain);
-                    echo "</pre>"; 
-                    
-                    print_r($remain[0]->remain_leave_count)
-                    ?> -->
+                            echo "<pre>";
+                            print_r($remain);
+                            echo "</pre>";
+
+                            print_r($remain[0]->remain_leave_count)
+                            ?> -->
 
 
                     <div class="leave_card">
@@ -95,22 +95,23 @@
                         <p class="main_title">Upcoming Time Off</p>
                     </div>
                     <hr>
-                    <!-- <?php
-                            echo "<pre>";
-                            print_r($arr1);
-                            echo "</pre>";
-                            ?> -->
+                    <?php
+                    // echo "<pre>";
+                    // print_r($arr1);
+                    // echo "</pre>";
+                    ?>
 
                     <div class="upcomming_data">
                         <?php
                         if (boolval($arr1)) {
+                            // print_r(sizeof($arr1));
 
                             for ($i = 0; $i < sizeof($arr1); $i++) {
 
-                                if ($arr1[$i]->leave_status == "pending") {
+                                if ($arr1[$i]->leave_status === "pending") {
 
                         ?>
-                                    <form method="post">
+                                    <form method="post" >
                                         <div class="upcoming_detail">
                                             <div class="icon">
                                                 <i class="item" data-feather="smile"></i>
@@ -142,8 +143,6 @@
                             }
                         } ?>
                     </div>
-
-
 
 
                 </div>
